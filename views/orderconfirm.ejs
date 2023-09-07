@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>確認訂單</title>
+
+    <!-- vg style -->
+    <%- include('share/head_link.ejs') %>
+        <link rel="stylesheet" href="css/cart.css">
+
+
+</head>
+
+<body>
+    <!-- 頁首 -->
+    <%- include('share/header.ejs') %>
+        <!-- 主要區塊 -->
+        <main style="margin-top: 130px; margin-bottom: 50px;">
+            <!-- progress bar -->
+            <div>
+                <ul id="progressbar">
+                    <li class="active">購物車</li>
+                    <li class="active">結帳</li>
+                    <li>送出訂單</li>
+                    <li>訂購完成</li>
+                </ul>
+            </div>
+            <!-- 訂單資訊 -->
+            <div class="container row m-auto">
+                <section class="lside col-12 col-md-7 mb-3">
+                    <!-- 資料確認 -->
+                    <div id="confirminfo" class="">
+                        <h3 class="vg-h3 text-center my-3">訂購資訊</h3>
+                        <div class="text-center" id="orderdetails">
+                            <!-- 基本資料 -->
+                            <!-- <div>
+                                    <h5 class="vg-h5">基本資料</h5>
+                                    <p class="vg-p">王小明</p>
+                                    <p class="vg-p">0912345678</p>
+                                    <p class="vg-p">tom123@gmail.com</p>
+                                </div> -->
+                            <!-- 收件資料 -->
+                            <!-- <div>
+                                    <h5 class="vg-h5">收件資料</h5>
+                                    <p class="vg-p">宅配</p>
+                                    <p class="vg-p">陳大華</p>
+                                    <p class="vg-p">台南市安南區海安路123號</p>
+                                    <p class="vg-p">0912333444</p>
+                                </div> -->
+                            <!-- 付款方式-->
+                            <!-- <div>
+                                    <h5 class="vg-h5">付款方式</h5>
+                                    <p class="vg-p">信用卡一次付清</p>
+                                    <p class="vg-p">Wang Ming</p>
+                                    <p class="vg-p">0000-0000-0000-0000</p>
+                                    <p class="vg-p">09/23</p>
+                                    <p class="vg-p">***</p>
+                                </div> -->
+                            <!-- 發票開立-->
+                            <!-- <div>
+                                    <h5 class="vg-h5">發票開立</h5>
+                                    <p class="vg-p">個人發票</p>
+                                    <p class="vg-p">./Z-hid</p>
+                                </div> -->
+                            <!-- 訂單備註-->
+                            <!-- <div>
+                                    <h5 class="vg-h5">訂單備註</h5>
+                                    <p class="vg-p">不喜歡吃香蕉</p>
+                                </div> -->
+                        </div>
+                    </div>
+                </section>
+                <section class="rside col-12 col-md-4">
+                    <!-- summary -->
+                    <div id="summery">
+                        <h3 class="vg-h3 text-center my-3">訂單內容</h3>
+                        <p class="vg-ps text-center">編號<span id="orderid"></span></p>
+                        <table id="summary_items" class="table ">
+                            <tr>
+                                <td>
+                                    <p>蔬菜箱</p>
+                                    <p>1~2人 6箱 每週配送 兒童 辛香料</p>
+                                </td>
+                                <td>500</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>惜福箱</p>
+                                    <p>1~2人 1箱 單次配送</p>
+                                </td>
+                                <td>300</td>
+                            </tr>
+                        </table>
+                        <table id="summary_coupon" class="table w-50">
+                            <tr>
+                                <td>宅配運費</td>
+                                <td>120</td>
+                            </tr>
+                            <tr>
+                                <td>折扣碼NPMSD</td>
+                                <td>-100</td>
+                            </tr>
+                            <tr>
+                                <td>購物金</td>
+                                <td>-5</td>
+                            </tr>
+                        </table>
+                        <div class="d-flex justify-content-around">
+                            <div class="vg-h4">總金額</div>
+                            <div class="vg-h3" id="total">0</div>
+                        </div>
+                    </div>
+                    <!-- order -->
+                    <div id="placeorder" class="text-center mt-5">
+                        <a class="btn btn-vg-lg mt-2 mb-3 p-3" id="sendorder" onclick="sendorder()">送出訂單</a><br />
+                        <a href="/order" class="vg-href">返回修改</a><br />
+                    </div>
+
+                </section>
+            </div>
+        </main>
+        <!-- 頁尾 -->
+        <%- include('share/footer.ejs') %>
+
+            <!-- vg JS -->
+            <%- include('share/vg-main.ejs') %>
+                <script src="js/cart.js"></script>
+                <script>
+                    // 設定使用者
+                    var uid = 2;
+
+                    // 連結訂單資料表 vgorder
+                    $.get(`/order/items/${uid}`, function (e) {
+                        if (typeof (e) == 'string') {
+                            items = JSON.parse(e);
+                        } else {
+                            items = e;
+                        }
+                        // 訂單內容
+                        $("#summary_items").empty();
+                        var total = 0;
+                        var shippingfee = 0;
+                        $.each(items, function (index, item) {
+                            item.size == 's' ? fee = 160 : fee = 290; // 運費 (S-160 L-290)
+                            item.size == 's' ? item.size = '1~2人' : item.size = '3~4人';
+                            item.c_note == null ? item.c_note = '無備註' : item.c_note
+                            var trHtml = `
+                                <tr>
+                                <td>
+                                    <p class="m-0">${item.pname}</p>
+                                    <p class="vg-ps">${item.size} ${item.freq} ${item.c_note} </p>
+                                </td>
+                                <td>${item.price}</td>
+                            </tr>
+                            `;
+                            $("#summary_items").append(trHtml);
+                            shippingfee += fee;
+                            total += item.price;
+                        })
+                        // 運費計算
+                        var tdHtml = `    
+                        <td>${shippingfee}</td>
+                        `;
+                        $('#shippingfee').after(tdHtml)
+                        // 總金額計算 (未含折扣碼與購物金)
+                        $('#total').text(shippingfee + total)
+                    }).then(function (res) {
+                        orderid.innerText = res[0].oid;
+                        console.log(res[0])
+                        var divHtml = `
+                                <div>
+                                    <h5 class="vg-h5">基本資料</h5>
+                                    <p class="vg-p">${res[0].oName}</p>
+                                    <p class="vg-p">${res[0].oTel}</p>
+                                    <p class="vg-p">${res[0].oMail}</p>
+                                </div>
+                                <div>
+                                    <h5 class="vg-h5">收件資料</h5>
+                                    <p class="vg-p">宅配</p>
+                                    <p class="vg-p">${res[0].rName}</p>
+                                    <p class="vg-p">${res[0].rAddr}</p>
+                                    <p class="vg-p">${res[0].rTel}</p>
+                                    <p class="vg-p">${res[0].convName}</p>
+                                    <p class="vg-p">${res[0].convTel}</p>
+                                    <p class="vg-p">${res[0].convStore}</p>
+                                </div>
+                                <div>
+                                    <h5 class="vg-h5">付款方式</h5>
+                                    <p class="vg-p">轉帳匯款</p>
+                                    <p class="vg-p">${res[0].transName}</p>
+                                    <p class="vg-p">${res[0].transNum}</p>
+                                    <p class="vg-p">${res[0].transDate}</p>
+                                    <p class="vg-p">${res[0].creditName}</p>
+                                    <p class="vg-p">${res[0].creditNum}</p>
+                                    <p class="vg-p">${res[0].creditMM}/${res[0].creditYY}</p>
+                                    <p class="vg-p">${res[0].payment}</p>
+                                </div>
+                                <div>
+                                    <h5 class="vg-h5">發票開立</h5>
+                                    <p class="vg-p">${res[0].billDonate}</p>
+                                    <p class="vg-p">${res[0].billPersonal}</p>
+                                    <p class="vg-p">${res[0].billCompName}</p>
+                                    <p class="vg-p">${res[0].billCompNum}</p>
+                                    <p class="vg-p">${res[0].billCompAddr}</p>
+                                </div>
+                                <div>
+                                    <h5 class="vg-h5">訂單備註</h5>
+                                    <p class="vg-p">${res[0].o_note}</p>
+                                </div>
+                        `;
+                        orderdetails.innerHTML = divHtml;
+                    })
+                    sendorder = () => {
+                        var oid = orderid.innerText;
+                        var time = new Date().getTime();
+                        console.log(time)
+                        // 更新 本筆訂單 對應的o_status => inactive
+                        fetch('/editorder/statusinactive/', {
+                            method: 'PATCH',
+                            headers: {
+                                "Content-Type": "application/json ; charset=UTF-8"
+                            },
+                            body: JSON.stringify({
+                                oid: oid,
+                                o_updatetime: time
+                            })
+                        }).then(
+                            // 轉址
+                            document.location.href = "/orderprocessing/"
+                        )
+                    }
+
+
+
+                </script>
+
+</body>
+
+</html>

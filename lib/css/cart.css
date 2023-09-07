@@ -1,0 +1,444 @@
+/* RWD */
+@media (max-width: 800px) {
+    .btn {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    #orderplaced a[class^='btn'] {
+        display: block;
+        margin: 20px;
+        align-items: center;
+    }
+
+
+}
+
+
+/* ↓↓↓評價訂單↓↓↓ */
+#rateorder {
+    width: 80%;
+    height: 80%;
+}
+
+.rateitem {
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+    padding: 5px;
+    margin: 5px;
+    border-radius: 20px;
+}
+
+.rateitem:hover {
+    box-shadow: 0px 0px 1px rgba(27, 27, 27, 0.591), inset 0px 0px 5px rgba(207, 207, 207, 0.591);
+    cursor: grab;
+}
+
+
+.rateslider {
+    margin: auto;
+    width: 60%;
+}
+
+.ui-widget-content .ui-state-default {
+    width: 30px;
+    text-align: center;
+    line-height: 20px;
+    background-color: var(--primary);
+    color: white;
+}
+
+.close-btn {
+    border: none;
+    background-color: transparent;
+}
+
+
+
+/* ↓↓↓訂單已完成↓↓↓ */
+#orderplaced {
+    width: 80%;
+    height: 80%;
+    text-align: center;
+    /* margin: auto; */
+}
+
+
+
+/* ↓↓↓訂單傳送中↓↓↓ */
+#sending {
+    width: 80%;
+    height: 400px;
+    line-height: 250px;
+    text-align: center;
+}
+
+#paperplane {
+    width: 60px;
+    animation: moveAndRotate 3s linear forwards;
+}
+
+@keyframes moveAndRotate {
+    0% {
+        transform: translateX(-10em) rotate(0deg);
+    }
+
+    100% {
+        transform: translateX(3em) rotate(45deg);
+    }
+}
+
+@media (min-width: 720px) {
+    #paperplane {
+        width: 100px;
+        animation: moveAndRotatePC 5s ease forwards;
+    }
+}
+
+@keyframes moveAndRotatePC {
+    0% {
+        transform: translateX(-20em) rotate(0deg);
+    }
+
+    100% {
+        transform: translateX(8em) rotate(45deg);
+    }
+}
+
+#waitpoint {
+    width: 15px;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 3s steps(50) 2;
+    display: inline-flex;
+}
+
+@keyframes typing {
+    from {
+        width: 0%
+    }
+}
+
+#sendbar {
+    line-height: 0;
+    margin-top: -50px;
+    margin-left: 20%;
+}
+
+#bar-bt,
+#bar-top {
+    position: absolute;
+    width: 45%;
+    height: 10px;
+    border-radius: 30px;
+    background-color: var(--text-sub-color);
+}
+
+#bar-top {
+    filter: brightness(110%);
+    background-color: #ccdcac;
+    animation: typing 5s steps(50) infinite;
+    transition: all 3s ease-in-out;
+}
+
+
+/* ↓↓↓確認訂單↓↓↓ */
+#confirminfo h5 {
+    font-weight: 600;
+    padding: 10px;
+    box-shadow: inset 3px 3px 10px #ccdcac62;
+    border-radius: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: -20px;
+    text-align: left;
+    width: fit-content;
+    background-color: white;
+}
+
+#confirminfo h5:before {
+    content: '';
+    width: 10px;
+    height: 5px;
+    display: block;
+    background-color: #ccdcaca9;
+    position: relative;
+    top: 35px;
+    left: -20px;
+    clip-path: polygon(15% 0, 100% 80%, 100% 0);
+
+}
+
+#confirminfo p:hover {
+    transform: scale(90%);
+    cursor: context-menu;
+}
+
+#sendorder:hover {
+    background-color: red !important;
+}
+
+
+/* ↓↓↓訂單資料↓↓↓ */
+.accordion-button:not(.collapsed) {
+    background-color: var(--primary);
+    color: var(--text-color);
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+}
+
+#orderinfo div[class*="nav"] {
+    margin: auto;
+}
+
+/* 漂浮至右邊的元素可被點選 */
+div[class*="float-end"]>label,
+div[class*="float-end"] input,
+#frommember {
+    position: relative;
+    z-index: 3;
+}
+
+/* 收件資訊便利商店區塊位置 */
+.convenientstore {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 發票個人與公司區塊位置 */
+/* #nav-company form {
+    align-items: center;
+} */
+
+
+/* ↓↓↓購物車↓↓↓ */
+
+#orderitems>div {
+    /* background-color: #ccdcac; */
+    height: 400px;
+    overflow-y: scroll;
+    padding: 20px;
+}
+
+#orderitems thead {
+    position: sticky;
+    top: -20px;
+    background-color: #7C6355;
+}
+
+#orderitems>h3 {
+    background-image: linear-gradient(352deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+}
+
+#orderitems>table {
+    margin: auto;
+}
+
+td>p {
+    color: var(--text-sub-color);
+}
+
+th,
+td {
+    padding: 1px 5px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#orderitems td:nth-of-type(n + 3) {
+    text-align: left;
+    vertical-align: bottom;
+}
+
+/* 調整表格hover顏色 */
+#orderitems tbody tr:hover td,
+#orderitems tbody tr:hover th {
+    transform: scale(90%);
+}
+
+/* 願望清單樣式 */
+#wishlist {
+    /* background-color: blanchedalmond; */
+    height: 110px;
+
+}
+
+#wishlist>h5 {
+    float: left;
+    padding: 30px;
+}
+
+#wishlistitems {
+    overflow: hidden;
+}
+
+.myItem {
+    padding: 3px;
+    /* background-color: #7C6355; */
+
+}
+
+#wishlist img {
+    width: 80px;
+    border-radius: 5px;
+}
+
+
+
+/* 折扣碼樣式 */
+#coupon {
+    /* background-color: lightsalmon; */
+    height: 140px;
+    z-index: -2;
+}
+
+.nav-link {
+    width: 50%;
+}
+
+.tab-content>div {
+    text-align: center;
+    padding-top: 20px;
+    background-color: transparent;
+}
+
+.nav-link:active {
+    color: var(--text-color);
+}
+
+.nav-link:hover {
+    color: var(--primary);
+}
+
+.nav-link {
+    color: var(--text-sub-color);
+}
+
+/* 金額試算樣式 */
+#summary_coupon {
+    margin-left: auto;
+}
+
+
+/* -------------------------------------共同樣式---------------------------------------- */
+* {
+    --text-color: #362706;
+    --primary: #ccdcac;
+    --text-sub-color: #7C6355;
+}
+
+/* 陰影視窗樣式 */
+#orderitems,
+#wishlist,
+#summery,
+#orderinfo,
+#confirminfo,
+#sending,
+#orderplaced,
+#rateorder,
+#tempproduct {
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* scroll bar 樣式 */
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+
+::-webkit-scrollbar-button {
+    background: transparent;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-track-piece {
+    background: transparent;
+
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: lightgray
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: transparent;
+}
+
+
+/* from-select樣式 */
+.form-select:focus {
+    box-shadow: 0px 0px 3px var(--primary);
+    border: 2px solid var(--primary);
+}
+
+
+/* tab內容 */
+.tab-content {
+    border: 1px solid rgba(211, 211, 211, 0.493);
+    border-top: none;
+    border-radius: 5px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+/*progressbar*/
+#progressbar {
+    padding-top: 10px;
+    overflow: hidden;
+    counter-reset: step;
+}
+
+#progressbar li {
+    list-style-type: none;
+    font-size: 8px;
+    width: 25%;
+    float: left;
+    position: relative;
+    text-align: center;
+}
+
+#progressbar li:before {
+    content: counter(step);
+    counter-increment: step;
+    width: 20px;
+    line-height: 20px;
+    border: 1px solid var(--primary);
+    text-align: center;
+    display: block;
+    font-size: 10px;
+    background: white;
+    border-radius: 5px;
+    margin: 0 auto 5px auto;
+}
+
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 3px;
+    background: rgb(216, 237, 216);
+    position: absolute;
+    left: -50%;
+    top: 10px;
+    z-index: -1;
+}
+
+#progressbar li:first-child:after {
+    /*connector not needed before the first step*/
+    content: none;
+}
+
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: var(--primary);
+    color: white;
+}
+
+
+/* -------------------------------------共同樣式---------------------------------------- */

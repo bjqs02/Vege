@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>訂購成功</title>
+
+    <!-- vg style -->
+    <%- include('share/head_link.ejs') %>
+        <link rel="stylesheet" href="css/cart.css">
+
+
+</head>
+
+<body>
+    <!-- 頁首 -->
+    <%- include('share/header.ejs') %>
+        <!-- 主要區塊 -->
+        <main style="margin-top: 130px; margin-bottom: 50px;">
+            <!-- progress bar -->
+            <div>
+                <ul id="progressbar">
+                    <li class="active">購物車</li>
+                    <li class="active">結帳</li>
+                    <li class="active">送出訂單</li>
+                    <li class="active">訂購完成</li>
+                </ul>
+            </div>
+            <!-- 訂單已完成 -->
+            <div id="orderplaced" class="container">
+                <img src="img/fruitbox.png" class="w-25" alt="">
+                <h3 class="vg-h3">您已完成訂購！</h3>
+                <p class="vg-p">訂單編號：<a href="/rateorder" id="orderNumber" class="vg-href"> MP23301004</a></p>
+                <p class="vg-p">系統已將訂單寄送至信箱：<span id="memberMail" class="vg-p"> tom22013@gmail.com</span></p>
+                <div class="m-3 p-3 text-center" id="orderplacedbtn">
+                    <a href="/orderconfirm" class="btn btn-vg-lg mx-2">會員中心</a>
+                    <a href="/" class="btn btn-vg-lg mx-2">繼續購物</a>
+                </div>
+            </div>
+        </main>
+        <!-- 頁尾 -->
+        <%- include('share/footer.ejs') %>
+
+            <!-- vg JS -->
+            <%- include('share/vg-main.ejs') %>
+                <script src="js/cart.js"></script>
+                <script>
+                    // 設定使用者
+                    var uid = 2;
+
+                    // 連結訂單資料表 vgorder
+                    $.get(`/order/list/${uid}`, function (res) {
+                        // console.log(res)
+                        orderNumber.innerText = res[0].oid
+                        memberMail.innerText = res[0].oMail
+                    })
+                </script>
+
+</html>
