@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>評價訂單</title>
+
+    <!-- vg style -->
+    <%- include('share/head_link.ejs') %>
+        <link rel="stylesheet" href="css/cart.css">
+
+
+</head>
+
+<body>
+    <!-- 頁首 -->
+    <%- include('share/header.ejs') %>
+        <!-- 主要區塊 -->
+        <main style="margin-top: 130px; margin-bottom: 50px;">
+            <!-- 評價訂單 -->
+            <div id="rateorder" class="container text-center">
+                <!-- 訂單資訊 -->
+                <div class="container orderinfo text-start">
+                    <p class="vg-p">訂單編號：<a href="/rateorder" id="orderNumber" class="vg-href"> MP23301004</a></p>
+                    <p class="vg-p" id="rateitems">訂購品項：
+                        <span class="rateitem">惜福箱</span>
+                        <span class="rateitem">蔬果箱</span>
+                    </p>
+                </div>
+                <hr>
+                <!-- 綜合評價 -->
+                <div class="container">
+                    <div id="quality" class="d-flex">
+                        <p class="vg-p ms-auto">產品品質：</p>
+                        <div class="rateslider mt-1">
+                            <div id="" class="ratecustom-handle ui-slider-handle"></div>
+                        </div>
+                    </div>
+                    <div id="speed" class="d-flex">
+                        <p class="vg-p ms-auto">配送速度：</p>
+                        <div class="rateslider mt-1">
+                            <div id="" class="ratecustom-handle ui-slider-handle"></div>
+                        </div>
+                    </div>
+                    <div id="orderstep" class="d-flex">
+                        <p class="vg-p ms-auto">訂購流程：</p>
+                        <div class="rateslider mt-1">
+                            <div id="" class="ratecustom-handle ui-slider-handle"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 特定產品評價 -->
+                <div class="message my-5">
+                    <p class="vg-p">歡迎您針對我們的產品分享留言<span class="vg-ps ms-3">最多3則</span>
+                        <button id="moremsg" class="d-inline btn btn-vg-xs mb-1">＋</button>
+                    </p>
+                    <div id="inputContainer">
+                    </div>
+                </div>
+                <!-- 送出評價 -->
+                <a href="/orderplaced" class="btn btn-vg d-block mx-auto">送出評價</a>
+            </div>
+        </main>
+        <!-- 頁尾 -->
+        <%- include('share/footer.ejs') %>
+
+            <!-- vg JS -->
+            <%- include('share/vg-main.ejs') %>
+                <script src="js/cart.js"></script>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>訂單傳送中...</title>
+
+    <!-- vg style -->
+    <%- include('share/head_link.ejs') %>
+        <link rel="stylesheet" href="css/cart.css">
+
+
+</head>
+
+<body>
+    <!-- 頁首 -->
+    <%- include('share/header.ejs') %>
+        <!-- 主要區塊 -->
+        <main style="margin-top: 130px; margin-bottom: 50px;">
+            <div>
+                <ul id="progressbar">
+                    <li class="active">購物車</li>
+                    <li class="active">結帳</li>
+                    <li class="active">送出訂單</li>
+                    <li>訂購完成</li>
+                </ul>
+            </div>
+            <!-- 訂單傳送中 -->
+            <div id="sending" class="container">
+                <p class="vg-p">訂單傳送中，請勿關閉視窗
+                    <span class="" id="waitpoint">‧‧‧</span>
+                </p>
+                <div id="sendbar">
+                    <img src="/img/sendnotail.gif" class="mx-auto" id="paperplane">
+                    <div id="bar-bt"></div>
+                    <div id="bar-top"></div>
+                </div>
+            </div>
+        </main>
+        <!-- 頁尾 -->
+        <%- include('share/footer.ejs') %>
+
+            <!-- vg JS -->
+            <%- include('share/vg-main.ejs') %>
+                <script src="js/cart.js"></script>
+
+                <!-- 刷新頁面 -->
+                <script>
+                    setInterval("location.href='/orderplaced'", 5000)
+                </script>
+</body>
+
+</html>

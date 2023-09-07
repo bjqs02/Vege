@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>填寫訂單資料</title>
+
+    <!-- vg style -->
+    <%- include('share/head_link.ejs') %>
+        <link rel="stylesheet" href="css/cart.css">
+
+        <style>
+
+        </style>
+</head>
+
+<body>
+    <!-- 頁首 -->
+    <%- include('share/header.ejs') %>
+        <!-- 主要區塊 -->
+        <main style="margin-top: 130px; margin-bottom: 50px;">
+            <!-- progress bar -->
+            <div>
+                <ul id="progressbar">
+                    <li class="active">購物車</li>
+                    <li class="active">結帳</li>
+                    <li>送出訂單</li>
+                    <li>訂購完成</li>
+                </ul>
+            </div>
+            <!-- 購買資訊 -->
+            <div class="container row m-auto">
+                <section class="lside col-12 col-md-7 mb-3">
+                    <!-- 資訊填寫處 -->
+                    <div id="orderinfo" class="accordion info p-0">
+                        <form id="orderdetails" action="">
+                            <!-- 基本資料 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                                        aria-controls="panelsStayOpen-collapseOne">
+                                        <span class="vg-h5">訂購資訊</span>
+                                    </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                                    <div class="accordion-body">
+                                        <div action="" class="needs-validation">
+                                            <div class="float-end">
+                                                <input type="checkbox" id="memberdata" class="" /><label
+                                                    for="memberdata" class="">同會員資料</label><br />
+                                            </div>
+                                            <div class="form-floating form-group m-2">
+                                                <input type="text" name="oName" id="userName" class="form-control w-50"
+                                                    placeholder="">
+                                                <label for="userName">姓名</label>
+                                            </div>
+                                            <div class="form-floating form-group m-2">
+                                                <input type="tel" name="oTel" id="userName" class="form-control w-50"
+                                                    placeholder="">
+                                                <label for="userName">電話</label>
+                                            </div>
+                                            <div class="form-floating form-group m-2">
+                                                <input type="email" name="oMail" id="userMail" class="form-control w-75"
+                                                    placeholder="">
+                                                <label for="userMail">信箱</label>
+                                            </div>
+                                            <!-- <div class="twzipcode m-2">
+                                            <select data-role="county" class="form-select-sm w-25"></select>
+                                            <select data-role="district" class="form-select-sm w-25"></select>
+                                            <input type="hidden" data-role="zipcode" />
+                                        </div>
+                                        <div class="form-floating form-group m-2">
+                                            <input type="text" name="" id="userAdd" class="form-control w-75"
+                                                placeholder="">
+                                            <label for="userAdd">請輸入街道與門牌號碼</label>
+                                        </div> -->
+                                            <div class="m-2">
+                                                <input type="checkbox" name="" id="updateMember">
+                                                <label for="updateMember">更新到會員資料</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 收件資訊 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true"
+                                        aria-controls="panelsStayOpen-collapseTwo">
+                                        <span class="vg-h5">收件資訊</span>
+                                    </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show">
+                                    <div class="accordion-body">
+                                        <nav class="">
+                                            <div class="nav nav-tabs row" id="" role="tablist">
+                                                <button class="nav-link col active" id="nav-home-tab"
+                                                    data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
+                                                    role="tab" aria-controls="nav-home"
+                                                    aria-selected="false">宅配</button>
+                                                <button class="nav-link col" id="nav-seven-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#nav-seven" type="button" role="tab"
+                                                    aria-controls="nav-seven" aria-selected="true">7-11</button>
+                                                <button class="nav-link col" id="nav-family-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#nav-family" type="button" role="tab"
+                                                    aria-controls="nav-family" aria-selected="false">全家</button>
+                                            </div>
+                                        </nav>
+                                        <div class="tab-content" id="">
+                                            <!-- 宅配 -->
+                                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                                                aria-labelledby="nav-home-tab" tabindex="0">
+                                                <div action="" class="needs-validation">
+                                                    <div class="float-end me-3">
+                                                        <input type="checkbox" id="basicdata" class="" /><label
+                                                            for="basicdata" class="">同訂購資訊</label><br />
+                                                        <button type="checkbox" id="frommember"
+                                                            class="btn btn-vg-xs w-100 mt-2">從常用地址帶入</button>
+                                                    </div>
+                                                    <div class="form-floating form-group m-2">
+                                                        <input type="text" name="rName" id="homeName"
+                                                            class="form-control w-50" placeholder="">
+                                                        <label for="homeName">姓名</label>
+                                                    </div>
+                                                    <div class="form-floating form-group m-2">
+                                                        <input type="tel" name="rTel" id="homeTel"
+                                                            class="form-control w-50" placeholder="">
+                                                        <label for="homeTel">電話</label>
+                                                    </div>
+                                                    <div class="twzipcode text-start m-2">
+                                                        <select data-role="county" class="form-select-sm w-25"></select>
+                                                        <select data-role="district"
+                                                            class="form-select-sm w-25"></select>
+                                                        <input type="hidden" data-role="zipcode" />
+
+                                                    </div>
+                                                    <div class="form-floating form-group m-2">
+                                                        <input type="text" name="rAddr" id="homeAdd"
+                                                            class="form-control w-75" placeholder="">
+                                                        <label for="homeAdd">請輸入街道與門牌號碼</label>
+                                                    </div>
+                                                    <div class="text-start m-3">
+                                                        <input type="checkbox" name="" id="updatemyaddress">
+                                                        <label for="updatemyaddress">更新到常用地址</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- 7-11 -->
+                                            <div class="tab-pane fade show" id="nav-seven" role="tabpanel"
+                                                aria-labelledby="nav-seven-tab" tabindex="0">
+                                                <div action="" class="convenientstore">
+                                                    <div class="d-flex">
+                                                        <div class="form-floating form-group m-2">
+                                                            <input type="text" name="convName" id="sevenName"
+                                                                class="form-control" placeholder="">
+                                                            <label for="sevenName">取貨人姓名</label>
+                                                        </div>
+                                                        <div class="form-floating form-group m-2">
+                                                            <input type="tel" name="convTel" id="sevenTel"
+                                                                class="form-control" placeholder="">
+                                                            <label for="sevenTel">取貨人電話</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="">
+                                                        <input type="text" name="convStore"
+                                                            class="form-control w-50 d-inline my-3" disabled>
+                                                        <a href="https://emap.presco.com.tw/c2cemap.ashx?eshopid=870&&servicetype=1&url=https://localhost:3000/cvs_callback"
+                                                            class="vg-href w-50 ms-2 d-inline">選擇取貨7-11</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- 全家 -->
+                                            <div class="tab-pane fade" id="nav-family" role="tabpanel"
+                                                aria-labelledby="nav-family-tab" tabindex="0">
+                                                <div action="" class="convenientstore">
+                                                    <div class="d-flex">
+                                                        <div class="form-floating form-group m-2">
+                                                            <input type="text" name="convName" id="familyName"
+                                                                class="form-control" placeholder="">
+                                                            <label for="familyName">取貨人姓名</label>
+                                                        </div>
+                                                        <div class="form-floating form-group m-2">
+                                                            <input type="tel" name="convTel" id="familyTel"
+                                                                class="form-control" placeholder="">
+                                                            <label for="familyTel">取貨人電話</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="">
+                                                        <input type="text" name="convStore"
+                                                            class="form-control w-50 d-inline my-3" disabled>
+                                                        <a href="https://emap.presco.com.tw/c2cemap.ashx?eshopid=870&&servicetype=1&url=https://localhost:3000/cvs_callback"
+                                                            class="vg-href w-50 ms-2 d-inline">選擇取貨全家</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 付款方式 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+                                        aria-controls="panelsStayOpen-collapseThree">
+                                        <span class="vg-h5">付款方式</span>
+                                    </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <nav class="">
+                                            <div class="nav nav-tabs row" id="" role="tablist">
+                                                <button class="nav-link col active" id="nav-transfer-tab"
+                                                    data-bs-toggle="tab" data-bs-target="#nav-transfer" type="button"
+                                                    role="tab" aria-controls="nav-transfer"
+                                                    aria-selected="true">匯款</button>
+                                                <button class="nav-link col" id="nav-card-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#nav-card" type="button" role="tab"
+                                                    aria-controls="nav-card" aria-selected="false">信用卡</button>
+                                                <button class="nav-link col" id="nav-line-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#nav-line" type="button" role="tab"
+                                                    aria-controls="nav-line" aria-selected="false">LINEPAY</button>
+                                            </div>
+                                        </nav>
+                                        <div class="tab-content" id="">
+                                            <div class="tab-pane fade show active" id="nav-transfer" role="tabpanel"
+                                                aria-labelledby="nav-transfer-tab" tabindex="0">
+                                                <p class="vg-p">請您在確認訂單後匯款至以下機構</p>
+                                                <p class="vg-ps">中國信託(代碼812)</p>
+                                                <p class="vg-ps">022-12344-11123-0000</p>
+                                                <div action="" class="">
+                                                    <div class="form-floating form-group m-2">
+                                                        <input type="text" name="transName" id="transferName"
+                                                            class="form-control" placeholder="">
+                                                        <label for="transferName">轉帳人姓名/匯款金融機構名稱</label>
+                                                    </div>
+                                                    <div class="form-floating form-group m-2">
+                                                        <input type="text" name="transNum" id="transferNum"
+                                                            class="form-control" placeholder="">
+                                                        <label for="transferNum">您的匯款帳號/金融機構代碼 後五碼</label>
+                                                    </div>
+                                                    <div class="form-floating form-group m-2">
+                                                        <input type="date" name="transDate" id="transferTime"
+                                                            class="form-control" placeholder="">
+                                                        <label for="transferTime">預計匯款日期</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="nav-card" role="tabpanel"
+                                                aria-labelledby="nav-card-tab" tabindex="0">
+                                                <div action="" class="">
+                                                    <div class="form-floating form-group m-2">
+                                                        <input type="text" name="creditName" id="cardName"
+                                                            class="form-control" placeholder="">
+                                                        <label for="cardName">持卡人姓名</label>
+                                                    </div>
+                                                    <div class="form-floating form-group m-2">
+                                                        <input type="text" name="creditNum" id="cardNum"
+                                                            class="form-control w-100" placeholder="">
+                                                        <label for="cardNum">卡號</label>
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <div class="form-floating form-group m-2">
+                                                            <input type="text" name="creditMM" id="cardMM"
+                                                                class="form-control w-100" placeholder="">
+                                                            <label for="cardMM">到期月</label>
+                                                        </div>
+                                                        <div class="form-floating form-group m-2">
+                                                            <input type="text" name="creditYY" id="cardYY"
+                                                                class="form-control w-100" placeholder="">
+                                                            <label for="cardYY">到期年</label>
+                                                        </div>
+                                                        <div class="form-floating form-group m-2">
+                                                            <input type="text" name="creditCSV" id="cardSecure"
+                                                                class="form-control w-100" placeholder="">
+                                                            <label for="cardSecure">安全碼</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="nav-line" role="tabpanel"
+                                                aria-labelledby="nav-line-tab" tabindex="0">
+                                                <input type="checkbox" name="payment" id="linepay" value="linepay">
+                                                <label for="linepay" class="vg-p py-5">使用LinePay付款(送出訂單後自動跳轉)</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 發票開立 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false"
+                                        aria-controls="panelsStayOpen-collapseFour">
+                                        <span class="vg-h5">發票開立</span>
+                                    </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <nav class="">
+                                            <div class="nav nav-tabs row" id="" role="tablist">
+                                                <button class="nav-link col active" id="nav-donate-tab"
+                                                    data-bs-toggle="tab" data-bs-target="#nav-donate" type="button"
+                                                    role="tab" aria-controls="nav-donate"
+                                                    aria-selected="true">捐贈</button>
+                                                <button class="nav-link col" id="nav-personal-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#nav-personal" type="button" role="tab"
+                                                    aria-controls="nav-personal" aria-selected="false">個人</button>
+                                                <button class="nav-link col" id="nav-company-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#nav-company" type="button" role="tab"
+                                                    aria-controls="nav-company" aria-selected="false">公司</button>
+                                            </div>
+                                        </nav>
+                                        <div class="tab-content" id="">
+                                            <div class="tab-pane fade show active" id="nav-donate" role="tabpanel"
+                                                aria-labelledby="nav-donate-tab" tabindex="0">
+                                                <div class="">
+                                                    <label for="donatefor">請選擇單位</label>
+                                                    <select name="billDonate" id="donatefor"
+                                                        class="donate form-select w-50 m-3 mx-auto">
+                                                        <option value="家扶基金會">家扶基金會</option>
+                                                        <option value="創世基金會">創世基金會</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="nav-personal" role="tabpanel"
+                                                aria-labelledby="nav-personal-tab" tabindex="0">
+                                                <div class="text-start ms-3">
+                                                    <input type="radio" name="billPersonal" id="personalDrive"
+                                                        class="d-inline" value="存入個人載具">
+                                                    <label for="personalDrive" class="d-inline">存入個人載具
+                                                        <input type="text" name="" id=""
+                                                            class="d-inline form-control w-50"
+                                                            placeholder="輸入載具編號"></label><br />
+                                                    <input type="radio" name="billPersonal" id="personalAccount"
+                                                        value="存入會員帳號">
+                                                    <label for="personalAccount" class="my-2">存入會員帳號</label><br />
+                                                    <input type="radio" name="billPersonal" id="personalMail"
+                                                        value="郵寄至會員地址">
+                                                    <label for="personalMail" class="my-2">郵寄至會員地址</label>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="nav-company" role="tabpanel"
+                                                aria-labelledby="nav-company-tab" tabindex="0">
+                                                <div class="">
+                                                    <div class="d-flex">
+                                                        <div class="form-floating form-group m-2">
+                                                            <input type="text" name="billCompName" id="companyName"
+                                                                class="form-control" placeholder="">
+                                                            <label for="companyName">公司行號名稱</label>
+                                                        </div>
+                                                        <div class="form-floating form-group m-2">
+                                                            <input type="text" name="billCompNum" id="companyNum"
+                                                                class="form-control" placeholder="">
+                                                            <label for="companyNum">統一編號</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-floating form-group m-2">
+                                                        <input type="text" name="billCompAddr" id="companyAdd"
+                                                            class="form-control" placeholder="">
+                                                        <label for="companyAdd">寄送地址</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 訂單備註 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false"
+                                        aria-controls="panelsStayOpen-collapseFive">
+                                        <span class="vg-h5">訂單備註</span>
+                                    </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <textarea name="o_note" id="" cols="80" rows="3" placeholder="請輸入您的備註(上限200字)"
+                                            class="form-control"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+                <section class="rside col-12 col-md-4">
+                    <!-- summary -->
+                    <div id="summery">
+                        <h3 class="vg-h3 text-center my-3">訂單內容</h3>
+                        <p class="vg-ps text-center">編號<span id="orderid"></span></p>
+                        <table id="summary_items" class="table ">
+                            <tr>
+                                <td>
+                                    <p>蔬菜箱</p>
+                                    <p>1~2人 6箱 每週配送 兒童 辛香料</p>
+                                </td>
+                                <td>500</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>惜福箱</p>
+                                    <p>1~2人 1箱 單次配送</p>
+                                </td>
+                                <td>300</td>
+                            </tr>
+                        </table>
+                        <table id="summary_coupon" class="table w-50">
+                            <tr>
+                                <td class="vg-p vg-href" id="shippingfee" title="1~2人160元，3~4人290元">運費</td>
+                                <!-- <td>120</td> -->
+                            </tr>
+                            <tr>
+                                <td>折扣碼NPMSD</td>
+                                <td>-100</td>
+                            </tr>
+                            <tr>
+                                <td>購物金</td>
+                                <td>-5</td>
+                            </tr>
+                        </table>
+                        <div class="d-flex justify-content-around">
+                            <div class="vg-h4">總金額</div>
+                            <div class="vg-h3" id="total">0</div>
+                        </div>
+                    </div>
+                    <!-- order -->
+                    <div id="placeorder" class="text-center mt-5">
+                        <input type="radio" name="" id="contract"><label for="contract">服務協議</label>
+                        <input type="radio" name="" id="reminder"><label for="reminder">購物提醒</label><br />
+                        <a class="btn btn-vg-lg mt-2 mb-3 p-3" onclick="getdetails()">確認訂單</a><br />
+                        <a class="vg-href" onclick="backtocart()">修改訂單</a>
+                    </div>
+                </section>
+            </div>
+        </main>
+        <!-- 頁尾 -->
+        <%- include('share/footer.ejs') %>
+
+
+            <script>
+                // 地址套件 
+                // let twzipcode = new TWzipcode({
+                //     "district": {
+                //         onChange: function (id) {
+                //             console.log(this.nth(id).get());
+                //         }
+                //     }
+                // });
+                const twzipcode = new TWzipcode();
+
+                // 設定使用者
+                var uid = 2;
+
+                // 連結訂單資料表 vgorder
+                $.get(`/order/items/${uid}`, function (e) {
+                    // console.log(e)
+                    if (typeof (e) == 'string') {
+                        items = JSON.parse(e);
+                    } else {
+                        items = e;
+                    }
+                    // 訂單內容
+                    $("#summary_items").empty();
+                    var total = 0;
+                    var shippingfee = 0;
+                    $.each(items, function (index, item) {
+                        item.size == 's' ? fee = 160 : fee = 290; // 運費 (S-160 L-290)
+                        item.size == 's' ? item.size = '1~2人' : item.size = '3~4人';
+                        item.c_note == null ? item.c_note = '無備註' : item.c_note
+                        var trHtml = `
+                                <tr>
+                                <td>
+                                    <p class="m-0">${item.pname}</p>
+                                    <p class="vg-ps">${item.size} ${item.freq} ${item.c_note} </p>
+                                </td>
+                                <td>${item.price}</td>
+                            </tr>
+                            `;
+                        $("#summary_items").append(trHtml);
+                        shippingfee += fee;
+                        total += item.price;
+                    })
+                    // 運費計算
+                    var tdHtml = `    
+                        <td>${shippingfee}</td>
+                        `;
+                    $('#shippingfee').after(tdHtml)
+                    // 總金額計算 (未含折扣碼與購物金)
+                    $('#total').text(shippingfee + total)
+                }).then(function (res) {
+                    orderid.innerText = res[0].oid;
+                    // 可新增若返回修改，帶入已存在資料庫的資料
+                })
+
+                // 從order 返回 cart 的動作
+                function backtocart() {
+                    var oid = orderid.innerText
+                    // 更新 本筆訂單 對應的 cart status => active
+                    fetch('/editcart/statusactive/', {
+                        method: 'PATCH',
+                        headers: {
+                            "Content-Type": "application/json ; charset=UTF-8"
+                        },
+                        body: JSON.stringify({
+                            oid: oid,
+                        })
+                    }).then(
+                        // 刪除本筆訂單
+                        fetch(`/order/delete/${oid}`, {
+                            method: 'DELETE',
+                            headers: {
+                                "Content-Type": "application/json ; charset=UTF-8"
+                            },
+                            body: JSON.stringify({
+                                oid: oid,
+                            })
+                        })
+                    ).then(
+                        // 轉址
+                        document.location.href = "/cart/"
+                    )
+                }
+
+                // 從order 前往 確認訂單 的動作
+                function getdetails() {
+                    var oid = orderid.innerText
+                    var formdata = $('#orderdetails').serializeArray();
+                    // 增加表格以外的資料
+                    var alldata = [...formdata, { name: 'oid', value: oid }]
+                    var JSONData = serializeToJSON(alldata);
+                    console.log(JSONData)
+                    // console.log(JSONData);
+                    fetch(`/editorder/details/${oid}`, {
+                        method: 'PATCH',
+                        headers: {
+                            "Content-Type": "application/json ; charset=UTF-8"
+                        },
+                        body: JSONData
+                    }).then(
+                        // 完成表格填寫，跳轉至下一頁面
+                        document.location.href = "/orderconfirm/"
+                    )
+                }
+
+                function serializeToJSON(data) {
+                    var values = {};
+                    for (index in data) {
+                        values[data[index].name] = data[index].value;
+                    }
+                    return JSON.stringify(values)
+                }
+
+
+
+
+
+            </script>
+
+            <!-- vg JS -->
+            <%- include('share/vg-main.ejs') %>
+                <script src="js/cart.js"></script>
+
+</body>
+
+</html>
