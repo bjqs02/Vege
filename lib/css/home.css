@@ -1,0 +1,628 @@
+@font-face {
+    font-family: Fishman;
+    src: url('/font/雅風體W3.ttc');
+    /* src: url('/font/HanyiSentyTea Regular.ttf'); */
+}
+
+#redirect {
+    margin: auto;
+}
+
+#sec6 {
+    text-align: center;
+}
+
+.btn-vg-lg {
+    line-height: 80px;
+    font-size: 32px;
+    font-family: Fishman;
+    font-weight: 600;
+    border-width: 5px;
+}
+
+/* 首頁影片區塊 */
+#sec1 {
+    margin-top: -200px;
+    width: 100vw;
+    height: 80%;
+    position: relative;
+    transition: all 1s;
+}
+
+#myVideo {
+    width: 100%;
+    object-fit: cover;
+}
+
+.content {
+    position: absolute;
+    bottom: 25%;
+    background: rgba(204, 220, 172, 0.5);
+    color: var(text-color);
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    font-family: Fishman;
+}
+
+.content>h1 {
+    font-size: 50px;
+    font-weight: 600;
+}
+
+.content>p {
+    font-size: 32px;
+    font-weight: 600;
+}
+
+
+/* 訂購步驟區塊 */
+h2 {
+    font-size: 50px;
+    font-weight: 600;
+    font-family: Fishman;
+    margin: 50px auto 10px auto;
+    text-align: center;
+}
+
+.btn-vg {
+    width: fit-content;
+}
+
+
+#sec3 {
+    margin: 50px auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    height: 650px;
+    transition: all 1s;
+}
+
+#step1,
+#step2,
+#step3 {
+    box-sizing: border-box;
+    display: inline-block;
+    height: 400px;
+    width: 400px;
+    border-radius: 50%;
+    position: absolute;
+}
+
+#step1s,
+#step2s,
+#step3s {
+    margin: auto;
+    height: 350px;
+    width: 350px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    margin-top: 25px;
+    position: absolute;
+}
+
+#step1s>img,
+#step2s>img,
+#step3s>img {
+    height: 70%;
+    width: 70%;
+    border-radius: 50%;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+}
+
+#step1,
+#step3 {
+    border: 10px solid var(--primary);
+    z-index: 1;
+}
+
+#step1 {
+    left: calc(50% - 545px);
+}
+
+#step2 {
+    border: 10px solid var(--text-color);
+    left: calc(50% - 200px);
+    z-index: 2;
+}
+
+#step3 {
+    right: calc(50% - 545px);
+}
+
+#step1s,
+#step3s {
+    background-color: var(--primary);
+    z-index: 4;
+}
+
+#step1s {
+    left: calc(50% - 520px);
+}
+
+#step2s {
+    background-color: var(--text-color);
+    left: calc(50% - 175px);
+    z-index: 3;
+}
+
+#step3s {
+    right: calc(50% - 520px);
+}
+
+#one,
+#two,
+#three {
+    font-family: Fishman;
+    position: absolute;
+    bottom: -120px;
+    left: 155px;
+    font-size: 50px;
+    font-weight: 600;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    line-height: 60px;
+    box-sizing: border-box;
+}
+
+#txt1,
+#txt2,
+#txt3 {
+    font-family: Fishman;
+    position: absolute;
+    top: 500px;
+    left: 0;
+    font-size: 40px;
+    font-weight: 600;
+    width: 100%;
+}
+
+#one,
+#three {
+    background-color: var(--text-color);
+    border: 5px solid var(--primary);
+    color: var(--primary);
+}
+
+#two {
+    background-color: var(--primary);
+    border: 5px solid var(--text-color);
+}
+
+/* 熱銷產品區塊 */
+
+#sec4 {
+    text-align: center;
+}
+
+.pSlider {
+    height: 500px;
+    margin: auto;
+    position: relative;
+    width: 90%;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+
+.pSlide-track {
+    display: flex;
+    width: calc(288px*18);
+    animation: scroll 40s linear infinite;
+}
+
+.pSlide-track:hover {
+    animation-play-state: paused;
+}
+
+.pSlide {
+    height: 471px;
+    width: 288px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    perspective: 100px;
+}
+
+.pSlide img {
+    object-fit: cover;
+    height: 200px;
+    width: 100%;
+
+}
+
+.pSlider::before,
+.pSlider::after {
+    content: '';
+    background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%,
+            rgba(255, 255, 255, 0) 100%);
+    height: 100%;
+    position: absolute;
+    width: 15%;
+    z-index: 2;
+}
+
+.pSlider::before {
+    left: 0;
+    top: 0;
+}
+
+.pSlider::after {
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+}
+
+.card {
+    transition: transform 1s;
+}
+
+.card:hover {
+    transform: translateZ(15px);
+}
+
+/* 顧客回饋區塊 */
+.pSlider2 {
+    height: 350px;
+    margin: auto;
+    position: relative;
+    width: 90%;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+
+.pSlide2-track {
+    display: flex;
+    width: calc(250px*18);
+    animation: scroll 40s linear infinite;
+}
+
+.pSlide2-track:hover {
+    animation-play-state: paused;
+}
+
+.pSlide2 {
+    height: 300px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    perspective: 100px;
+}
+
+.pSlider2::before,
+.pSlider2::after {
+    content: '';
+    background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%,
+            rgba(255, 255, 255, 0) 100%);
+    height: 100%;
+    position: absolute;
+    width: 15%;
+    z-index: 2;
+}
+
+.pSlider2::before {
+    left: 0;
+    top: 0;
+}
+
+.pSlider2::after {
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(calc(-250px * 9));
+    }
+}
+
+/* RWD */
+
+@media screen and (max-width: 1900px) {
+    #sec1 {
+        margin-top: -160px;
+    }
+
+    .content {
+        bottom: 30%;
+    }
+}
+
+@media screen and (max-width: 1800px) {
+    #sec1 {
+        margin-top: -120px;
+    }
+}
+
+@media screen and (max-width: 1700px) {
+    #sec1 {
+        margin-top: -60px;
+    }
+}
+
+@media screen and (max-width: 1600px) {
+    #sec1 {
+        margin-top: 0px;
+    }
+}
+
+@media screen and (max-width: 1500px) {
+    #sec1 {
+        margin-top: 60px;
+        /* height: 60%; */
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    .content>h1 {
+        font-size: 40px;
+    }
+
+    .content>p {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 1130px) {
+    #sec3 {
+        height: 500px;
+    }
+
+    #step1,
+    #step2,
+    #step3 {
+        height: 300px;
+        width: 300px;
+    }
+
+    #step1s,
+    #step2s,
+    #step3s {
+        height: 270px;
+        width: 270px;
+        margin-top: 15px;
+    }
+
+    #one,
+    #two,
+    #three {
+        bottom: -80px;
+        left: 120px;
+        font-size: 32px;
+        height: 50px;
+        width: 50px;
+        line-height: 40px;
+    }
+
+    #txt1,
+    #txt2,
+    #txt3 {
+        font-family: Fishman;
+        position: absolute;
+        top: 360px;
+        left: 10px;
+        font-size: 32px;
+        font-weight: 600;
+        width: 100%;
+    }
+
+    #step1s>img,
+    #step2s>img,
+    #step3s>img {
+        height: 80%;
+        width: 80%;
+        border-radius: 50%;
+        position: absolute;
+        top: 25px;
+        left: 25px;
+    }
+
+    #step1 {
+        left: calc(50% - 400px);
+    }
+
+    #step2 {
+        left: calc(50% - 150px);
+    }
+
+    #step3 {
+        right: calc(50% - 400px);
+    }
+
+    #step1s {
+        left: calc(50% - 385px);
+    }
+
+    #step2s {
+        left: calc(50% - 135px);
+    }
+
+    #step3s {
+        right: calc(50% - 385px);
+    }
+}
+
+@media screen and (max-width: 830px) {
+    h2 {
+        font-size: 40px;
+        font-weight: 600;
+    }
+
+    #sec3 {
+        height: 450px;
+    }
+
+    #step1,
+    #step2,
+    #step3 {
+        height: 250px;
+        width: 250px;
+        border-width: 5px;
+    }
+
+    #step1s,
+    #step2s,
+    #step3s {
+        height: 230px;
+        width: 230px;
+        margin-top: 10px;
+    }
+
+    #one,
+    #two,
+    #three {
+        bottom: -80px;
+        left: 95px;
+        font-size: 32px;
+        height: 50px;
+        width: 50px;
+        line-height: 40px;
+        border-width: 3px;
+    }
+
+    #txt1,
+    #txt2,
+    #txt3 {
+        font-family: Fishman;
+        position: absolute;
+        top: 330px;
+        left: 0px;
+        font-size: 32px;
+        font-weight: 600;
+        width: 100%;
+    }
+
+    #step1 {
+        left: calc(50% - 330px);
+    }
+
+    #step2 {
+        left: calc(50% - 125px);
+    }
+
+    #step3 {
+        right: calc(50% - 330px);
+    }
+
+    #step1s {
+        left: calc(50% - 320px);
+    }
+
+    #step2s {
+        left: calc(50% - 115px);
+    }
+
+    #step3s {
+        right: calc(50% - 320px);
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .content {
+        padding: 10px;
+    }
+
+    .content>h1 {
+        font-size: 28px;
+    }
+
+    .content>p {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    #sec3 {
+        height: 900px;
+    }
+
+    #step1,
+    #step2,
+    #step3 {
+        height: 300px;
+        width: 300px;
+    }
+
+    #step1s,
+    #step2s,
+    #step3s {
+        height: 270px;
+        width: 270px;
+        margin-top: 15px;
+    }
+
+    #one,
+    #two,
+    #three {
+        top: -15px;
+        left: -30px;
+        font-size: 32px;
+        height: 50px;
+        width: 50px;
+        line-height: 40px;
+        z-index: 6;
+    }
+
+    #txt1,
+    #txt2,
+    #txt3 {
+        font-family: Fishman;
+        position: absolute;
+        writing-mode: vertical-lr;
+        line-height: 32px;
+        font-size: 32px;
+        font-weight: 600;
+        width: 100%;
+        text-align: start;
+    }
+
+    #txt1,
+    #txt3 {
+        left: 310px;
+        top: 60px;
+    }
+
+    #txt2 {
+        left: 300px;
+        top: 50px;
+    }
+
+    #step1 {
+        left: calc(50% - 150px);
+    }
+
+    #step2 {
+        left: calc(50% - 150px);
+        top: 270px;
+    }
+
+    #step3 {
+        left: calc(50% - 150px);
+        top: 540px;
+    }
+
+    #step1s {
+        left: calc(50% - 135px);
+    }
+
+    #step2s {
+        left: calc(50% - 135px);
+        top: calc(270px);
+    }
+
+    #step3s {
+        right: calc(50% - 135px);
+        top: 540px;
+    }
+}

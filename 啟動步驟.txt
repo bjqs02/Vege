@@ -1,0 +1,11 @@
+1. setupDB.txt 裡的內容全部匯至你的mysql
+
+2. 依據使用的不同要變更密碼喔
+    XAMPP => db.js 檔案裡更改密碼
+    MAMP => 不需變動
+
+3. 開啟終端機 
+    npm install
+    nodemon index
+
+4. 網址: http://localhost:2407/

@@ -1,0 +1,258 @@
+#slogan {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+    line-height: 50px;
+    margin-bottom: 30px;
+    /* outline: 1px solid salmon; */
+}
+
+#slogan div {
+    height: fit-content;
+    /* outline: 1px solid salmon; */
+}
+
+#concept {
+    width: 80%;
+    margin-top: 30px;
+}
+
+#idea {
+    padding: 40px;
+    line-height: 30px;
+    text-align: center;
+}
+
+#promise {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.bs-popover-auto {
+    /* outline: 1px solid black; */
+    min-height: 200px;
+    width: 200px;
+    font-size: 1rem;
+    box-shadow: 2px 4px 11px 0px var(--text-sub-color-2);
+}
+
+.popover-header {
+    padding: 10px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+    .bs-popover-auto {
+        min-height: 150px;
+        width: 150px;
+        font-size: 1rem;
+    }
+    
+    .popover-header {
+        padding: 10px;
+        font-size: 1.25rem;
+        font-weight: 600;
+        text-align: center;
+    }
+}
+
+
+.popover-header,
+.popover,
+.popover-body {
+    /* outline: 1px solid black; */
+    background-color: #ccdcac;
+    line-height: 20px;
+    
+    /* border-color: #362706; */
+
+}
+
+.bs-popover-auto[data-popper-placement^=left]>.popover-arrow:after,
+.bs-popover-start>.popover-arrow:after {
+    border-left-color: #ccdcac;
+}
+
+.bs-popover-auto[data-popper-placement^=right]>.popover-arrow:after,
+.bs-popover-end>.popover-arrow:after {
+    border-right-color: #ccdcac;
+}
+
+.bs-popover-auto[data-popper-placement^=bottom]>.popover-arrow:after,
+.bs-popover-bottom>.popover-arrow:after {
+    border-bottom-color: #ccdcac;
+}
+
+.bs-popover-auto[data-popper-placement^=top]>.popover-arrow:after,
+.bs-popover-top>.popover-arrow:after {
+    border-top-color: #ccdcac;
+}
+
+.popover-arrow {
+    border-color: #ccdcac;
+} 
+
+
+#morals {
+    /* background-color: black; */
+    display: grid;
+    place-items: center;
+	height: fit-content;
+    z-index: 1;
+}
+
+#morals>.container {
+    border-radius: 5px;
+}
+
+.section-header{
+    position: relative;
+    text-align: center;
+    font-weight: 900;
+    padding-bottom: 20px;
+    color: var(--text-color);
+}
+.section-header:after{
+    content: '';
+    height: 3px;
+    width: 200px;
+    position: absolute;
+    bottom: 0;
+    left: calc(50% - 100px);
+    background: var(--primary);
+}
+.section-header span {
+	display: block;
+	font-size: 15px;
+	font-weight: 300;
+}
+.testimonials{
+    max-width: 100%;
+    padding: 0;
+    margin: 20px auto;
+    /* outline: 1px solid red; */
+}
+.single-item{
+    /* background: #fff; */
+    color: var(--text-color);
+    padding: 15px;
+    /* outline: 1px solid red; */
+}
+.profile{
+    margin-bottom: 30px;
+    text-align: center;    
+}
+.img-area {
+	margin: 0 15px 15px 15px;
+}
+.img-area img {
+	height: 250px;
+	width: 250px;
+	border-radius: 50%;
+	border: 7px solid var(--primary);
+}
+.content{
+    font-size: 18px;
+}
+.content p {
+	text-align: justify;
+}
+.content p span {
+	font-size: 48px;
+	margin-right: 20px;
+    color: var(--primary);
+}
+
+.carousel-control-next-icon, .carousel-control-prev-icon {
+	background-color: var(--primary);
+    
+}
+
+.carousel-control-prev {
+    margin-left: -50px ;
+}
+
+.carousel-control-next {
+    margin-right: -50px ;
+}
+
+#moreContact {
+    background-image: url(../img/about_002.jpg);
+    height: 400px;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: left bottom;
+    background-color: rgb(251,249,237);
+    position: relative;
+    
+}
+
+#AboutMore {
+    width: 50%;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    z-index: 1;
+}
+
+@media screen and (max-width: 995px) { 
+    #moreContact {
+        height: 300px;
+        background-size: 50%;
+    }
+    
+    #AboutMore {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 768px) { 
+    #moreContact {
+        height: 200px;
+        background-size: 50%;
+    }
+    
+    #AboutMore {
+        width: 50%;
+    }
+}
+
+.swiper {
+    width: 100%;
+    height: fit-content;
+    /* border: none; */
+    margin: 20px;
+  }
+
+#farmer {
+    width: 90%;
+    text-align: center;
+    padding: 50px;
+    margin: auto;
+    transition: all 1s;
+}
+#farmer>h3, #farmer>a {
+    text-align: center;
+    margin: auto;
+}
+#farmer img {
+    align-self: center;
+}
+#farmer .card-body a {
+    float: right;
+}
+.swiper-slide>.card{
+    min-height: 300px;
+    text-align: left;
+    z-index: 1;
+}
+
+.card .btn-vg{
+    width: fit-content;
+}
+
+
+

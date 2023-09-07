@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <%- include('share/head_link.ejs') %>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <link rel="stylesheet" href="css/contactUs.css">
+</head>
+
+<body>
+    <%- include('share/header.ejs') %>
+
+        <div class="vg-banner d-flex justify-content-center pt-5">
+            <h2 class="vg-h2">聯絡我們</h2>
+        </div>
+
+        <div id="successMsg" class="alert alert-success mt-5">
+            <strong>訊息送出成功!</strong> 我們會盡速與您聯絡，請留意您的信箱。
+        </div>
+        <div id="errorMsg" class="alert alert-danger mt-5">
+            <strong>訊息送出失敗...</strong> 請確認所有欄位都填寫正確。
+        </div>
+        <section id="contactPage" class="container-lg row p-5 pb-5 shadow-lg mt-5 mb-5">
+            <div class="col-12 col-md-6 d-flex justify-content-center">
+                <div>
+
+                    <h4 class="vg-h4 pb-1">已經是會員?</h4>
+                    <p class="vg-p">如果您是 VEGE 會員，可提交訂單號碼、查看帳戶與提出支援要求。</p>
+                    <h4 class="vg-h4 mt-5 pb-1">打電話聯繫我們</h4>
+                    <p class="vg-p">有關訂閱制度、價格或配送相關的問題？歡迎 致電/line官方帳戶 / 右側表單聯絡我們。</p>
+                    <a href="tel:+886423443509" class="vg-href-inline"><i class="fa-solid fa-phone"></i>
+                        (04)2344-3509</a><br>
+                    <a href="https://line.me/" class="vg-href-inline"><i class="fa-brands fa-line"></i> VEGE 官方 LINE
+                        帳號</a><br>
+                    <h4 class="vg-h4 mt-5 pb-1">快速得到答覆</h4>
+                    <p class="vg-p mb-5">查看我們完整的<a href="/qna" class="vg-href-inline">幫助中心與常見問題</a>。</p>
+
+                </div>
+
+            </div>
+            <form class="form col-12 col-md-6" id="contactForm" method="post">
+                <h4 class="vg-h4 pb-1">填寫表單取得聯繫</h4>
+                <div class="row align-items-center">
+                    <div class="col-7 form-floating mb-3">
+                        <input type="text" class="form-control ps-5" id="floatingInput" placeholder="姓名"
+                            style="letter-spacing: 1px;" name="name">
+                        <label for="floatingInput" class="ms-3">姓名 </label>
+                    </div>
+                    <span class="col-5 vg-p pb-3">
+                        <input type="radio" class="btn-check" name="genderTitle" id="ms" autocomplete="off" checked>
+                        <label class="btn" for="ms">小姐</label>
+                        <input type="radio" class="btn-check" name="genderTitle" id="mr" autocomplete="off">
+                        <label class="btn" for="mr">先生</label>
+                    </span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="tel" class="form-control ps-5" id="floatingTel" placeholder="電話"
+                        style="letter-spacing: 1px;" name="tel">
+                    <label for="floatingTel">手機 </label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control ps-5" id="floatingEmail" placeholder="email"
+                        style="letter-spacing: 1px;" name="mail">
+                    <label for="floatingEmail">email </label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control ps-5" id="floatingSubject" placeholder="主旨"
+                        style="letter-spacing: 1px;" name="subject">
+                    <label for="floatingSubject">主旨 </label>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea class="form-control ps-5" placeholder="Leave a comment here" id="floatingTextarea2"
+                        style="height: 150px; letter-spacing: 1px;" name="message"></textarea>
+                    <label for="floatingTextarea2">訊息</label>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-vg-lg mb-0" type="submit" id="submit">取得聯繫</button>
+                </div>
+            </form>
+        </section>
+
+
+        <%- include('share/footer.ejs') %>
+
+
+            <!-- 以下是script -->
+            <%- include('share/vg-main.ejs') %>
+                <script>
+                    $('#floatingInput, #floatingSubject, #floatingTextarea2').on({
+                        blur: function () {
+                            // console.log($(this).prop('value'));
+                            if ($(this).prop('value') == '') {
+                                $(this).addClass('is-invalid');
+                            } else {
+                                $(this).addClass('is-valid');
+                            }
+                        },
+                        focus: function () {
+                            $(this).removeClass('is-valid');
+                            $(this).removeClass('is-invalid');
+                        }
+                    });
+                    $('#floatingTel').on({
+                        blur: function () {
+                            var re = /^09[0-9]{8}$/;
+                            var telVal = $(this).prop('value');
+                            var result = re.test(telVal)
+                            if (result == false || telVal == '') {
+                                $(this).addClass('is-invalid');
+                            } else {
+                                $(this).addClass('is-valid');
+                            }
+                        },
+                        focus: function () {
+                            $(this).removeClass('is-valid');
+                            $(this).removeClass('is-invalid');
+                        }
+                    });
+                    $('#floatingEmail').on({
+                        blur: function () {
+                            var re = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+                            var mail = $(this).prop('value');
+                            var result = re.test(mail)
+                            if (result == false || mail == '') {
+                                $(this).addClass('is-invalid');
+                            } else {
+                                $(this).addClass('is-valid');
+                            }
+                        },
+                        focus: function () {
+                            $(this).removeClass('is-valid');
+                            $(this).removeClass('is-invalid');
+                        }
+                    });
+
+
+                    $('#submit').on('click', function (e) {
+                        e.preventDefault();
+                        var data = $('#contactForm').serializeArray()
+                        JSONData = serializeToJSON(data)
+
+                        console.log(data);
+                        var a = $('input, textarea').hasClass('is-invalid');
+                        var b = $('#floatingInput').prop('value');
+                        var c = $('#floatingTel').prop('value');
+                        var d = $('#floatingEmail').prop('value');
+                        var e = $('#floatingSubject').prop('value');
+                        var f = $('#floatingTextarea2').prop('value');
+                        if (a == true || b == '' || c == '' || d == '' || e == '' || f == '') {
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'center',
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: false,
+                            })
+                            Toast.fire({
+                                icon: 'error',
+                                title: '訊息送出失敗...<br>請確認所有欄位都填寫正確。',                                    
+                            })
+                        } else {
+                            // $('#successMsg').slideDown(1000);
+                            // setTimeout(function () {
+                            //     $('#successMsg').slideUp(1000);
+                            // }, 3000);
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'center',
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: false,
+                            })
+
+                            Toast.fire({
+                                icon: 'success',
+                                title: '訊息送出成功! <br>我們會盡速與您聯絡，請留意您的信箱。'
+                            })
+
+                            // 舊寫法
+                            // var xhttp = new XMLHttpRequest();
+                            // xhttp.open("POST", "/contact", true);
+                            // xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                            // console.log(JSONData);
+                            // xhttp.send(JSONData);
+
+                            // 新寫法
+                            fetch('/contact', {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json;charset=UTF-8"
+                                },
+                                body: JSONData
+                            });
+                        }
+
+
+                        function serializeToJSON(data) {
+                            var values = {};
+                            for (index in data) {
+                                values[data[index].name] = data[index].value;
+                            }
+                            return JSON.stringify(values)
+                        }
+                    })
+
+                </script>

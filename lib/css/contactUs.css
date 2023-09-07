@@ -1,0 +1,36 @@
+#successMsg, #errorMsg {
+    display: none;
+    width: fit-content;
+    margin: auto;
+    text-align: center;
+}
+
+#contactPage {
+    /* outline: 1px solid red; */
+    margin: auto;
+}
+
+textarea.form-control {
+    height: 200px;
+}
+
+.btn-check+.btn:hover{
+    color: var(--text-color);
+    border-color:var(--primary);
+    border-width: 2px;
+}
+
+.btn-check:checked+.btn,
+.btn.active,
+.btn.show,
+.btn:first-child:active,
+:not(.btn-check)+.btn:active{
+    color:var(--text-color);
+    background-color:var(--bs-btn-active-bg);
+    border-color:var(--primary);
+    border-width: 2px;
+}
+
+.vg-h4 {
+    border-bottom: 2px solid var(--primary);
+}

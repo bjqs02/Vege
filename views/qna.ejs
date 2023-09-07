@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <%- include('share/head_link.ejs') %>
+        <link rel="stylesheet" href="css/qna.css">
+</head>
+
+<body>
+    <%- include('share/header.ejs') %>
+
+    <div class="vg-banner shadow d-flex justify-content-center pt-5">
+        <h2 class="vg-h2">常見問題</h2>
+    </div>
+
+        <%- include('share/sub_header.ejs') %>
+
+
+        <section id="qa1" class="container-sm p-5 mt-5 mb-5 shadow">
+            <h3 class="vg-h3 mb-4">會員常見問題</h3>
+            <div class="accordion" id="accordion1">
+            <% for(i = 0; i<data.length; i++) { %>
+            <% if (data[i].qType == "A") { %>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse<%- data[i].qId %>" aria-expanded="true" aria-controls="collapse<%- data[i].qId %>">
+                            <%- data[i].question %>
+                        </button>
+                    </h2>
+                    <div id="collapse<%- data[i].qId %>" class="accordion-collapse collapse" data-bs-parent="#accordion1">
+                        <div class="accordion-body">
+                            <%- data[i].answer %>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+            <% } %>
+            </div>
+        </section>
+    
+        <section id="qa2" class="container-sm p-5 mt-5 mb-5 shadow">
+            <h3 class="vg-h3 mb-4">購物金常見問題</h3>
+            <div class="accordion" id="accordion2">
+            <% for(i = 0; i<data.length; i++) { %>
+            <% if (data[i].qType == "B") { %>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse<%- data[i].qId %>" aria-expanded="true" aria-controls="collapse<%- data[i].qId %>">
+                            <%- data[i].question %>
+                        </button>
+                    </h2>
+                    <div id="collapse<%- data[i].qId %>" class="accordion-collapse collapse" data-bs-parent="#accordion2">
+                        <div class="accordion-body">
+                            <%- data[i].answer %>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+            <% } %>
+            </div>
+        </section>
+        
+        <section id="qa3" class="container-sm p-5 mt-5 mb-5 shadow">
+            <h3 class="vg-h3 mb-4">購物常見問題</h3>
+            <div class="accordion" id="accordion3">
+            <% for(i = 0; i<data.length; i++) { %>
+            <% if (data[i].qType == "C") { %>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse<%- data[i].qId %>" aria-expanded="true" aria-controls="collapse<%- data[i].qId %>">
+                            <%- data[i].question %>
+                        </button>
+                    </h2>
+                    <div id="collapse<%- data[i].qId %>" class="accordion-collapse collapse" data-bs-parent="#accordion3">
+                        <div class="accordion-body">
+                            <%- data[i].answer %>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+            <% } %>
+            </div>
+        </section>
+    
+        <section id="qa4" class="container-sm p-5 mt-5 mb-5 shadow">
+            <h3 class="vg-h3 mb-4">宅配常見問題</h3>
+            <div class="accordion" id="accordion4">
+            <% for(i = 0; i<data.length; i++) { %>
+            <% if (data[i].qType == "D") { %>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse<%- data[i].qId %>" aria-expanded="true" aria-controls="collapse<%- data[i].qId %>">
+                            <%- data[i].question %>
+                        </button>
+                    </h2>
+                    <div id="collapse<%- data[i].qId %>" class="accordion-collapse collapse" data-bs-parent="#accordion4">
+                        <div class="accordion-body">
+                            <%- data[i].answer %>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+            <% } %>
+            </div>
+        </section>
+    
+        <section id="qa5" class="container-sm p-5 mt-5 mb-5 shadow">
+            <h3 class="vg-h3 mb-4">超商取貨常見問題</h3>
+            <div class="accordion" id="accordion5">
+            <% for(i = 0; i<data.length; i++) { %>
+            <% if (data[i].qType == "E") { %>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse<%- data[i].qId %>" aria-expanded="true" aria-controls="collapse<%- data[i].qId %>">
+                            <%- data[i].question %>
+                        </button>
+                    </h2>
+                    <div id="collapse<%- data[i].qId %>" class="accordion-collapse collapse" data-bs-parent="#accordion5">
+                        <div class="accordion-body">
+                            <%- data[i].answer %>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+            <% } %>
+            </div>
+        </section>
+    
+        <div class="container-fluid align-itmes-center d-flex justify-content-center mb-5">
+            <a href="/contact" class="btn btn-vg-lg" id="contactUsBtn">聯繫我們</a>
+    
+        </div>
+
+        <%- include('share/footer.ejs') %>
+
+
+            <!-- 以下是script -->
+            <%- include('share/vg-main.ejs') %>
+                <script>
+                    $('#qna').addClass('btn-vg-2-active');
+                    $('#title1').text('會員常見問題');
+                    $('#title1').prop('href', '#qa1');
+                    $('#title2').text('購物金常見問題');
+                    $('#title2').prop('href', '#qa2');
+                    $('#title3').text('購物常見問題');
+                    $('#title3').prop('href', '#qa3');
+                    $('#title4').text('宅配常見問題');
+                    $('#title4').prop('href', '#qa4');
+                    $('#title5').text('超商取貨常見問題');
+                    $('#title5').prop('href', '#qa5');
+
+                    $(function () {
+                        $(`#qa1`).on({
+                            mouseover: function () {
+                                // console.log(this);
+                                $(`#title1`).addClass('btn-vg-3-active');
+                            },
+                            mouseout: function () {
+                                $(`#title1`).removeClass('btn-vg-3-active');
+                            }
+                        });
+                        $(`#qa2`).on({
+                            mouseover: function () {
+                                // console.log(this);
+                                $(`#title2`).addClass('btn-vg-3-active');
+                            },
+                            mouseout: function () {
+                                $(`#title2`).removeClass('btn-vg-3-active');
+                            }
+                        });
+                        $(`#qa3`).on({
+                            mouseover: function () {
+                                // console.log(this);
+                                $(`#title3`).addClass('btn-vg-3-active');
+                            },
+                            mouseout: function () {
+                                $(`#title3`).removeClass('btn-vg-3-active');
+                            }
+                        });
+                        $(`#qa4`).on({
+                            mouseover: function () {
+                                // console.log(this);
+                                $(`#title4`).addClass('btn-vg-3-active');
+                            },
+                            mouseout: function () {
+                                $(`#title4`).removeClass('btn-vg-3-active');
+                            }
+                        });
+                        $(`#qa5`).on({
+                            mouseover: function () {
+                                // console.log(this);
+                                $(`#title5`).addClass('btn-vg-3-active');
+                            },
+                            mouseout: function () {
+                                $(`#title5`).removeClass('btn-vg-3-active');
+                            }
+                        });
+                    })
+                </script>
