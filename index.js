@@ -2,12 +2,23 @@ var express = require("express");
 var app = express();
 
 app.set('view engine', 'ejs');
+require('dotenv').config();
+
+
 
 // 首頁
 app.use('/', express.static('lib'));
 app.get("/", function (req, res) {
     res.render('home');
 })
+
+// 登入
+app.use('/login', express.static('lib'));
+var login = require('./router/login');
+app.use('/login', login);
+// app.get('/login', function(req, res){
+//     res.send('這是login數據');
+// })
 
 // 關於我們
 app.use('/about', express.static('lib'));
@@ -19,8 +30,8 @@ app.get('/about', function(req, res){
 
 // 診斷
 app.use('/eval', express.static('lib'));
-var eval = require('./router/evaluation');
-app.use('/eval', eval);
+var evalu = require('./router/evaluation');
+app.use('/eval', evalu);
 app.get('/eval', function(req, res){
     res.render('evaluation');
 })

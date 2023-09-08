@@ -10,6 +10,28 @@
         <!-- <span class="bag-label">View Bag</span> -->
     </a>
 </nav>
+<!-- 登入modal -->
+<div class="modal" id="checkUser" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="checkUserLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="checkUserLabel">請輸入您的email</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="form w-75 ms-auto me-auto" id="emailForm">
+                    <input type="email" class="form-control" id="userEmail" placeholder="email"
+                        style="letter-spacing: 1px; padding: 10px;" name="email">
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button class="btn btn-vg-reg" id="checkEmail">確認</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 登入modal到此為止 -->
 
 <aside id="sidebar-cart">
     <main>
@@ -27,8 +49,7 @@
                             <span class="qty">
                                 <button class="minus-button" id="minus-button-1">-</button>
                                 <input type="number" id="qty-input-1" class="qty-input" step="1" min="1" max="1000"
-                                    name="qty-input" value="1" pattern="[0-9]*" title="Quantity"
-                                    inputmode="numeric">
+                                    name="qty-input" value="1" pattern="[0-9]*" title="Quantity" inputmode="numeric">
                                 <button class="plus-button" id="plus-button-1">+</button>
                                 <input type="hidden" name="item-price" id="item-price-1" value="12.00">
                             </span>
@@ -49,8 +70,7 @@
                             <span class="qty">
                                 <button class="minus-button" id="minus-button-1">-</button>
                                 <input type="number" id="qty-input-2" class="qty-input" step="1" min="1" max="1000"
-                                    name="qty-input" value="1" pattern="[0-9]*" title="Quantity"
-                                    inputmode="numeric">
+                                    name="qty-input" value="1" pattern="[0-9]*" title="Quantity" inputmode="numeric">
                                 <button class="plus-button" id="plus-button-1">+</button>
                                 <input type="hidden" name="item-price" id="item-price-2" value="12.00">
                             </span>
@@ -71,8 +91,7 @@
                             <span class="qty">
                                 <button class="minus-button" id="minus-button-1">-</button>
                                 <input type="number" id="qty-input-2" class="qty-input" step="1" min="1" max="1000"
-                                    name="qty-input" value="1" pattern="[0-9]*" title="Quantity"
-                                    inputmode="numeric">
+                                    name="qty-input" value="1" pattern="[0-9]*" title="Quantity" inputmode="numeric">
                                 <button class="plus-button" id="plus-button-1">+</button>
                                 <input type="hidden" name="item-price" id="item-price-2" value="12.00">
                             </span>

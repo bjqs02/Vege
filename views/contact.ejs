@@ -88,122 +88,124 @@
 
             <!-- 以下是script -->
             <%- include('share/vg-main.ejs') %>
-                <script>
-                    $('#floatingInput, #floatingSubject, #floatingTextarea2').on({
-                        blur: function () {
-                            // console.log($(this).prop('value'));
-                            if ($(this).prop('value') == '') {
-                                $(this).addClass('is-invalid');
-                            } else {
-                                $(this).addClass('is-valid');
-                            }
-                        },
-                        focus: function () {
-                            $(this).removeClass('is-valid');
-                            $(this).removeClass('is-invalid');
-                        }
-                    });
-                    $('#floatingTel').on({
-                        blur: function () {
-                            var re = /^09[0-9]{8}$/;
-                            var telVal = $(this).prop('value');
-                            var result = re.test(telVal)
-                            if (result == false || telVal == '') {
-                                $(this).addClass('is-invalid');
-                            } else {
-                                $(this).addClass('is-valid');
-                            }
-                        },
-                        focus: function () {
-                            $(this).removeClass('is-valid');
-                            $(this).removeClass('is-invalid');
-                        }
-                    });
-                    $('#floatingEmail').on({
-                        blur: function () {
-                            var re = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
-                            var mail = $(this).prop('value');
-                            var result = re.test(mail)
-                            if (result == false || mail == '') {
-                                $(this).addClass('is-invalid');
-                            } else {
-                                $(this).addClass('is-valid');
-                            }
-                        },
-                        focus: function () {
-                            $(this).removeClass('is-valid');
-                            $(this).removeClass('is-invalid');
-                        }
-                    });
-
-
-                    $('#submit').on('click', function (e) {
-                        e.preventDefault();
-                        var data = $('#contactForm').serializeArray()
-                        JSONData = serializeToJSON(data)
-
-                        console.log(data);
-                        var a = $('input, textarea').hasClass('is-invalid');
-                        var b = $('#floatingInput').prop('value');
-                        var c = $('#floatingTel').prop('value');
-                        var d = $('#floatingEmail').prop('value');
-                        var e = $('#floatingSubject').prop('value');
-                        var f = $('#floatingTextarea2').prop('value');
-                        if (a == true || b == '' || c == '' || d == '' || e == '' || f == '') {
-                            const Toast = Swal.mixin({
-                                toast: true,
-                                position: 'center',
-                                showConfirmButton: false,
-                                timer: 3000,
-                                timerProgressBar: false,
-                            })
-                            Toast.fire({
-                                icon: 'error',
-                                title: '訊息送出失敗...<br>請確認所有欄位都填寫正確。',                                    
-                            })
+            <script>
+                $('#floatingInput, #floatingSubject, #floatingTextarea2').on({
+                    blur: function () {
+                        // console.log($(this).prop('value'));
+                        if ($(this).prop('value') == '') {
+                            $(this).addClass('is-invalid');
                         } else {
-                            // $('#successMsg').slideDown(1000);
-                            // setTimeout(function () {
-                            //     $('#successMsg').slideUp(1000);
-                            // }, 3000);
-                            const Toast = Swal.mixin({
-                                toast: true,
-                                position: 'center',
-                                showConfirmButton: false,
-                                timer: 3000,
-                                timerProgressBar: false,
-                            })
-
-                            Toast.fire({
-                                icon: 'success',
-                                title: '訊息送出成功! <br>我們會盡速與您聯絡，請留意您的信箱。'
-                            })
-
-                            // 舊寫法
-                            // var xhttp = new XMLHttpRequest();
-                            // xhttp.open("POST", "/contact", true);
-                            // xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-                            // console.log(JSONData);
-                            // xhttp.send(JSONData);
-
-                            // 新寫法
-                            fetch('/contact', {
-                                method: "POST",
-                                headers: {
-                                    "Content-Type": "application/json;charset=UTF-8"
-                                },
-                                body: JSONData
-                            });
+                            $(this).addClass('is-valid');
                         }
-
-
-                        function serializeToJSON(data) {
-                            var values = {};
-                            for (index in data) {
-                                values[data[index].name] = data[index].value;
-                            }
-                            return JSON.stringify(values)
+                    },
+                    focus: function () {
+                        $(this).removeClass('is-valid');
+                        $(this).removeClass('is-invalid');
+                    }
+                });
+                $('#floatingTel').on({
+                    blur: function () {
+                        var re = /^09[0-9]{8}$/;
+                        var telVal = $(this).prop('value');
+                        var result = re.test(telVal)
+                        if (result == false || telVal == '') {
+                            $(this).addClass('is-invalid');
+                        } else {
+                            $(this).addClass('is-valid');
                         }
-                    })
+                    },
+                    focus: function () {
+                        $(this).removeClass('is-valid');
+                        $(this).removeClass('is-invalid');
+                    }
+                });
+                $('#floatingEmail').on({
+                    blur: function () {
+                        var re = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+                        var mail = $(this).prop('value');
+                        var result = re.test(mail)
+                        if (result == false || mail == '') {
+                            $(this).addClass('is-invalid');
+                            console.log('invalid');
+                        } else {
+                            $(this).addClass('is-valid');
+                            console.log('valid');
+                        }
+                    },
+                    focus: function () {
+                        $(this).removeClass('is-valid');
+                        $(this).removeClass('is-invalid');
+                    }
+                });
 
-                </script>
+
+                $('#submit').on('click', function (e) {
+                    e.preventDefault();
+                    var data = $('#contactForm').serializeArray()
+                    JSONData = serializeToJSON(data)
+
+                    console.log(data);
+                    var a = $('input, textarea').hasClass('is-invalid');
+                    var b = $('#floatingInput').prop('value');
+                    var c = $('#floatingTel').prop('value');
+                    var d = $('#floatingEmail').prop('value');
+                    var e = $('#floatingSubject').prop('value');
+                    var f = $('#floatingTextarea2').prop('value');
+                    if (a == true || b == '' || c == '' || d == '' || e == '' || f == '') {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'center',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: false,
+                        })
+                        Toast.fire({
+                            icon: 'error',
+                            title: '訊息送出失敗...<br>請確認所有欄位都填寫正確。',                                    
+                        })
+                    } else {
+                        // $('#successMsg').slideDown(1000);
+                        // setTimeout(function () {
+                        //     $('#successMsg').slideUp(1000);
+                        // }, 3000);
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'center',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: false,
+                        })
+
+                        Toast.fire({
+                            icon: 'success',
+                            title: '訊息送出成功! <br>我們會盡速與您聯絡，請留意您的信箱。'
+                        })
+
+                        // 舊寫法
+                        // var xhttp = new XMLHttpRequest();
+                        // xhttp.open("POST", "/contact", true);
+                        // xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                        // console.log(JSONData);
+                        // xhttp.send(JSONData);
+
+                        // 新寫法
+                        fetch('/contact', {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json;charset=UTF-8"
+                            },
+                            body: JSONData
+                        });
+                    }
+
+
+                    function serializeToJSON(data) {
+                        var values = {};
+                        for (index in data) {
+                            values[data[index].name] = data[index].value;
+                        }
+                        return JSON.stringify(values)
+                    }
+                })
+
+            </script>
