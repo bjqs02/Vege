@@ -351,19 +351,26 @@ INSERT INTO `contactform` (`cId`, `Name`, `Tel`, `Email`, `Subject`, `Msg`) VALU
 --
 
 CREATE TABLE `userLogin` (
-  `Email` varchar(50) PRIMARY KEY,
+  `uID` int AUTO_INCREMENT PRIMARY KEY, 
+  `Email` varchar(50) UNIQUE NOT NULL,
   `password` varchar(50) NOT NULL,
-  `createTime` datetime DEFAULT CURRENT_TIMESTAMP NOT NULL
+  `token` varchar(200),
+  `createTime` datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  `updateTime` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- uID 起始值="1001"
+
+ALTER TABLE userLogin AUTO_INCREMENT=1001;
 
 --
 -- 傾印資料表的資料 `userLogin`
 --
 
 INSERT INTO `userLogin` (`Email`, `password`, `createTime`) VALUES
-('apple_pie@gmail.com', 'abc1234','2022-10-15 18:12:10'),
-('blueberry_muffin@yahoo.com.tw', 'qwer1234','2020-08-17 15:00:59'),
-('cranberry@outlook.com', 'asdf9876','2021-03-08 01:15:13');
+('apple_pie@gmail.com', '123456','2022-10-15 18:12:10'),
+('blueberry_muffin@yahoo.com.tw', '123456','2020-08-17 15:00:59'),
+('cranberry@outlook.com', '123456','2021-03-08 01:15:13');
 
 
 --
@@ -371,7 +378,7 @@ INSERT INTO `userLogin` (`Email`, `password`, `createTime`) VALUES
 --
 
 CREATE TABLE `userInfo` (
-  `uId` int AUTO_INCREMENT PRIMARY KEY,
+  `uId` int PRIMARY KEY,
   `Email` varchar(50),
   `Name` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
   `Phone` varchar(16) NOT NULL,
@@ -386,10 +393,11 @@ CREATE TABLE `userInfo` (
 -- 傾印資料表的資料 `userInfo`
 --
 
-INSERT INTO `userInfo` (`Email`, `Name`, `Phone`,`Img`,`Birthday`,`Gender`,`carrier`) VALUES
-('apple_pie@gmail.com','王大同','0912345678','https://dummyimage.com/300x300/000000/fff&text=apple+pie','1994-01-01','M','/5C3S4N1'),
-('blueberry_muffin@yahoo.com.tw','李曉潔','0933396969','https://dummyimage.com/300x300/000000/fff&text=blueberry+muffin','1985-03-31','F','/S5FGRG8'),
-('cranberry@outlook.com','郭靜香','0911122345','https://dummyimage.com/300x300/000000/fff&text=cranberry','1979-11-26','F','/RB5SDHT');
+INSERT INTO `userInfo` (`uId`, `Email`, `Name`, `Phone`,`Img`,`Birthday`,`Gender`,`carrier`) VALUES
+('1001','apple_pie@gmail.com','王大同','0912345678','https://dummyimage.com/300x300/000000/fff&text=apple+pie','1994-01-01','M','/5C3S4N1'),
+('1002','blueberry_muffin@yahoo.com.tw','李曉潔','0933396969','https://dummyimage.com/300x300/000000/fff&text=blueberry+muffin','1985-03-31','F','/S5FGRG8'),
+('1003','cranberry@outlook.com','郭靜香','0911122345','https://dummyimage.com/300x300/000000/fff&text=cranberry','1979-11-26','F','/RB5SDHT'),
+('1004','happy@gmail.com','陳樂','0912123123','https://dummyimage.com/300x300/000000/fff&text=happy','1985-08-26','M','/RK9SKHD');
 
 
 
@@ -410,10 +418,11 @@ CREATE TABLE `userAddress` (
 --
 
 INSERT INTO `userAddress` (`uId`, `Name`,`Phone`,`address`) VALUES
-('1','王大同','0912345678','台中市南區建國南路1段255號'),
-('1','王美麗','0912345679','台中市南區建國南路1段255號'),
-('2','李曉潔','0933396969','台北市大安區忠孝東路四段200號'),
-('3','郭靜香','0911122345','高雄市左營區博愛二路757號');
+('1001','王大同','0912345678','台中市南區建國南路1段255號'),
+('1001','王美麗','0912345679','台中市南區建國南路1段255號'),
+('1002','李曉潔','0933396969','台北市大安區忠孝東路四段200號'),
+('1003','郭靜香','0911122345','高雄市左營區博愛二路757號'),
+('1003','陳樂','0912123123','台南市中西區忠義路二段1號');
 
 
 --
@@ -432,10 +441,10 @@ CREATE TABLE `userCard` (
 --
 
 INSERT INTO `userCard` (`uId`, `card`,`bank`, `default`) VALUES
-('1','0000111122223333','玉山銀行','1'),
-('1','4444555566667777','台新銀行','0'),
-('2','8888999900001111','國泰世華銀行','1'),
-('3','2222333344445555','華南銀行', '1');
+('1001','0000111122223333','玉山銀行','1'),
+('1001','4444555566667777','台新銀行','0'),
+('1002','8888999900001111','國泰世華銀行','1'),
+('1003','2222333344445555','華南銀行', '1');
 
 
 
@@ -455,10 +464,10 @@ CREATE TABLE `userBonus` (
 --
 
 INSERT INTO `userBonus` (`uId`, `Time`,`bonus`) VALUES
-('1','2023-06-01 20:15:13','50'),
-('1','2023-07-03 19:53:37','-50'),
-('1','2023-07-03 19:54:50','60'),
-('2','2023-08-01 15:37:17','20');
+('1001','2023-06-01 20:15:13','50'),
+('1001','2023-07-03 19:53:37','-50'),
+('1001','2023-07-03 19:54:50','60'),
+('1002','2023-08-01 15:37:17','20');
 
 
 
@@ -480,9 +489,9 @@ CREATE TABLE `userMsg` (
 --
 
 INSERT INTO `userMsg` (`uId`, `msgType`, `Msg`,`Time`, `replyId`) VALUES
-('1','配送問題','我下周出差不在家可以延後配送一周嗎?','2023-08-29 10:01:58', '1'),
-('1','配送問題','想確認延後配送不會有加收費用對嗎?','2023-08-29 12:33:15', '2'),
-('2','購物金問題','我想確認我的購物金是否有到期日','2023-08-29 15:08:51', '3');
+('1001','配送問題','我下周出差不在家可以延後配送一周嗎?','2023-08-29 10:01:58', '1'),
+('1001','配送問題','想確認延後配送不會有加收費用對嗎?','2023-08-29 12:33:15', '2'),
+('1002','購物金問題','我想確認我的購物金是否有到期日','2023-08-29 15:08:51', '3');
 
 --
 -- 資料表結構 `supportMsg` 客服訊息
@@ -611,18 +620,18 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cid`, `uid`, `c_createtime`, `pid`, `c_note`, `oid`, `c_status`) VALUES
-(1, '1', '2023-09-04 02:15:53', 'aa002', NULL, '9014842', 'inactive'),
-(2, '1', '2023-09-04 02:16:28', 'aa004', NULL, '9014842', 'inactive'),
-(3, '4', '2023-09-04 02:16:57', 'aa0013', NULL, '8430352', 'inactive'),
-(4, '3', '2023-09-04 13:33:28', 'aa0012', NULL, NULL, 'active'),
-(5, '3', '2023-09-04 13:33:28', 'aa004', NULL, NULL, 'active'),
-(6, '4', '2023-09-04 02:16:57', 'aa0013', NULL, '937362', 'inactive'),
-(7, '4', '2023-09-04 02:16:57', 'aa003', NULL, '937362', 'inactive'),
-(8, '2', '2023-09-05 18:41:40', 'aa001', NULL, '8472034', 'inactive'),
-(9, '2', '2023-09-05 18:53:49', 'aa003', NULL, '', 'active'),
-(10, '2', '2023-09-05 18:54:28', 'aa0015', NULL, '', 'active'),
-(11, '2', '2023-09-06 04:02:56', 'aa001', NULL, '4140847', 'inactive'),
-(12, '2', '2023-09-06 04:03:10', 'aa0012', NULL, '', 'active');
+(1, '1001', '2023-09-04 02:15:53', 'aa002', NULL, '9014842', 'inactive'),
+(2, '1001', '2023-09-04 02:16:28', 'aa004', NULL, '9014842', 'inactive'),
+(3, '1004', '2023-09-04 02:16:57', 'aa0013', NULL, '8430352', 'inactive'),
+(4, '1003', '2023-09-04 13:33:28', 'aa0012', NULL, NULL, 'active'),
+(5, '1003', '2023-09-04 13:33:28', 'aa004', NULL, NULL, 'active'),
+(6, '1004', '2023-09-04 02:16:57', 'aa0013', NULL, '937362', 'inactive'),
+(7, '1004', '2023-09-04 02:16:57', 'aa003', NULL, '937362', 'inactive'),
+(8, '1002', '2023-09-05 18:41:40', 'aa001', NULL, '8472034', 'inactive'),
+(9, '1002', '2023-09-05 18:53:49', 'aa003', NULL, '', 'active'),
+(10, '1002', '2023-09-05 18:54:28', 'aa0015', NULL, '', 'active'),
+(11, '1002', '2023-09-06 04:02:56', 'aa001', NULL, '4140847', 'inactive'),
+(12, '1002', '2023-09-06 04:03:10', 'aa0012', NULL, '', 'active');
 
 -- --------------------------------------------------------
 
@@ -720,11 +729,11 @@ CREATE TABLE `vgorder` (
 --
 
 INSERT INTO `vgorder` (`oid`, `uid`, `o_ceatetime`, `useCoupon`, `useBonus`, `paid`, `oName`, `oTel`, `oMail`, `rName`, `rTel`, `rAddr`, `convName`, `convTel`, `convStore`, `payment`, `transName`, `transNum`, `transDate`, `creditName`, `creditNum`, `creditMM`, `creditYY`, `creditCSV`, `billDonate`, `billPersonal`, `billCompName`, `billCompNum`, `billCompAddr`, `o_note`, `o_status`, `o_updatetime`, `o_cancel_time`) VALUES
-('4140847', '2', '2023-09-06 04:05:54', NULL, NULL, 'unpaid', 'aa', 'aa', 'aaa', 'aa', 'aa', '', '', '', NULL, NULL, '', '', '0000-00-00', '', '', '', '', '', NULL, NULL, '', '', '', 'aaa', 'inactive', '1693973208164', NULL),
-('8430352', '4', '2023-09-05 17:18:15', NULL, NULL, 'unpaid', '李大美', '0912333444', '111@gmail.com', '陳怡君', '0966707506', '桃園縣龜山區中山路112號', '', '', NULL, NULL, '陳怡君', '12345', '2023-09-09', '', '', '', '', '', NULL, NULL, '', '', '', '好晚了該睡覺了', 'inactive', '1693937252161', NULL),
-('8472034', '2', '2023-09-05 18:43:08', NULL, NULL, 'unpaid', '測試用', '測試用', '測試用', '', '', '', '', '', NULL, NULL, '', '', '0000-00-00', '測試用', '測試用', '測試用', '測試用', '測試用', NULL, NULL, '測試用', '測試用', '測試用', '測試用測試用測試用測試用測試用', 'inactive', '1693939982392', NULL),
-('9014842', '1', '2023-09-05 16:02:10', NULL, NULL, 'unpaid', '李小美', '0912333444', 'aa@gmail.com', '王大華', '0966707506', '桃園縣龜山區中山路112號', '', '', NULL, NULL, '陳怡君', '12345', '2023-09-09', '', '', '', '', '', NULL, NULL, '', '', '', '我愛吃香蕉和蘋果', 'active', NULL, NULL),
-('937362', '4', '2023-09-05 18:40:15', NULL, NULL, 'unpaid', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'active', NULL, NULL);
+('4140847', '1002', '2023-09-06 04:05:54', NULL, NULL, 'unpaid', 'aa', 'aa', 'aaa', 'aa', 'aa', '', '', '', NULL, NULL, '', '', '0000-00-00', '', '', '', '', '', NULL, NULL, '', '', '', 'aaa', 'inactive', '1693973208164', NULL),
+('8430352', '1004', '2023-09-05 17:18:15', NULL, NULL, 'unpaid', '李大美', '0912333444', '111@gmail.com', '陳怡君', '0966707506', '桃園縣龜山區中山路112號', '', '', NULL, NULL, '陳怡君', '12345', '2023-09-09', '', '', '', '', '', NULL, NULL, '', '', '', '好晚了該睡覺了', 'inactive', '1693937252161', NULL),
+('8472034', '1002', '2023-09-05 18:43:08', NULL, NULL, 'unpaid', '測試用', '測試用', '測試用', '', '', '', '', '', NULL, NULL, '', '', '0000-00-00', '測試用', '測試用', '測試用', '測試用', '測試用', NULL, NULL, '測試用', '測試用', '測試用', '測試用測試用測試用測試用測試用', 'inactive', '1693939982392', NULL),
+('9014842', '1001', '2023-09-05 16:02:10', NULL, NULL, 'unpaid', '李小美', '0912333444', 'aa@gmail.com', '王大華', '0966707506', '桃園縣龜山區中山路112號', '', '', NULL, NULL, '陳怡君', '12345', '2023-09-09', '', '', '', '', '', NULL, NULL, '', '', '', '我愛吃香蕉和蘋果', 'active', NULL, NULL),
+('937362', '1004', '2023-09-05 18:40:15', NULL, NULL, 'unpaid', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'active', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -743,12 +752,12 @@ CREATE TABLE `wishlist` (
 --
 
 INSERT INTO `wishlist` (`wid`, `uid`, `pid`) VALUES
-(1, '1', 'aa001'),
-(2, '2', 'aa002'),
-(3, '2', 'aa003'),
-(4, '3', 'aa004'),
-(5, '4', 'aa004'),
-(6, '4', 'aa0012');
+(1, '1001', 'aa001'),
+(2, '1002', 'aa002'),
+(3, '1002', 'aa003'),
+(4, '1003', 'aa004'),
+(5, '1004', 'aa004'),
+(6, '1004', 'aa0012');
 
 --
 -- 已傾印資料表的索引
