@@ -247,6 +247,8 @@
                 <!-- 以下是script -->
                 <%- include('share/vg-main.ejs') %>
                     <script>
+
+
                         $('#about').addClass('btn-vg-2-active');
                         $('#title1').text('我們的理念');
                         $('#title1').prop('href', '#concept');
@@ -316,21 +318,20 @@
                         });
 
 
-                        window.onload = function(){
-                            openSGS.onclick = function(){
-                                $("#sgsModal").modal('show');
-                                fetch('/about/sgs')
-                                .then(function(res) {
+                        openSGS.onclick = function () {
+                            $("#sgsModal").modal('show');
+                            fetch('/about/sgs')
+                                .then(function (res) {
                                     return res.json();
                                 })
-                                .then(function(data){
+                                .then(function (data) {
                                     let text = `<tr class="align-middle">
                                                     <th>日期</th>
                                                     <th>產地</th>
                                                     <th>檢驗品項</th>
                                                     <th>檢驗結果</th>
                                                 </tr>`;
-                                    data.forEach(function(sgs){
+                                    data.forEach(function (sgs) {
                                         text += `<tr class="align-middle">
                                                     <td>${sgs.date}</td>
                                                     <td>${sgs.origin}</td>
@@ -341,7 +342,6 @@
                                     });
                                     sgstable.innerHTML = text;
                                 })
-                            }
                         }
                     </script>
 

@@ -1,4 +1,6 @@
 <nav id="main-nav">
+    <span id="userName" class="vg-ps">user</span>
+    <button id="logoutBTN" class="btn btn-vg-sm">登出</button>
     <a href="#user" class="icon" id="navUser">
         <i class="fa-solid fa-user"></i>
     </a>
@@ -47,10 +49,8 @@
                         <h3>蔬菜箱</h3>
                         <span class="qty-price">
                             <span class="qty">
-                                <button class="minus-button" id="minus-button-1">-</button>
                                 <input type="number" id="qty-input-1" class="qty-input" step="1" min="1" max="1000"
                                     name="qty-input" value="1" pattern="[0-9]*" title="Quantity" inputmode="numeric">
-                                <button class="plus-button" id="plus-button-1">+</button>
                                 <input type="hidden" name="item-price" id="item-price-1" value="12.00">
                             </span>
                             <span class="price">200</span>
@@ -68,10 +68,8 @@
                         <h3>萬聖箱</h3>
                         <span class="qty-price">
                             <span class="qty">
-                                <button class="minus-button" id="minus-button-1">-</button>
                                 <input type="number" id="qty-input-2" class="qty-input" step="1" min="1" max="1000"
                                     name="qty-input" value="1" pattern="[0-9]*" title="Quantity" inputmode="numeric">
-                                <button class="plus-button" id="plus-button-1">+</button>
                                 <input type="hidden" name="item-price" id="item-price-2" value="12.00">
                             </span>
                             <span class="price">300</span>
@@ -89,10 +87,8 @@
                         <h3>水果箱</h3>
                         <span class="qty-price">
                             <span class="qty">
-                                <button class="minus-button" id="minus-button-1">-</button>
                                 <input type="number" id="qty-input-2" class="qty-input" step="1" min="1" max="1000"
                                     name="qty-input" value="1" pattern="[0-9]*" title="Quantity" inputmode="numeric">
-                                <button class="plus-button" id="plus-button-1">+</button>
                                 <input type="hidden" name="item-price" id="item-price-2" value="12.00">
                             </span>
                             <span class="price">300</span>
@@ -108,7 +104,7 @@
             </div>
         </div>
         <div class="action-buttons">
-            <a class="checkout-button" href="#">結帳去<i class="fa-solid fa-angles-right"></i></a>
+            <a class="checkout-button" href="/cart" id="toCart">結帳去<i class="fa-solid fa-angles-right"></i></a>
         </div>
     </main>
 </aside>

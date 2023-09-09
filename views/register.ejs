@@ -83,7 +83,6 @@
                         }
                     })
 
-
                     $('#submit').on('click', function (e) {
                         e.preventDefault();
                         var data = {
@@ -113,19 +112,6 @@
                                 title: '請確認所有欄位都填寫正確。',
                             });
                         } else {
-                            console.log('表單輸入完整');
-                            const Toast = Swal.mixin({
-                                toast: true,
-                                position: 'center',
-                                showConfirmButton: false,
-                                timer: 3000,
-                                timerProgressBar: false,
-                            });
-                            Toast.fire({
-                                icon: 'success',
-                                title: '註冊成功!畫面將跳轉至登入頁面'
-                            });
-
                             fetch('/login/register', {
                                 method: "POST",
                                 headers: {
@@ -133,12 +119,42 @@
                                 },
                                 body: JSONData
                             })
-                            setTimeout(function(){
-                                location.href = "/login/userlogin";
-                            }, 3000);
+                            .then(function (response) {
+                                return response.json();
+                            })
+                            .then(function (jsonObj) {
+                                // 回傳如果是空物件 顯示註冊失敗
+                                if (jsonObj[0] == undefined) {
+                                    const Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'center',
+                                        showConfirmButton: false,
+                                        timer: 3000,
+                                        timerProgressBar: false,
+                                    });
+                                    Toast.fire({
+                                        icon: 'error',
+                                        title: '註冊失敗',
+                                    });
+                                } else {
+                                // 回傳不是空物件 顯示成功訊息並3秒後跳轉至登入頁面
+                                    const Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'center',
+                                        showConfirmButton: false,
+                                        timer: 3000,
+                                        timerProgressBar: false,
+                                    });
+                                    Toast.fire({
+                                        icon: 'success',
+                                        title: '註冊成功!畫面將跳轉至登入頁面'
+                                    });
+                                    setTimeout(function () {
+                                        location.href = "/login/userlogin";
+                                    }, 3000);
+                                }
+                            });
                         }
-
-
                     })
 
                 </script>

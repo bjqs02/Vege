@@ -71,7 +71,7 @@
                                 title: '請填寫完整。',
                             });
                         } else {
-                            
+
                             fetch('/login/userlogin', {
                                 method: "POST",
                                 headers: {
@@ -79,15 +79,23 @@
                                 },
                                 body: JSONData
                             })
-                            .then(function (response) {
-                                return response.json();
-                            })
-                            .then(function (jsonObj) {
-                                token = jsonObj.data.token;
-                            })
+                                .then(function (response) {
+                                    return response.json();
+                                })
+                                .then(function (jsonObj) {
+                                    // console.log(jsonObj.data.token);
+                                    var newToken = JSON.stringify(jsonObj.data);
+                                    // console.log(dataToken);
+                                    localStorage.setItem('token', newToken);
+                                    var getData = localStorage.getItem('token');
+                                    console.log(getData);
+                                    setTimeout(function () {
+                                        location.href = "/";
+                                    }, 2000);
+                                })
                         }
-                        
-                        
+
+
                     })
                     // const Toast = Swal.mixin({
                     //     toast: true,

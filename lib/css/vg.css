@@ -468,7 +468,7 @@
   
   
   /* ↑↑↑↑↑ btn color ↑↑↑↑↑ */
-  .btn-vg-pri
+  
   
   /* ↓↓↓↓↓ form-control ↓↓↓↓↓ */
   .form-control {
@@ -592,6 +592,32 @@
     text-align: center;
     cursor: pointer;
     z-index: 2;
+  }
+
+  #logoutBTN {
+    margin: 5px 0;
+    position: fixed;
+    top: 0px;
+    right: 120px;
+    z-index: 2;
+    visibility: hidden;
+  }
+
+  #userName {
+    margin: 5px 0;
+    position: fixed;
+    top: 35px;
+    right: 130px;
+    z-index: 2;
+    text-align: center;
+  }
+
+  #navUser>img{
+    border-radius: 50%;
+    height: inherit;
+    width: inherit;
+    object-fit: cover;
+    padding-top: 0px;
   }
   
   #navUser {
