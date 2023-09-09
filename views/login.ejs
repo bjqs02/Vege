@@ -44,6 +44,7 @@
             <!-- 以下是script -->
             <%- include('share/vg-main.ejs') %>
                 <script>
+                    let token = '';
                     $('#submit').on('click', function (e) {
                         e.preventDefault();
                         var data = {
@@ -82,7 +83,7 @@
                                 return response.json();
                             })
                             .then(function (jsonObj) {
-                                console.log(jsonObj);
+                                token = jsonObj.data.token;
                             })
                         }
                         

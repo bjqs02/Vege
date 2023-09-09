@@ -1,6 +1,7 @@
 var express = require("express");
 var login = express.Router();
 var db = require('../db')
+var login_api = require('../middleware/auth_login')
 
 var bodyParser = require("body-parser");
 var jp = bodyParser.json();
@@ -31,21 +32,12 @@ login.get('/register', function (req, res) {
 
 login.post('/register', jp, async function (req, res) {
     var body = req.body;
-    console.log(body.pwd);
-    // var pwd = bcrypt.hashSync(body.pwd, 10);
-    // console.log(pwd);
-
     const pwd = body.pwd;
     const salt = 10;
-
     bcrypt.hash(pwd, salt, function (err, hash) {
         if (err) {
             console.log(err);
         } else {
-            // 'hash' contains the salted hash, including the salt
-            console.log('Salted Hash:', hash);
-
-            // Store 'hash' securely in your database
             var sql = "INSERT INTO `userLogin` (`Email`, `password`) VALUES (?,?);";
             var data = [body.email, hash];
             db.query(sql, data, function (err, fields) {
@@ -54,7 +46,7 @@ login.post('/register', jp, async function (req, res) {
                     console.log(err);
                 } else {
                     console.log('註冊成功放進資料庫');
-                    console.log(fields);
+                    // console.log(fields);
                     res.send('OK');
                 }
             });
@@ -86,14 +78,30 @@ login.post('/userlogin', jp, function (req, res) {
                     console.log(err)
                 } else if (result) {
                     const payload = fields[0].uid;
-                    var token = jwt.sign({'id':payload}, `${process.env.SECRET_KEY}`, {
-                        expiresIn: 60*60*24
-                      })
-                    db.query("update userlogin set token = ? where email = ?; select * from userlogin where email = ?;", [token, body.email, body.email], function(err, result){
-                        if(err){
+                    var token = jwt.sign(
+                        { 'id': payload },
+                        `${process.env.SECRET_KEY}`,
+                        { expiresIn: 60 * 60 * 24 }
+                    )
+                    db.query("update userlogin set token = ? where email = ?;", [token, body.email], function (err, result) {
+                        if (err) {
                             console.log(err);
                         } else {
-                            console.log(result);
+                            db.query("SELECT * FROM userlogin, userinfo where userlogin.email = userinfo.Email and userlogin.Email = ?;",
+                                [body.email], function (err, result) {
+                                    if (err) {
+                                        console.log(err);
+                                    } else {
+                                        res.status(200).json({
+                                            status: 'success',
+                                            data: {
+                                                token,
+                                                id: result[0].uID,
+                                                name: result[0].Name
+                                            }
+                                        })
+                                    }
+                                })
                         }
                     })
                 } else {
