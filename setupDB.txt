@@ -396,8 +396,8 @@ CREATE TABLE `userInfo` (
 
 INSERT INTO `userInfo` (`uId`, `Email`, `Name`, `Phone`,`Img`,`Birthday`,`Gender`,`carrier`) VALUES
 ('1001','apple_pie@gmail.com','王大同','0912345678','https://dummyimage.com/300x300/000000/fff&text=apple+pie','1994-01-01','M','/5C3S4N1'),
-('1002','blueberry_muffin@yahoo.com.tw','李曉潔','0933396969','https://dummyimage.com/300x300/000000/fff&text=blueberry+muffin','1985-03-31','F','/S5FGRG8'),
-('1003','cranberry@outlook.com','郭靜香','0911122345','https://dummyimage.com/300x300/000000/fff&text=cranberry','1979-11-26','F','/RB5SDHT'),
+('1002','blueberry_muffin@gmail.com','李曉潔','0933396969','https://dummyimage.com/300x300/000000/fff&text=blueberry+muffin','1985-03-31','F','/S5FGRG8'),
+('1003','cranberry@gmail.com','郭靜香','0911122345','https://dummyimage.com/300x300/000000/fff&text=cranberry','1979-11-26','F','/RB5SDHT'),
 ('1004','happy@gmail.com','陳樂','0912123123','https://dummyimage.com/300x300/000000/fff&text=happy','1985-08-26','M','/RK9SKHD');
 
 
