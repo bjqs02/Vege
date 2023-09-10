@@ -52,20 +52,21 @@
                                                     for="memberdata" class="">同會員資料</label><br />
                                             </div>
                                             <div class="form-floating form-group m-2">
-                                                <input type="text" name="oName" id="userName" class="form-control w-50"
-                                                    placeholder="">
-                                                <label for="userName">姓名</label>
+                                                <input type="text" name="oName" id="username" class="form-control w-50"
+                                                    placeholder="" value="">
+                                                <label for="username">姓名</label>
                                             </div>
                                             <div class="form-floating form-group m-2">
-                                                <input type="tel" name="oTel" id="userName" class="form-control w-50"
+                                                <input type="tel" name="oTel" id="userTel" class="form-control w-50"
                                                     placeholder="">
-                                                <label for="userName">電話</label>
+                                                <label for="userTel">電話</label>
                                             </div>
                                             <div class="form-floating form-group m-2">
                                                 <input type="email" name="oMail" id="userMail" class="form-control w-75"
                                                     placeholder="">
                                                 <label for="userMail">信箱</label>
                                             </div>
+                                            
                                             <!-- <div class="twzipcode m-2">
                                             <select data-role="county" class="form-select-sm w-25"></select>
                                             <select data-role="district" class="form-select-sm w-25"></select>
@@ -455,7 +456,10 @@
                 const twzipcode = new TWzipcode();
 
                 // 設定使用者
-                var uid = 2;
+                var userData = localStorage.getItem('token');
+                var userToken = userData ? JSON.parse(userData) : false;
+                // 設定目前使用者id
+                var uid = userToken.id;
 
                 // 連結訂單資料表 vgorder
                 $.get(`/order/items/${uid}`, function (e) {
