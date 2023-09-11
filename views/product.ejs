@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <%- include('share/head_link') %>
+    <link rel="stylesheet" href="css/Product_Page.css" />
+    <style></style>
+  </head>
+  <body>
+    <div class="black"></div>
+
+    <%- include('share/header') %>
+    <header>
+      <main id="product_main">
+        <section class="main-box">
+          <section class="middleContent d-flex">
+            <aside class="asideNav fu_tab">
+              <ul class="asideNav-ul">
+                <% for (let i = 0; i < data.names.length; i++) { %>
+                <li class="vg-bd-5">
+                  <button
+                    class="btn tab btn-vg mt-1"
+                    onclick="openCity(event, 'fu_tab<%= i+1 %>')"
+                  >
+                    <%= data.names[i].product %>
+                  </button>
+                </li>
+                <% } %>
+              </ul>
+            </aside>
+            <% for(let t = 0 ; t < data.names.length ; t++){ %>
+            <section id="fu_tab<%= t+1 %>" class="flex-column middle_box1">
+              <div class="middle_box vg-bd-5 mt-3">
+                <div class="vg-h3 vg-h3-div">
+                  <h3 class="ms-5 vg-h3"><%= data.con[t].product %></h3>
+                </div>
+                <div class="vg-h3-div2 fu_Mnav">
+                  <div class="box">
+                    <button class="btn fu_nav btn-vg">菜單特色</button>
+                  </div>
+                  <div class="box">
+                    <button class="btn fu_nav btn-vg">週週訂閱</button>
+                  </div>
+                  <div class="box">
+                    <button class="btn fu_nav btn-vg">購買須知</button>
+                  </div>
+                  <div class="box">
+                    <button class="btn fu_nav btn-vg">最新活動</button>
+                  </div>
+                </div>
+              </div>
+              <div class="middle_all">
+                <div class="middle_img">
+                  <% if(data.con[t].product === data.con[0].product){ %>
+                  <img class="vg-bd-5 mainImg" src="img/蔬果健康箱.png" />
+                  <% } else if(data.con[t].product === data.con[1].product) {%>
+                  <img class="vg-bd-5 mainImg" src="img/蔬果減脂箱.png" />
+                  <% }else if(data.con[t].product === data.con[2].product) {%>
+                  <img class="vg-bd-5 mainImg" src="img/果果箱.png" />
+                  <% }else if(data.con[t].product === data.con[3].product) {%>
+                  <img class="vg-bd-5 mainImg" src="img/菜菜箱.png" />
+                  <% }else if(data.con[t].product === data.con[4].product) {%>
+                  <img class="vg-bd-5 mainImg" src="img/盛產箱.png" />
+                  <% }else if(data.con[t].product === data.con[5].product) {%>
+                  <img class="vg-bd-5 mainImg" src="img/中秋箱.png" />
+                  <% }else{ %>
+                  <img class="vg-bd-5 mainImg" src="img/自選蔬果箱.png" />
+                  <% } %>
+                  <!-- 取得這個img當作購物圖片-->
+                  <div class="middle_imgs">
+                    <% for(let i = 0; i < data.images.length; i++) { %>
+                    <img class="ch vg-bd-5" src="<%= data.images[i].image %>" />
+                    <% } %>
+                  </div>
+                </div>
+                <% if(data.con[t].product === data.con[6].product) { %>
+                <div class="middle_Con">
+                  <h5 class="vg-h5">特色:</h5>
+                  <p><%= data.con[t].feature %></p>
+                  <p><%= data.con[t].content %>(雙人箱)</p>
+                  <p>五樣水果、五樣蔬菜(家庭箱)</p>
+                  <span>(內容以當季蔬菜組裝出貨)</span>
+                  <p>
+                    運費根據黑貓低溫配送基本價 <br />
+                    宅配/超商取貨為同樣價格
+                  </p>
+                  <span>
+                    最低金額:<span class="price1">
+                      <%= data.con[t].price %></span
+                    >元 </span
+                  ><br />
+                  <span>
+                    最高金額:
+                    <span class="price3"
+                      ><%= parseInt(data.con[t].price)+200 %></span
+                    >元
+                  </span>
+                  <p class="p-0 m-0">
+                    總金額: <span class="toal price4"></span>
+                  </p>
+                  <div class="fv_box vg-bd-5">
+                    <div class="vg-bd-5 mo_con">
+                      <div
+                        class="mo_header vg-bd-5 d-flex justify-content-between align-items-center"
+                      >
+                        <h4 class="vg-h4 mb-0">請選擇您喜歡的蔬果</h4>
+                        <strong class="over"></strong>
+                        <button type="button" class="btn-close"></button>
+                      </div>
+                      <div class="cons">
+                        <h5 class="vg-h5"><strong>蔬菜</strong></h5>
+                        <% for(let f = 0 ;f < data.veg.length ;f++ ){ %>
+                        <button class="btn f_1" data-pay="100">
+                          <%= data.veg[f].product %>
+                        </button>
+                        <% } %>
+                        <h5 class="vg-h5 hoh5"><strong>水果</strong></h5>
+                        <% for(let f = 0 ;f < data.fruit.length ;f++ ){ %>
+                        <button class="btn f_1" data-pay="50">
+                          <%= data.fruit[f].product %>
+                        </button>
+                        <% } %>
+                      </div>
+                      <div
+                        class="mo_foot d-flex justify-content-end align-items-center"
+                      >
+                        <button class="btn btn-vg goSure">確認</button>
+                      </div>
+                    </div>
+                  </div>
+                  <br />
+                  <h5 class="d-inline vg-h5">數量:</h5>
+                  <span
+                    class="fa-solid fa-plus btn price1"
+                    style="font-size: 10px"
+                  ></span>
+                  <span class="sum">1</span>
+                  <span
+                    class="fa-solid fa-minus btn price3"
+                    style="font-size: 10px"
+                  ></span
+                  ><br />
+
+                  <div class="fv_con">
+                    <h5 class="d-inline vg-h5">內容:</h5>
+                    <br />
+                    <strong class="buyfv commodity"></strong>
+                  </div>
+                  <button class="btn btn-vg chage m-0">選擇蔬果</button>
+
+                  <button class="addCard btn btn-vg w-50 m-0">
+                    加入購物車
+                  </button>
+                </div>
+                <div class="middle_Con">
+                  <h5 class="vg-h5">訂閱配送</h5>
+                  <p class="text-danger">
+                    選每周一次或雙周一次享有運費優惠！！
+                  </p>
+                  <h5 class="vg-h5">運送頻率:</h5>
+                  <p>
+                    每周一次 => 一期四箱 =>
+                    <br />
+                    訂購期 30 天 (需於45天內配送完畢&含延後2次)
+                  </p>
+                  <p>
+                    雙周一次 => 一期四箱 =>
+                    <br />
+                    訂購期 60 天 (需於90天內配送完畢 &含延後2次)
+                  </p>
+                  <h5 class="vg-h5">價格:</h5>
+                  <p>30day一期運費160元 、60day 一期運費290元</p>
+                  <p>
+                    30day金額:
+                    <span class="price1"
+                      ><%= parseInt(data.con[t].price)* 4 %>元</span
+                    >
+                    <span class="price3">
+                      ~<%= (parseInt(data.con[t].price) + 200) * 4 %>元</span
+                    >
+                  </p>
+                  <p>
+                    60day金額:
+                    <span class="price1"
+                      ><%= (parseInt(data.con[t].price)* 4)*2 %>元</span
+                    >
+                    <span class="price3">
+                      ~<%= ((parseInt(data.con[t].price) + 200) * 4)*2
+                      %>元</span
+                    >
+                  </p>
+                  <p>總金額: <span class="toal price4"></span></p>
+                  <div class="fv_box vg-bd-5">
+                    <div class="vg-bd-5 mo_con">
+                      <div
+                        class="mo_header vg-bd-5 d-flex justify-content-between align-items-center"
+                      >
+                        <h4 class="vg-h4 mb-0">請選擇您喜歡的蔬果</h4>
+                        <strong class="over"></strong>
+                        <button type="button" class="btn-close"></button>
+                      </div>
+                      <div class="cons">
+                        <h5 class="vg-h5"><strong>蔬菜</strong></h5>
+                        <% for(let f = 0 ;f < data.veg.length ;f++ ){ %>
+                        <button class="btn f_1" data-pay="100">
+                          <%= data.veg[f].product %>
+                        </button>
+                        <% } %>
+                        <h5 class="vg-h5 hoh5"><strong>水果</strong></h5>
+                        <% for(let f = 0 ;f < data.fruit.length ;f++ ){ %>
+                        <button class="btn f_1" data-pay="50">
+                          <%= data.fruit[f].product %>
+                        </button>
+                        <% } %>
+                      </div>
+                      <div
+                        class="mo-foot d-flex justify-content-end align-items-center"
+                      >
+                        <button class="btn btn-vg goSure">確認</button>
+                      </div>
+                    </div>
+                  </div>
+                  <h5 class="d-inline vg-h5">數量:</h5>
+                  <span
+                    class="fa-solid fa-plus btn price1"
+                    style="font-size: 10px"
+                  ></span>
+                  <span class="sum">1</span>
+                  <span
+                    class="fa-solid fa-minus btn price3"
+                    style="font-size: 10px"
+                  ></span
+                  ><br />
+                  <div>
+                    <h5 class="d-inline vg-h5">內容:</h5>
+                    <br />
+                    <strong class="buyfv commodity"></strong>
+                  </div>
+                  <button class="btn btn-vg chage m-0">選擇蔬果</button>
+                  <button class="btn btn-vg w-50 m-0 addCard">
+                    加入購物車
+                  </button>
+                </div>
+                <% } else { %>
+                <div class="middle_Con">
+                  <h5 class="vg-h5">特色:</h5>
+                  <p><%= data.con[t].feature %></p>
+                  <p><%= data.con[t].content %>(雙人箱)</p>
+                  <p>五樣水果、五樣蔬菜(家庭箱)</p>
+                  <span>(內容以當季蔬菜組裝出貨)</span>
+                  <p>
+                    運費根據黑貓低溫配送基本價 <br />
+                    宅配/超商取貨為同樣價格
+                  </p>
+                  <span>
+                    雙人箱(1~2人):<span class="price1">
+                      <%= data.con[t].price %></span
+                    >元 </span
+                  ><br />
+                  <span>
+                    家庭箱(3~4人):
+                    <span class="price3"
+                      ><%= parseInt(data.con[t].price)+200 %></span
+                    >元
+                  </span>
+                  <br />
+                  <label for="commodity" class="vg-h5">商品規格</label>
+                  <select class="commodity">
+                    <option value="double">雙人箱(1~2人)</option>
+                    <option value="family">家庭箱(3~4人)</option>
+                  </select>
+                  <br />
+                  <h5 class="d-inline vg-h5">數量:</h5>
+                  <span
+                    class="fa-solid fa-plus btn price1"
+                    style="font-size: 10px"
+                  ></span>
+                  <span class="sum">1</span>
+                  <span
+                    class="fa-solid fa-minus btn price3"
+                    style="font-size: 10px"
+                  ></span>
+                  <br />
+                  <button class="addCard btn btn-vg w-50 m-0">
+                    加入購物車
+                  </button>
+                </div>
+                <div class="middle_Con">
+                  <h5 class="vg-h5">訂閱配送</h5>
+                  <p class="text-danger">
+                    選每周一次或雙周一次享有運費優惠！！
+                  </p>
+                  <h5 class="vg-h5">運送頻率:</h5>
+                  <p>
+                    每周一次 => 一期四箱 =>
+                    <br />
+                    訂購期 30 天 (需於45天內配送完畢&含延後2次)
+                  </p>
+                  <p>
+                    雙周一次 => 一期四箱 =>
+                    <br />
+                    訂購期 60 天 (需於90天內配送完畢 &含延後2次)
+                  </p>
+                  <h5 class="vg-h5">價格:</h5>
+                  <p>
+                    雙人箱(1~2人)30day:
+                    <span class="price1"
+                      ><%= parseInt(data.con[0].price)* 4 %></span
+                    >元+一期運費160元
+                  </p>
+                  <p>
+                    家庭箱(3~4人)30day:
+                    <span class="price3">
+                      <%= (parseInt(data.con[t].price) + 200) * 4 %></span
+                    >+一期運費290元
+                  </p>
+                  <label for="commodity" class="vg-h5">商品規格</label>
+                  <select name="commodity" class="commodity">
+                    <option value="">雙人箱(30day)</option>
+                    <option value="">雙人箱(60day)</option>
+                    <option value="">家庭箱(30day)</option>
+                    <option value="">家庭箱(60day)</option>
+                  </select>
+                  <br />
+
+                  <h5 class="d-inline vg-h5">數量:</h5>
+                  <span
+                    class="fa-solid fa-plus btn price1"
+                    style="font-size: 10px"
+                  ></span>
+                  <span class="sum">1</span>
+                  <span
+                    class="fa-solid fa-minus btn price3"
+                    style="font-size: 10px"
+                  ></span
+                  ><br />
+                  <button class="btn btn-vg w-50 mt-3 addCard">
+                    加入購物車
+                  </button>
+                </div>
+                <% } %>
+
+                <div class="middle_Con">
+                  <h5 class="vg-h5">購買流程:</h5>
+                  <p>
+                    選購產品 => 選擇規格(份量/運送方式/頻率) <br />
+                    =>下訂(客製需求/訂單備註/訂單資料) => <br />
+                    付款 => 收貨 => 訂單回饋(獲得購物金)
+                  </p>
+                  <p class="text-danger">每周一固定配送 (假日無物流)</p>
+                  <p>提供兩次延後配送的服務</p>
+                  <h5 class="vg-h5">售後服務:</h5>
+                  <p>
+                    客戶回報系統 => 品項不好、有蟲、蔬果腐爛 <br />
+                    =>拍照上傳客服 => 我們將專人為您服務
+                  </p>
+                  <p>蔬菜內容以當季蔬菜組裝出貨！</p>
+                  <p>
+                    更改配送 => 吃不完、臨時需出國、臨時獲得新鮮蔬果 => 2次為限
+                  </p>
+                </div>
+                <div class="middle_Con">
+                  <h5 class="vg-h5">最新活動</h5>
+                  <p><%= data.con[t].off_act %></p>
+                  <h5 class="vg-h5">活動內容</h5>
+                  <p><%= data.con[t].act_content %></p>
+                  <p><%= data.con[t].act_content2 %></p>
+                  <p><%= data.con[t].act_content3 %></p>
+                  <h5 class="vg-h5">活動時間</h5>
+                  <h6>活動連結: <a href="#">水果拚拚樂</a></h6>
+                  <p><%= data.con[t].act_time %></p>
+                </div>
+              </div>
+            </section>
+            <% } %>
+          </section>
+        </section>
+      </main>
+    </header>
+    <%- include('share/footer') %>
+    <script src="js/Product_Page.js"></script>
+    <script src="js/vg.js"></script>
+  </body>
+</html>

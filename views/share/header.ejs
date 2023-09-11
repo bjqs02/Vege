@@ -1,123 +1,86 @@
 <nav id="main-nav">
-    <span id="userName" class="vg-ps">user</span>
-    <button id="logoutBTN" class="btn btn-vg-sm">登出</button>
-    <a href="#user" class="icon" id="navUser">
-        <i class="fa-solid fa-user"></i>
-    </a>
-    <a class="icon cart-button" id="navCart">
-        <span class="bag-count">3</span>
-        <span>
-            <i class="fa-solid fa-cart-shopping img-fluid"></i>
-        </span>
-        <!-- <span class="bag-label">View Bag</span> -->
-    </a>
+  <span id="userName" class="vg-ps">user</span>
+  <button id="logoutBTN" class="btn btn-vg-sm">登出</button>
+  <a href="#user" class="icon" id="navUser">
+    <i class="fa-solid fa-user"></i>
+  </a>
+  <a class="icon cart-button" id="navCart">
+    <span class="bag-count">0</span>
+    <span>
+      <i class="fa-solid fa-cart-shopping img-fluid"></i>
+    </span>
+    <!-- <span class="bag-label">View Bag</span> -->
+  </a>
 </nav>
 <!-- 登入modal -->
-<div class="modal" id="checkUser" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="checkUserLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="checkUserLabel">請輸入您的email</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form class="form w-75 ms-auto me-auto" id="emailForm">
-                    <input type="email" class="form-control" id="userEmail" placeholder="email"
-                        style="letter-spacing: 1px; padding: 10px;" name="email">
-                        <div class="modal-footer d-flex justify-content-center">
-                            <button class="btn btn-vg-reg" id="checkEmail">確認</button>
-                        </div>
-                </form>
-            </div>
-        </div>
+<div
+  class="modal"
+  id="checkUser"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="checkUserLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="checkUserLabel">請輸入您的email</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form class="form w-75 ms-auto me-auto" id="emailForm">
+          <input
+            type="email"
+            class="form-control"
+            id="userEmail"
+            placeholder="email"
+            style="letter-spacing: 1px; padding: 10px"
+            name="email"
+          />
+          <div class="modal-footer d-flex justify-content-center">
+            <button class="btn btn-vg-reg" id="checkEmail">確認</button>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </div>
 <!-- 登入modal到此為止 -->
 
 <aside id="sidebar-cart">
-    <main>
-        <a href="#" class="close-button"><i class="fa-solid fa-xmark"></i></a>
-        <h2>購物車<span class="count">3</span></h2>
-        <ul class="products">
-            <li class="product">
-                <a href="#" class="product-link">
-                    <span class="product-image">
-                        <img src="https://via.placeholder.com/75x50/ffffff/cccccc?text=PHOTO" alt="Product Photo">
-                    </span>
-                    <span class="product-details">
-                        <h3>蔬菜箱</h3>
-                        <span class="qty-price">
-                            <span class="qty">
-                                <input type="number" id="qty-input-1" class="qty-input" step="1" min="1" max="1000"
-                                    name="qty-input" value="1" pattern="[0-9]*" title="Quantity" inputmode="numeric">
-                                <input type="hidden" name="item-price" id="item-price-1" value="12.00">
-                            </span>
-                            <span class="price">200</span>
-                        </span>
-                    </span>
-                </a>
-                <a href="#remove" class="remove-button"><i class="fa-solid fa-trash"></i></a>
-            </li>
-            <li class="product">
-                <a href="#" class="product-link">
-                    <span class="product-image">
-                        <img src="https://via.placeholder.com/75x50/ffffff/cccccc?text=PHOTO" alt="Product Photo">
-                    </span>
-                    <span class="product-details">
-                        <h3>萬聖箱</h3>
-                        <span class="qty-price">
-                            <span class="qty">
-                                <input type="number" id="qty-input-2" class="qty-input" step="1" min="1" max="1000"
-                                    name="qty-input" value="1" pattern="[0-9]*" title="Quantity" inputmode="numeric">
-                                <input type="hidden" name="item-price" id="item-price-2" value="12.00">
-                            </span>
-                            <span class="price">300</span>
-                        </span>
-                    </span>
-                </a>
-                <a href="#remove" class="remove-button"><i class="fa-solid fa-trash"></i></a>
-            </li>
-            <li class="product">
-                <a href="#" class="product-link">
-                    <span class="product-image">
-                        <img src="https://via.placeholder.com/75x50/ffffff/cccccc?text=PHOTO" alt="Product Photo">
-                    </span>
-                    <span class="product-details">
-                        <h3>水果箱</h3>
-                        <span class="qty-price">
-                            <span class="qty">
-                                <input type="number" id="qty-input-2" class="qty-input" step="1" min="1" max="1000"
-                                    name="qty-input" value="1" pattern="[0-9]*" title="Quantity" inputmode="numeric">
-                                <input type="hidden" name="item-price" id="item-price-2" value="12.00">
-                            </span>
-                            <span class="price">300</span>
-                        </span>
-                    </span>
-                </a>
-                <a href="#remove" class="remove-button"><i class="fa-solid fa-trash"></i></a>
-            </li>
-        </ul>
-        <div class="totals">
-            <div class="subtotal">
-                <span class="label">Total:</span> <span class="amount">800</span>
-            </div>
-        </div>
-        <div class="action-buttons">
-            <a class="checkout-button" href="/cart" id="toCart">結帳去<i class="fa-solid fa-angles-right"></i></a>
-        </div>
-    </main>
+  <main>
+    <a href="#" class="close-button"><i class="fa-solid fa-xmark"></i></a>
+    <h2>購物車<span class="count">0</span></h2>
+    <ul class="products"></ul>
+    <div class="totals">
+      <div class="subtotal">
+        <span class="label">Total:</span>
+        <span class="total amount">0</span>
+      </div>
+    </div>
+    <div class="action-buttons">
+      <a class="checkout-button" href="/cart"
+        >結帳去<i class="fa-solid fa-angles-right"></i
+      ></a>
+    </div>
+  </main>
 </aside>
 <div id="sidebar-cart-curtain"></div>
-</div>
 <div class="vg-nav" id="vg-navbar">
-    <a href="/" class="vg-nav-logo btn-vg-2-active">LOGO</a>
-    <a href="/about" class="btn-vg-2">關於我們</a>
-    <a href="#news" class="btn-vg-2">最新消息</a>
-    <a href="/contact" class="btn-vg-2">訂閱蔬果箱</a>
-    <a href="#blog" class="btn-vg-2">蔬果專欄</a>
-    <a href="/qna" class="btn-vg-2">常見QA</a>
-    <a href="javascript:void(0);" class="icon" onclick="myDropNav1()">
-        <i class="fa fa-bars"></i>
-    </a>
+  <a href="/" class="vg-nav-logo btn-vg-2-active">LOGO</a>
+  <a href="/about" class="btn-vg-2">關於我們</a>
+  <a href="#news" class="btn-vg-2">最新消息</a>
+  <a href="/product" class="btn-vg-2">產品資訊</a>
+  <a href="/contact" class="btn-vg-2">訂閱蔬果箱</a>
+  <a href="#blog" class="btn-vg-2">蔬果專欄</a>
+  <a href="/qna" class="btn-vg-2">常見QA</a>
+  <a href="javascript:void(0);" class="icon" onclick="myDropNav1()">
+    <i class="fa fa-bars"></i>
+  </a>
 </div>
