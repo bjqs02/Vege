@@ -180,6 +180,13 @@ cart_order.patch("/editcart/c_note/", function (req, res) {
     )
 })
 
+// 讀取使用者購物金
+cart_order.get('/user/bonus/:id', function (req, res) {
+    var sql14 = "SELECT SUM(bonus) as bonus FROM userbonus WHERE uid = ?";
+    db.query(sql14, [req.params.id], function (err, rows) {
+        res.send(rows);
+    })
+})
 
 
 

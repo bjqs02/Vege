@@ -60,30 +60,30 @@
                     <div id="coupon" class="mt-2 mb-4">
                         <nav>
                             <div class="nav nav-tabs w-100" id="" role="tablist">
-                                <button class="nav-link active" id="nav-coupun-tab" data-bs-toggle="tab"
+                                <button class="nav-link" id="nav-coupun-tab" data-bs-toggle="tab"
                                     data-bs-target="#nav-coupun" type="button" role="tab" aria-controls="nav-coupun"
                                     aria-selected="true">折扣碼</button>
-                                <button class="nav-link" id="nav-vgmoney-tab" data-bs-toggle="tab"
+                                <button class="nav-link active" id="nav-vgmoney-tab" data-bs-toggle="tab"
                                     data-bs-target="#nav-vgmoney" type="button" role="tab" aria-controls="nav-vgmoney"
                                     aria-selected="false">購物金</button>
                             </div>
                         </nav>
                         <div class="tab-content" id="">
-                            <div class="tab-pane fade show active" id="nav-coupun" role="tabpanel"
-                                aria-labelledby="nav-coupun-tab" tabindex="0">
+                            <div class="tab-pane fade" id="nav-coupun" role="tabpanel" aria-labelledby="nav-coupun-tab"
+                                tabindex="0">
                                 <input type="text" class="form-control w-25 m-auto d-inline" name="" id="couponid"
                                     placeholder="請輸入折扣碼">
                                 <button class="btn btn-vg-xs" value="">送出</button>
                                 <p class="vg-ps text-warning mt-1">折扣碼錯誤</p>
                             </div>
-                            <div class="tab-pane fade" id="nav-vgmoney" role="tabpanel"
+                            <div class="tab-pane fade show active" id="nav-vgmoney" role="tabpanel"
                                 aria-labelledby="nav-vgmoney-tab" tabindex="0">
-                                <input type="text" class="form-control w-25 m-auto d-inline" name="" id="vgmoneyid"
-                                    placeholder="請輸入欲折抵的購物金">
-                                <button class="btn btn-vg-xs" value="">送出</button>
+                                <input type="text" class="form-control w-25 m-auto d-inline" name="" id="myyuseBonus"
+                                    placeholder="請輸入欲折抵的購物金" oninput="bonusval(this)">
+                                <button class="btn btn-vg-xs" value="" onclick="useBonus()">送出</button>
                                 <p class="vg-ps mt-1">您擁有的購物金:
-                                    <span class="text-primary">20</span>&nbsp;&nbsp;&nbsp;
-                                    <input type="radio" name="" id="useall"> <label for="useall">全部使用</label>
+                                    <span class="text-primary" id="userBonus">0</span>&nbsp;&nbsp;&nbsp;
+                                    <!-- <input type="radio" name="" id="useall"> <label for="useall">全部使用</label> -->
                                 </p>
                             </div>
                         </div>
@@ -139,12 +139,12 @@
                                 <!-- <td>320</td> -->
                             </tr>
                             <tr>
-                                <td class="vg-p" id="coupondiscount">折扣碼NPMSD</td>
-                                <td>-100</td>
+                                <td class="vg-p">折扣碼NPMSD</td>
+                                <td id="coupondiscount">0</td>
                             </tr>
                             <tr>
-                                <td class="vg-p" id="bonusdiscount">購物金</td>
-                                <td>-5</td>
+                                <td class="vg-p">購物金</td>
+                                <td id="bonusdiscount">0</td>
                             </tr>
                         </table>
                         <!-- <hr> -->
@@ -170,23 +170,26 @@
                 <script>
                     $(function () {
                         var userData = localStorage.getItem('token');
-                        // console.log(userData)
-                        if (userData !== null) {
-                            var userToken = userData ? JSON.parse(userData) : false;
-                            // 設定目前使用者id
-                            var uid = userToken.id;
-                        } else {
-                            Swal.fire({
-                                title: '請先登入會員',
-                                icon: 'warning',
-                                showConfirmButton: false,
-                                timer: 1500
-                            }).then(
-                                setTimeout(() => {
-                                    document.location.href = "/login/userlogin"
-                                }, 2000)
-                            )
-                        }
+                        var userToken = userData ? JSON.parse(userData) : false;
+                        var uid = userToken.id;
+                        // var userData = localStorage.getItem('token');
+                        // // console.log(userData)
+                        // if (userData !== null) {
+                        //     var userToken = userData ? JSON.parse(userData) : false;
+                        //     // 設定目前使用者id
+                        //     var uid = userToken.id;
+                        // } else {
+                        //     Swal.fire({
+                        //         title: '請先登入會員',
+                        //         icon: 'warning',
+                        //         showConfirmButton: false,
+                        //         timer: 1500
+                        //     }).then(
+                        //         setTimeout(() => {
+                        //             document.location.href = "/login/userlogin"
+                        //         }, 2000)
+                        //     )
+                        // }
 
                         // 讀取購物車物件
                         $.get(`/cart/item/${uid}`, function (e) {
@@ -425,6 +428,40 @@
                             $('#total').text(shippingfee + total)
                         })
 
+                        // 讀取購物金
+                        var bonus = 0;
+                        $.get(`/user/bonus/${uid}`, function (e) {
+                            // console.log(e[0].bonus)
+                            bonus = e[0].bonus
+                            $('#userBonus').text(bonus)
+                        })
+
+                        // 使用購物金
+                        var usemyBonus = 0;
+                        bonusval = (e) => {
+                            // console.log(e.value)
+                            // 若超過使用者擁有購物金，跳出提醒並以擁有購物金為最高值
+                            if (e.value <= bonus) {
+                                usemyBonus = -e.value;
+                            } else {
+                                Swal.fire({
+                                    title: '超過折抵上限',
+                                    icon: 'warning',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                myyuseBonus.value = bonus;
+                                usemyBonus = -bonus;
+                            }
+                        }
+
+                        useBonus = () => {
+                            //  金額試算更新使用購物金
+                            $('#bonusdiscount').text(usemyBonus);
+                            // console.log( parseInt($('#total').text()) + usemyBonus )
+                            var newTotal = parseInt($('#total').text()) + usemyBonus
+                            $('#total').text(newTotal)
+                        }
 
 
                         // 讀取願望清單物件
@@ -485,14 +522,15 @@
                                     if (index !== -1) {
                                         c_note[pid].splice(index, 1);
                                         if (c_note[pid].length === 0) {
-                                            delete c_note[pid];
+                                            // delete c_note[pid];
+                                            c_note[pid].push('');
                                         }
                                     }
                                 }
                             }
-                            // console.log(c_note);
+                            console.log(c_note);
                             Object.keys(c_note).map((pid) => {
-                                var cnotestr = c_note[pid].join(',');
+                                var cnotestr = c_note[pid].join(' ');
                                 // console.log(pid);
                                 // console.log(cnotestr);
                                 fetch('/editcart/c_note/', {
@@ -505,10 +543,14 @@
                                         pid: pid,
                                         uid: uid
                                     })
-                                }).then(
-                                    document.querySelector(`span[class=${pid}]`).innerText = cnotestr
-                                    // $(`span[class=${pid}]`).val(cnotestr)
-                                )
+                                }).then(function () {
+                                    // 若取消勾選所有備註項目，金額試算處同步調整內容
+                                    if (cnotestr != '') {
+                                        document.querySelector(`span[class=${pid}]`).innerText = cnotestr
+                                    } else {
+                                        document.querySelector(`span[class=${pid}]`).innerText = '無備註'
+                                    }
+                                })
                             });
                         }
 
