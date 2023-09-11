@@ -1,6 +1,12 @@
 var express = require("express");
 var app = express();
 
+var bp = require('body-parser');
+var jp = bp.json();
+var cp = require('cookie-parser');
+app.use(cp());
+var {login_render, login_api } = require('./middleware/auth_login');
+
 
 app.set('view engine', 'ejs');
 require('dotenv').config();
@@ -56,9 +62,11 @@ app.get('/qna', function(req, res){
 
 // 購物車
 var cart_order = require('./router/cart_order');
+const bodyParser = require("body-parser");
 app.use('/', cart_order);
 app.use('/cart', express.static('lib'));
-app.get("/cart", function (req, res) {
+app.get("/cart", login_render, function (req, res) {
+    // console.log('middleware通過成功到購物車');
     res.render('cart');
 })
 

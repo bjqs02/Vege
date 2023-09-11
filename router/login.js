@@ -1,7 +1,7 @@
 var express = require("express");
 var login = express.Router();
 var db = require('../db');
-var login_api = require('../middleware/auth_login');
+var {login_render, login_api } = require('../middleware/auth_login');
 
 var bodyParser = require("body-parser");
 var jp = bodyParser.json();
