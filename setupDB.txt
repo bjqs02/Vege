@@ -369,8 +369,8 @@ ALTER TABLE userLogin AUTO_INCREMENT=1001;
 
 INSERT INTO `userLogin` (`Email`, `password`, `createTime`) VALUES
 ('apple_pie@gmail.com', '$2a$10$W2CeC8wta6TiR456Wwod7uosw7dTI3zqsqhRQRAOUkMMr7dTCdGoK','2022-10-15 18:12:10'),
-('blueberry_muffin@yahoo.com.tw', '$2a$10$xHwXIgtyIxDwhsA9rpv1fuIGFG320MaBYaI/tnob4ERMjTNV1IIJO','2020-08-17 15:00:59'),
-('cranberry@outlook.com', '$2a$10$M42KUO0OoC5fB4ftb3/I9Ovg6uwEj7W8I6SvDqEQ3UFE95huqSSx6','2021-03-08 01:15:13'),
+('blueberry_muffin@gmail.com', '$2a$10$xHwXIgtyIxDwhsA9rpv1fuIGFG320MaBYaI/tnob4ERMjTNV1IIJO','2020-08-17 15:00:59'),
+('cranberry@gmail.com', '$2a$10$M42KUO0OoC5fB4ftb3/I9Ovg6uwEj7W8I6SvDqEQ3UFE95huqSSx6','2021-03-08 01:15:13'),
 ('happy@gmail.com', '$2a$10$wAcGWSRo3k.zwajKO/1aouqcxPWjCSQzeNc/fMIYgzorbaGocmooG','2021-09-05 03:15:13');
 
 
