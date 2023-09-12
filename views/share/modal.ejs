@@ -1,370 +1,662 @@
 <!-- 測試中：是否診斷Modal這裡開始 -->
 <!-- Button trigger modal -->
-<button type="button" id="modalOnPage" onclick="hideButton()" class="btn btn-vg-rnd" data-bs-toggle="modal"
-    data-bs-target="#vgm_intro">
-    診斷
+<button
+  type="button"
+  id="modalOnPage"
+  onclick="hideButton()"
+  class="btn btn-vg-rnd"
+  data-bs-toggle="modal"
+  data-bs-target="#vgm_intro"
+>
+  診斷
 </button>
 
 <!-- Intro -->
-<div class="modal" id="dxIntro" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="dxIntroLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="dxIntroLabel">診斷適合你的蔬果箱</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                    onclick="showModalOnPage()"></button>
-            </div>
-            <div class="modal-body">
-                商品種類多，我們提供診斷小測驗協助您快速找到符合您需求的蔬菜箱/水果箱，請問是否進行診斷呢?
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-                <button type="button" class="btn btn-vg-reg" data-bs-dismiss="modal"
-                    onclick="showModalOnPage()">自行瀏覽</button>
-                <button class="btn btn-vg-reg" data-bs-target="#dxQType" data-bs-toggle="modal">開始診斷</button>
-            </div>
-        </div>
+<div
+  class="modal"
+  id="dxIntro"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="dxIntroLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="dxIntroLabel">診斷適合你的蔬果箱</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          onclick="showModalOnPage()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        商品種類多，我們提供診斷小測驗協助您快速找到符合您需求的蔬菜箱/水果箱，請問是否進行診斷呢?
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button
+          type="button"
+          class="btn btn-vg-reg"
+          data-bs-dismiss="modal"
+          onclick="showModalOnPage()"
+        >
+          自行瀏覽
+        </button>
+        <button
+          class="btn btn-vg-reg"
+          data-bs-target="#dxQType"
+          data-bs-toggle="modal"
+        >
+          開始診斷
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 <!-- Q1: 蔬果綜合 -->
-<div class="modal" id="dxQType" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="dxQTypeLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="dxQTypeLabel">Q: 選購種類?</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                    onclick="showModalOnPage()"></button>
-            </div>
-            <div class="modal-body">
-                Vege提供純蔬菜箱、純水果箱以及綜合蔬果箱，請問今天想訂哪種呢?
-                <br>
-                <div class="d-flex justify-content-center mt-3">
-                    <button id="dxQ1_vege" class="btn btn-vg-reg" data-bs-target="#dxQGym"
-                        data-bs-toggle="modal">蔬菜</button>
-                    <button id="dxQ1_fruit" class="btn btn-vg-reg" data-bs-target="#dxQGym"
-                        data-bs-toggle="modal">水果</button>
-                    <button id="dxQ1_mix" class="btn btn-vg-reg" data-bs-target="#dxQGym"
-                        data-bs-toggle="modal">綜合</button>
-                </div>
-            </div>
-            <div class="modal-footer d-flex">
-                <button class="btn btn-vg-reg me-auto" data-bs-target="#dxIntro" data-bs-toggle="modal">上一頁</button>
-            </div>
+<div
+  class="modal"
+  id="dxQType"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="dxQTypeLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="dxQTypeLabel">Q: 選購種類?</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          onclick="showModalOnPage()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        Vege提供純蔬菜箱、純水果箱以及綜合蔬果箱，請問今天想訂哪種呢?
+        <br />
+        <div class="d-flex justify-content-center mt-3">
+          <button
+            id="dxQ1_vege"
+            class="btn btn-vg-reg"
+            data-bs-target="#dxQGym"
+            data-bs-toggle="modal"
+          >
+            蔬菜
+          </button>
+          <button
+            id="dxQ1_fruit"
+            class="btn btn-vg-reg"
+            data-bs-target="#dxQGym"
+            data-bs-toggle="modal"
+          >
+            水果
+          </button>
+          <button
+            id="dxQ1_mix"
+            class="btn btn-vg-reg"
+            data-bs-target="#dxQGym"
+            data-bs-toggle="modal"
+          >
+            綜合
+          </button>
         </div>
+      </div>
+      <div class="modal-footer d-flex">
+        <button
+          class="btn btn-vg-reg me-auto"
+          data-bs-target="#dxIntro"
+          data-bs-toggle="modal"
+        >
+          上一頁
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 <!-- Q2: 增肌需求 -->
-<div class="modal" id="dxQGym" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="dxQGymLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="dxQGymLabel">Q: 是否有增肌需求?</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                    onclick="showModalOnPage()"></button>
-            </div>
-            <div class="modal-body">
-                對有增肌需求的族群來說, 蛋白質是必須攝取的營養! 請問是否有健身並有增肌的需求呢?
-                <br>
-                <div class="d-flex justify-content-center mt-3">
-                    <button id="dxQ2_noGym" class="btn btn-vg-reg" data-bs-target="#dxQDiet"
-                        data-bs-toggle="modal">否</button>
-                    <button id="dxQ2_gym" class="btn btn-vg-reg" data-bs-target="#dxQDiet"
-                        data-bs-toggle="modal">是</button>
-                </div>
-            </div>
-            <div class="modal-footer d-flex">
-                <button class="btn btn-vg-reg me-auto" data-bs-target="#dxQType" data-bs-toggle="modal">上一頁</button>
-            </div>
+<div
+  class="modal"
+  id="dxQGym"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="dxQGymLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="dxQGymLabel">Q: 是否有增肌需求?</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          onclick="showModalOnPage()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        對有增肌需求的族群來說, 蛋白質是必須攝取的營養!
+        請問是否有健身並有增肌的需求呢?
+        <br />
+        <div class="d-flex justify-content-center mt-3">
+          <button
+            id="dxQ2_noGym"
+            class="btn btn-vg-reg"
+            data-bs-target="#dxQDiet"
+            data-bs-toggle="modal"
+          >
+            否
+          </button>
+          <button
+            id="dxQ2_gym"
+            class="btn btn-vg-reg"
+            data-bs-target="#dxQDiet"
+            data-bs-toggle="modal"
+          >
+            是
+          </button>
         </div>
+      </div>
+      <div class="modal-footer d-flex">
+        <button
+          class="btn btn-vg-reg me-auto"
+          data-bs-target="#dxQType"
+          data-bs-toggle="modal"
+        >
+          上一頁
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 <!-- 減脂需求 -->
-<div class="modal" id="dxQDiet" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="dxQDietLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="dxQDietLabel">Q: 是否有減脂需求?</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                    onclick="showModalOnPage()"></button>
-            </div>
-            <div class="modal-body">
-                對有減脂需求的族群來說，每日攝取的熱量何其重要，Vege可為你把關高/低熱量的蔬果。請問是否有減脂需求呢? 
-                <br>
-                <div class="d-flex justify-content-center mt-3">
-                    <button id="dxQ3_noDiet" class="btn btn-vg-reg" data-bs-target="#dxQGender"
-                        data-bs-toggle="modal">否</button>
-                    <button id="dxQ3_diet" class="btn btn-vg-reg" data-bs-target="#dxQGender"
-                        data-bs-toggle="modal">是</button>
-                </div>
-            </div>
-            <div class="modal-footer d-flex">
-                <button class="btn btn-vg-reg me-auto" data-bs-target="#dxQGym" data-bs-toggle="modal">上一頁</button>
-            </div>
+<div
+  class="modal"
+  id="dxQDiet"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="dxQDietLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="dxQDietLabel">Q: 是否有減脂需求?</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          onclick="showModalOnPage()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        對有減脂需求的族群來說，每日攝取的熱量何其重要，Vege可為你把關高/低熱量的蔬果。請問是否有減脂需求呢?
+        <br />
+        <div class="d-flex justify-content-center mt-3">
+          <button
+            id="dxQ3_noDiet"
+            class="btn btn-vg-reg"
+            data-bs-target="#dxQGender"
+            data-bs-toggle="modal"
+          >
+            否
+          </button>
+          <button
+            id="dxQ3_diet"
+            class="btn btn-vg-reg"
+            data-bs-target="#dxQGender"
+            data-bs-toggle="modal"
+          >
+            是
+          </button>
         </div>
+      </div>
+      <div class="modal-footer d-flex">
+        <button
+          class="btn btn-vg-reg me-auto"
+          data-bs-target="#dxQGym"
+          data-bs-toggle="modal"
+        >
+          上一頁
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 <!-- 性別 -->
-<div class="modal" id="dxQGender" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="dxQGenderLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="dxQGenderLabel">Q: 您的性別?</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                    onclick="showModalOnPage()"></button>
-            </div>
-            <div class="modal-body">
-                您知道依據性別、體質、目前身體狀況，適合的蔬菜水果大不相同嗎? 選擇自己的性別有利診斷的正確性喔!
-                <br>
-                <div class="d-flex justify-content-center mt-3">
-                    <button id="dxQ4_male" class="btn btn-vg-reg" data-bs-target="#dxQHot"
-                        data-bs-toggle="modal">男性</button>
-                    <button id="dxQ4_female" class="btn btn-vg-reg" data-bs-target="#dxQMC"
-                        data-bs-toggle="modal">女性</button>
-                </div>
-            </div>
-            <div class="modal-footer d-flex">
-                <button class="btn btn-vg-reg me-auto" data-bs-target="#dxQDiet" data-bs-toggle="modal">上一頁</button>
-            </div>
+<div
+  class="modal"
+  id="dxQGender"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="dxQGenderLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="dxQGenderLabel">Q: 您的性別?</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          onclick="showModalOnPage()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        您知道依據性別、體質、目前身體狀況，適合的蔬菜水果大不相同嗎?
+        選擇自己的性別有利診斷的正確性喔!
+        <br />
+        <div class="d-flex justify-content-center mt-3">
+          <button
+            id="dxQ4_male"
+            class="btn btn-vg-reg"
+            data-bs-target="#dxQHot"
+            data-bs-toggle="modal"
+          >
+            男性
+          </button>
+          <button
+            id="dxQ4_female"
+            class="btn btn-vg-reg"
+            data-bs-target="#dxQMC"
+            data-bs-toggle="modal"
+          >
+            女性
+          </button>
         </div>
+      </div>
+      <div class="modal-footer d-flex">
+        <button
+          class="btn btn-vg-reg me-auto"
+          data-bs-target="#dxQDiet"
+          data-bs-toggle="modal"
+        >
+          上一頁
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 <!-- 生理期? -->
-<div class="modal" id="dxQMC" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="dxQMCLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="dxQMCLabel">Q: 是否逢生理期?</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                    onclick="showModalOnPage()"></button>
-            </div>
-            <div class="modal-body">
-                蔬菜水果都有分寒、涼、平、溫、熱五種屬性，逢生理期的美女由Vege為你把關不適合的蔬果降低身體的負擔! 請問是否逢生理期?
-                <br>
-                <div class="d-flex justify-content-center mt-3">
-                    <button id="dxQ5_noMC" class="btn btn-vg-reg" data-bs-target="#dxQHot"
-                        data-bs-toggle="modal">否</button>
-                    <button id="dxQ5_mc" class="btn btn-vg-reg" data-bs-target="#dxQHot"
-                        data-bs-toggle="modal">是</button>
-                </div>
-            </div>
-            <div class="modal-footer d-flex">
-                <button class="btn btn-vg-reg me-auto" data-bs-target="#dxQGender" data-bs-toggle="modal">上一頁</button>
-            </div>
+<div
+  class="modal"
+  id="dxQMC"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="dxQMCLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="dxQMCLabel">Q: 是否逢生理期?</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          onclick="showModalOnPage()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        蔬菜水果都有分寒、涼、平、溫、熱五種屬性，逢生理期的美女由Vege為你把關不適合的蔬果降低身體的負擔!
+        請問是否逢生理期?
+        <br />
+        <div class="d-flex justify-content-center mt-3">
+          <button
+            id="dxQ5_noMC"
+            class="btn btn-vg-reg"
+            data-bs-target="#dxQHot"
+            data-bs-toggle="modal"
+          >
+            否
+          </button>
+          <button
+            id="dxQ5_mc"
+            class="btn btn-vg-reg"
+            data-bs-target="#dxQHot"
+            data-bs-toggle="modal"
+          >
+            是
+          </button>
         </div>
+      </div>
+      <div class="modal-footer d-flex">
+        <button
+          class="btn btn-vg-reg me-auto"
+          data-bs-target="#dxQGender"
+          data-bs-toggle="modal"
+        >
+          上一頁
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 <!-- 燥熱體質? -->
-<div class="modal" id="dxQHot" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="dxQHotLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="dxQHotLabel">Q: 檢視您身體特性:</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                    onclick="showModalOnPage()"></button>
-            </div>
-            <div class="modal-body">
-                人的體質有分寒性、熱性，適合吃不同的食物來養生，蔬菜也有分寒熱，吃對才能吃出健康！
-                花點時間好好了解自己的身體特性，請問以下症狀是否8成符合? <br><br>
-                <ul>
-                    <li>容易長痘痘</li>
-                    <li>吃東西容易上火發炎</li>
-                    <li>經常便祕</li>
-                    <li>常覺得口乾舌燥</li>
-                    <li>愛喝冷飲、冰品</li>
-                    <li>體溫較高</li>
-                    <li>容易流汗</li>
-                    <li>怕熱</li>
-                    <li>容易餓</li>
-                </ul>
-                <br>
-                <div class="d-flex justify-content-center mt-3">
-                    <button id="dxQ6_notHot" class="btn btn-vg-reg" data-bs-target="#dxQCold"
-                        data-bs-toggle="modal">否</button>
-                    <button id="dxQ6_hot" class="btn btn-vg-reg" data-bs-target="#dxQCold"
-                        data-bs-toggle="modal">是</button>
-                </div>
-            </div>
-            <div class="modal-footer d-flex">
-                <button class="btn btn-vg-reg me-auto" data-bs-target="#dxQGender" data-bs-toggle="modal">上一頁</button>
-            </div>
+<div
+  class="modal"
+  id="dxQHot"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="dxQHotLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="dxQHotLabel">Q: 檢視您身體特性:</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          onclick="showModalOnPage()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        人的體質有分寒性、熱性，適合吃不同的食物來養生，蔬菜也有分寒熱，吃對才能吃出健康！
+        花點時間好好了解自己的身體特性，請問以下症狀是否8成符合? <br /><br />
+        <ul>
+          <li>容易長痘痘</li>
+          <li>吃東西容易上火發炎</li>
+          <li>經常便祕</li>
+          <li>常覺得口乾舌燥</li>
+          <li>愛喝冷飲、冰品</li>
+          <li>體溫較高</li>
+          <li>容易流汗</li>
+          <li>怕熱</li>
+          <li>容易餓</li>
+        </ul>
+        <br />
+        <div class="d-flex justify-content-center mt-3">
+          <button
+            id="dxQ6_notHot"
+            class="btn btn-vg-reg"
+            data-bs-target="#dxQCold"
+            data-bs-toggle="modal"
+          >
+            否
+          </button>
+          <button
+            id="dxQ6_hot"
+            class="btn btn-vg-reg"
+            data-bs-target="#dxQCold"
+            data-bs-toggle="modal"
+          >
+            是
+          </button>
         </div>
+      </div>
+      <div class="modal-footer d-flex">
+        <button
+          class="btn btn-vg-reg me-auto"
+          data-bs-target="#dxQGender"
+          data-bs-toggle="modal"
+        >
+          上一頁
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 <!-- 寒冷體質? -->
-<div class="modal" id="dxQCold" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="dxQColdLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="dxQColdLabel">Q: 檢視您身體特性:</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                    onclick="showModalOnPage()"></button>
-            </div>
-            <div class="modal-body">
-                人的體質有分寒性、熱性，適合吃不同的食物來養生，蔬菜也有分寒熱，吃對才能吃出健康！
-                花點時間好好了解自己的身體特性，請問以下症狀是否8成符合? <br><br>
-                <ul>
-                    <li>偶有暈眩感</li>
-                    <li>手腳冰冷</li>
-                    <li>常腹瀉</li>
-                    <li>不易長痘</li>
-                    <li>怕冷</li>
-                    <li>抵抗力差</li>
-                    <li>不易流汗</li>
-                    <li>不愛喝水</li>
-                </ul>
-                <br>
-                <div class="d-flex justify-content-center mt-3">
-                    <button id="dxQ7_notCold" class="btn btn-vg-reg"
-                        data-bs-toggle="modal">否</button>
-                    <button id="dxQ7_cold" class="btn btn-vg-reg" 
-                        data-bs-toggle="modal">是</button>
-                </div>
-            </div>
-            <div class="modal-footer d-flex">
-                <button class="btn btn-vg-reg me-auto" data-bs-target="#dxQHot" data-bs-toggle="modal">上一頁</button>
-            </div>
+<div
+  class="modal"
+  id="dxQCold"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="dxQColdLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="dxQColdLabel">Q: 檢視您身體特性:</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          onclick="showModalOnPage()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        人的體質有分寒性、熱性，適合吃不同的食物來養生，蔬菜也有分寒熱，吃對才能吃出健康！
+        花點時間好好了解自己的身體特性，請問以下症狀是否8成符合? <br /><br />
+        <ul>
+          <li>偶有暈眩感</li>
+          <li>手腳冰冷</li>
+          <li>常腹瀉</li>
+          <li>不易長痘</li>
+          <li>怕冷</li>
+          <li>抵抗力差</li>
+          <li>不易流汗</li>
+          <li>不愛喝水</li>
+        </ul>
+        <br />
+        <div class="d-flex justify-content-center mt-3">
+          <button
+            id="dxQ7_notCold"
+            class="btn btn-vg-reg"
+            data-bs-toggle="modal"
+          >
+            否
+          </button>
+          <button id="dxQ7_cold" class="btn btn-vg-reg" data-bs-toggle="modal">
+            是
+          </button>
         </div>
+      </div>
+      <div class="modal-footer d-flex">
+        <button
+          class="btn btn-vg-reg me-auto"
+          data-bs-target="#dxQHot"
+          data-bs-toggle="modal"
+        >
+          上一頁
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 <!-- 跑結果中 -->
-<div class="modal" id="dxING" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="dxINGLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="dxINGLabel">診斷中...</h1>
-            </div>
-            <div class="modal-body">
-                根據您的填寫診斷並篩選適合的蔬果箱，請稍候<br><br>
-                <div class="ld ld-spinner ld-cycle"
-                    style="margin-left: 45%;animation-duration:4.0s; font-size:40px;color:#ccdcac"></div>
-            </div>
-        </div>
+<div
+  class="modal"
+  id="dxING"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="dxINGLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="dxINGLabel">診斷中...</h1>
+      </div>
+      <div class="modal-body">
+        根據您的填寫診斷並篩選適合的蔬果箱，請稍候<br /><br />
+        <div
+          class="ld ld-spinner ld-cycle"
+          style="
+            margin-left: 45%;
+            animation-duration: 4s;
+            font-size: 40px;
+            color: #ccdcac;
+          "
+        ></div>
+      </div>
     </div>
+  </div>
 </div>
 <!-- 結果 -->
-<div class="modal" id="dxResult" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="dxResultLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="dxResultLabel">診斷完成</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                    onclick="showModalOnPage()"></button>
-            </div>
-            <div class="modal-body">
-                感謝您的耐心等候，我們已根據您的體質與需求選品6樣適合您攝取的蔬果，現在前往商品頁為您自動選取箱對應蔬果的客製化蔬果箱。
-                <br>
-            </div>
-            <div class="modal-footer  d-flex justify-content-center">
-                <button class="btn btn-vg-reg" data-bs-target="#dxQType" data-bs-toggle="modal">重新診斷</button>
-                <a class="btn btn-vg-reg" href="/eval/result">前往商品頁</a>
-            </div>
-        </div>
+<div
+  class="modal"
+  id="dxResult"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="dxResultLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="dxResultLabel">診斷完成</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          onclick="showModalOnPage()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        感謝您的耐心等候，我們已根據您的體質與需求選品6樣適合您攝取的蔬果，現在前往商品頁為您自動選取箱對應蔬果的客製化蔬果箱。
+        <br />
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button
+          class="btn btn-vg-reg"
+          data-bs-target="#dxQType"
+          data-bs-toggle="modal"
+        >
+          重新診斷
+        </button>
+        <a class="btn btn-vg-reg" href="/eval/result">前往商品頁</a>
+      </div>
     </div>
+  </div>
 </div>
-
 
 <!-- 測試中：是否診斷Modal這裡結束 -->
 <script>
+  $(document).ready(function () {});
+  function callModal() {
+    $("#dxIntro").modal("show");
+  }
 
-    function callModal() {
-        $("#dxIntro").modal('show');
-    }
+  setTimeout(callModal, 5000);
 
-    setTimeout(callModal, 5000);
+  function showModalOnPage() {
+    $("#modalOnPage").css("display", "block");
+  }
 
-    function showModalOnPage() {
-        $('#modalOnPage').css('display', 'block');
-    }
+  function hideButton() {
+    $("#modalOnPage").css("display", "none");
+    callModal();
+  }
 
-    function hideButton() {
-        $('#modalOnPage').css('display', 'none');
-        callModal();
-    }
+  var data = {};
+  dxQ1_vege.onclick = function () {
+    return (data.product = "fruit");
+  };
+  dxQ1_fruit.onclick = function () {
+    return (data.product = "vege");
+  };
+  dxQ1_mix.onclick = function () {
+    return (data.product = "");
+  };
 
+  dxQ2_noGym.onclick = function () {
+    return (data.protein = "");
+  };
+  dxQ2_gym.onclick = function () {
+    return (data.protein = "low");
+  };
 
+  dxQ3_noDiet.onclick = function () {
+    return (data.calories = "");
+  };
+  dxQ3_diet.onclick = function () {
+    return (data.calories = "high");
+  };
 
-    window.onload = function () {
-        var data = {}
-        dxQ1_vege.onclick = function () { return data.product = 'fruit'; }
-        dxQ1_fruit.onclick = function () { return data.product = 'vege'; }
-        dxQ1_mix.onclick = function () { return data.product = ''; }
+  dxQ5_noMC.onclick = function () {
+    return (data.cold = "");
+  };
+  dxQ5_mc.onclick = function () {
+    return (data.cold = "cold");
+  };
 
-        dxQ2_noGym.onclick = function () { return data.protein = ''; }
-        dxQ2_gym.onclick = function () { return data.protein = 'low'; }
+  dxQ6_notHot.onclick = function () {
+    return (data.hot = "");
+  };
+  dxQ6_hot.onclick = function () {
+    return (data.hot = "hot");
+  };
 
-        dxQ3_noDiet.onclick = function () { return data.calories = ''; }
-        dxQ3_diet.onclick = function () { return data.calories = 'high'; }
+  dxQ7_notCold.onclick = function () {
+    timeoutNext();
+    data.cold == "cold" ? (data.cold = "cold") : (data.cold = "");
+    var datas = JSON.stringify(data);
+    fetch("/eval/result", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+      body: datas,
+    });
+  };
 
-        dxQ5_noMC.onclick = function () { return data.cold = ''; }
-        dxQ5_mc.onclick = function () { return data.cold = 'cold'; }
+  dxQ7_cold.onclick = function () {
+    timeoutNext();
+    data.cold = "cold";
+    var datas = JSON.stringify(data);
+    fetch("/eval/result", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+      body: datas,
+    });
+  };
 
-        dxQ6_notHot.onclick = function () { return data.hot = ''; }
-        dxQ6_hot.onclick = function () { return data.hot = 'hot'; }
-
-        dxQ7_notCold.onclick = function () {
-            timeoutNext();
-            data.cold == 'cold'? data.cold = 'cold': data.cold = '';
-            var datas = JSON.stringify(data);
-            fetch('/eval/result', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json;charset=UTF-8"
-                },
-                body: datas
-            });
-        }
-        
-        dxQ7_cold.onclick = function () {
-            timeoutNext();
-            data.cold = 'cold';
-            var datas = JSON.stringify(data);
-            fetch('/eval/result', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json;charset=UTF-8"
-                },
-                body: datas
-            });
-        }
-
-        function timeoutNext() {
-            $("#dxING").modal('show');
-            console.log(data);
-            setTimeout(function () {
-                $("#dxING").modal('hide');
-                $("#dxResult").modal('show');
-            }, 4000)
-        }
-
-        // young.onclick = function () {
-        //     data.two = 'age is young';
-        //     var datas = JSON.stringify(data);
-        //     fetch('/modal', {
-        //         method: "POST",
-        //         headers: {
-        //             "Content-Type": "application/json;charset=UTF-8"
-        //         },
-        //         body: datas
-        //     });
-        // }
-
-        // var result = JSON.stringify(datas);
-        // console.log(typeof datas);
-        //     fetch('/modal', {
-        //                     method: "POST",
-        //                     headers: {
-        //                         "Content-Type": "application/json;charset=UTF-8"
-        //                     },
-        //                     body: datas
-        //                 });
-    }
+  function timeoutNext() {
+    $("#dxING").modal("show");
+    console.log(data);
+    setTimeout(function () {
+      $("#dxING").modal("hide");
+      $("#dxResult").modal("show");
+    }, 4000);
+  }
+  //   window.onload = function () {
+  // young.onclick = function () {
+  //     data.two = 'age is young';
+  //     var datas = JSON.stringify(data);
+  //     fetch('/modal', {
+  //         method: "POST",
+  //         headers: {
+  //             "Content-Type": "application/json;charset=UTF-8"
+  //         },
+  //         body: datas
+  //     });
+  // }
+  // var result = JSON.stringify(datas);
+  // console.log(typeof datas);
+  //     fetch('/modal', {
+  //                     method: "POST",
+  //                     headers: {
+  //                         "Content-Type": "application/json;charset=UTF-8"
+  //                     },
+  //                     body: datas
+  //                 });
+  //   };
 </script>

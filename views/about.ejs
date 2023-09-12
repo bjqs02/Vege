@@ -1,352 +1,406 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <%- include('share/head_link.ejs') %>
-        <link rel="stylesheet" href="css/aboutUs.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-        <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-</head>
+    <link rel="stylesheet" href="css/aboutUs.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  </head>
 
-<body>
+  <body>
     <%- include('share/header.ejs') %>
 
-        <!-- 橫幅SLOGAN -->
-        <div class="vg-banner container-fluid d-flex justify-content-center" id="slogan">
-            <div class="align-self-center vg-h5">
-                <i>輕鬆訂購，新鮮配送</i>
-            </div>
+    <!-- 橫幅SLOGAN -->
+    <div
+      class="vg-banner container-fluid d-flex justify-content-center"
+      id="slogan"
+    >
+      <div class="align-self-center vg-h5">
+        <i>輕鬆訂購，新鮮配送</i>
+      </div>
+    </div>
+    <!-- 橫幅SLOGAN -->
+
+    <%- include('share/sub_header.ejs') %>
+
+    <!-- 理念 -->
+    <section id="concept" class="container-sm vg-bd-5">
+      <div
+        class="row row-cols-md-2 row-cols-1 shadow d-flex justify-content-center vg-bd-5"
+      >
+        <div class="col d-flex justify-content-center vg-bd-5">
+          <img
+            src="img/about_001.jpg"
+            alt=""
+            class="img-fluid align-self-center vg-bd-5"
+          />
         </div>
-        <!-- 橫幅SLOGAN -->
+        <div id="idea" class="col align-self-center">
+          <h3 class="vg-h3"><b>我們的理念</b></h3>
+          <p>
+            忙碌沒空買蔬果？<br />
+            採買時量太多吃不完？<br />
+            「品牌名稱」提供定期定額配送蔬果箱的服務，主打台灣小農生產、當令當季的農產品。<br />
+            消費者可依照需求客製化訂閱內容，由我們來為繁忙的你專業挑選、產地直送，新手安心採買蔬果；而定時定量的訂閱制，更讓煮婦(夫)減少採買的繁瑣，為生活留點彈性時間！
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- 理念 -->
 
-        <%- include('share/sub_header.ejs') %>
-
-            <!-- 理念 -->
-            <section id="concept" class="container-sm vg-bd-5">
-                <div class="row row-cols-md-2 row-cols-1 shadow d-flex justify-content-center vg-bd-5">
-                    <div class=" col d-flex justify-content-center vg-bd-5">
-                        <img src="img/about_001.jpg" alt="" class="img-fluid align-self-center vg-bd-5">
-                    </div>
-                    <div id="idea" class="col align-self-center">
-                        <h3 class="vg-h3"><b>我們的理念</b></h3>
-                        <p>忙碌沒空買蔬果？<br>
-                            採買時量太多吃不完？<br>
-                            「品牌名稱」提供定期定額配送蔬果箱的服務，主打台灣小農生產、當令當季的農產品。<br>
-                            消費者可依照需求客製化訂閱內容，由我們來為繁忙的你專業挑選、產地直送，新手安心採買蔬果；而定時定量的訂閱制，更讓煮婦(夫)減少採買的繁瑣，為生活留點彈性時間！</p>
-                    </div>
-                </div>
-            </section>
-            <!-- 理念 -->
-
-            <!-- 使命/承諾 -->
-            <section class="container-fluid mt-5 p-3" id="morals">
-                <div class="container-sm shadow">
-                    <h1 class="section-header vg-h3 mt-5">我們的使命<span>我們承諾提供以下服務來回饋社會</span></h1>
-                    <div class="testimonials">
-
-                        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <div class="single-item">
-                                        <div class="row">
-                                            <div class="col-lg-5">
-                                                <div class="profile">
-                                                    <div class="img-area">
-                                                        <img src="img/moral001.jpg" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="content">
-                                                    <p><span><i class="fa fa-quote-left"></i></span><b
-                                                            class="vg-h4">食品安全險投保</b><br>「品牌名稱」堅持安全至上，並投保食品安全險。您消費安心，我們更用心。
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="single-item">
-                                        <div class="row">
-                                            <div class="col-lg-5">
-                                                <div class="profile">
-                                                    <div class="img-area">
-                                                        <img src="img/moral002.jpg" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="content">
-                                                    <p><span><i class="fa fa-quote-left"></i></span><b
-                                                            class="vg-h4">食農教育推廣</b><br>網頁專欄頁面，推廣農業議題，增進會員的相關知識。
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="single-item">
-                                        <div class="row">
-                                            <div class="col-lg-5">
-                                                <div class="profile">
-                                                    <div class="img-area">
-                                                        <img src="img/moral003.jpg" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="content">
-                                                    <p><span><i class="fa fa-quote-left"></i></span><b
-                                                            class="vg-h4">生態友善</b><br>環保包裝，使用的紙箱100%採用環保材質包裝，包材採用100%可分解之環保材質。這是打造永續循環的生活模式。
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="single-item">
-                                        <div class="row">
-                                            <div class="col-lg-5">
-                                                <div class="profile">
-                                                    <div class="img-area">
-                                                        <img src="img/moral003.jpg" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="content">
-                                                    <p><span><i class="fa fa-quote-left"></i></span><b
-                                                            class="vg-h4">農友友善</b><br>直走減少剝削，100%農夫自訂利潤；產品的進貨價由農夫所決定。商品採取產地直銷的方式，減少中間商的層層剝削，將所得直接回饋予農友。「品牌名稱」則收取基礎營運與研發的費用。真心希望農友們能獲得合理的利潤。
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="single-item">
-                                        <div class="row">
-                                            <div class="col-lg-5">
-                                                <div class="profile">
-                                                    <div class="img-area">
-                                                        <img src="img/moral003.jpg" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="content">
-                                                    <p><span><i class="fa fa-quote-left"></i></span><b
-                                                            class="vg-h4">消費者友善</b><br>食農知識教育，分享所有食物中理性與感性，食安科學與食物美好。想知道這一季梅子如何釀成梅酒，想知道土地捎來的詩篇，想知道最新營養科學。我們都有。
-
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button"
-                                data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button"
-                                data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
+    <!-- 使命/承諾 -->
+    <section class="container-fluid mt-5 p-3" id="morals">
+      <div class="container-sm shadow">
+        <h1 class="section-header vg-h3 mt-5">
+          我們的使命<span>我們承諾提供以下服務來回饋社會</span>
+        </h1>
+        <div class="testimonials">
+          <div
+            id="carouselExampleControls"
+            class="carousel slide"
+            data-bs-ride="carousel"
+          >
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="single-item">
+                  <div class="row">
+                    <div class="col-lg-5">
+                      <div class="profile">
+                        <div class="img-area">
+                          <img src="img/moral001.jpg" alt="" />
                         </div>
-
+                      </div>
                     </div>
-                </div>
-            </section>
-            <!-- 使命/承諾 -->
-
-            <!-- 小農區塊 -->
-            <section id="farmer" class="container-lg shadow mb-5">
-                <h3 class="vg-h3 mb-5"><b>與我們合作的小農</b></h3>
-                <div class="swiper">
-                    <!-- Additional required wrapper -->
-                    <div class="swiper-wrapper">
-                        <!-- Slides -->
-                        <% for ( var i=0 ; i < data.length; i++) { %>
-                            <div class="swiper-slide">
-                                <div class="card ms-auto me-auto">
-                                    <div class="row no-gutters">
-                                        <div class="col-md-4">
-                                            <img src="<%= data[i].fImg %>" class="card-img img-fluid">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="card-body text-align-start">
-                                                <h5 class="card-title"><b>
-                                                        <%= data[i].fName %>
-                                                    </b></h5>
-                                                <hr>
-                                                <p class="card-text"><i class="fa-solid fa-location-dot me-3 mb-3"></i>
-                                                    <%= data[i].fArea %>
-                                                </p>
-                                                <p class="card-text"><i
-                                                        class="fa-solid fa-hand-holding-droplet me-3"></i>
-                                                    <%= data[i].vegeType %>
-                                                </p>
-                                                <a href="" class="btn btn-vg ms-auto mb-3">查看農友故事</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <% } %>
+                    <div class="col-lg-6">
+                      <div class="content">
+                        <p>
+                          <span><i class="fa fa-quote-left"></i></span
+                          ><b class="vg-h4">食品安全險投保</b
+                          ><br />「品牌名稱」堅持安全至上，並投保食品安全險。您消費安心，我們更用心。
+                        </p>
+                      </div>
                     </div>
+                  </div>
                 </div>
-                <a id="openSGS" class="btn btn-vg-lg" style="cursor: pointer;">點此查看小農驗證報告</a>
-            </section>
-
-            <div class="modal fade" id="sgsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                aria-labelledby="sgsModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header pt-4">
-                            <h3 class="vg-h3 align-self-center">
-                                SGS驗證表
-                            </h3>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="carousel-item">
+                <div class="single-item">
+                  <div class="row">
+                    <div class="col-lg-5">
+                      <div class="profile">
+                        <div class="img-area">
+                          <img src="img/moral002.jpg" alt="" />
                         </div>
-                        <div class="modal-body">
-                            <table class="table text-align-center text-center" id="sgstable">
-                            </table>
-                        </div>
-                        <div class="modal-footer d-flex justify-content-center">
-                            <button type="button" class="btn btn-vg-reg" data-bs-dismiss="modal">關閉</button>
-                        </div>
+                      </div>
                     </div>
+                    <div class="col-lg-6">
+                      <div class="content">
+                        <p>
+                          <span><i class="fa fa-quote-left"></i></span
+                          ><b class="vg-h4">食農教育推廣</b
+                          ><br />網頁專欄頁面，推廣農業議題，增進會員的相關知識。
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
+              <div class="carousel-item">
+                <div class="single-item">
+                  <div class="row">
+                    <div class="col-lg-5">
+                      <div class="profile">
+                        <div class="img-area">
+                          <img src="img/moral003.jpg" alt="" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="content">
+                        <p>
+                          <span><i class="fa fa-quote-left"></i></span
+                          ><b class="vg-h4">生態友善</b
+                          ><br />環保包裝，使用的紙箱100%採用環保材質包裝，包材採用100%可分解之環保材質。這是打造永續循環的生活模式。
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="single-item">
+                  <div class="row">
+                    <div class="col-lg-5">
+                      <div class="profile">
+                        <div class="img-area">
+                          <img src="img/moral003.jpg" alt="" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="content">
+                        <p>
+                          <span><i class="fa fa-quote-left"></i></span
+                          ><b class="vg-h4">農友友善</b
+                          ><br />直走減少剝削，100%農夫自訂利潤；產品的進貨價由農夫所決定。商品採取產地直銷的方式，減少中間商的層層剝削，將所得直接回饋予農友。「品牌名稱」則收取基礎營運與研發的費用。真心希望農友們能獲得合理的利潤。
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="single-item">
+                  <div class="row">
+                    <div class="col-lg-5">
+                      <div class="profile">
+                        <div class="img-area">
+                          <img src="img/moral003.jpg" alt="" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="content">
+                        <p>
+                          <span><i class="fa fa-quote-left"></i></span
+                          ><b class="vg-h4">消費者友善</b
+                          ><br />食農知識教育，分享所有食物中理性與感性，食安科學與食物美好。想知道這一季梅子如何釀成梅酒，想知道土地捎來的詩篇，想知道最新營養科學。我們都有。
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <!-- 小農區塊 -->
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#carouselExampleControls"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselExampleControls"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 使命/承諾 -->
 
-            <!-- 其他頁面連結 -->
-            <section id="moreContact" class="container-sm shadow d-flex align-items-center mb-5">
-                <div id="AboutMore">
-                    <p class="vg-h4 m-2">想了解更多嗎?
-                    </p>
-                    <a class="btn btn-vg-lg m-1">前往產品資訊</a><br>
-                    <a class="btn btn-vg-lg m-1" href="/contact">聯絡我們</a><br>
+    <!-- 小農區塊 -->
+    <section id="farmer" class="container-lg shadow mb-5">
+      <h3 class="vg-h3 mb-5"><b>與我們合作的小農</b></h3>
+      <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <% for ( var i=0 ; i < data.length; i++) { %>
+          <div class="swiper-slide">
+            <div class="card ms-auto me-auto">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img src="<%= data[i].fImg %>" class="card-img img-fluid" />
                 </div>
-            </section>
-            <!-- 其他頁面連結 -->
+                <div class="col-md-8">
+                  <div class="card-body text-align-start">
+                    <h5 class="card-title"><b> <%= data[i].fName %> </b></h5>
+                    <hr />
+                    <p class="card-text">
+                      <i class="fa-solid fa-location-dot me-3 mb-3"></i>
+                      <%= data[i].fArea %>
+                    </p>
+                    <p class="card-text">
+                      <i class="fa-solid fa-hand-holding-droplet me-3"></i>
+                      <%= data[i].vegeType %>
+                    </p>
+                    <a href="" class="btn btn-vg ms-auto mb-3">查看農友故事</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% } %>
+        </div>
+      </div>
+      <a id="openSGS" class="btn btn-vg-lg" style="cursor: pointer"
+        >點此查看小農驗證報告</a
+      >
+    </section>
 
+    <div
+      class="modal fade"
+      id="sgsModal"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="sgsModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header pt-4">
+            <h3 class="vg-h3 align-self-center">SGS驗證表</h3>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <table
+              class="table text-align-center text-center"
+              id="sgstable"
+            ></table>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button
+              type="button"
+              class="btn btn-vg-reg"
+              data-bs-dismiss="modal"
+            >
+              關閉
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 小農區塊 -->
 
-            <%- include('share/footer.ejs') %>
+    <!-- 其他頁面連結 -->
+    <section
+      id="moreContact"
+      class="container-sm shadow d-flex align-items-center mb-5"
+    >
+      <div id="AboutMore">
+        <p class="vg-h4 m-2">想了解更多嗎?</p>
+        <a class="btn btn-vg-lg m-1">前往產品資訊</a><br />
+        <a class="btn btn-vg-lg m-1" href="/contact">聯絡我們</a><br />
+      </div>
+    </section>
+    <!-- 其他頁面連結 -->
 
+    <%- include('share/footer.ejs') %>
 
-                <!-- 以下是script -->
-                <%- include('share/vg-main.ejs') %>
-                    <script>
+    <!-- 以下是script -->
+    <%- include('share/vg-main.ejs') %>
+    <script>
+      $("#about").addClass("btn-vg-2-active");
+      $("#title1").text("我們的理念");
+      $("#title1").prop("href", "#concept");
+      $("#title2").text("我們的承諾");
+      $("#title2").prop("href", "#morals");
+      $("#title3").text("小農介紹");
+      $("#title3").prop("href", "#farmer");
+      $("#title4").hide();
+      $("#title5").hide();
 
+      $(function () {
+        $(`#concept`).on({
+          mouseover: function () {
+            // console.log(this);
+            $(`#title1`).addClass("btn-vg-3-active");
+          },
+          mouseout: function () {
+            $(`#title1`).removeClass("btn-vg-3-active");
+          },
+        });
+        $(`#morals`).on({
+          mouseover: function () {
+            // console.log(this);
+            $(`#title2`).addClass("btn-vg-3-active");
+          },
+          mouseout: function () {
+            $(`#title2`).removeClass("btn-vg-3-active");
+          },
+        });
+        $(`#farmer`).on({
+          mouseover: function () {
+            // console.log(this);
+            $(`#title3`).addClass("btn-vg-3-active");
+          },
+          mouseout: function () {
+            $(`#title3`).removeClass("btn-vg-3-active");
+          },
+        });
+      });
+    </script>
 
-                        $('#about').addClass('btn-vg-2-active');
-                        $('#title1').text('我們的理念');
-                        $('#title1').prop('href', '#concept');
-                        $('#title2').text('我們的承諾');
-                        $('#title2').prop('href', '#morals');
-                        $('#title3').text('小農介紹');
-                        $('#title3').prop('href', '#farmer');
-                        $('#title4').hide();
-                        $('#title5').hide();
+    <script>
+      const popoverTriggerList = document.querySelectorAll(
+        '[data-bs-toggle="popover"]'
+      );
+      const popoverList = [...popoverTriggerList].map(
+        (popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl)
+      );
 
-                        $(function () {
-                            $(`#concept`).on({
-                                mouseover: function () {
-                                    // console.log(this);
-                                    $(`#title1`).addClass('btn-vg-3-active');
-                                },
-                                mouseout: function () {
-                                    $(`#title1`).removeClass('btn-vg-3-active');
-                                }
-                            });
-                            $(`#morals`).on({
-                                mouseover: function () {
-                                    // console.log(this);
-                                    $(`#title2`).addClass('btn-vg-3-active');
-                                },
-                                mouseout: function () {
-                                    $(`#title2`).removeClass('btn-vg-3-active');
-                                }
-                            });
-                            $(`#farmer`).on({
-                                mouseover: function () {
-                                    // console.log(this);
-                                    $(`#title3`).addClass('btn-vg-3-active');
-                                },
-                                mouseout: function () {
-                                    $(`#title3`).removeClass('btn-vg-3-active');
-                                }
-                            });
+      const swiper = new Swiper(".swiper", {
+        // Optional parameters
+        autoplay: {
+          delay: 2000,
+          stopOnLastSlide: false,
+          disableOnInteraction: false,
+        },
+        slidesPerView: 1,
+        spaceBetween: 20,
+        // Responsive breakpoints
+        breakpoints: {
+          // when window width is >= 320px
+          910: {
+            slidesPerView: 2,
+            spaceBetween: 10,
+          },
+        },
+        direction: "horizontal",
+        loop: true,
+      });
 
-                        })
-                    </script>
-
-                    <script>
-                        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
-                        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
-
-                        const swiper = new Swiper('.swiper', {
-                            // Optional parameters
-                            autoplay: {
-                                delay: 2000,
-                                stopOnLastSlide: false,
-                                disableOnInteraction: false
-                            },
-                            slidesPerView: 1,
-                            spaceBetween: 20,
-                            // Responsive breakpoints
-                            breakpoints: {
-                                // when window width is >= 320px
-                                910: {
-                                    slidesPerView: 2,
-                                    spaceBetween: 10
-                                }
-                            },
-                            direction: 'horizontal',
-                            loop: true
-
-                        });
-
-
-                        openSGS.onclick = function () {
-                            $("#sgsModal").modal('show');
-                            fetch('/about/sgs')
-                                .then(function (res) {
-                                    return res.json();
-                                })
-                                .then(function (data) {
-                                    let text = `<tr class="align-middle">
+      openSGS.onclick = function () {
+        $("#sgsModal").modal("show");
+        fetch("/about/sgs")
+          .then(function (res) {
+            return res.json();
+          })
+          .then(function (data) {
+            let text = `<tr class="align-middle">
                                                     <th>日期</th>
                                                     <th>產地</th>
                                                     <th>檢驗品項</th>
                                                     <th>檢驗結果</th>
                                                 </tr>`;
-                                    data.forEach(function (sgs) {
-                                        text += `<tr class="align-middle">
+            data.forEach(function (sgs) {
+              text += `<tr class="align-middle">
                                                     <td>${sgs.date}</td>
                                                     <td>${sgs.origin}</td>
                                                     <td>${sgs.item}</td>
                                                     <td ><img src="img/approved.png" class="img-fluid" style="height: 35px; width: 35px;">
                                                     </td>
                                                 </tr>`;
-                                    });
-                                    sgstable.innerHTML = text;
-                                })
-                        }
-                    </script>
-
-
-
-</body>
-
+            });
+            sgstable.innerHTML = text;
+          });
+      };
+    </script>
+  </body>
 </html>
