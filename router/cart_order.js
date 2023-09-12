@@ -54,11 +54,11 @@ cart_order.patch("/editcart/status/", function (req, res) {
 
 })
 
-// 建立訂購單 oid || uid 
+// 建立訂購單 oid || uid (含購物金與折扣碼)
 cart_order.post("/editcart/createorder/", function (req, res) {
-    var sql3 = "INSERT INTO vgorder (oid, uid) VALUES (? , ?)"
+    var sql3 = "INSERT INTO vgorder (oid, uid, useCoupon, useBonus ) VALUES (? , ? , ?, ?)"
     db.query(sql3,
-        [req.body.oid, req.body.uid],
+        [req.body.oid, req.body.uid, req.body.useCoupon, req.body.useBonus],
         function (err, rows) {
             res.send(JSON.stringify(req.body));
         }
@@ -173,7 +173,7 @@ cart_order.delete("/delwishlist/", function (req, res) {
 cart_order.patch("/editcart/c_note/", function (req, res) {
     var sql13 = "update cart set c_note= ?  where pid = ? and uid = ? and c_status = 'active' ";
     db.query(sql13,
-        [req.body.c_note,req.body.pid , req.body.uid],
+        [req.body.c_note, req.body.pid, req.body.uid],
         function (err, rows) {
             res.send(JSON.stringify(req.body));
         }
@@ -188,6 +188,67 @@ cart_order.get('/user/bonus/:id', function (req, res) {
     })
 })
 
+// 比對折扣碼
+cart_order.get('/getcoupon/:coupon', function (req, res) {
+    var sql15 = "SELECT discount FROM temp_coupon WHERE coupon = ?";
+    db.query(sql15, [req.params.coupon], function (err, rows) {
+        res.send(rows);
+    })
+})
+
+// order頁面相關資料庫指令
+// 取得訂購者存放會員資料
+cart_order.get('/getuserinfo/:id', function (req, res) {
+    var sql16 = "SELECT * FROM userinfo where uid = ?";
+    db.query(sql16, [req.params.id], function (err, rows) {
+        res.send(rows);
+    })
+})
+
+
+// ordercomfirm 頁面 => 送出訂單 => o_status更新為 pending  
+
+
+
+// 評價訂單相關資料庫指令
+//讀取vgorder訂單狀態及品項
+cart_order.get('/getorderstatus/:oid', function (req, res) {
+    var sql20 = "SELECT * FROM vgorder, cart, temp_product where vgorder.oid = cart.oid and cart.pid = temp_product.pid and vgorder.oid = ? ";
+    db.query(sql20, [req.params.oid], function (err, rows) {
+        res.send(rows);
+    })
+})
+
+// 完成評價 => insert into table rateorder
+// cart_order.post("/update/rateorder/", function (req, res) {
+//     var sql21 = 'INSERT INTO  rateorder ( oid , speed ,  quality ,  service ,  comment1 ,  comment2 ,  comment3) VALUES (? ,?, ?, ?, ?, ?, ?)';
+//     db.query(sql21,
+//         [req.body.oid, req.body.speed, req.body.quality, req.body.service, req.body.comment1, req.body.comment2, req.body.comment3],
+//         function (err, rows) {
+//             res.send(JSON.stringify(req.body));
+//         }
+//     )
+// })
+cart_order.post("/update/rateorder/", function (req, res) {
+    var sql21 = 'INSERT INTO rateorder (oid, speed, quality, service, comment) VALUES (?, ?, ?, ?, ?)';
+    var comments = req.body.comments;
+    comments.forEach((commentObj) => {
+        db.query(sql21, [req.body.oid, req.body.speed, req.body.quality, req.body.service, `${commentObj.items} | ${commentObj.comment}`], function (err, rows) {
+            if (err) {
+                console.error(err);
+            }
+        });
+    });
+    res.send(JSON.stringify(req.body));
+});
+
+// 若已有評價資料，無法再次進行評價
+cart_order.get('/getrateorderstatus/:oid', function (req, res) {
+    var sql22 = "SELECT * FROM rateorder where oid = ? ";
+    db.query(sql22, [req.params.oid], function (err, rows) {
+        res.send(rows);
+    })
+})
 
 
 

@@ -22,10 +22,10 @@
             <div id="rateorder" class="container text-center">
                 <!-- 訂單資訊 -->
                 <div class="container orderinfo text-start">
-                    <p class="vg-p">訂單編號：<a href="/rateorder" id="orderNumber" class="vg-href"> MP23301004</a></p>
+                    <p class="vg-p">訂單編號：<span id="orderNumber" class="vg-href"> MP23301004</span></p>
                     <p class="vg-p" id="rateitems">訂購品項：
-                        <span class="rateitem">惜福箱</span>
-                        <span class="rateitem">蔬果箱</span>
+                        <!-- <span class="rateitem">惜福箱</span> -->
+                        <!-- <span class="rateitem">蔬果箱</span> -->
                     </p>
                 </div>
                 <hr>
@@ -34,19 +34,20 @@
                     <div id="quality" class="d-flex">
                         <p class="vg-p ms-auto">產品品質：</p>
                         <div class="rateslider mt-1">
-                            <div id="" class="ratecustom-handle ui-slider-handle"></div>
+                            <div id="qualityHandle" class="ratecustom-handle ui-slider-handle"></div>
+
                         </div>
                     </div>
                     <div id="speed" class="d-flex">
                         <p class="vg-p ms-auto">配送速度：</p>
                         <div class="rateslider mt-1">
-                            <div id="" class="ratecustom-handle ui-slider-handle"></div>
+                            <div id="speedHandle" class="ratecustom-handle ui-slider-handle"></div>
                         </div>
                     </div>
                     <div id="orderstep" class="d-flex">
-                        <p class="vg-p ms-auto">訂購流程：</p>
+                        <p class="vg-p ms-auto">售後服務：</p>
                         <div class="rateslider mt-1">
-                            <div id="" class="ratecustom-handle ui-slider-handle"></div>
+                            <div id="serviceHandle" class="ratecustom-handle ui-slider-handle"></div>
                         </div>
                     </div>
                 </div>
@@ -59,7 +60,7 @@
                     </div>
                 </div>
                 <!-- 送出評價 -->
-                <a href="/orderplaced" class="btn btn-vg d-block mx-auto">送出評價</a>
+                <a class="btn btn-vg d-block mx-auto" onclick="sendrate()">送出評價</a>
             </div>
         </main>
         <!-- 頁尾 -->
@@ -68,5 +69,162 @@
             <!-- vg JS -->
             <%- include('share/vg-main.ejs') %>
                 <script src="js/cart.js"></script>
+                <script>
+                    $(function () {
+                        // 設定訂單編號 (前一頁面[查詢訂單頁面]須設定oid存放於localstorage)
+                        // var oid = '8430352'; // 狀態非pending
+                        var oid = '8472034'; // 狀態pending 未評價
+                        // var oid = '4140847'; // 已評價
+                        // var oid = '8678231'; // 已評價
+                        // var oid = '9014842'; // 已評價
+                        orderNumber.innerText = oid;
+
+                        $.get(`/getrateorderstatus/${oid}`, function (e) {
+                            if (e.length == 0) {
+                                $.get(`/getorderstatus/${oid}`, function (e) {
+                                    // console.log(e[0])
+                                    // 判斷o_status狀態為pending(1:提示收到貨品後再進行評論 ||  0:訂單未成功成立或尚在處理中，請稍後再試)  
+                                    if (e[0].o_status == 'pending') {
+                                        Swal.fire({
+                                            title: '請確認於收到產品後再進行評價！',
+                                            icon: 'info',
+                                            showConfirmButton: true,
+                                        });
+                                        e.map((item) => {
+                                            var spanHtml = `
+                                    <span class="rateitem">${item.pname}</span>
+                                    `;
+                                            $('#rateitems').append(spanHtml)
+                                            // console.log(item.pname)
+                                        })
+                                    } else {
+                                        Swal.fire({
+                                            title: '訂單未成功成立或尚在處理中，請稍後再試',
+                                            icon: 'warning',
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        });
+                                        setTimeout("location.href='/'", 1500);
+                                    }
+                                })
+                                // 送出評價 => 抓取填寫內容 => 送出時insert to rateorder
+                                sendrate = () => {
+                                    // slider 內容
+                                    var quality = qualityHandle.innerText;
+                                    var speed = speedHandle.innerText;
+                                    var service = serviceHandle.innerText;
+
+                                    Swal.fire({
+                                        title: '確定要送出評價？',
+                                        text: '送出後就無法再次修改囉',
+                                        icon: 'question',
+                                        showCancelButton: true,
+                                        confirmButtonColor: '#3085d6',
+                                        cancelButtonColor: '#d33',
+                                        confirmButtonText: '確定',
+                                        cancelButtonText: '取消'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            Swal.fire({
+                                                title: '已成功送出評價',
+                                                icon: 'success',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            });
+                                            var comments = [];
+                                            $('input[type="text"]').each(function () {
+                                                var parent = this.closest("div");
+                                                var target = $(parent).find("span");
+                                                var itemArrey = [];
+                                                target.each(function () {
+                                                    itemArrey.push($(this).text());
+                                                });
+                                                comments.push({ items: itemArrey.join('，'), comment: this.value });
+                                            });
+                                            fetch('/update/rateorder/', {
+                                                method: 'POST',
+                                                headers: {
+                                                    "Content-Type": "application/json; charset=UTF-8"
+                                                },
+                                                body: JSON.stringify({
+                                                    oid,
+                                                    quality,
+                                                    speed,
+                                                    service,
+                                                    comments
+                                                })
+                                            }).then(() => {
+                                                setTimeout("location.href='/'", 1500);
+                                            });
+                                            // 原始作法: 將三則評論存放在同一資料列，但恐造成讀取評價不易，因此拆開處理
+                                            // var serial = 1;
+                                            // var comment = []
+                                            // $('input[type="text"]').each(function () {
+                                            //     // 標籤內容
+                                            //     var parent = this.closest("div");
+                                            //     var target = $(parent).find("span");
+                                            //     var itemArrey = [];
+                                            //     target.each(function () {
+                                            //         itemArrey.push($(this).text())
+                                            //     })
+                                            //     // comment 內容
+                                            //     // comment.push(`comment${serial}: ${itemArrey} ${this.value}`)
+                                            //     comment.push(`${itemArrey} ${this.value}`)
+                                            //     serial++;
+                                            // })
+                                            // var comment1 = comment[0] ? comment[0] : ''
+                                            // var comment2 = comment[1] ? comment[1] : ''
+                                            // var comment3 = comment[2] ? comment[2] : ''
+                                            // fetch('/update/rateorder/', {
+                                            //     method: 'POST',
+                                            //     headers: {
+                                            //         "Content-Type": "application/json ; charset=UTF-8"
+                                            //     },
+                                            //     body: JSON.stringify({
+                                            //         oid,
+                                            //         quality,
+                                            //         speed,
+                                            //         service,
+                                            //         comment1,
+                                            //         comment2,
+                                            //         comment3
+                                            //     })
+                                            // })
+                                        }
+                                    })
+                                }
+                            } else {
+                                Swal.fire({
+                                    title: '本訂單已進行評價，將返回首頁',
+                                    icon: 'warning',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                setTimeout("location.href='/'", 1500);
+                            }
+                        })
+
+
+
+                        // 評價訂單 slder
+                        $(".rateslider").each(function () {
+                            var slider = $(this);
+                            var handle = slider.find(".ratecustom-handle");
+
+                            slider.slider({
+                                create: function () {
+                                    handle.text($(this).slider("value"));
+                                },
+                                slide: function (event, ui) {
+                                    handle.text(ui.value);
+                                },
+                                max: 5, min: 1, step: 1
+                            });
+                        });
+
+
+
+                    })
+                </script>
 
 </html>

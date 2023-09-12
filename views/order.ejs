@@ -66,7 +66,7 @@
                                                     placeholder="">
                                                 <label for="userMail">信箱</label>
                                             </div>
-                                            
+
                                             <!-- <div class="twzipcode m-2">
                                             <select data-role="county" class="form-select-sm w-25"></select>
                                             <select data-role="district" class="form-select-sm w-25"></select>
@@ -417,12 +417,12 @@
                                 <!-- <td>120</td> -->
                             </tr>
                             <tr>
-                                <td>折扣碼NPMSD</td>
-                                <td>-100</td>
+                                <td class="vg-p">折扣碼<span class="vg-ps" id="usecouponid"></span></td>
+                                <td id="coupondiscount">0</td>
                             </tr>
                             <tr>
-                                <td>購物金</td>
-                                <td>-5</td>
+                                <td class="vg-p">購物金</td>
+                                <td id="bonusdiscount">0</td>
                             </tr>
                         </table>
                         <div class="d-flex justify-content-around">
@@ -470,13 +470,16 @@
                         items = e;
                     }
                     // 訂單內容
-                    $("#summary_items").empty();
                     var total = 0;
+                    var bonus = 0;
+                    var coupon = 0;
                     var shippingfee = 0;
+                    $("#summary_items").empty();
                     $.each(items, function (index, item) {
                         item.size == 's' ? fee = 160 : fee = 290; // 運費 (S-160 L-290)
                         item.size == 's' ? item.size = '1~2人' : item.size = '3~4人';
-                        item.c_note == null ? item.c_note = '無備註' : item.c_note
+                        item.useCoupon == null ? '0' : item.useCoupon;
+                        item.c_note == null ? item.c_note = '無備註' : item.c_note;
                         var trHtml = `
                                 <tr>
                                 <td>
@@ -487,6 +490,10 @@
                             </tr>
                             `;
                         $("#summary_items").append(trHtml);
+                        $('#coupondiscount').text(item.useCoupon);
+                        $('#bonusdiscount').text(-item.useBonus);
+                        bonus = parseInt(item.useBonus);
+                        coupon = parseInt(item.useCoupon);
                         shippingfee += fee;
                         total += item.price;
                     })
@@ -495,11 +502,12 @@
                         <td>${shippingfee}</td>
                         `;
                     $('#shippingfee').after(tdHtml)
-                    // 總金額計算 (未含折扣碼與購物金)
-                    $('#total').text(shippingfee + total)
+
+                    // 總金額計算
+                    $('#total').text(shippingfee + total - bonus + coupon)
                 }).then(function (res) {
                     orderid.innerText = res[0].oid;
-                    // 可新增若返回修改，帶入已存在資料庫的資料
+                    // 可新增若從資訊確認頁面返回修改，帶入已存在資料庫的資料(未完成)
                 })
 
                 // 從order 返回 cart 的動作
@@ -547,6 +555,7 @@
                         },
                         body: JSONData
                     }).then(
+                        // 刪除使用者購物金(未完成)
                         // 完成表格填寫，跳轉至下一頁面
                         document.location.href = "/orderconfirm/"
                     )

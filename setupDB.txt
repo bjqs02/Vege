@@ -621,18 +621,54 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cid`, `uid`, `c_createtime`, `pid`, `c_note`, `oid`, `c_status`) VALUES
-(1, '1001', '2023-09-04 02:15:53', 'aa002', NULL, '9014842', 'inactive'),
-(2, '1001', '2023-09-04 02:16:28', 'aa004', NULL, '9014842', 'inactive'),
-(3, '1004', '2023-09-04 02:16:57', 'aa0013', NULL, '8430352', 'inactive'),
-(4, '1003', '2023-09-04 13:33:28', 'aa0012', NULL, NULL, 'active'),
-(5, '1003', '2023-09-04 13:33:28', 'aa004', NULL, NULL, 'active'),
-(6, '1004', '2023-09-04 02:16:57', 'aa0013', NULL, '937362', 'inactive'),
-(7, '1004', '2023-09-04 02:16:57', 'aa003', NULL, '937362', 'inactive'),
-(8, '1002', '2023-09-05 18:41:40', 'aa001', NULL, '8472034', 'inactive'),
-(9, '1002', '2023-09-05 18:53:49', 'aa003', NULL, '', 'active'),
-(10, '1002', '2023-09-05 18:54:28', 'aa0015', NULL, '', 'active'),
-(11, '1002', '2023-09-06 04:02:56', 'aa001', NULL, '4140847', 'inactive'),
-(12, '1002', '2023-09-06 04:03:10', 'aa0012', NULL, '', 'active');
+(1, '1001', '2023-09-03 18:15:53', 'aa002', NULL, '9014842', 'inactive'),
+(2, '1001', '2023-09-03 18:16:28', 'aa004', NULL, '9014842', 'inactive'),
+(3, '1004', '2023-09-03 18:16:57', 'aa0013', NULL, '8430352', 'inactive'),
+(4, '1003', '2023-09-04 05:33:28', 'aa0012', NULL, NULL, 'active'),
+(5, '1003', '2023-09-04 05:33:28', 'aa004', NULL, NULL, 'active'),
+(6, '1004', '2023-09-03 18:16:57', 'aa0013', NULL, '8678231', 'inactive'),
+(7, '1004', '2023-09-03 18:16:57', 'aa003', NULL, '8678231', 'inactive'),
+(8, '1002', '2023-09-05 10:41:40', 'aa001', NULL, '8472034', 'inactive'),
+(9, '1002', '2023-09-05 10:53:49', 'aa003', NULL, '', 'active'),
+(10, '1002', '2023-09-05 10:54:28', 'aa0015', NULL, '', 'active'),
+(11, '1002', '2023-09-05 20:02:56', 'aa001', NULL, '4140847', 'inactive'),
+(12, '1002', '2023-09-05 20:03:10', 'aa0012', NULL, '', 'active'),
+(15, '1006', '2023-09-10 11:19:50', 'aa004', NULL, '', 'active'),
+(16, '1006', '2023-09-10 11:19:50', 'aa0013', NULL, '', 'active'),
+(35, '1004', '2023-09-11 06:55:45', 'aa004', '', '', 'active'),
+(36, '1004', '2023-09-11 07:03:36', 'aa0012', '', '', 'active');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `rateorder`
+--
+
+CREATE TABLE `rateorder` (
+  `rid` smallint(6) NOT NULL,
+  `oid` varchar(50) NOT NULL,
+  `r_createtime` timestamp NOT NULL DEFAULT current_timestamp(),
+  `speed` tinyint(4) NOT NULL,
+  `quality` tinyint(4) NOT NULL,
+  `service` tinyint(4) NOT NULL,
+  `comment` varchar(200) DEFAULT NULL,
+  `r_status` varchar(10) NOT NULL DEFAULT 'active'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- 傾印資料表的資料 `rateorder`
+--
+
+INSERT INTO `rateorder` (`rid`, `oid`, `r_createtime`, `speed`, `quality`, `service`, `comment`, `r_status`) VALUES
+(39, '9014842', '2023-09-12 07:01:41', 5, 5, 5, '蔬果減脂箱，假期箱 | 我每次在這家線上蔬果店購物都非常滿意。蔬果的新鮮度總是令我驚訝，送貨速度也超快。', 'active'),
+(40, '9014842', '2023-09-12 07:01:41', 5, 5, 5, '蔬果減脂箱 | 種類多樣，價格實惠，而且每次都能收到高品質的蔬果。我真的很愛這家店。', 'active'),
+(41, '9014842', '2023-09-12 07:01:41', 5, 5, 5, ' | 他們的有機選擇相當豐富，這對我來說非常重要。而且，所有的蔬果都有詳細的來源資訊。', 'active'),
+(42, '8678231', '2023-09-12 07:12:28', 5, 4, 4, '蔬果健康箱 | 他們的蘋果實在是太美味了！每顆都非常新鮮，我完全無法抗拒。', 'active'),
+(43, '8678231', '2023-09-12 07:12:28', 5, 4, 4, '只想吃菜菜箱 | 蔬果的新鮮度和味道一直保持得相當穩定，這是我繼續回購的原因。', 'active'),
+(44, '8678231', '2023-09-12 07:12:28', 5, 4, 4, ' | 我曾經在其他地方訂購蔬果，但這家店的品質絕對是頂尖的。', 'active'),
+(45, '4140847', '2023-09-12 07:16:58', 4, 4, 5, '蔬果健康箱 | 有收到過裡面有小蟲的蔬菜，反映給客服之後處理的態度很快很好，也理解這是新鮮配送過程可能會出現的問題。', 'active'),
+(46, '4140847', '2023-09-12 07:16:58', 4, 4, 5, ' | 客戶服務一直都非常有幫助，回答我的問題和解決我的問題都非常快速。', 'active'),
+(47, '4140847', '2023-09-12 07:16:58', 4, 4, 5, ' | 他們的包裝非常仔細，確保蔬果在運送過程中不受損。', 'active');
 
 -- --------------------------------------------------------
 
@@ -651,7 +687,7 @@ CREATE TABLE `temp_coupon` (
 
 INSERT INTO `temp_coupon` (`coupon`, `discount`) VALUES
 ('c001', '-20'),
-('c002', '*0.9');
+('c002', '-50');
 
 -- --------------------------------------------------------
 
@@ -730,11 +766,11 @@ CREATE TABLE `vgorder` (
 --
 
 INSERT INTO `vgorder` (`oid`, `uid`, `o_ceatetime`, `useCoupon`, `useBonus`, `paid`, `oName`, `oTel`, `oMail`, `rName`, `rTel`, `rAddr`, `convName`, `convTel`, `convStore`, `payment`, `transName`, `transNum`, `transDate`, `creditName`, `creditNum`, `creditMM`, `creditYY`, `creditCSV`, `billDonate`, `billPersonal`, `billCompName`, `billCompNum`, `billCompAddr`, `o_note`, `o_status`, `o_updatetime`, `o_cancel_time`) VALUES
-('4140847', '1002', '2023-09-06 04:05:54', NULL, NULL, 'unpaid', 'aa', 'aa', 'aaa', 'aa', 'aa', '', '', '', NULL, NULL, '', '', '0000-00-00', '', '', '', '', '', NULL, NULL, '', '', '', 'aaa', 'inactive', '1693973208164', NULL),
-('8430352', '1004', '2023-09-05 17:18:15', NULL, NULL, 'unpaid', '李大美', '0912333444', '111@gmail.com', '陳怡君', '0966707506', '桃園縣龜山區中山路112號', '', '', NULL, NULL, '陳怡君', '12345', '2023-09-09', '', '', '', '', '', NULL, NULL, '', '', '', '好晚了該睡覺了', 'inactive', '1693937252161', NULL),
-('8472034', '1002', '2023-09-05 18:43:08', NULL, NULL, 'unpaid', '測試用', '測試用', '測試用', '', '', '', '', '', NULL, NULL, '', '', '0000-00-00', '測試用', '測試用', '測試用', '測試用', '測試用', NULL, NULL, '測試用', '測試用', '測試用', '測試用測試用測試用測試用測試用', 'inactive', '1693939982392', NULL),
-('9014842', '1001', '2023-09-05 16:02:10', NULL, NULL, 'unpaid', '李小美', '0912333444', 'aa@gmail.com', '王大華', '0966707506', '桃園縣龜山區中山路112號', '', '', NULL, NULL, '陳怡君', '12345', '2023-09-09', '', '', '', '', '', NULL, NULL, '', '', '', '我愛吃香蕉和蘋果', 'active', NULL, NULL),
-('937362', '1004', '2023-09-05 18:40:15', NULL, NULL, 'unpaid', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'active', NULL, NULL);
+('4140847', '1002', '2023-09-05 20:05:54', NULL, NULL, 'unpaid', 'aa', 'aa', 'aaa', 'aa', 'aa', '', '', '', NULL, NULL, '', '', '0000-00-00', '', '', '', '', '', NULL, NULL, '', '', '', 'aaa', 'pending', '1693973208164', NULL),
+('8430352', '1004', '2023-09-05 09:18:15', NULL, NULL, 'unpaid', '李大美', '0912333444', '111@gmail.com', '陳怡君', '0966707506', '桃園縣龜山區中山路112號', '', '', NULL, NULL, '陳怡君', '12345', '2023-09-09', '', '', '', '', '', NULL, NULL, '', '', '', '好晚了該睡覺了', 'inactive', '1693937252161', NULL),
+('8472034', '1002', '2023-09-05 10:43:08', NULL, NULL, 'unpaid', '測試用', '測試用', '測試用', '', '', '', '', '', NULL, NULL, '', '', '0000-00-00', '測試用', '測試用', '測試用', '測試用', '測試用', NULL, NULL, '測試用', '測試用', '測試用', '測試用測試用測試用測試用測試用', 'pending', '1693939982392', NULL),
+('8678231', '1004', '2023-09-10 10:19:04', NULL, NULL, 'unpaid', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', NULL, NULL),
+('9014842', '1001', '2023-09-05 08:02:10', NULL, NULL, 'unpaid', '李小美', '0912333444', 'aa@gmail.com', '王大華', '0966707506', '桃園縣龜山區中山路112號', '', '', NULL, NULL, '陳怡君', '12345', '2023-09-09', '', '', '', '', '', NULL, NULL, '', '', '', '我愛吃香蕉和蘋果', 'pending', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -757,8 +793,7 @@ INSERT INTO `wishlist` (`wid`, `uid`, `pid`) VALUES
 (2, '1002', 'aa002'),
 (3, '1002', 'aa003'),
 (4, '1003', 'aa004'),
-(5, '1004', 'aa004'),
-(6, '1004', 'aa0012');
+(27, '1004', 'aa003');
 
 --
 -- 已傾印資料表的索引
@@ -795,6 +830,12 @@ ALTER TABLE `wishlist`
   ADD PRIMARY KEY (`wid`);
 
 --
+-- 資料表索引 `rateorder`
+--
+  ALTER TABLE `rateorder`
+  ADD PRIMARY KEY (`rid`);
+
+--
 -- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
 --
 
@@ -803,6 +844,13 @@ ALTER TABLE `wishlist`
 --
 ALTER TABLE `cart`
   MODIFY `cid` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `rateorder`
+--
+ALTER TABLE `rateorder`
+  MODIFY `rid` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `wishlist`

@@ -71,18 +71,18 @@
                         <div class="tab-content" id="">
                             <div class="tab-pane fade" id="nav-coupun" role="tabpanel" aria-labelledby="nav-coupun-tab"
                                 tabindex="0">
-                                <input type="text" class="form-control w-25 m-auto d-inline" name="" id="couponid"
-                                    placeholder="請輸入折扣碼">
-                                <button class="btn btn-vg-xs" value="">送出</button>
-                                <p class="vg-ps text-warning mt-1">折扣碼錯誤</p>
+                                <input type="text" class="form-control w-25 m-auto d-inline my-3" name="" id="couponid"
+                                    placeholder="請輸入折扣碼" oninput="couponval(this)">
+                                <button class="btn btn-vg-xs my-2" value="" onclick="useCoupon()">送出</button>
+                                <!-- <p class="vg-ps text-warning mt-1">折扣碼錯誤</p> -->
                             </div>
                             <div class="tab-pane fade show active" id="nav-vgmoney" role="tabpanel"
                                 aria-labelledby="nav-vgmoney-tab" tabindex="0">
-                                <input type="text" class="form-control w-25 m-auto d-inline" name="" id="myyuseBonus"
+                                <input type="text" class="form-control w-25 m-auto d-inline" name="" id="myuseBonus"
                                     placeholder="請輸入欲折抵的購物金" oninput="bonusval(this)">
                                 <button class="btn btn-vg-xs" value="" onclick="useBonus()">送出</button>
                                 <p class="vg-ps mt-1">您擁有的購物金:
-                                    <span class="text-primary" id="userBonus">0</span>&nbsp;&nbsp;&nbsp;
+                                    <span class="text-primary" id="userBonus"></span>&nbsp;&nbsp;&nbsp;
                                     <!-- <input type="radio" name="" id="useall"> <label for="useall">全部使用</label> -->
                                 </p>
                             </div>
@@ -139,7 +139,7 @@
                                 <!-- <td>320</td> -->
                             </tr>
                             <tr>
-                                <td class="vg-p">折扣碼NPMSD</td>
+                                <td class="vg-p">折扣碼<span class="vg-ps" id="usecouponid"></span></td>
                                 <td id="coupondiscount">0</td>
                             </tr>
                             <tr>
@@ -224,10 +224,10 @@
                                     </div>
                                 </td>
                                 <td class="${item.pid}">
-                                    <input type="checkbox" value="家有兒童" id="kids" onclick="addtocnote(this)">
-                                    <label for="kids">家有兒童</label><br />
-                                    <input type="checkbox" value="辛香料" id="spice" onclick="addtocnote(this)">
-                                    <label for="spice">辛香料</label><br />
+                                    <input type="checkbox" value="家有兒童" id="kids1" onclick="addtocnote(this)">
+                                    <label for="kids1">家有兒童</label><br />
+                                    <input type="checkbox" value="辛香料" id="spice1" onclick="addtocnote(this)">
+                                    <label for="spice1">辛香料</label><br />
                                     <button class="btn btn-vg-xs m-2 shadow-sm w-75 towishbtn" onClick="towishbtn(this)">下次再買</button>
                                 </td>
                              </tr>         
@@ -289,7 +289,7 @@
                                 </td>
                                 <td class="${item.pid}">
                                     <input type="checkbox" value="家有兒童" id="kids3" onclick="addtocnote(this)">
-                                    <label for="kid3s">家有兒童</label><br />
+                                    <label for="kids3">家有兒童</label><br />
                                     <input type="checkbox" value="辛香料" id="spice3" onclick="addtocnote(this)">
                                     <label for="spice3">辛香料</label><br />
                                     <button class="btn btn-vg-xs m-2 shadow-sm w-75 towishbtn" onClick="towishbtn(this)">下次再買</button>
@@ -429,39 +429,107 @@
                         })
 
                         // 讀取購物金
-                        var bonus = 0;
+                        var bonus = 0; // 不動
+                        var usemyBonus = 0;
                         $.get(`/user/bonus/${uid}`, function (e) {
                             // console.log(e[0].bonus)
                             bonus = e[0].bonus
                             $('#userBonus').text(bonus)
+                        }).then(function () {
+                            // 使用購物金
+                            // console.log(parseInt(userBonus.innerText))
+                            bonusval = (e) => {
+                                // console.log(e.value)
+                                // 小於使用者擁有購物金，依照使用者輸入的值進行使用
+                                if (e.value <= parseInt(userBonus.innerText)) {
+                                    usemyBonus = e.value;
+                                } else {
+                                    // 若超過使用者擁有購物金，跳出提醒並以擁有購物金為最高值
+                                    Swal.fire({
+                                        title: '超過折抵上限',
+                                        icon: 'warning',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    // 欲折抵的購物金input欄位值 = 購物金餘額
+                                    myuseBonus.value = parseInt(userBonus.innerText);
+                                    //使用購物金
+                                    usemyBonus = parseInt(userBonus.innerText);
+                                }
+                                // console.log(usemyBonus)
+                            }
+
+                            useBonus = () => {
+                                // 如果 已套用購物金 小於使用者擁有購物金
+                                if (parseInt(bonusdiscount.innerText) > -bonus) {
+                                    Swal.fire({
+                                        title: '成功使用購物金',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    //  金額試算更新使用購物金
+                                    //  購物金 => 目前數值 - usemyBonus => 掛負數
+                                    $('#bonusdiscount').text(parseInt(bonusdiscount.innerText) - usemyBonus);
+                                    // console.log( parseInt($('#total').text()) + usemyBonus )
+                                    var newTotal = parseInt($('#total').text()) - usemyBonus
+                                    $('#total').text(newTotal);
+                                    $('#userBonus').text(parseInt(userBonus.innerText) - usemyBonus)
+                                    $('#myuseBonus').val('')
+                                } else {
+                                    Swal.fire({
+                                        title: '購物金折抵已達上限',
+                                        icon: 'warning',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                }
+                            }
                         })
 
-                        // 使用購物金
-                        var usemyBonus = 0;
-                        bonusval = (e) => {
+
+                        // 使用折扣碼
+                        var usemycoupon; // coupon ID
+                        var useDiscount = 0; // coupon Discount
+                        couponval = (e) => {
                             // console.log(e.value)
-                            // 若超過使用者擁有購物金，跳出提醒並以擁有購物金為最高值
-                            if (e.value <= bonus) {
-                                usemyBonus = -e.value;
-                            } else {
-                                Swal.fire({
-                                    title: '超過折抵上限',
-                                    icon: 'warning',
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                });
-                                myyuseBonus.value = bonus;
-                                usemyBonus = -bonus;
-                            }
+                            usemycoupon = e.value;
                         }
 
-                        useBonus = () => {
-                            //  金額試算更新使用購物金
-                            $('#bonusdiscount').text(usemyBonus);
-                            // console.log( parseInt($('#total').text()) + usemyBonus )
-                            var newTotal = parseInt($('#total').text()) + usemyBonus
-                            $('#total').text(newTotal)
+                        useCoupon = () => {
+                            $.get(`/getcoupon/${usemycoupon}`, function (e) {
+                                // console.log(e)
+                                if (e == '') {
+                                    Swal.fire({
+                                        title: '折扣碼錯誤',
+                                        icon: 'error',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                } else if (e != '' && usecouponid.innerText == '') {
+                                    // console.log(e[0].discount)
+                                    Swal.fire({
+                                        title: '成功使用折扣碼',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    useDiscount = e[0].discount
+                                    usecouponid.innerText = usemycoupon;
+                                    coupondiscount.innerText = useDiscount;
+                                    newTotal = parseInt($('#total').text()) + parseInt(useDiscount)
+                                    $('#total').text(newTotal);
+                                } else {
+                                    Swal.fire({
+                                        title: '本訂單已使用折扣碼',
+                                        icon: 'error',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                }
+                            })
                         }
+
 
 
                         // 讀取願望清單物件
@@ -528,7 +596,7 @@
                                     }
                                 }
                             }
-                            console.log(c_note);
+                            // console.log(c_note);
                             Object.keys(c_note).map((pid) => {
                                 var cnotestr = c_note[pid].join(' ');
                                 // console.log(pid);
@@ -687,7 +755,9 @@
                                         },
                                         body: JSON.stringify({
                                             oid: oid,
-                                            uid: uid
+                                            uid: uid,
+                                            useBonus: usemyBonus,
+                                            useCoupon: useDiscount
                                         })
                                     })
                                 ).then(
