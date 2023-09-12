@@ -5,7 +5,7 @@ var {login_render, login_api } = require('../middleware/auth_login');
 
 var bodyParser = require("body-parser");
 var jp = bodyParser.json();
-var up = bodyParser.urlencoded({ extended: true });
+// var up = bodyParser.urlencoded({ extended: true });
 
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');

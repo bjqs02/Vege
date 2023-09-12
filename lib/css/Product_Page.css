@@ -416,7 +416,7 @@ header
 }
 
 /* 模态框样式 */
-.modal {
+/* .modal {
   display: none;
   position: fixed;
   z-index: 1;
@@ -434,7 +434,7 @@ header
   display: block;
   max-width: 80%;
   max-height: 80%;
-}
+} */
 
 /* .close {
   position: absolute;

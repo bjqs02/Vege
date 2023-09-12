@@ -1,16 +1,15 @@
 #slogan {
-    width: 80%;
-    padding: 10px;
-    font-size: 16px;
+    padding: 5px;
     text-align: center;
-    line-height: 50px;
     margin-bottom: 30px;
-    /* outline: 1px solid salmon; */
+    background: rgba(236, 227, 214, 0.25);
+    letter-spacing: 10px;
+    margin-top: 120px;
 }
 
-#slogan div {
-    height: fit-content;
-    /* outline: 1px solid salmon; */
+#slogan>div::before, #slogan>div::after {
+    content: '------';
+    overflow: hidden;
 }
 
 #concept {
@@ -198,6 +197,14 @@
     z-index: 1;
 }
 
+@media screen and (max-width: 1200px) { 
+    #slogan>div::before, #slogan>div::after {
+        content: '----';
+        overflow: hidden;
+    }
+}
+
+
 @media screen and (max-width: 995px) { 
     #moreContact {
         height: 300px;
@@ -210,6 +217,10 @@
 }
 
 @media screen and (max-width: 768px) { 
+    #slogan>div::before, #slogan>div::after {
+        content: '--';
+        overflow: hidden;
+    }
     #moreContact {
         height: 200px;
         background-size: 50%;
