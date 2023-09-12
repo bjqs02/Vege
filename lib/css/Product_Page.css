@@ -1,6 +1,7 @@
 @charset "UTF-8";
 * {
   box-sizing: border-box;
+  
 }
 
 a {
@@ -225,7 +226,8 @@ header
   .vg-h3-div2
   div.box
   button.act {
-  color: white;
+    color: rgb(255, 255, 255);
+    background-color: var(--primary-2);
 }
 header
   main#product_main
@@ -414,39 +416,6 @@ header
     margin-left: 10px;
   }
 }
-
-/* 模态框样式 */
-/* .modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  padding-top: 100px;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.9);
-}
-
-.modal-content {
-  margin: auto;
-  display: block;
-  max-width: 80%;
-  max-height: 80%;
-} */
-
-/* .close {
-  position: absolute;
-  z-index: 100;
-  top: 100px;
-  right: 200px;
-  color: rgb(0, 0, 0);
-  font-size: 80px;
-  font-weight: bold;
-  cursor: pointer;
-} */
-
 #show {
   display: line;
 }
@@ -535,4 +504,9 @@ strong.over {
 
 .shaking {
   animation: shake 0.2s ease 2; /* 摇晃两次，每次0.5秒 */
+}
+
+
+.fu_nav:hover{
+  background-color: var(--primary-2);
 }

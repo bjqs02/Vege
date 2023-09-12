@@ -1,6 +1,6 @@
 let express = require("express");
 let product = express.Router();
-let mysql = require("../DB");
+let mysql = require("../db");
 product.get("/", function (req, res) {
   let sql = "SELECT product FROM product WHERE category = '蔬果箱';";
   let sql1 =
