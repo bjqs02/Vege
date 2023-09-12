@@ -15,6 +15,9 @@ app.use("/", express.static("lib"));
 app.get("/", function (req, res) {
   res.render("home");
 });
+app.use("/home", express.static("lib"));
+var home = require("./router/home");
+app.use("/home", home);
 
 // 登入
 app.use("/login", express.static("lib"));

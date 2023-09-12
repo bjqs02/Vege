@@ -8,12 +8,16 @@
     margin: auto;
 }
 
+#sec5 {
+    height: fit-content;
+}
+
 #sec6 {
     text-align: center;
 }
 
 .btn-vg-lg {
-    line-height: 80px;
+    line-height: 60px;
     font-size: 32px;
     font-family: Fishman;
     font-weight: 600;
@@ -211,8 +215,8 @@ h2 {
 
 .pSlide-track {
     display: flex;
-    width: calc(288px*18);
-    animation: scroll 40s linear infinite;
+    width: calc(288px*6);
+    animation: scroll 60s linear infinite;
 }
 
 .pSlide-track:hover {
@@ -267,7 +271,7 @@ h2 {
 
 /* 顧客回饋區塊 */
 .pSlider2 {
-    height: 350px;
+    height: 300px;
     margin: auto;
     position: relative;
     width: 90%;
@@ -278,8 +282,8 @@ h2 {
 
 .pSlide2-track {
     display: flex;
-    width: calc(250px*18);
-    animation: scroll 40s linear infinite;
+    width: calc(250px*10);
+    animation: scroll 60s linear infinite;
 }
 
 .pSlide2-track:hover {
@@ -287,8 +291,9 @@ h2 {
 }
 
 .pSlide2 {
-    height: 300px;
-    width: 250px;
+    height: 200px;
+    /* max-width: fit-content; */
+    width: fit-content;
     display: flex;
     align-items: center;
     padding: 20px;
