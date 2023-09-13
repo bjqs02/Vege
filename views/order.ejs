@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,22 +48,22 @@
                                                 <input type="checkbox" id="memberdata" class="" /><label
                                                     for="memberdata" class="">同會員資料</label><br />
                                             </div>
-                                            <div class="form-floating form-group m-2">
-                                                <input type="text" name="oName" id="username" class="form-control w-50"
-                                                    placeholder="" value="">
-                                                <label for="username">姓名</label>
+                                            <div class="form-floating form-group m-2 d-block">
+                                                <input type="text" name="oName" id="myusername"
+                                                    class="form-control w-50 ps-5" placeholder="" value="" required>
+                                                <label for="myusername">姓名</label>
                                             </div>
-                                            <div class="form-floating form-group m-2">
-                                                <input type="tel" name="oTel" id="userTel" class="form-control w-50"
-                                                    placeholder="">
-                                                <label for="userTel">電話</label>
+                                            <div class="form-floating form-group m-2 d-block">
+                                                <input type="tel" name="oTel" id="userTel"
+                                                    class="form-control w-50 ps-5" placeholder=""
+                                                    pattern="^(09)[0-9]{8}$" required>
+                                                <label for="userTel">手機</label>
                                             </div>
-                                            <div class="form-floating form-group m-2">
-                                                <input type="email" name="oMail" id="userMail" class="form-control w-75"
-                                                    placeholder="">
+                                            <div class="form-floating form-group m-2 d-block">
+                                                <input type="email" name="oMail" id="userMail"
+                                                    class="form-control w-75 ps-5" placeholder="" required>
                                                 <label for="userMail">信箱</label>
                                             </div>
-
                                             <!-- <div class="twzipcode m-2">
                                             <select data-role="county" class="form-select-sm w-25"></select>
                                             <select data-role="district" class="form-select-sm w-25"></select>
@@ -78,8 +75,9 @@
                                             <label for="userAdd">請輸入街道與門牌號碼</label>
                                         </div> -->
                                             <div class="m-2">
-                                                <input type="checkbox" name="" id="updateMember">
-                                                <label for="updateMember">更新到會員資料</label>
+                                                <input type="radio" name="" id="updateMember">
+                                                <label for="updateMember">更新姓名及手機到會員資料</label>
+                                                <!-- <a class="vg-href vg-ps border rounded p-2 mt-2" id="updateMember">更新姓名及手機到會員資料</a> -->
                                             </div>
                                         </div>
                                     </div>
@@ -118,33 +116,73 @@
                                                     <div class="float-end me-3">
                                                         <input type="checkbox" id="basicdata" class="" /><label
                                                             for="basicdata" class="">同訂購資訊</label><br />
-                                                        <button type="checkbox" id="frommember"
-                                                            class="btn btn-vg-xs w-100 mt-2">從常用地址帶入</button>
+                                                        <a id="frommember" data-toggle="modal"
+                                                            data-target="#memberModal"
+                                                            class="btn btn-vg-xs w-100 mt-2">從常用地址帶入</a>
                                                     </div>
+                                                    <!-- 常用地址 modal -->
+                                                    <div class="modal fade" id="memberModal" tabindex="-1" role="dialog"
+                                                        aria-labelledby="memberModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="memberModalLabel">常用地址
+                                                                    </h5>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <table id="myAddrrows">
+                                                                        <tr>
+                                                                            <th>#</th>
+                                                                            <th>姓名</th>
+                                                                            <th>電話</th>
+                                                                            <th>地址</th>
+                                                                        </tr>
+                                                                        <!-- <tr > -->
+                                                                        <!-- <td><input type="radio" name=""></td>
+                                                                            <td>王小明</td>
+                                                                            <td>0912333444</td>
+                                                                            <td>南投縣草屯鎮太平路一段557號</td> -->
+                                                                        <!-- </tr> -->
+                                                                    </table>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal"
+                                                                        id="membermodalcancel">取消</button>
+                                                                    <button type="button" class="btn btn-success"
+                                                                        id="membermodalok">確定</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
                                                     <div class="form-floating form-group m-2">
                                                         <input type="text" name="rName" id="homeName"
-                                                            class="form-control w-50" placeholder="">
+                                                            class="form-control w-50 ps-5" placeholder="">
                                                         <label for="homeName">姓名</label>
                                                     </div>
                                                     <div class="form-floating form-group m-2">
                                                         <input type="tel" name="rTel" id="homeTel"
-                                                            class="form-control w-50" placeholder="">
-                                                        <label for="homeTel">電話</label>
+                                                            class="form-control w-50 ps-5" pattern="^(09)[0-9]{8}$"
+                                                            placeholder="">
+                                                        <label for="homeTel">手機</label>
                                                     </div>
                                                     <div class="twzipcode text-start m-2">
                                                         <select data-role="county" class="form-select-sm w-25"></select>
                                                         <select data-role="district"
                                                             class="form-select-sm w-25"></select>
                                                         <input type="hidden" data-role="zipcode" />
-
                                                     </div>
                                                     <div class="form-floating form-group m-2">
-                                                        <input type="text" name="rAddr" id="homeAdd"
-                                                            class="form-control w-75" placeholder="">
+                                                        <input type="text" name="rAddr_info" id="homeAdd"
+                                                            class="form-control w-75 ps-5" placeholder=""
+                                                            oninput="rAddrinfo()">
                                                         <label for="homeAdd">請輸入街道與門牌號碼</label>
+                                                        <input type="hidden" name="rAddr" id="rAddr" readonly>
                                                     </div>
                                                     <div class="text-start m-3">
-                                                        <input type="checkbox" name="" id="updatemyaddress">
+                                                        <input type="radio" name="" id="updatemyaddress">
                                                         <label for="updatemyaddress">更新到常用地址</label>
                                                     </div>
                                                 </div>
@@ -161,8 +199,9 @@
                                                         </div>
                                                         <div class="form-floating form-group m-2">
                                                             <input type="tel" name="convTel" id="sevenTel"
-                                                                class="form-control" placeholder="">
-                                                            <label for="sevenTel">取貨人電話</label>
+                                                                class="form-control" pattern="^(09)[0-9]{8}$"
+                                                                placeholder="">
+                                                            <label for="sevenTel">取貨人手機</label>
                                                         </div>
                                                     </div>
                                                     <div class="">
@@ -185,8 +224,9 @@
                                                         </div>
                                                         <div class="form-floating form-group m-2">
                                                             <input type="tel" name="convTel" id="familyTel"
-                                                                class="form-control" placeholder="">
-                                                            <label for="familyTel">取貨人電話</label>
+                                                                class="form-control" pattern="^(09)[0-9]{8}$"
+                                                                placeholder="">
+                                                            <label for="familyTel">取貨人手機</label>
                                                         </div>
                                                     </div>
                                                     <div class="">
@@ -231,7 +271,7 @@
                                                 aria-labelledby="nav-transfer-tab" tabindex="0">
                                                 <p class="vg-p">請您在確認訂單後匯款至以下機構</p>
                                                 <p class="vg-ps">中國信託(代碼812)</p>
-                                                <p class="vg-ps">022-12344-11123-0000</p>
+                                                <p class="vg-ps">022-12568-112-860</p>
                                                 <div action="" class="">
                                                     <div class="form-floating form-group m-2">
                                                         <input type="text" name="transName" id="transferName"
@@ -240,13 +280,13 @@
                                                     </div>
                                                     <div class="form-floating form-group m-2">
                                                         <input type="text" name="transNum" id="transferNum"
-                                                            class="form-control" placeholder="">
-                                                        <label for="transferNum">您的匯款帳號/金融機構代碼 後五碼</label>
+                                                            class="form-control" placeholder="" pattern="\d{0,6}">
+                                                        <label for="transferNum">轉帳帳號後五碼/金融機構代碼</label>
                                                     </div>
                                                     <div class="form-floating form-group m-2">
                                                         <input type="date" name="transDate" id="transferTime"
                                                             class="form-control" placeholder="">
-                                                        <label for="transferTime">預計匯款日期</label>
+                                                        <label for="transferTime">預計轉帳/匯款日期</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -260,23 +300,29 @@
                                                     </div>
                                                     <div class="form-floating form-group m-2">
                                                         <input type="text" name="creditNum" id="cardNum"
-                                                            class="form-control w-100" placeholder="">
+                                                            class="form-control w-100" placeholder=""
+                                                            pattern="^\d{4}-\d{4}-\d{4}-\d{4}$"
+                                                            oninput="formatCreditCard()">
+
                                                         <label for="cardNum">卡號</label>
                                                     </div>
                                                     <div class="d-flex">
                                                         <div class="form-floating form-group m-2">
                                                             <input type="text" name="creditMM" id="cardMM"
-                                                                class="form-control w-100" placeholder="">
+                                                                class="form-control w-100" placeholder=""
+                                                                pattern="[0-9]{2}" maxlength="2">
                                                             <label for="cardMM">到期月</label>
                                                         </div>
                                                         <div class="form-floating form-group m-2">
                                                             <input type="text" name="creditYY" id="cardYY"
-                                                                class="form-control w-100" placeholder="">
+                                                                class="form-control w-100" placeholder=""
+                                                                pattern="[0-9]{2}" maxlength="2">
                                                             <label for="cardYY">到期年</label>
                                                         </div>
                                                         <div class="form-floating form-group m-2">
                                                             <input type="text" name="creditCSV" id="cardSecure"
-                                                                class="form-control w-100" placeholder="">
+                                                                class="form-control w-100" placeholder=""
+                                                                pattern="[0-9]{3}" maxlength="3">
                                                             <label for="cardSecure">安全碼</label>
                                                         </div>
                                                     </div>
@@ -323,6 +369,7 @@
                                                     <label for="donatefor">請選擇單位</label>
                                                     <select name="billDonate" id="donatefor"
                                                         class="donate form-select w-50 m-3 mx-auto">
+                                                        <option value="" selected></option>
                                                         <option value="家扶基金會">家扶基金會</option>
                                                         <option value="創世基金會">創世基金會</option>
                                                     </select>
@@ -334,7 +381,7 @@
                                                     <input type="radio" name="billPersonal" id="personalDrive"
                                                         class="d-inline" value="存入個人載具">
                                                     <label for="personalDrive" class="d-inline">存入個人載具
-                                                        <input type="text" name="" id=""
+                                                        <input type="text" name="" id="carrierNum"
                                                             class="d-inline form-control w-50"
                                                             placeholder="輸入載具編號"></label><br />
                                                     <input type="radio" name="billPersonal" id="personalAccount"
@@ -432,8 +479,10 @@
                     </div>
                     <!-- order -->
                     <div id="placeorder" class="text-center mt-5">
-                        <input type="radio" name="" id="contract"><label for="contract">服務協議</label>
-                        <input type="radio" name="" id="reminder"><label for="reminder">購物提醒</label><br />
+                        <input type="checkbox" name="" id="contract" checked><label for="contract"
+                            onclick="serviceinfo()">服務協議</label>
+                        <input type="checkbox" name="" id="reminder" checked><label for="reminder"
+                            onclick="noticeinfo()">購物提醒</label><br />
                         <a class="btn btn-vg-lg mt-2 mb-3 p-3" onclick="getdetails()">確認訂單</a><br />
                         <a class="vg-href" onclick="backtocart()">修改訂單</a>
                     </div>
@@ -446,14 +495,21 @@
 
             <script>
                 // 地址套件 
-                // let twzipcode = new TWzipcode({
-                //     "district": {
-                //         onChange: function (id) {
-                //             console.log(this.nth(id).get());
-                //         }
-                //     }
-                // });
-                const twzipcode = new TWzipcode();
+                var myzip;
+                let twzipcode = new TWzipcode({
+                    "district": {
+                        onChange: function (id) {
+                            // console.log( this.nth(id).get() );
+                            myzip = `${this.nth(id).get().zipcode} ${this.nth(id).get().county}${this.nth(id).get().district}`
+                            // console.log(myzip)
+                        }
+                    }
+                });
+                function rAddrinfo() {
+                    // console.log( homeAdd.value )
+                    // console.log(  myzip , homeAdd.value )
+                    rAddr.value = `${myzip}${homeAdd.value}`
+                }
 
                 // 設定使用者
                 var userData = localStorage.getItem('token');
@@ -506,9 +562,118 @@
                     // 總金額計算
                     $('#total').text(shippingfee + total - bonus + coupon)
                 }).then(function (res) {
+                    // 顯示訂單編號
                     orderid.innerText = res[0].oid;
-                    // 可新增若從資訊確認頁面返回修改，帶入已存在資料庫的資料(未完成)
+
+                    // 點選 同會員資料 的功能
+                    $('#memberdata').on('click', () => {
+                        $.get(`/getuserinfo/${uid}`, function (res) {
+                            myusername.value = res[0].Name
+                            userTel.value = res[0].Phone
+                            userMail.value = res[0].Email
+                        })
+                    })
+
+                    // 點選 更新訂購資訊姓名及手機到會員資料 的功能
+                    $('#updateMember').on('click', () => {
+                        Swal.fire({
+                            title: '確定要更新到會員資料?',
+                            text: '本動作無法復原',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: '確定',
+                            cancelButtonText: '取消'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                fetch('/updateuserinfo/', {
+                                    method: 'PATCH',
+                                    headers: {
+                                        "Content-Type": "application/json ; charset=UTF-8"
+                                    },
+                                    body: JSON.stringify({
+                                        Name: myusername.value,
+                                        Phone: userTel.value,
+                                        uId: uid
+                                    })
+                                })
+                            } else {
+                                updateMember.checked = false
+                            }
+                        })
+                    })
+
+                    // 點選 同訂購資訊 的功能
+                    $('#basicdata').on('click', function () {
+                        homeName.value = myusername.value
+                        homeTel.value = userTel.value
+                    })
+                    // 點選 信用卡頁籤 自動帶入信用卡號
+                    $('#nav-card-tab').on('click', () => {
+                        $.get(`/getuserinfo/payment/${uid}`, (res) => {
+                            res.length ? (cardNum.value = res[0].card) : (cardNum.value = "")
+                        })
+                    })
+
+                    // 點選 存入個人載具 自動帶入會員載具
+                    $('#personalDrive').on('click', () => {
+                        $.get(`/getuserinfo/${uid}`, (res) => {
+                            res.length ? (carrierNum.value = res[0].carrier) : (carrierNum.value = "")
+                        })
+                    })
+
+                    // 點選 從常用地址帶入(收件資料) 的功能(多個資料)
+                    $('#frommember').on('click', () => {
+                        // 取得資料 => 打開modal => 選取要使用的資料
+                        $.get(`/getuserinfo/addr/${uid}`, (res) => {
+                            if (res.length > 0) {
+                                $('#memberModal').modal('show')
+                                var trHtml;
+                                res.map((item) => {
+                                    $(`#${item.uId}`).remove()
+                                    trHtml += `<tr id=${item.uId}>
+                            <td class="pt-3"><input type="radio" name="myAddr" id=${item.Name}></td>
+                            <td class="pt-3"><label for=${item.Name}>${item.Name}</label></td>
+                            <td class="pt-3"><label for=${item.Name}>${item.Phone}</label></td>
+                            <td class="pt-3"><label for=${item.Name}>${item.address}</label></td>
+                            </tr>`
+                                })
+                                $('#myAddrrows').append(trHtml);
+                                // 確認 => 帶入資料
+                                $('#membermodalok').on('click', (e) => {
+                                    // $('#memberModal').modal('hide')
+                                    console.log(e)
+
+                                })
+                                // 取消 => 關閉modal
+                                $('#membermodalcancel').on('click', () => { $('#memberModal').modal('hide') })
+                            } else {
+                                Swal.fire({
+                                    title: '您沒有常用地址資料',
+                                    icon: 'warning',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            }
+                        })
+
+
+                    })
+
+                    // 點選 更新到常用地址(收件資料) 的功能(insert)
+
+
+
+
+                    // 若從資訊確認頁面返回修改，帶入已存在資料庫的資料
                 })
+
+
+
+
+
+
 
                 // 從order 返回 cart 的動作
                 function backtocart() {
@@ -541,24 +706,73 @@
 
                 // 從order 前往 確認訂單 的動作
                 function getdetails() {
+
+                    if ($('.invalid').length != 0) {
+                        Swal.fire({
+                            title: '您輸入的資訊有誤，請再次確認',
+                            icon: 'warning',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        return
+                    }
+
+                    // 確認是否已填妥資料
+                    if (!myusername.value || !userTel.value || !userMail.value) {
+                        Swal.fire({
+                            title: '您的基本資訊尚未填妥',
+                            icon: 'warning',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        return
+                    }
+                    if (!homeName.value && !sevenName.value && !familyName.value) {
+                        Swal.fire({
+                            title: '您的收件資訊尚未填妥',
+                            icon: 'warning',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        return
+                    }
+
+                    if (!transferName.value && !cardName.value && !linepay.checked) {
+                        Swal.fire({
+                            title: '您的付款方式尚未填妥',
+                            icon: 'warning',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        return
+                    }
+
                     var oid = orderid.innerText
                     var formdata = $('#orderdetails').serializeArray();
                     // 增加表格以外的資料
                     var alldata = [...formdata, { name: 'oid', value: oid }]
                     var JSONData = serializeToJSON(alldata);
-                    console.log(JSONData)
-                    // console.log(JSONData);
-                    fetch(`/editorder/details/${oid}`, {
-                        method: 'PATCH',
-                        headers: {
-                            "Content-Type": "application/json ; charset=UTF-8"
-                        },
-                        body: JSONData
-                    }).then(
-                        // 刪除使用者購物金(未完成)
-                        // 完成表格填寫，跳轉至下一頁面
-                        document.location.href = "/orderconfirm/"
-                    )
+                    console.log(JSONData);
+
+                    if (contract.checked && reminder.checked) {
+                        fetch(`/editorder/details/${oid}`, {
+                            method: 'PATCH',
+                            headers: {
+                                "Content-Type": "application/json ; charset=UTF-8"
+                            },
+                            body: JSONData
+                        }).then(
+                            // 完成表格填寫，跳轉至下一頁面
+                            document.location.href = "/orderconfirm/"
+                        )
+                    } else {
+                        Swal.fire({
+                            title: '請閱讀服務協議與購物提醒！',
+                            icon: 'warning',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
                 }
 
                 function serializeToJSON(data) {
@@ -569,9 +783,33 @@
                     return JSON.stringify(values)
                 }
 
+                // 資料驗證
+                var inputs = document.querySelectorAll('input')
+                inputs.forEach(input => {
+                    input.addEventListener('input', function () {
+                        if (input.checkValidity()) {
+                            input.classList.add('valid');
+                            input.classList.remove('invalid');
+                        } else {
+                            input.classList.add('invalid');
+                            input.classList.remove('valid');
 
+                        }
+                    })
+                })
 
-
+                // 信用卡驗證
+                function formatCreditCard() {
+                    const input = document.getElementById("cardNum");
+                    // 去掉非數字的字元
+                    let value = input.value.replace(/\D/g, '');
+                    if (value.length > 16) {
+                        value = value.substring(0, 16);
+                    }
+                    // 每四碼自動跳出橫槓
+                    value = value.replace(/(\d{4})(?=\d)/g, '$1-');
+                    input.value = value;
+                }
 
             </script>
 

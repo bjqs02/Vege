@@ -174,11 +174,20 @@
 }
 
 #sendorder:hover {
-    background-color: red !important;
+    background-color: #8a061d !important;
 }
 
 
 /* ↓↓↓訂單資料↓↓↓ */
+/* 驗證表單 */
+input.valid {
+    border: 2px solid #80c97e;
+}
+
+input.invalid {
+    border: 2px solid #8a061d;
+}
+
 .accordion-button:not(.collapsed) {
     background-color: var(--primary);
     color: var(--text-color);
@@ -215,7 +224,7 @@ div[class*="float-end"] input,
 
 /* ↓↓↓購物車↓↓↓ */
 
-#cnotemodal{
+#cnotemodal {
     margin-top: 20vh;
     z-index: 1080;
 }
@@ -223,18 +232,19 @@ div[class*="float-end"] input,
 .close-btn {
     position: absolute;
     top: 0px;
-    right: -4px;
-    padding: 0.2rem 0.4rem; 
-    color: #000; 
-    /* background-color: transparent;  */
+    right: -10px;
+    /* padding: 0.2rem 0.4rem;  */
+    color: #000;
+    background-color: transparent;
     /* border: 1px solid #82828233; */
-    border-radius: 50%; 
+    border-radius: 50%;
     cursor: pointer;
+    border: none;
 }
 
 .close-btn:hover {
-    background-color: #ee8989; 
-    color: #fff; 
+    background-color: #c28c8c6e;
+    color: #fff;
     border: none;
 }
 

@@ -95,16 +95,16 @@
                         </table>
                         <table id="summary_coupon" class="table w-50">
                             <tr>
-                                <td>宅配運費</td>
-                                <td>120</td>
+                                <td class="vg-p vg-href" id="shippingfee" title="1~2人160元，3~4人290元">運費</td>
+                                <!-- <td>120</td> -->
                             </tr>
                             <tr>
-                                <td>折扣碼NPMSD</td>
-                                <td>-100</td>
+                                <td class="vg-p">折扣碼<span class="vg-ps" id="usecouponid"></span></td>
+                                <td id="coupondiscount">0</td>
                             </tr>
                             <tr>
-                                <td>購物金</td>
-                                <td>-5</td>
+                                <td class="vg-p">購物金</td>
+                                <td id="bonusdiscount">0</td>
                             </tr>
                         </table>
                         <div class="d-flex justify-content-around">
@@ -160,14 +160,17 @@
                             items = e;
                         }
                         // 訂單內容
-                        $("#summary_items").empty();
-                        var total = 0;
-                        var shippingfee = 0;
-                        $.each(items, function (index, item) {
-                            item.size == 's' ? fee = 160 : fee = 290; // 運費 (S-160 L-290)
-                            item.size == 's' ? item.size = '1~2人' : item.size = '3~4人';
-                            item.c_note == null ? item.c_note = '無備註' : item.c_note
-                            var trHtml = `
+                    var total = 0;
+                    var bonus = 0;
+                    var coupon = 0;
+                    var shippingfee = 0;
+                    $("#summary_items").empty();
+                    $.each(items, function (index, item) {
+                        item.size == 's' ? fee = 160 : fee = 290; // 運費 (S-160 L-290)
+                        item.size == 's' ? item.size = '1~2人' : item.size = '3~4人';
+                        item.useCoupon == null ? '0' : item.useCoupon;
+                        item.c_note == null ? item.c_note = '無備註' : item.c_note;
+                        var trHtml = `
                                 <tr>
                                 <td>
                                     <p class="m-0">${item.pname}</p>
@@ -176,17 +179,22 @@
                                 <td>${item.price}</td>
                             </tr>
                             `;
-                            $("#summary_items").append(trHtml);
-                            shippingfee += fee;
-                            total += item.price;
-                        })
-                        // 運費計算
-                        var tdHtml = `    
+                        $("#summary_items").append(trHtml);
+                        $('#coupondiscount').text(item.useCoupon);
+                        $('#bonusdiscount').text(-item.useBonus);
+                        bonus = parseInt(item.useBonus);
+                        coupon = parseInt(item.useCoupon);
+                        shippingfee += fee;
+                        total += item.price;
+                    })
+                    // 運費計算
+                    var tdHtml = `    
                         <td>${shippingfee}</td>
                         `;
-                        $('#shippingfee').after(tdHtml)
-                        // 總金額計算 (未含折扣碼與購物金)
-                        $('#total').text(shippingfee + total)
+                    $('#shippingfee').after(tdHtml)
+
+                    // 總金額計算
+                    $('#total').text(shippingfee + total - bonus + coupon)
                     }).then(function (res) {
                         orderid.innerText = res[0].oid;
                         console.log(res[0])
@@ -237,6 +245,7 @@
                         var oid = orderid.innerText;
                         var time = new Date().getTime();
                         console.log(time)
+                        // 刪除使用者購物金(未完成)
                         // 更新 本筆訂單 對應的o_status => inactive
                         fetch('/editorder/statusinactive/', {
                             method: 'PATCH',

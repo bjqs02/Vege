@@ -10,8 +10,7 @@ var bluebird = require('bluebird');
 bluebird.promisifyAll(db);
 
 
-// 購物車相關資料庫指令
-
+// cart 購物車相關資料庫指令
 cart_order.use(express.json());
 cart_order.use(express.urlencoded({ extended: true }));
 
@@ -51,7 +50,6 @@ cart_order.patch("/editcart/status/", function (req, res) {
             res.send(JSON.stringify(req.body));
         }
     )
-
 })
 
 // 建立訂購單 oid || uid (含購物金與折扣碼)
@@ -99,7 +97,7 @@ cart_order.delete("/order/delete/:oid", function (req, res) {
 cart_order.patch("/editorder/details/:oid", function (req, res) {
     var sql6 = "UPDATE vgorder SET oName= ? ,oTel= ? ,oMail= ? ,rName= ? ,rTel= ? ,rAddr= ? ,convName= ? ,convTel= ? ,convStore= ? ,payment= ? ,transName= ? ,transNum= ? ,transDate= ? ,creditName= ? ,creditNum= ? ,creditMM= ? ,creditYY= ? ,creditCSV= ? ,billDonate= ? ,billPersonal= ? ,billCompName= ? ,billCompNum= ? ,billCompAddr= ? ,o_note= ? WHERE oid = ? "
     db.query(sql6,
-        [req.body.oName, req.body.oTel, req.body.oMail, req.body.rName, req.body.rTel, req.body.rAddr, req.body.convName, req.body.convTel, req.body.convStore, req.body.payment, req.body.transName, req.body.transNum, req.body.transDate, req.body.creditName, req.body.creditNum, req.body.creditMM, req.body.creditYY, req.body.creditCSV, req.body.billBonate, req.body.billPersonal, req.body.billCompName, req.body.billCompNum, req.body.billCompAddr, req.body.o_note, req.body.oid],
+        [req.body.oName, req.body.oTel, req.body.oMail, req.body.rName, req.body.rTel, req.body.rAddr, req.body.convName, req.body.convTel, req.body.convStore, req.body.payment, req.body.transName, req.body.transNum, req.body.transDate, req.body.creditName, req.body.creditNum, req.body.creditMM, req.body.creditYY, req.body.creditCSV, req.body.billDonate, req.body.billPersonal, req.body.billCompName, req.body.billCompNum, req.body.billCompAddr, req.body.o_note, req.body.oid],
         function (err, rows) {
             res.send(JSON.stringify(req.body));
         }
@@ -196,7 +194,7 @@ cart_order.get('/getcoupon/:coupon', function (req, res) {
     })
 })
 
-// order頁面相關資料庫指令
+// order 頁面相關資料庫指令
 // 取得訂購者存放會員資料
 cart_order.get('/getuserinfo/:id', function (req, res) {
     var sql16 = "SELECT * FROM userinfo where uid = ?";
@@ -205,12 +203,41 @@ cart_order.get('/getuserinfo/:id', function (req, res) {
     })
 })
 
+// 更新會員資料
+cart_order.patch("/updateuserinfo/", function (req, res) {
+    var sql17 = "update userinfo set Name = ?, Phone = ?  where uId = ?"
+    db.query(sql17,
+        [req.body.Name, req.body.Phone, req.body.uId ],
+        function (err, rows) {
+            res.send(JSON.stringify(req.body));
+        }
+    )
+})
 
-// ordercomfirm 頁面 => 送出訂單 => o_status更新為 pending  
+// 取得會員 creditcard 資料
+cart_order.get('/getuserinfo/payment/:uid', function (req, res) {
+    var sql18 = "SELECT * FROM userinfo join usercard where userinfo.uId = usercard.uId and usercard.default = 1 and userinfo.uId = ? ;";
+    db.query(sql18, [req.params.uid], function (err, rows) {
+        res.send(rows);
+    })
+})
+
+// 取得會員 地址 資料
+cart_order.get('/getuserinfo/addr/:uid', function (req, res) {
+    var sql19 = "SELECT * FROM useraddress where uId = ?";
+    db.query(sql19, [req.params.uid], function (err, rows) {
+        res.send(rows);
+    })
+})
+
+// ordercomfirm 頁面相關資料庫指令
+
+
+// 送出訂單 => o_status更新為 pending  
 
 
 
-// 評價訂單相關資料庫指令
+// rateorder 評價訂單相關資料庫指令
 //讀取vgorder訂單狀態及品項
 cart_order.get('/getorderstatus/:oid', function (req, res) {
     var sql20 = "SELECT * FROM vgorder, cart, temp_product where vgorder.oid = cart.oid and cart.pid = temp_product.pid and vgorder.oid = ? ";

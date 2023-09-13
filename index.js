@@ -81,30 +81,30 @@ app.use("/", product);
 
 // 結帳去(購買資訊輸入)
 app.use("/order", express.static("lib"));
-app.get("/order", function (req, res) {
+app.get("/order", login_render, function (req, res) {
   res.render("order");
 });
 
 // 確認訂單
 app.use("/orderconfirm", express.static("lib"));
-app.get("/orderconfirm", function (req, res) {
+app.get("/orderconfirm", login_render, function (req, res) {
   res.render("orderconfirm");
 });
 
 // 送出訂單
 app.use("/orderprocessing", express.static("lib"));
-app.get("/orderprocessing", function (req, res) {
+app.get("/orderprocessing", login_render, function (req, res) {
   res.render("orderprocessing");
 });
 
 // 完成訂單
 app.use("/orderplaced", express.static("lib"));
-app.get("/orderplaced", function (req, res) {
+app.get("/orderplaced", login_render, function (req, res) {
   res.render("orderplaced");
 });
 // 評價訂單
 app.use("/rateorder", express.static("lib"));
-app.get("/rateorder", function (req, res) {
+app.get("/rateorder", login_render, function (req, res) {
   res.render("rateorder");
 });
 
