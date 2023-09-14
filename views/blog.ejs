@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/blog.css">
+    <link rel="stylesheet" href="css/selectivity-jquery.min.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" /> 
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/loadingio/loading.css@v2.0.0/dist/loading.min.css"> 
+    <%- include('share/head_link.ejs') %>
+</head>
+
+<body>
+    <%- include('share/header.ejs')%>
+        <%- include('share/sub_header.ejs')%>
+
+            <!-- wrap -->
+            <div class="container d-flex gap-3 flex-md-row flex-column-reverse pb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                        <path
+                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                    </symbol>
+                </svg>
+                <div class="alerttt">
+                    <div class="alert alert-bg d-flex align-items-center" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                            <use xlink:href="#check-circle-fill" />
+                        </svg>
+                        <path
+                            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                        </svg>
+                        <div>
+                            已成功加入收藏<i class="fa-solid fa-folder keepalerti ld ld-rubber-v"></i>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- article -->
+
+                <div class="row g-3">
+                    <!-- card1 -->
+                    <% for (let i=0; i < data.length; i++){ %>
+
+                        <div class="col-12 col-lg-6">
+                            <div class="card">
+                                <a href="/blog/inside/<%- data[i].atcid  %>" class="cardAt">
+                                    <div>
+                                        <img src="<%- data[i].atcimg %>" class="card-img-top" alt="art1">
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="vg-h4 blogTitle">
+                                            <%= data[i].atcTitle %>
+                                        </h4>
+                                        <p class="vg-p blogView">
+                                            <%= data[i].atcText %>
+                                        </p>
+                                        <div class="articleIcon">
+                                            <a>
+                                                <div class="con-like">
+                                                    <input title="like" type="checkbox" class="like check1">
+                                                    <div class="checkmark">
+                                                        <svg viewBox="0 0 24 24" class="outline"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z">
+                                                            </path>
+                                                        </svg>
+                                                        <svg viewBox="0 0 24 24" class="filled"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z">
+                                                            </path>
+                                                        </svg>
+                                                        <svg class="celebrate" width="100" height="100"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <polygon points="10,10 20,20" class="poly"></polygon>
+                                                            <polygon points="10,50 20,50" class="poly"></polygon>
+                                                            <polygon points="20,80 30,70" class="poly"></polygon>
+                                                            <polygon points="90,10 80,20" class="poly"></polygon>
+                                                            <polygon points="90,50 80,50" class="poly"></polygon>
+                                                            <polygon points="80,80 70,70" class="poly"></polygon>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <p class="likePeople" style="margin-left: -12px; padding: 3px;"></p>
+                                            <a>
+                                                <div class="con-like con-keep">
+                                                    <input title="like" type="checkbox" class="like keep1">
+                                                    <div class="checkmark">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                                            width="35px" height="35px" viewBox="0 0 24 24"
+                                                            class="outline">
+                                                            <path
+                                                                d="M 6.0097656 2 C 4.9143111 2 4.0097656 2.9025988 4.0097656 3.9980469 L 4 22 L 12 19 L 20 22 L 20 20.556641 L 20 4 C 20 2.9069372 19.093063 2 18 2 L 6.0097656 2 z M 6.0097656 4 L 18 4 L 18 19.113281 L 12 16.863281 L 6.0019531 19.113281 L 6.0097656 4 z">
+                                                            </path>
+                                                        </svg>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                                            width="35px" height="35px" viewBox="0 0 24 24"
+                                                            class="filled">
+                                                            <path
+                                                                d="M 6 2 C 5.861875 2 5.7278809 2.0143848 5.5976562 2.0410156 C 4.686084 2.2274316 4 3.033125 4 4 L 4 22 L 12 19 L 20 22 L 20 4 C 20 3.8625 19.985742 3.7275391 19.958984 3.5976562 C 19.799199 2.8163086 19.183691 2.2008008 18.402344 2.0410156 C 18.272119 2.0143848 18.138125 2 18 2 L 6 2 z">
+                                                            </path>
+                                                        </svg>
+                                                        <svg class="celebrate" width="100" height="100"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <polygon points="10,10 20,20" class="poly"></polygon>
+                                                            <polygon points="10,50 20,50" class="poly"></polygon>
+                                                            <polygon points="20,80 30,70" class="poly"></polygon>
+                                                            <polygon points="90,10 80,20" class="poly"></polygon>
+                                                            <polygon points="90,50 80,50" class="poly"></polygon>
+                                                            <polygon points="80,80 70,70" class="poly"></polygon>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <%　}　%>
+
+                            <div class="blog_page">
+                                <ul class="gap-3 pageset">
+                                    <% for (let i=1; i <=last_page; i++){ %>
+
+                                        <a href="<%= i %>">
+                                            <%= i %>
+                                        </a> &nbsp;&nbsp;
+
+                                        <% } %>
+
+                                            <a href="/blog/page/<%= next_page %>">
+                                                下一頁
+                                            </a> &nbsp;&nbsp;
+                                </ul>
+                            </div>
+                            </a>
+                </div>
+
+
+                <!-- article end -->
+                <!-- rightrow -->
+                <div class="col-md-5 col-lg-3 vg-bd-5 border rightRow">
+                    <!-- search -->
+                    <div class="d-flex m-3 searchRow">
+                        <div class="form-floating mb-3 w-75">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="搜尋">
+                            <label for="floatingInput">搜尋</label>
+                        </div>
+                        <button class="btn btn-vg serchButton"><i class="bi bi-search"></i></button>
+
+
+                    </div>
+                    <div class="d-flex justify-content-center searchMore">
+                        <h5 class="vg-h4">進階搜尋</h5>
+                        <button class="btn btn-vg-sm"><i class="bi bi-caret-down-square-fill ps-2"></i></button>
+                    </div>
+                    <div class="searchMoredown">
+                        <div class="m-3">
+                            <h5 class="vg-h5">包含標籤</h5>
+                            <div id="includetag" class="form-floating mb-3 w-75 selectivity-input example-input"
+                                tabindex="0">
+                                <div class="selectivity-multiple-input-container form-floating">
+                                    <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off"
+                                        class="form-control selectivity-multiple-input" size="23">
+                                    <div class="selectivity-clearfix"></div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-3">
+                            <h5 class="vg-h5">排除標籤</h5>
+                            <div id="notag" class="form-floating mb-3 w-75 selectivity-input example-input"
+                                tabindex="0">
+                                <div class="selectivity-multiple-input-container form-floating">
+                                    <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off"
+                                        class="form-control selectivity-multiple-input" size="23">
+                                    <div class="selectivity-clearfix"></div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-vg m-2 shadow-sm" id="tagschBtn">送出</button>
+                        <br><br>
+                    </div>
+
+                    <!-- search end -->
+                    <hr>
+                    <!-- hot -->
+                    <div>
+                        <h4 class="vg-h4 mt-3 ">熱門標籤</h4>
+                        <div class="hotTag d-flex flex-wrap justify-content-center gap-1 mt-3">
+
+                        </div>
+                        <hr>
+                        <div>
+                            <h4 class="vg-h4 mt-3">熱門文章</h4>
+                            <div class="hotArt">
+                                <div class="d-flex mt-3">
+                                    <img src="https://cw1.tw/CH/images/channel_master/5a5a6829-34f5-4463-b486-e5a116f1caa8.jpg"
+                                        alt="">
+                                    <div class="hotArtcontent" onclick="window.open(`/blog/inside/2`,'_self')" ;>
+                                        <p class="vg-h5 hottitle">
+                                            覺得疲倦是因為缺少這5種食物！
+                                        </p>
+                                        <span class="vg-p hotspan">
+                                            每天都覺得累，卻永遠也睡不飽嗎？小心這是沉默的器官「肝臟」發出的警告！現代人生活忙碌，時常暴飲暴食，
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="d-flex mt-3">
+                                    <img src="https://taiwan-bonbon-farmer.com/wp-content/uploads/2016/11/k2_items_src_7586bcdd7a745d843a3897512742ccdb.jpg.webp"
+                                        alt="">
+                                    <div class="hotArtcontent">
+                                        <p class="vg-h5 hottitle">
+                                            冬天預防感冒，橘子最好，但你知道嗎?橘皮也很有用處啊
+                                        </p>
+                                        <span class="vg-p hotspan">
+                                            冬天盛產柑橘類，每次吃橘子，我都先將外橘皮洗乾淨、擦乾，然後完整的剝下外
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="d-flex mt-3">
+                                    <img src="https://taiwan-bonbon-farmer.com/wp-content/uploads/2022/06/wmpineapple001b.jpg"
+                                        alt="">
+                                    <div class="hotArtcontent">
+                                        <p class="vg-h5 hottitle">
+                                            巨無霸西瓜鳳梨 新品種超熱銷
+                                        </p>
+                                        <span class="vg-p hotspan">
+                                            「這粒鳳梨怎麼那麼大，是一般鳳梨的2、3倍大吧」，這是高樹果農郭智偉嘗試新品種鳳梨，尚未正式命
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- hot end -->
+                </div>
+                <!-- wrap end-->
+
+            </div>
+
+            <script src="js/blogact.js"></script>
+            <script src="js/selectivity-jquery.min.js"></script>
+            <script>
+                var a = <%= curr_page %>;
+                $(`.pageset>a:nth-child(${a})`).css('border-bottom', 'rgb(31, 2, 2) solid 2px');
+
+                $('#qna').addClass('btn-vg-2-active');
+                $('#title1').text('全部分類');
+                $('#title1').prop('href', '/blog/page/1');
+                $('#title2').text('農產品');
+                $('#title2').prop('href', '/blog/category/1');
+                $('#title3').text('健康');
+                $('#title3').prop('href', '/blog/category/2');
+                $('#title4').text('食譜');
+                $('#title4').prop('href', '/blog/category/3');
+                $('#title5').text('小農介紹');
+                $('#title5').prop('href', '/blog/category/4');
+
+                $(function () {
+                    $(`#qa1`).on({
+                        mouseover: function () {
+                            // console.log(this);
+                            $(`#title1`).addClass('btn-vg-3-active');
+                        },
+                        mouseout: function () {
+                            $(`#title1`).removeClass('btn-vg-3-active');
+                        }
+                    });
+                    $(`#qa2`).on({
+                        mouseover: function () {
+                            // console.log(this);
+                            $(`#title2`).addClass('btn-vg-3-active');
+                        },
+                        mouseout: function () {
+                            $(`#title2`).removeClass('btn-vg-3-active');
+                        }
+                    });
+                    $(`#qa3`).on({
+                        mouseover: function () {
+                            // console.log(this);
+                            $(`#title3`).addClass('btn-vg-3-active');
+                        },
+                        mouseout: function () {
+                            $(`#title3`).removeClass('btn-vg-3-active');
+                        }
+                    });
+                    $(`#qa4`).on({
+                        mouseover: function () {
+                            // console.log(this);
+                            $(`#title4`).addClass('btn-vg-3-active');
+                        },
+                        mouseout: function () {
+                            $(`#title4`).removeClass('btn-vg-3-active');
+                        }
+                    });
+                    $(`#qa5`).on({
+                        mouseover: function () {
+                            // console.log(this);
+                            $(`#title5`).addClass('btn-vg-3-active');
+                        },
+                        mouseout: function () {
+                            $(`#title5`).removeClass('btn-vg-3-active');
+                        }
+                    });
+                })
+            </script>
+            <script>$(document).ready(function () {
+                    var itemTag = [];
+                    fetch('/blog/tags')
+                        .then(function (res) {
+                            return res.json();
+                        })
+                        .then(function (jsonObj) {
+                            // console.log(jsonObj[0].tagname);
+                            for (var i = 1; i < jsonObj.length; i++) {
+                                itemTag.push(jsonObj[i].tagname);
+                            }
+                            $('#includetag').selectivity({
+                                items: itemTag,
+                                multiple: true,
+                                placeholder: '搜尋'
+                            });
+                            $('#notag').selectivity({
+                                items: itemTag,
+                                multiple: true,
+                                placeholder: '搜尋'
+                            });
+                            for (let i = 1; i < 10; i++) {
+                                // console.log($('.hotTag'));
+                                $('.hotTag').prepend(`<a href="/blog/tag/${jsonObj[i].tagid}"><button class="btn btn-vg-xs shadow-sm">${jsonObj[i].tagname}</button></a>`);
+                            }
+                        })
+
+
+                    let includeTag = 0;
+                    $('#includetag').on('change', function () {
+                        includeTag = $(this).selectivity('value'); // 获取所选标签的值
+                        console.log('所选标签:', includeTag);
+                        // 在这里可以使用所选标签的值进行其他操作，例如发送到服务器进行筛选等等
+                    });
+
+                    let nocludeTag = 0;
+                    $('#notag').on('change', function () {
+                        nocludeTag = $(this).selectivity('value'); // 获取所选标签的值
+                        console.log('所选标签:', nocludeTag);
+                        // 在这里可以使用所选标签的值进行其他操作，例如发送到服务器进行筛选等等
+                    });
+                    let sqlQuery = 'SELECT * FROM `article` WHERE ';
+                    $('#tagschBtn').on('click', function () {
+                        console.log(includeTag, nocludeTag);
+                        if (includeTag.length > 0) {
+                            // sqlQuery += '(';
+                            for (let i = 0; i < includeTag.length; i++) {
+                                sqlQuery += 'atTag LIKE \'%' + includeTag[i] + '%\'';
+                                if (i < includeTag.length - 1) {
+                                    sqlQuery += ' AND ';
+                                }
+                            }
+                            // sqlQuery += ')';
+                        }
+                        // 添加排除标签的条件
+                        if (nocludeTag.length > 0) {
+                            if (includeTag.length > 0) {
+                                sqlQuery += ' AND ';
+                            }
+                            // sqlQuery += '(';
+                            for (let i = 0; i < nocludeTag.length; i++) {
+                                sqlQuery += 'atTag NOT LIKE \'%' + nocludeTag[i] + '%\'';
+                                if (i < nocludeTag.length - 1) {
+                                    sqlQuery += ' AND ';
+                                }
+                            }
+                            // sqlQuery += ')';
+                        }
+                        // console.log('构建的SQL查询:', sqlQuery);
+                        var tagData = {};
+                        tagData.search = sqlQuery;
+                        var jsonData = JSON.stringify(tagData);
+                        console.log(jsonData);
+                        fetch('/blog/search', {
+                            method: "POST",
+                            headers: {
+                                "Content-type": "application/json;charset=UTF-8"
+                            },
+                            body: jsonData
+                        })
+                        .then(function(res){
+                            console.log(res);
+                        })
+                    })
+                });
+
+
+
+                // 添加包含标签的条件
+
+            </script>
+</body>
+
+</html>

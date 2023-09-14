@@ -108,6 +108,24 @@ app.get("/rateorder", login_render, function (req, res) {
   res.render("rateorder");
 });
 
+//blog
+let blog = require('./router/blog.js');
+let activityboard = require('./router/activityboard.js');
+app.use('/blog/page',express.static('lib'));
+app.use('/blog/inside',express.static('lib'));
+app.use('/blog/tag',express.static('lib'));
+app.use('/blog/category',express.static('lib'));
+app.use('/activityboard',express.static('lib'));
+app.use('/activityboard/category',express.static('lib'));
+app.use('/activityboard/inside',express.static('lib'));
+app.use('/blog', blog);
+app.use('/activityboard', activityboard);
+
+
+
+
+
+
 app.listen(2407, function () {
   console.log("----伺服器啟動OK " + new Date().toLocaleTimeString() + "----");
 });
