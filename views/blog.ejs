@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="css/blog.css">
     <link rel="stylesheet" href="css/selectivity-jquery.min.css">
 
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" /> 
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/loadingio/loading.css@v2.0.0/dist/loading.min.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/loadingio/loading.css@v2.0.0/dist/loading.min.css">
     <%- include('share/head_link.ejs') %>
 </head>
 
@@ -153,7 +153,7 @@
                             <input type="text" class="form-control" id="floatingInput" placeholder="搜尋">
                             <label for="floatingInput">搜尋</label>
                         </div>
-                        <button class="btn btn-vg serchButton"><i class="bi bi-search"></i></button>
+                        <button id="searchBTN" class="btn btn-vg serchButton"><i class="bi bi-search"></i></button>
 
 
                     </div>
@@ -250,163 +250,173 @@
 
             </div>
             <%- include('share/footer.ejs')%>
-            <script src="js/blogact.js"></script>
-            <script src="js/selectivity-jquery.min.js"></script>
-            <script>
-                var a = <%= curr_page %>;
-                $(`.pageset>a:nth-child(${a})`).css('border-bottom', 'rgb(31, 2, 2) solid 2px');
+                <script src="js/blogact.js"></script>
+                <script src="js/selectivity-jquery.min.js"></script>
+                <script>
+                    var a = <%= curr_page %>;
+                    $(`.pageset>a:nth-child(${a})`).css('border-bottom', 'rgb(31, 2, 2) solid 2px');
 
-                $('#qna').addClass('btn-vg-2-active');
-                $('#title1').text('全部分類');
-                $('#title1').prop('href', '/blog/page/1');
-                $('#title2').text('農產品');
-                $('#title2').prop('href', '/blog/category/1');
-                $('#title3').text('健康');
-                $('#title3').prop('href', '/blog/category/2');
-                $('#title4').text('食譜');
-                $('#title4').prop('href', '/blog/category/3');
-                $('#title5').text('小農介紹');
-                $('#title5').prop('href', '/blog/category/4');
+                    $('#qna').addClass('btn-vg-2-active');
+                    $('#title1').text('全部分類');
+                    $('#title1').prop('href', '/blog/page/1');
+                    $('#title2').text('農產品');
+                    $('#title2').prop('href', '/blog/category/1');
+                    $('#title3').text('健康');
+                    $('#title3').prop('href', '/blog/category/2');
+                    $('#title4').text('食譜');
+                    $('#title4').prop('href', '/blog/category/3');
+                    $('#title5').text('小農介紹');
+                    $('#title5').prop('href', '/blog/category/4');
 
-                $(function () {
-                    $(`#qa1`).on({
-                        mouseover: function () {
-                            // console.log(this);
-                            $(`#title1`).addClass('btn-vg-3-active');
-                        },
-                        mouseout: function () {
-                            $(`#title1`).removeClass('btn-vg-3-active');
-                        }
-                    });
-                    $(`#qa2`).on({
-                        mouseover: function () {
-                            // console.log(this);
-                            $(`#title2`).addClass('btn-vg-3-active');
-                        },
-                        mouseout: function () {
-                            $(`#title2`).removeClass('btn-vg-3-active');
-                        }
-                    });
-                    $(`#qa3`).on({
-                        mouseover: function () {
-                            // console.log(this);
-                            $(`#title3`).addClass('btn-vg-3-active');
-                        },
-                        mouseout: function () {
-                            $(`#title3`).removeClass('btn-vg-3-active');
-                        }
-                    });
-                    $(`#qa4`).on({
-                        mouseover: function () {
-                            // console.log(this);
-                            $(`#title4`).addClass('btn-vg-3-active');
-                        },
-                        mouseout: function () {
-                            $(`#title4`).removeClass('btn-vg-3-active');
-                        }
-                    });
-                    $(`#qa5`).on({
-                        mouseover: function () {
-                            // console.log(this);
-                            $(`#title5`).addClass('btn-vg-3-active');
-                        },
-                        mouseout: function () {
-                            $(`#title5`).removeClass('btn-vg-3-active');
-                        }
-                    });
-                })
-            </script>
-            <script>$(document).ready(function () {
-                    var itemTag = [];
-                    fetch('/blog/tags')
-                        .then(function (res) {
-                            return res.json();
-                        })
-                        .then(function (jsonObj) {
-                            // console.log(jsonObj[0].tagname);
-                            for (var i = 1; i < jsonObj.length; i++) {
-                                itemTag.push(jsonObj[i].tagname);
-                            }
-                            $('#includetag').selectivity({
-                                items: itemTag,
-                                multiple: true,
-                                placeholder: '搜尋'
-                            });
-                            $('#notag').selectivity({
-                                items: itemTag,
-                                multiple: true,
-                                placeholder: '搜尋'
-                            });
-                            for (let i = 1; i < 10; i++) {
-                                // console.log($('.hotTag'));
-                                $('.hotTag').prepend(`<a href="/blog/tag/${jsonObj[i].tagid}"><button class="btn btn-vg-xs shadow-sm">${jsonObj[i].tagname}</button></a>`);
-                            }
-                        })
-
-
-                    let includeTag = 0;
-                    $('#includetag').on('change', function () {
-                        includeTag = $(this).selectivity('value'); // 获取所选标签的值
-                        console.log('所选标签:', includeTag);
-                        // 在这里可以使用所选标签的值进行其他操作，例如发送到服务器进行筛选等等
-                    });
-
-                    let nocludeTag = 0;
-                    $('#notag').on('change', function () {
-                        nocludeTag = $(this).selectivity('value'); // 获取所选标签的值
-                        console.log('所选标签:', nocludeTag);
-                        // 在这里可以使用所选标签的值进行其他操作，例如发送到服务器进行筛选等等
-                    });
-                    let sqlQuery = 'SELECT * FROM `article` WHERE ';
-                    $('#tagschBtn').on('click', function () {
-                        console.log(includeTag, nocludeTag);
-                        if (includeTag.length > 0) {
-                            // sqlQuery += '(';
-                            for (let i = 0; i < includeTag.length; i++) {
-                                sqlQuery += 'atTag LIKE \'%' + includeTag[i] + '%\'';
-                                if (i < includeTag.length - 1) {
-                                    sqlQuery += ' AND ';
-                                }
-                            }
-                            // sqlQuery += ')';
-                        }
-                        // 添加排除标签的条件
-                        if (nocludeTag.length > 0) {
-                            if (includeTag.length > 0) {
-                                sqlQuery += ' AND ';
-                            }
-                            // sqlQuery += '(';
-                            for (let i = 0; i < nocludeTag.length; i++) {
-                                sqlQuery += 'atTag NOT LIKE \'%' + nocludeTag[i] + '%\'';
-                                if (i < nocludeTag.length - 1) {
-                                    sqlQuery += ' AND ';
-                                }
-                            }
-                            // sqlQuery += ')';
-                        }
-                        // console.log('构建的SQL查询:', sqlQuery);
-                        var tagData = {};
-                        tagData.search = sqlQuery;
-                        var jsonData = JSON.stringify(tagData);
-                        console.log(jsonData);
-                        fetch('/blog/search', {
-                            method: "POST",
-                            headers: {
-                                "Content-type": "application/json;charset=UTF-8"
+                    $(function () {
+                        $(`#qa1`).on({
+                            mouseover: function () {
+                                // console.log(this);
+                                $(`#title1`).addClass('btn-vg-3-active');
                             },
-                            body: jsonData
-                        })
-                        .then(function(res){
-                            console.log(res);
-                        })
+                            mouseout: function () {
+                                $(`#title1`).removeClass('btn-vg-3-active');
+                            }
+                        });
+                        $(`#qa2`).on({
+                            mouseover: function () {
+                                // console.log(this);
+                                $(`#title2`).addClass('btn-vg-3-active');
+                            },
+                            mouseout: function () {
+                                $(`#title2`).removeClass('btn-vg-3-active');
+                            }
+                        });
+                        $(`#qa3`).on({
+                            mouseover: function () {
+                                // console.log(this);
+                                $(`#title3`).addClass('btn-vg-3-active');
+                            },
+                            mouseout: function () {
+                                $(`#title3`).removeClass('btn-vg-3-active');
+                            }
+                        });
+                        $(`#qa4`).on({
+                            mouseover: function () {
+                                // console.log(this);
+                                $(`#title4`).addClass('btn-vg-3-active');
+                            },
+                            mouseout: function () {
+                                $(`#title4`).removeClass('btn-vg-3-active');
+                            }
+                        });
+                        $(`#qa5`).on({
+                            mouseover: function () {
+                                // console.log(this);
+                                $(`#title5`).addClass('btn-vg-3-active');
+                            },
+                            mouseout: function () {
+                                $(`#title5`).removeClass('btn-vg-3-active');
+                            }
+                        });
                     })
-                });
+                </script>
+                <script>$(document).ready(function () {
+                        let a='' ;
+                            $('#floatingInput').on('change', function () {
+                                a = $('#floatingInput').val();
+                            });
+                        $('#searchBTN').on('click', function (e) {
+                            e.preventDefault();
+                            window.location.href = `/blog/search1/${a}`;
+                        // console.log(a);
+                        });
+
+                        var itemTag = [];
+                        fetch('/blog/tags')
+                            .then(function (res) {
+                                return res.json();
+                            })
+                            .then(function (jsonObj) {
+                                // console.log(jsonObj[0].tagname);
+                                for (var i = 1; i < jsonObj.length; i++) {
+                                    itemTag.push(jsonObj[i].tagname);
+                                }
+                                $('#includetag').selectivity({
+                                    items: itemTag,
+                                    multiple: true,
+                                    placeholder: '搜尋'
+                                });
+                                $('#notag').selectivity({
+                                    items: itemTag,
+                                    multiple: true,
+                                    placeholder: '搜尋'
+                                });
+                                for (let i = 1; i < 10; i++) {
+                                    // console.log($('.hotTag'));
+                                    $('.hotTag').prepend(`<a href="/blog/tag/${jsonObj[i].tagid}"><button class="btn btn-vg-xs shadow-sm">${jsonObj[i].tagname}</button></a>`);
+                                }
+                            })
+
+
+                        let includeTag = 0;
+                        let ict;
+                        $('#includetag').on('change', function () {
+                            includeTag = $(this).selectivity('value'); // 获取所选标签的值
+                            ict = includeTag.join();
+                            // console.log(ict);
+                        });
+                        let notag;
+                        let nocludeTag = 0;
+                        $('#notag').on('change', function () {
+                            nocludeTag = $(this).selectivity('value'); // 获取所选标签的值
+                            // console.log(nocludeTag);
+                            notag = nocludeTag.join();
+                            // console.log(notag);
+                        });
+                        let sqlQuery = 'SELECT * FROM `article` WHERE ';
+                        $('#tagschBtn').on('click', function () {
+                            window.location.href = `/blog/search/${ict}&${notag}`;
+                            // $('#tagschBtn').prop('href', `blog/search/in_${ict}&no_${notag}`);
+                            // console.log(includeTag, nocludeTag);
+                            if (includeTag.length > 0) {
+                                // sqlQuery += '(';
+                                for (let i = 0; i < includeTag.length; i++) {
+                                    sqlQuery += 'atTag LIKE \'%' + includeTag[i] + '%\'';
+                                    if (i < includeTag.length - 1) {
+                                        sqlQuery += ' AND ';
+                                    }
+                                }
+                                // sqlQuery += ')';
+                            }
+                            // 添加排除标签的条件
+                            if (nocludeTag.length > 0) {
+                                if (includeTag.length > 0) {
+                                    sqlQuery += ' AND ';
+                                }
+                                // sqlQuery += '(';
+                                for (let i = 0; i < nocludeTag.length; i++) {
+                                    sqlQuery += 'atTag NOT LIKE \'%' + nocludeTag[i] + '%\'';
+                                    if (i < nocludeTag.length - 1) {
+                                        sqlQuery += ' AND ';
+                                    }
+                                }
+                                // sqlQuery += ')';
+                            }
+                            // console.log('构建的SQL查询:', sqlQuery);
+                            var tagData = {};
+                            tagData.search = sqlQuery;
+                            var jsonData = JSON.stringify(tagData);
+                            console.log(jsonData);
+                            fetch('/blog/search', {
+                                body: jsonData
+                            })
+                                .then(function (res) {
+                                    console.log(res);
+                                })
+                        })
+                    });
 
 
 
-                // 添加包含标签的条件
+                    // 添加包含标签的条件
 
-            </script>
+                </script>
 </body>
 
 </html>
