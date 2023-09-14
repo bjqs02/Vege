@@ -1,0 +1,31 @@
+@keyframes shake-br {
+    0%, 100% {
+        transform: rotate(0deg);
+        transform-origin: 100% 100%;
+    }
+    10% {
+        transform: rotate(2deg);
+    }
+    20%, 40%, 60% {
+        transform: rotate(-4deg);
+    }
+    30%, 50%, 70% {
+        transform: rotate(4deg);
+    }
+    80% {
+        transform: rotate(-2deg);
+    }
+    90% {
+        transform: rotate(2deg);
+    }
+}
+
+@keyframes marquee-y {
+    from {
+      transform: translateY(0);
+    }
+    to {
+        /* 依據gap修改 */
+      transform: translateY(calc(-100% - 1rem));
+    }
+  }

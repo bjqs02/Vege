@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>會員中心</title>
+
+    <%- include('share/head_link.ejs') %>
+    
+    <!-- member的 CSS、JS 引用 -->
+    <%- include('share/memb_link.ejs') %>
+</head>
+
+<body>
+<%- include('share/m_green_header.ejs') %>
+
+<%- include('share/m_HSidebar.ejs') %>
+    
+    <!-- contents -->
+    <div class="flex-grow-1">
+        <%- include('share/m_notify.ejs') %>
+
+        <!-- content -->
+        <div class="memb-content">
+          <h4 class="vg-h4">我的信用卡</h4>
+          
+          <div class="memb-credit card">
+            <div class="card-header d-flex">
+                <p>我的信用卡</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <a class="flex-row" href="#">
+                  <div class="col-1">
+                    <img class="creditCL" src="./蔬果箱/mastercard2.png" alt="">
+                  </div>
+                  <div class="col-9">
+                    <p class="cardDefault">XXXX銀行</p>
+                  </div>
+                  <div class="col-2">
+                    <p>*173</p>
+                  </div>
+                </a>  
+              </li>
+  
+              <li class="list-group-item">
+                <a class="flex-row" href="#">
+                  <div class="col-1">
+                    <img class="creditCL" src="./蔬果箱/jcb.png" alt="">
+                  </div>
+                  <div class="col-9">
+                    <p>XXXXXX銀行</p>
+                  </div>
+                  <div class="col-2">
+                    <p>*173</p>
+                  </div>
+                </a>
+              </li>
+            </ul>
+            <a class="add-creditC" href="#">新增信用卡</a>
+          </div>
+          
+          
+          <br><br><br><br><br><br><br><br>
+          <br><br><br><br><br><br><br><br>
+          <br><br><br><br><br><br><br><br>
+        </div>
+    </div>
+
+    <%- include('share/m_multF.ejs') %>
+
+<%- include('share/footer.ejs') %>
+
+</body>
+
+</html>

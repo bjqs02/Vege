@@ -121,10 +121,13 @@ app.use('/activityboard/inside',express.static('lib'));
 app.use('/blog', blog);
 app.use('/activityboard', activityboard);
 
-
-
-
-
+// 會員專區
+app.use('/member', express.static('lib'));
+var member = require("./router/member");
+app.use("/member", member);
+app.get("/member", login_api, function (req, res) {
+  res.render("member_index");
+});
 
 app.listen(2407, function () {
   console.log("----伺服器啟動OK " + new Date().toLocaleTimeString() + "----");

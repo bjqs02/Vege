@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>會員中心</title>
+
+    <%- include('share/head_link.ejs') %>
+    
+    <!-- member的 CSS、JS 引用 -->
+    <%- include('share/memb_link.ejs') %>
+</head>
+
+<body>
+<%- include('share/m_green_header.ejs') %>
+
+<%- include('share/m_HSidebar.ejs') %>
+    
+    <!-- contents -->
+    <div class="flex-grow-1">
+        <%- include('share/m_notify.ejs') %>
+
+        <!-- content -->
+        <div class="memb-content">
+            <h4 class="vg-h4">會員基本資料</h4>
+    
+            <form action="" class="memb-basicInfo needs-validation row" novalidate>
+              <div class="col-12">
+                <div class="form-floating">
+                  <input type="email" class="form-control form-control-lg" id="userMail"  placeholder="user@example.com" value="user@example.com" disabled>
+                  <label for="userMail">電子郵件 (帳號)</label>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="userFname" placeholder="請填寫姓" required>
+                  <label for="userFname">姓</label>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="userLname" placeholder="請填寫名" required>
+                  <label for="userLname">名</label>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-floating">
+                  <input type="date" class="form-control" id="userBirthday" placeholder="請選擇您的生日" required>
+                  <label for="userBirthday">生日</label>
+                </div>
+              </div>
+              <div class="col-6">
+                <label class="d-flex">性別</label>
+                <div class="form-check form-check-inline mt-2 ms-3 me-5">
+                  <input class="form-check-input" type="radio" id="userGender-M" name="gender" value="M">
+                  <label class="form-check-label" for="userGender-M">生理男</label>
+                </div>
+                <div class="form-check form-check-inline ms-2">
+                  <input class="form-check-input" type="radio" id="userGender-F" name="gender" value="F">
+                  <label class="form-check-label" for="userGender-F">生理女</label>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-floating">
+                  <input type="tel" class="form-control" id="userPhone" data-error="郵件格式錯誤"
+                  placeholder="請填入您的電話" pattern="\d{4}[-]\d{8}" required>
+                  <label for="userPhone">電話</label>
+                  <div class="help-block with-errors"></div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="usercarrier" placeholder="請填入您的電子發票載具">
+                  <label for="usercarrier">發票載具</label>
+                </div>
+              </div>
+              <div class="col-12 text-center mt-5">
+                <button class="btn btn-vg-lg" type="submit">儲存個人資料</button>
+              </div>
+            </form>
+
+            <br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br>
+        </div>
+    </div>
+
+    <%- include('share/m_multF.ejs') %>
+
+<%- include('share/footer.ejs') %>
+
+</body>
+
+</html>

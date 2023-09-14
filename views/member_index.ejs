@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>會員中心</title>
+
+    <%- include('share/head_link.ejs') %>
+    
+    <!-- member的 CSS、JS 引用 -->
+    <%- include('share/memb_link.ejs') %>
+</head>
+
+<body>
+    <%- include('share/m_green_header.ejs') %>
+
+    <%- include('share/m_HSidebar.ejs') %>
+    
+    <!-- contents -->
+    <div class="flex-grow-1">
+        <%- include('share/m_notify.ejs') %>
+
+        <!-- content -->
+        <div class="memb-content">
+            <h4 class="vg-h4">Welcome</h4>
+            
+            <div class="memb-order row">
+              <ul class="list-group">
+    
+                <li class="list-group-item col-12 row">
+                  <div class="col-12 d-flex justify-content-between">
+                    <span>✤ 編號: 5230045</span>
+                    <span>2023-9-15</span>
+                  </div>
+                  <div class="col-3">
+                    <img src="img/中秋箱.png" alt="">
+                  </div>
+                  <div class="col-4">
+                    <p>商品品項: 中秋箱</p>
+                    <p>份量: 2-3人</p>
+                    <p>數量: 1</p>
+                  </div>
+                  <div class="col-2 text-center">
+                    <p>單次配送</p>
+                  </div>
+                  <div class="col-3 order-button">
+                    <button class="btn">追蹤狀態</button>
+                    <button class="btn">聯絡客服</button>
+                    <button class="btn btn-vg-redborder">延後配送</button>
+                    <!-- <button class="btn">查看詳情</button> -->
+                  </div>
+    
+                  <a href="#">
+                    <div class="viewMoreP col-12 text-center">
+                      共 ? 樣商品，檢視更多商品
+                    </div>
+                  </a>
+    
+                  <div class="col-11">
+                    <span>訂單狀態: 配送中</span>
+                  </div>
+                  <div class="col-1">
+                    <span>$500</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            
+            <div class="memb-order row">
+              <ul class="list-group">
+    
+                <li class="list-group-item col-12 row">
+                  <div class="col-12 d-flex justify-content-between">
+                    <span>✤ 編號: 4100234</span>
+                    <span>2023-8-10</span>
+                  </div>
+                  <div class="col-3">
+                    <img src="img/蔬果健康箱.png" alt="">
+                  </div>
+                  <div class="col-4">
+                    <p>商品品項: 蔬果健康箱</p>
+                    <p>份量: 1-2人</p>
+                    <p>數量: 1</p>
+                  </div>
+                  <div class="col-2">
+                    <p>每周配送</p>
+                  </div>
+                  <div class="col-3 order-button">
+                    <button class="btn">追蹤狀態</button>
+                    <button class="btn">聯絡客服</button>
+                    <button class="btn btn-vg-redborder">延後配送</button>
+                    <!-- <button class="btn">查看詳情</button> -->
+                  </div>
+                  
+                  <!-- <a href="#">
+                    <div class="viewMoreP col-12 text-center">
+                      共 ? 樣商品，檢視更多商品
+                    </div>
+                  </a> -->
+    
+                  <div class="col-11">
+                    <span>訂單狀態: 配送中</span>
+                  </div>
+                  <div class="col-1">
+                    <span>$1700</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            
+            <br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br>
+          </div>
+    </div>
+
+    <%- include('share/m_multF.ejs') %>
+
+    <%- include('share/footer.ejs') %>
+
+</body>
+
+</html>

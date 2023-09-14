@@ -349,6 +349,17 @@
     /* opacity: 0.7; */
     content: "";
   }
+
+  .btn-vg-2.green:hover:before {
+    width: 0;
+    left: 45%;
+    bottom: 20%;
+    color: var(--sc-g-Dark);
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    content: "\f4d8";
+    transition: all 0.07s;
+  }
   
   /* ↑↑↑↑↑ btn-vg-2 ↑↑↑↑↑ */
   
@@ -519,6 +530,11 @@
   #vg-navbar.change {
     padding: 0px;
   }
+
+  #vg-navbar.green {
+    padding: 0px;
+    background-color: var(--primary-1);
+  }
   
   /* logo調整預留 (同btn-vg-2，只改font) */
   .vg-nav-logo {
@@ -576,7 +592,11 @@
     position: relative;
     z-index: 101;
   }
-  
+    
+  #main-nav.green {
+    height: 0;
+  }
+
   #navCart,
   #navUser {
     height: 35px;
@@ -627,19 +647,46 @@
   #navUser.change {
     right: 70px;
   }
+
+  #navUser.green {
+    width: 45px !important;
+    height: 45px !important;
+    right: 70px;
+    margin-top: 9px !important;
+    margin-bottom: 0 !important;
+    font-size: 20px !important;
+  }
   
   #navCart {
     right: 25px;
   }
   
+  #navCart.green {
+    width: 45px !important;
+    height: 45px !important;
+    margin-top: 9px !important;
+    margin-bottom: 0 !important;
+    font-size: 20px !important;
+  }
+
   .fa-cart-shopping.change {
     padding-top: 6px;
   }
   
+  .fa-cart-shopping.green {
+    padding-top: 6px;
+  }
+
   #navCart:hover,
   #navUser:hover {
     background-color: var(--text-color-L);
   }
+  
+  #navCart.green:hover,
+  #navUser.green:hover {
+    background-color: white;
+  }
+
   /* 向下滾動變大 */
   .navIcon-down {
     width: 45px !important;
@@ -686,6 +733,14 @@
     font-size: 0.1rem;
     letter-spacing: 0;
     z-index: 2;
+  }
+  
+  #navCart .bag-count.green {
+    width: 18px !important;
+    height: 18px !important;
+    top: 10px !important;
+    right: 25px !important;
+    font-size: 0.3rem !important;
   }
   
   .bag-count-down {

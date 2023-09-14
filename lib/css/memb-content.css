@@ -1,0 +1,418 @@
+/* 畫面尺寸太大請註解，搜尋 35rem */
+.memb-content .card,
+.memb-basicInfo {
+  width: 35rem;
+}
+
+.memb-credit p,
+.memb-address p,
+.memb-addShop p,
+.memb-coinRC li p {
+  margin-bottom: 0;
+}
+
+.memb-credit a,
+.memb-address a,
+.memb-addShop a,
+.memb-order a,
+.memb-coinRC a,
+.article-card a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+/* 基本資料 */
+.memb-basicInfo {
+  --bs-gutter-x: 1.65rem;
+  --bs-gutter-y: 1.65rem;
+}
+
+.memb-basicInfo .form-control {
+  border-radius: 0.3rem 0.3rem 0 0;
+  border: none;
+  border-bottom: 2px solid var(--primary-1);
+  color: var(--text-color);
+  font-size: 16px !important;
+}
+
+.memb-basicInfo input:required+label:not(.form-check-label):before {
+  color: var(--secondary-r);
+  content: "* ";
+}
+
+.memb-basicInfo .form-floating>label {
+  padding: 1rem 0;
+  color: rgba(47, 27, 0, .65);
+  font-size: 16px !important;
+}
+
+.memb-basicInfo .form-floating>.form-control-plaintext~label,
+.memb-basicInfo .form-floating>.form-control:focus~label,
+.memb-basicInfo .form-floating>.form-control:not(:placeholder-shown)~label,
+.memb-basicInfo .form-floating>.form-select~label {
+  color: var(--text-color);
+  transform: scale(.85) translateY(-1rem) translateX(.15rem);
+}
+
+.memb-basicInfo .form-check-input:checked {
+  background-color: var(--secondary-g);
+  border-color: var(--secondary-g);
+}
+
+.memb-basicInfo label.d-flex {
+  font-size: 14px;
+}
+
+.memb-basicInfo .form-check-input:focus{
+  box-shadow: 0 0 0 0.25rem var(--primary-1);
+}
+
+
+/* 信用卡 */
+/* memb-credit整體、card-header 與 li:hover 的css同 "常用地址"，如需更改請至那 */
+/* 新增按鈕亦同 "常用地址" */
+.memb-credit .list-group-item {
+  padding: 0 0 0 0.8rem;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid var(--bs-list-group-border-color);
+  color: var(--text-color);
+}
+
+.memb-credit a:not(.add-creditC) {
+  display: flex;
+  width: 100%;
+}
+
+.memb-credit .list-group-item .col-9,
+.memb-credit .list-group-item .col-2 {
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.memb-credit .list-group-item .col-1 {
+  padding-top: 16px;
+  padding-bottom: 10px;
+}
+
+.creditCL {
+  width: 32px;
+}
+
+.memb-credit .list-group-item .col-9 {
+  padding-left: 15px;
+}
+
+.cardDefault:after {
+  padding-left: 10px;
+  color: var(--sc-r-Dark);
+  font-weight: 500;
+  content: "[預設]";
+}
+
+.memb-credit .list-group-item .col-2 p:after {
+  padding-left: 10px;
+  font: var(--fa-font-solid);
+  color: var(--text-sub-color-2);
+  content: "\f054";
+}
+
+/* 常用地址 */
+.memb-address,
+.memb-addShop,
+.memb-credit {
+  position: relative;
+  border: none;
+  font-size: 1rem;
+}
+
+.memb-address .card-header,
+.memb-addShop .card-header,
+.memb-credit .card-header {
+  height: 2.3rem;
+  padding-left: 12px;
+  padding-bottom: 0;
+  background-color: white;
+  border-bottom: 2px solid var(--sc-g-Dark);
+  color: var(--sc-g-Dark);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.memb-address li,
+.memb-addShop li {
+  padding: 15px 0 10px 12px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  color: var(--text-color);
+}
+
+.memb-address li:last-child,
+.memb-addShop li:last-child {
+  border-bottom: none;
+}
+
+.memb-address li {
+  height: 100px;
+}
+
+.memb-addShop li {
+  height: 150px;
+}
+
+.memb-credit li:hover,
+.memb-address li:hover,
+.memb-addShop li:hover {
+  background-color: var(--bs-gray-200);
+  cursor: pointer;
+}
+
+.address-sid {
+  display: inline-block;
+  padding: 2px 3px;
+  margin-top: 5px;
+  border: 1px solid rgba(0,0,0,.5);
+}
+
+.add-creditC:before,
+.add-address:before {
+  padding-right: 8px;
+  color: var(--bg);
+  font: var(--fa-font-solid);
+  font-size: 20px;
+  content: "\f055";
+}
+
+.add-creditC,
+.add-address {
+  padding: 15px 0 15px 0;
+  text-align: center;
+  color: var(--bg-1);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.add-creditC:hover,
+.add-creditC:hover:before,
+.add-address:hover,
+.add-address:hover:before {
+  color: var(--secondary-g);
+}
+
+
+/* 訂單總攬 */
+.memb-order .list-group-item:before {
+  width: 36rem;
+  height: 5px;
+  background-color: var(--primary-2);
+  content: "";
+  opacity: .75;
+}
+
+.memb-order .list-group-item.row {
+  width: 36rem;
+  --bs-gutter-x: 0;
+}
+
+.memb-order .list-group-item {
+  display: flex;
+  padding: 0 0 0 0.65rem;
+  margin-bottom: 2rem;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid var(--bs-list-group-border-color);
+  color: var(--text-color);
+}
+
+.memb-order .list-group-item .col-12:first-child {
+  padding: 7.5px 10px 7.5px 12px;
+  background-color: var(--primary-L);
+  color: var(--sc-g-Dark);
+}
+
+.memb-order .list-group-item .col-12.past:first-child {
+  background-color: var(--bs-gray-300);
+  color: var(--bs-gray-700);
+}
+.memb-order .list-group-item .col-3 {
+  padding: 20px 0 15px 10px;
+}
+
+.memb-order .list-group-item .col-3 img {
+  width: 100%;
+  max-width: 140px;
+  display: block;
+}
+
+.memb-order .list-group-item .col-4 {
+  padding: 30px 0 15px 20px;
+}
+
+.memb-order .list-group-item .col-2 {
+  padding: 70px 0 15px 0;
+}
+
+.order-button {
+  padding-top: 20px;
+}
+
+.order-button button {
+  width: 100%;
+  margin-bottom: 10px;
+  border: 2px solid var(--primary-1);
+  color: var(--text-color);
+}
+
+.memb-order .list-group-item .col-3 button:hover {
+  background-color: var(--primary-1);
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+.viewMoreP {
+  background-color: transparent !important;
+  color: var(--bs-gray-600) !important;
+  border-top: 1px solid var(--bs-list-group-border-color);
+}
+
+.memb-order a:hover {
+  background-color: var(--bs-gray-300);
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.memb-order .list-group-item .col-11,
+.memb-order .list-group-item .col-1 {
+  /* display: grid; */
+  padding: 10px 0 10px 0;
+  border-top: 1px solid var(--bs-list-group-border-color);
+  color: var(--bs-gray-600);
+}
+
+.memb-order .list-group-item .col-1 span {
+  color: var(--text-color);
+}
+
+/* ??點 */
+.memb-coinRC {
+  width: 35rem;
+  position: relative;
+  border: none;
+}
+
+.memb-coinRC .card-header {
+  height: 6rem;
+  padding-top: 10px;
+  padding-left: 24px;
+  justify-content: space-between;
+  background-color: var(--primary-L);
+  /* background-color: white; */
+  border-bottom: 1px solid var(--primary-2);
+}
+
+.memb-coinRC .card-header p:not(.vg-ps) {
+  margin-bottom: 0.08rem;
+  color: var(--sc-g-Dark);
+  font-size: 32px;
+}
+
+.memb-coinRC .card-header .text-muted:after {
+  margin-left: 5px;
+  font: var(--fa-font-solid);
+  color: var(--text-sub-color-2);
+  content: "\f06a";
+  cursor: pointer;
+}
+
+.memb-coinRC a {
+  padding: 7px 10px;
+}
+
+.memb-coinRC .card-header .btn-vg-reg {
+  position: relative;
+  float: right;
+  padding: 15px 10px;
+}
+
+
+.memb-coinRC li {
+  height: 70px;
+  padding-top: 15px;
+  padding-left: 75px;
+  gap: 70%;
+  color: var(--text-color);
+  font-size: 16px;
+}
+
+.memb-coinRC li:before {
+  width: 40px;
+  height: 40px;
+  padding: 13px;
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  background-color: var(--primary-1);
+  border-radius: 50%;
+  color: var(--sc-g-Dark);
+  font: var(--fa-font-solid);
+  content: "\f4d8";
+}
+
+.memb-coinRC li.used:before {
+  background-color: var(--bs-gray-300);
+  color: var(--text-sub-color-1);
+}
+
+.memb-coinRC li span {
+  float: right;
+  padding-top: 5px;
+  color: var(--primary-2);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.memb-coinRC li span.used {
+  color: var(--text-color);
+}
+
+/* 收藏的文章 */
+.article-card .card-body {
+  max-height: 200px;
+  padding-top: 20px;
+}
+
+.article-card:hover {
+  background-color: var(--bs-gray-200);
+  cursor: pointer;
+}
+
+.article-img img {
+  width: 100%;
+  height: 100%;
+  /* max-height: 200px; */
+  object-fit: cover;
+}
+
+.article-card h5,
+.article-card p {
+  padding-left: 10px;
+  margin-top: 10px;
+  color: var(--text-color);
+}
+
+.article-card p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.article-card .card-text {
+  margin-right: 10px;
+  text-align: right;
+}

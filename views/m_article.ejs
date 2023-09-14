@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>會員中心</title>
+
+    <%- include('share/head_link.ejs') %>
+    
+    <!-- member的 CSS、JS 引用 -->
+    <%- include('share/memb_link.ejs') %>
+</head>
+
+<body>
+<%- include('share/m_green_header.ejs') %>
+
+<%- include('share/m_HSidebar.ejs') %>
+    
+    <!-- contents -->
+    <div class="flex-grow-1">
+      <%- include('share/m_notify.ejs') %>
+
+      <!-- content -->
+      <div class="memb-content">
+        <h4 class="vg-h4">收藏的文章</h4>
+    
+        <div class="article-card card mb-3">
+          <a href="#">
+            <div class="row g-0">
+              <div class="article-img col-4">
+                <img src="https://images.agriharvest.tw/wp-content/uploads/2022/03/0-11-1024x680.jpg" alt="...">
+              </div>
+              <div class="col-8">
+                  <div class="card-body">
+                    <h5 class="vg-h5 fw-semibold">鳳梨酵素到底在夯甚麼？您不可不知道的鳳梨酵素功效 2大成分是關鍵</h5>
+                    <p>近年來，鳳梨酵素成為了一項非常流行的營養保健話題；鳳梨酵素指的是從鳳梨中提取的一種天然酵素，具有多種保健功效和美容效果，它含有豐富的蛋白酶、纖維素酶和果酸等成分，被認為對消化、排毒、抗發炎、瘦身等方面有益處。</p>
+                    <p class="card-text"><small class="text-muted">More...</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        
+        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
+      </div>
+  </div>
+
+    <%- include('share/m_multF.ejs') %>
+
+<%- include('share/footer.ejs') %>
+
+</body>
+
+</html>
