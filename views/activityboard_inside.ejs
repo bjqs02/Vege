@@ -58,7 +58,7 @@
                         <div class="d-flex-column text-center border vg-bd-5 p-3 h-100">
 
                             <button class="btn btn-vg-reg lottoBtn" id="lotto">
-                                <h4>會員每日抽獎</h4>
+                                <h4 class="vg-h4">會員每日抽獎</h4>
                             </button>
                             <svg xmlns="http://www.w3.org/2000/svg" width="90%" viewBox="0 0 64 64">
 
@@ -294,10 +294,8 @@
 
                     </div>
                 </div>
-
-                <div>
-
-                </div>
+            </div>
+            <%- include('share/footer.ejs')%>
                 <script src="js/blogact.js"></script>
                 <script src="js/selectivity-jquery.min.js"></script>
 
@@ -352,8 +350,11 @@
                             })
                         }, 3700)
 
+                        var userData = localStorage.getItem("token");
+                        var userToken = userData ? JSON.parse(userData) : false;
                         var valueData = {};
                         valueData.spanValue = spanValue;
+                        valueData.uid = userToken.id;
                         var jsonData = JSON.stringify(valueData);
                         console.log(jsonData);
                         fetch('/activityboard/spanValue', {

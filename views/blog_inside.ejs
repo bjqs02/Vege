@@ -16,30 +16,8 @@
     <!-- header -->
     <%- include('share/header.ejs')%>
 
-        <!-- 主navbar這裡結束 -->
-
-        <!-- 文章Navbar這裡開始 -->
-        <!-- <div style="height: 125px;"></div>
-    <div id="vg-navbar-2">
-        <a class="btn-vg-3" href="javascript:void(0)">農產品</a>
-        <a class=" btn-vg-3" href="javascript:void(0)">健康</a>
-        <a class=" btn-vg-3" href="javascript:void(0)">食譜</a>
-    </div> -->
-        <!-- 文章Navbar這裡結束 -->
-
-        <!-- header end -->
-        <!-- navbar -->
-        <!-- <nav class="myNavbar">
-        <ul class="d-flex">
-            <li><a href="#">農產品</a></li>
-            <li><a href="#">健康</a></li>
-            <li><a href="#">食譜</a></li>
-        </ul>
-    </nav> -->
-        <!-- navbar end -->
-
         <!-- wrap -->
-        <div class="container d-flex gap-3 flex-md-row flex-column blogInscon">
+        <div class="container d-flex gap-3 flex-md-row flex-column blogInscon mb-3">
 
 
             <!-- article -->
@@ -131,7 +109,7 @@
                             </div>
                             <fieldset class="row mt-3">
                                 <div class="d-none d-sm-block col-sm-3 col-lg-2">
-                                    <img class="img-fluid" src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                                    <img id="nowUserImg" class="img-fluid" src="https://bootdey.com/img/Content/avatar/avatar1.png"
                                         alt="">
                                 </div>
                                 <div class="form-group col-xs-12 col-sm-9 col-lg-10">
@@ -144,10 +122,10 @@
 
                             <% for (let i=0; i < data.comments.length ; i++) {%>
                                 <div class="commentMedia d-flex pb-3 bt-1">
-                                    <div><img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt=""></div>
-                                    <div class="media-body ps-3 border">
+                                    <div><img src="<%- data.comments[i].Img %>" alt=""></div>
+                                    <div class="media-body ps-3">
                                         <div class="d-flex justify-content-between">
-                                            <h4 class="media-heading">John Doe</h4>
+                                            <h4 class="media-heading"><%- data.comments[i].Name %></h4>
                                             <span class="me-0">#<%= i+1 %></span>
                                         </div>
                                         <p class="vg-p"><%- data.comments[i].cmtText %></p>
@@ -271,57 +249,66 @@
         </div>
 
         <script>
-        // $(document).ready(function () {
+            // $(document).ready(function () {
 
-                $('#sentBtn').click(function () {
-                    console.log($("#message").val())
-                    var JSONDatatoken = JSON.stringify(userToken);
-                    var commentData = {};
-                    commentData.postcom = $("#message").val();
-                    var jsonData = JSON.stringify(commentData);
-                    console.log(jsonData);
-                    console.log(JSONDatatoken);
-                    fetch('/blog/postcom', {
-                        method: "POST",
-                        headers: {
-                            "Content-type": "application/json;charset=UTF-8"
-                        },
-                        body: jsonData,
-                        user: JSONDatatoken,
-                    })
-                        .then(function (res) {
-                            console.log(res);
-                        })
+            $('#sentBtn').click(function () {
+                var userData = localStorage.getItem("token");
+                var userToken = userData ? JSON.parse(userData) : false;
+                // console.log('按下去了');
+                // console.log(userToken);
 
-                });
-
-
-
-                var itemTag = [];
-                fetch('/blog/tags')
+                // console.log($("#message").val())
+                // var commentuser = JSON.stringify(userToken);
+                var commentData = {};
+                var pn = window.location.pathname.split('/');
+                // console.log(pn[3]);
+                commentData.postcom = $("#message").val();
+                commentData.uid = userToken.id;
+                commentData.atcid = pn[3];
+                var jsonData = JSON.stringify(commentData);
+                // console.log(jsonData);
+                // console.log(JSONDatatoken);
+                fetch('/blog/postcom', {
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json;charset=UTF-8"
+                    },
+                    body: jsonData
+                    // vgcomment: userToken,
+                })
                     .then(function (res) {
-                        return res.json();
+                        console.log(res);
                     })
-                    .then(function (jsonObj) {
-                        // console.log(jsonObj[0].tagname);
-                        for (var i = 1; i < jsonObj.length; i++) {
-                            itemTag.push(jsonObj[i].tagname);
-                        }
-                        $('#includetag').selectivity({
-                            items: itemTag,
-                            multiple: true,
-                            placeholder: '搜尋'
-                        });
-                        $('#notag').selectivity({
-                            items: itemTag,
-                            multiple: true,
-                            placeholder: '搜尋'
-                        });
-                        for (let i = 1; i < 10; i++) {
-                            // console.log($('.hotTag'));
-                            $('.hotTag').prepend(`<a href=""><button class="btn btn-vg-xs shadow-sm">${itemTag[i]}</button></a>`);
-                        }
-                    })
+
+            });
+
+
+
+            var itemTag = [];
+            fetch('/blog/tags')
+                .then(function (res) {
+                    return res.json();
+                })
+                .then(function (jsonObj) {
+                    // console.log(jsonObj[0].tagname);
+                    for (var i = 1; i < jsonObj.length; i++) {
+                        itemTag.push(jsonObj[i].tagname);
+                    }
+                    $('#includetag').selectivity({
+                        items: itemTag,
+                        multiple: true,
+                        placeholder: '搜尋'
+                    });
+                    $('#notag').selectivity({
+                        items: itemTag,
+                        multiple: true,
+                        placeholder: '搜尋'
+                    });
+                    for (let i = 1; i < 10; i++) {
+                        // console.log($('.hotTag'));
+                        $('.hotTag').prepend(`<a href=""><button class="btn btn-vg-xs shadow-sm">${itemTag[i]}</button></a>`);
+                    }
+                })
 
 
             // });</script>
@@ -329,7 +316,7 @@
         <script src="js/selectivity-jquery.min.js"></script>
         <script src="js/blogact.js"></script>
 
-
+        <%- include('share/footer.ejs')%>
 </body>
 
 </html>

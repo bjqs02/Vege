@@ -54,9 +54,11 @@ activity.get('/category/:id', function(req, res){
 })
 
 activity.post('/spanValue', jp, function(req, res){
-    var sql6 = req.body.spanValue;
-    const sql =
-    `INSERT INTO activitylotto(uid, lottobonus) VALUES (1001, ${sql6});`
+    var spanValue = req.body.spanValue;
+    var uid = req.body.uid;
+    console.log(req.body.uid)
+    const sql = 
+    `INSERT INTO activitylotto(uid, lottobonus) VALUES (${uid}, ${spanValue});`
     db.query(sql, function(err, tags){
         if(err){
             console.log('value失敗');
@@ -64,7 +66,7 @@ activity.post('/spanValue', jp, function(req, res){
         } else {
             console.log('value成功');
             console.log(tags);
-            // res.send('blog')
+            
         }
     })
 })

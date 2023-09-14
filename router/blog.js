@@ -142,7 +142,7 @@ blog.get('/inside/:id', function(req, res){
     var art_id = req.params.id;
     var sql2 = "SELECT * FROM article WHERE atcid = ?;";
     var sql4 = "SELECT * FROM article, atcxtag, tag WHERE article.atcid = atcxtag.atcid AND atcxtag.tagid = tag.tagid AND article.atcid = ?;";
-    var sql7 = "SELECT * FROM comment WHERE atcid = ?;"; // 修改此处查询语句
+    var sql7 = "SELECT * FROM comment,userinfo WHERE comment.uid = userinfo.uId AND atcid = ?;"; 
 
     // 第一次查询
     db.query(sql2, [art_id], function(err, result1){
@@ -183,10 +183,17 @@ blog.get('/inside/:id', function(req, res){
 
 // insidecommentpost
 blog.post('/postcom', jp, function(req, res){
-    var sql6 = req.body.postcom;
+    var sql6 = req.body;
+    var comment = req.body.postcom;
+    var uid = req.body.uid;
+    var atcid = req.body.atcid;
+    // var uid = req.vgcomment;
+    // console.log(sql6);
+    // console.log(uid);
+    // console.log(uid);
     const sql =
-    `INSERT INTO comment(uid, atcid, cmtText) VALUES (1001, ${sql6});`
-    db.query(sql6, function(err, tags){
+    `INSERT INTO comment(uid, atcid, cmtText) VALUES ( ${uid}, ${atcid}, ${comment});`
+    db.query(sql, function(err, tags){
         if(err){
             console.log('post沒抓成功');
             console.log(err);
