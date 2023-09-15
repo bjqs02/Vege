@@ -32,7 +32,7 @@ cart_order.get('/cart/wishlist/:id', function (req, res) {
     })
 })
 
-// 更新購物車 cart 資料表 的 pid (尚未完成)
+// 更新購物車 cart 資料表 的 pid
 cart_order.post("/cart/handleitem/", function (req, res) {
     // 更新購物車 cart 資料表 的 pid (根據變數尋找對應pid)
     var sql3_1 = "SELECT product.pid FROM product_content join product WHERE product_content.product = product.product and product.category LIKE '%箱%' AND product.product = ? AND product.freq = ? and product.size = ?;"
@@ -56,11 +56,7 @@ cart_order.post("/cart/handleitem/", function (req, res) {
             }
         });
     });
-
 })
-
-
-
 
 // 更新購物車 cart 資料表 的 oid || statue => inactive
 cart_order.patch("/editcart/status/", function (req, res) {
