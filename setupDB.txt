@@ -766,9 +766,9 @@ CREATE TABLE `vgorder` (
 --
 
 INSERT INTO `vgorder` (`oid`, `uid`, `o_ceatetime`, `useCoupon`, `useBonus`, `paid`, `oName`, `oTel`, `oMail`, `rName`, `rTel`, `rAddr`, `convName`, `convTel`, `convStore`, `payment`, `transName`, `transNum`, `transDate`, `creditName`, `creditNum`, `creditMM`, `creditYY`, `creditCSV`, `billDonate`, `billPersonal`, `billCompName`, `billCompNum`, `billCompAddr`, `o_note`, `o_status`, `o_updatetime`, `o_cancel_time`) VALUES
-('4140847', '1002', '2023-09-05 20:05:54', NULL, NULL, 'unpaid', 'aa', 'aa', 'aaa', 'aa', 'aa', '', '', '', NULL, NULL, '', '', '0000-00-00', '', '', '', '', '', NULL, NULL, '', '', '', 'aaa', 'pending', '1693973208164', NULL),
+('4140847', '1002', '2023-09-05 20:05:54', NULL, NULL, 'unpaid', 'aa', 'aa', 'aaa', 'aa', 'aa', '', '', '', NULL, NULL, '', '', '2023-09-09', '', '', '', '', '', NULL, NULL, '', '', '', 'aaa', 'pending', '1693973208164', NULL),
 ('8430352', '1004', '2023-09-05 09:18:15', NULL, NULL, 'unpaid', '李大美', '0912333444', '111@gmail.com', '陳怡君', '0966707506', '桃園縣龜山區中山路112號', '', '', NULL, NULL, '陳怡君', '12345', '2023-09-09', '', '', '', '', '', NULL, NULL, '', '', '', '好晚了該睡覺了', 'inactive', '1693937252161', NULL),
-('8472034', '1002', '2023-09-05 10:43:08', NULL, NULL, 'unpaid', '測試用', '測試用', '測試用', '', '', '', '', '', NULL, NULL, '', '', '0000-00-00', '測試用', '測試用', '測試用', '測試用', '測試用', NULL, NULL, '測試用', '測試用', '測試用', '測試用測試用測試用測試用測試用', 'pending', '1693939982392', NULL),
+('8472034', '1002', '2023-09-05 10:43:08', NULL, NULL, 'unpaid', '測試用', '測試用', '測試用', '', '', '', '', '', NULL, NULL, '', '', '2023-09-10', '測試用', '測試用', '測試用', '測試用', '測試用', NULL, NULL, '測試用', '測試用', '測試用', '測試用測試用測試用測試用測試用', 'pending', '1693939982392', NULL),
 ('8678231', '1004', '2023-09-10 10:19:04', NULL, NULL, 'unpaid', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', NULL, NULL),
 ('9014842', '1001', '2023-09-05 08:02:10', NULL, NULL, 'unpaid', '李小美', '0912333444', 'aa@gmail.com', '王大華', '0966707506', '桃園縣龜山區中山路112號', '', '', NULL, NULL, '陳怡君', '12345', '2023-09-09', '', '', '', '', '', NULL, NULL, '', '', '', '我愛吃香蕉和蘋果', 'pending', NULL, NULL);
 
