@@ -115,11 +115,65 @@ blog.get('/category/:id', function(req, res){
     })
 })
 
-blog.post('/search', jp, function(req, res){
-    var sql6 = req.body.search;
-    // var data = [req.body.search];
-    // console.log(req.body);
-    db.query(sql6, function(err, tags){
+blog.get('/search/:in&:no', jp, function(req, res){
+    
+    var x = req.params.in.split(',');
+    let sqlQuery = "";
+    if (x.length > 0) {
+        // sqlQuery += '(';
+        for (let i = 0; i < x.length; i++) {
+            sqlQuery += 'atTag LIKE \'%' + x[i] + '%\'';
+            if (i < x.length - 1) {
+                sqlQuery += ' AND ';
+            }
+        }
+
+    }
+
+    var y = req.params.no.split(',');
+    if (y.length > 0) {
+        if (x.length > 0) {
+            sqlQuery += ' AND ';
+        }
+        // sqlQuery += '(';
+        for (let i = 0; i < y.length; i++) {
+            sqlQuery += 'atTag NOT LIKE \'%' + y[i] + '%\'';
+            if (i < y.length - 1) {
+                sqlQuery += ' AND ';
+            }
+        }
+        // sqlQuery += ')';
+    }
+
+    console.log(x);
+    console.log(y);
+    console.log(sqlQuery);
+    var sql = 'SELECT * FROM article WHERE '+sqlQuery;
+    console.log(sql);
+    db.query(sql, function(err, tags){
+        if(err){
+            console.log('search沒抓成功');
+            console.log(err);
+        } else {
+            console.log('search抓成功');
+            console.log(tags);
+            res.render('blog',{
+                data: tags,
+                curr_page: 1,
+                next_page: 2,
+                total_nums: 2,
+                last_page: 1
+            })
+        }
+    })
+})
+blog.get('/search1/:query', jp, function(req, res){
+    
+    var x = req.params.query;
+    var data = [`%${x}%`];
+    var sql = 'SELECT * FROM article WHERE atcText like ?';
+    console.log(sql);
+    db.query(sql, data, function(err, tags){
         if(err){
             console.log('search沒抓成功');
             console.log(err);
@@ -162,9 +216,9 @@ blog.get('/inside/:id', function(req, res){
                             console.log('抓取评论失败');
                             console.log(err);
                         } else {
-                            console.log(result1);
-                            console.log(result2);
-                            console.log(result3);
+                            // console.log(result1);
+                            // console.log(result2);
+                            // console.log(result3);
                             res.render('blog_inside',{
                                 data: {
                                     article: result1,
@@ -187,12 +241,10 @@ blog.post('/postcom', jp, function(req, res){
     var comment = req.body.postcom;
     var uid = req.body.uid;
     var atcid = req.body.atcid;
-    // var uid = req.vgcomment;
-    // console.log(sql6);
-    // console.log(uid);
-    // console.log(uid);
+    console.log(sql6);
     const sql =
-    `INSERT INTO comment(uid, atcid, cmtText) VALUES ( ${uid}, ${atcid}, ${comment});`
+    `INSERT INTO comment(uid, atcid, cmtText) VALUES ( ${uid}, ${atcid}, '${comment}');`
+   
     db.query(sql, function(err, tags){
         if(err){
             console.log('post沒抓成功');
@@ -200,12 +252,29 @@ blog.post('/postcom', jp, function(req, res){
         } else {
             console.log('post抓成功');
             console.log(tags);
-
+            res.send('ok');
         }
     })
 })
 
+blog.post('/keepcheck', jp, function(req, res){
+    var sql6 = req.body;
+    var uid = req.body.uid;
+    var atcid = req.body.atcid;
+    console.log(sql6);
+   let keep = `INSERT INTO atckeep(uid, atcid) VALUES ( ${uid}, ${atcid});`
 
+       db.query(keep, function(err, tags){
+        if(err){
+            console.log('keep沒抓成功');
+            console.log(err);
+        } else {
+            console.log('keep抓成功');
+            console.log(tags);
+            res.send('ok');
+        }
+    })
+})
 
 
 

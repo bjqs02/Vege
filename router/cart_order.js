@@ -10,7 +10,7 @@ var bluebird = require('bluebird');
 bluebird.promisifyAll(db);
 
 
-// cart 購物車相關資料庫指令
+// cart 購物流程相關資料庫指令
 cart_order.use(express.json());
 cart_order.use(express.urlencoded({ extended: true }));
 
@@ -43,8 +43,8 @@ cart_order.put("/cart/item/:id", function (req, res) {
 
 // 更新購物車 cart 資料表 的 oid || statue => inactive
 cart_order.patch("/editcart/status/", function (req, res) {
-    var sql3 = "update cart set oid= ?, c_status = 'inactive'  where uid = ? and c_status = 'active'"
-    db.query(sql3,
+    var sql4 = "update cart set oid= ?, c_status = 'inactive'  where uid = ? and c_status = 'active'"
+    db.query(sql4,
         [req.body.oid, req.body.uid],
         function (err, rows) {
             res.send(JSON.stringify(req.body));
@@ -54,8 +54,8 @@ cart_order.patch("/editcart/status/", function (req, res) {
 
 // 建立訂購單 oid || uid (含購物金與折扣碼)
 cart_order.post("/editcart/createorder/", function (req, res) {
-    var sql3 = "INSERT INTO vgorder (oid, uid, useCoupon, useBonus ) VALUES (? , ? , ?, ?)"
-    db.query(sql3,
+    var sql5 = "INSERT INTO vgorder (oid, uid, useCoupon, useBonus ) VALUES (? , ? , ?, ?)"
+    db.query(sql5,
         [req.body.oid, req.body.uid, req.body.useCoupon, req.body.useBonus],
         function (err, rows) {
             res.send(JSON.stringify(req.body));
@@ -65,8 +65,8 @@ cart_order.post("/editcart/createorder/", function (req, res) {
 
 // 讀取訂購單資訊
 cart_order.get('/order/items/:id', function (req, res) {
-    var sql4 = "SELECT * FROM vgorder join cart join temp_product WHERE vgorder.oid = cart.oid and cart.pid = temp_product.pid and vgorder.uid = ? and vgorder.o_status = 'active'"
-    db.query(sql4, [req.params.id], function (err, rows) {
+    var sql6 = "SELECT * FROM vgorder join cart join temp_product WHERE vgorder.oid = cart.oid and cart.pid = temp_product.pid and vgorder.uid = ? and vgorder.o_status = 'active'"
+    db.query(sql6, [req.params.id], function (err, rows) {
         res.send(rows);
     })
 })
@@ -74,8 +74,8 @@ cart_order.get('/order/items/:id', function (req, res) {
 
 // 更新購物車 cart 資料表 的 oid || statue => active
 cart_order.patch("/editcart/statusactive/", function (req, res) {
-    var sql5 = "update cart set oid= '' , c_status = 'active'  where oid = ? "
-    db.query(sql5,
+    var sql7 = "update cart set oid= '' , c_status = 'active'  where oid = ? "
+    db.query(sql7,
         [req.body.oid, req.body.uid],
         function (err, rows) {
             res.send(JSON.stringify(req.body));
@@ -95,8 +95,8 @@ cart_order.delete("/order/delete/:oid", function (req, res) {
 
 // 更新訂單 vgorder 資料表 的 使用者輸入資訊
 cart_order.patch("/editorder/details/:oid", function (req, res) {
-    var sql6 = "UPDATE vgorder SET oName= ? ,oTel= ? ,oMail= ? ,rName= ? ,rTel= ? ,rAddr= ? ,convName= ? ,convTel= ? ,convStore= ? ,payment= ? ,transName= ? ,transNum= ? ,transDate= ? ,creditName= ? ,creditNum= ? ,creditMM= ? ,creditYY= ? ,creditCSV= ? ,billDonate= ? ,billPersonal= ? ,billCompName= ? ,billCompNum= ? ,billCompAddr= ? ,o_note= ? WHERE oid = ? "
-    db.query(sql6,
+    var sql66 = "UPDATE vgorder SET oName= ? ,oTel= ? ,oMail= ? ,rName= ? ,rTel= ? ,rAddr= ? ,convName= ? ,convTel= ? ,convStore= ? ,payment= ? ,transName= ? ,transNum= ? ,transDate= ? ,creditName= ? ,creditNum= ? ,creditMM= ? ,creditYY= ? ,creditCSV= ? ,billDonate= ? ,billPersonal= ? ,billCompName= ? ,billCompNum= ? ,billCompAddr= ? ,o_note= ? WHERE oid = ? "
+    db.query(sql66,
         [req.body.oName, req.body.oTel, req.body.oMail, req.body.rName, req.body.rTel, req.body.rAddr, req.body.convName, req.body.convTel, req.body.convStore, req.body.payment, req.body.transName, req.body.transNum, req.body.transDate, req.body.creditName, req.body.creditNum, req.body.creditMM, req.body.creditYY, req.body.creditCSV, req.body.billDonate, req.body.billPersonal, req.body.billCompName, req.body.billCompNum, req.body.billCompAddr, req.body.o_note, req.body.oid],
         function (err, rows) {
             res.send(JSON.stringify(req.body));
@@ -106,8 +106,8 @@ cart_order.patch("/editorder/details/:oid", function (req, res) {
 
 // 更新 vgorder 資料表 的 o_statue => inactive 與 o_updatetime
 cart_order.patch("/editorder/statusinactive/", function (req, res) {
-    var sql7 = "update vgorder set o_status = 'inactive', o_updatetime = ? where oid = ? "
-    db.query(sql7,
+    var sql77 = "update vgorder set o_status = 'pending', o_updatetime = ? where oid = ? "
+    db.query(sql77,
         [req.body.o_updatetime, req.body.oid],
         function (err, rows) {
             res.send(JSON.stringify(req.body));
@@ -115,14 +115,16 @@ cart_order.patch("/editorder/statusinactive/", function (req, res) {
     )
 })
 
-// 讀取訂購單資訊 (最新且o_status = inactive)
+// 讀取訂購單資訊 (最新且o_status = pendind)
 cart_order.get('/order/list/:id', function (req, res) {
-    var sql8 = "SELECT * FROM vgorder WHERE vgorder.uid = ? and vgorder.o_status = 'inactive' ORDER BY o_updatetime DESC LIMIT 1;"
+    var sql8 = "SELECT * FROM vgorder WHERE vgorder.uid = ? and vgorder.o_status = 'pending' ORDER BY o_updatetime DESC LIMIT 1;"
     db.query(sql8, [req.params.id], function (err, rows) {
         res.send(rows);
     })
 })
 
+
+// cart 頁面 相關資料庫指令
 // 更新願望清單 (新增項目至願望清單)
 cart_order.post("/addtowishlist/", function (req, res) {
     var sql9 = "INSERT INTO wishlist (uid, pid) VALUES (? , ?)";
@@ -207,7 +209,7 @@ cart_order.get('/getuserinfo/:id', function (req, res) {
 cart_order.patch("/updateuserinfo/", function (req, res) {
     var sql17 = "update userinfo set Name = ?, Phone = ?  where uId = ?"
     db.query(sql17,
-        [req.body.Name, req.body.Phone, req.body.uId ],
+        [req.body.Name, req.body.Phone, req.body.uId],
         function (err, rows) {
             res.send(JSON.stringify(req.body));
         }
@@ -230,26 +232,91 @@ cart_order.get('/getuserinfo/addr/:uid', function (req, res) {
     })
 })
 
+// 更新到常用地址
+cart_order.post("/updateuserinfo/addr/", function (req, res) {
+    var sql20 = "INSERT INTO useraddress (uId, Name, Phone, address) VALUES (?, ?, ?, ?)"
+    db.query(sql20,
+        [req.body.uid, req.body.name, req.body.phone, req.body.address],
+        function (err, rows) {
+            res.send(JSON.stringify(req.body));
+        }
+    )
+})
+
+// 便利商店地圖系統
+cart_order.post('/cvs_callback/', (req, res) => {
+    // 從便利商店點選完後 該API用POST方式回傳到指定網址
+    var body = req.body
+    console.log( body )
+    // 從指定網址返回order頁面，否則會卡在那邊
+    res.render('order', {body});
+})
+
+
 // ordercomfirm 頁面相關資料庫指令
+// 送出訂單 => o_status更新為 pending(sql7)  => 扣除購物金
+cart_order.post("/updateuser/bonus/", function (req, res) {
+    var sql22 = "INSERT INTO userbonus (uId, bonus) VALUES (?, ?)"
+    db.query(sql22,
+        [req.body.uid, req.body.bonus],
+        function (err, rows) {
+            res.send(JSON.stringify(req.body));
+        }
+    )
+})
 
+// 送出訂單系統自動發信
+var nodemailer = require("nodemailer");
+cart_order.post('/server/send/', async (req, res, next) => {
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: process.env.GMAIL_USER,
+            pass: process.env.GMAIL_PASS,
+        },
+    });
 
-// 送出訂單 => o_status更新為 pending  
+    await transporter.verify();
+    var mailOptions = {
+        from: process.env.GMAIL_USER,
+        to: req.body.email,
+        subject: `Vege果蔬( ${req.body.oid} ) 最新鮮的蔬果已在路上！`,
+        html: `
+        <h4>親愛的${req.body.name}，感謝您在Vege的訂購！</h4>
+        <p>我們已收到您的訂單，將為您選購最新鮮、最適合您的蔬果。您可於官網查詢最新訂單狀況，如有任何問題，歡迎與我們聯繫。</p>
+        <br>
+        <p style="color:#1ebd95 ;font-weight:300">訂單成立日期：${req.body.o_createtime}</p>
+        <p style="color:#1ebd95 ;font-weight:300">訂單編號：${req.body.oid}</p>
+        <br>
+        <p style="color: #6f522c"> Vege 果蔬團隊 敬上 </p>
+        `
+    };
 
+    transporter.sendMail(mailOptions, (err, info) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send('Error sending email');
+        } else {
+            console.log('success:', info.envelope);
+            res.send('Email sent');
+        }
+    });
+});
 
 
 // rateorder 評價訂單相關資料庫指令
 //讀取vgorder訂單狀態及品項
 cart_order.get('/getorderstatus/:oid', function (req, res) {
-    var sql20 = "SELECT * FROM vgorder, cart, temp_product where vgorder.oid = cart.oid and cart.pid = temp_product.pid and vgorder.oid = ? ";
-    db.query(sql20, [req.params.oid], function (err, rows) {
+    var sql23 = "SELECT * FROM vgorder, cart, temp_product where vgorder.oid = cart.oid and cart.pid = temp_product.pid and vgorder.oid = ? ";
+    db.query(sql23, [req.params.oid], function (err, rows) {
         res.send(rows);
     })
 })
 
 // 完成評價 => insert into table rateorder
 // cart_order.post("/update/rateorder/", function (req, res) {
-//     var sql21 = 'INSERT INTO  rateorder ( oid , speed ,  quality ,  service ,  comment1 ,  comment2 ,  comment3) VALUES (? ,?, ?, ?, ?, ?, ?)';
-//     db.query(sql21,
+//     var sql24 = 'INSERT INTO  rateorder ( oid , speed ,  quality ,  service ,  comment1 ,  comment2 ,  comment3) VALUES (? ,?, ?, ?, ?, ?, ?)';
+//     db.query(sql24,
 //         [req.body.oid, req.body.speed, req.body.quality, req.body.service, req.body.comment1, req.body.comment2, req.body.comment3],
 //         function (err, rows) {
 //             res.send(JSON.stringify(req.body));
@@ -257,10 +324,10 @@ cart_order.get('/getorderstatus/:oid', function (req, res) {
 //     )
 // })
 cart_order.post("/update/rateorder/", function (req, res) {
-    var sql21 = 'INSERT INTO rateorder (oid, speed, quality, service, comment) VALUES (?, ?, ?, ?, ?)';
+    var sql24 = 'INSERT INTO rateorder (oid, speed, quality, service, comment) VALUES (?, ?, ?, ?, ?)';
     var comments = req.body.comments;
     comments.forEach((commentObj) => {
-        db.query(sql21, [req.body.oid, req.body.speed, req.body.quality, req.body.service, `${commentObj.items} | ${commentObj.comment}`], function (err, rows) {
+        db.query(sql24, [req.body.oid, req.body.speed, req.body.quality, req.body.service, `${commentObj.items} | ${commentObj.comment}`], function (err, rows) {
             if (err) {
                 console.error(err);
             }
@@ -271,8 +338,8 @@ cart_order.post("/update/rateorder/", function (req, res) {
 
 // 若已有評價資料，無法再次進行評價
 cart_order.get('/getrateorderstatus/:oid', function (req, res) {
-    var sql22 = "SELECT * FROM rateorder where oid = ? ";
-    db.query(sql22, [req.params.oid], function (err, rows) {
+    var sql25 = "SELECT * FROM rateorder where oid = ? ";
+    db.query(sql25, [req.params.oid], function (err, rows) {
         res.send(rows);
     })
 })

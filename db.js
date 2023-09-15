@@ -4,7 +4,8 @@ var db = mysql.createConnection({
     port: '3306',
     user: 'root',
     password: '',
-    database: 'Vege'
+    database: 'Vege',
+    charset: 'utf8mb4'
 });
 db.connect(function (err) {
     if (err) {

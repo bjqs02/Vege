@@ -109,8 +109,7 @@
                             </div>
                             <fieldset class="row mt-3">
                                 <div class="d-none d-sm-block col-sm-3 col-lg-2">
-                                    <img id="nowUserImg" class="img-fluid" src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                                        alt="">
+                                    <img id="nowUserImg" class="img-fluid" src="" alt="">
                                 </div>
                                 <div class="form-group col-xs-12 col-sm-9 col-lg-10">
                                     <textarea class="form-control" id="message" placeholder="我想說..."
@@ -266,7 +265,7 @@
                 commentData.uid = userToken.id;
                 commentData.atcid = pn[3];
                 var jsonData = JSON.stringify(commentData);
-                // console.log(jsonData);
+                console.log(jsonData);
                 // console.log(JSONDatatoken);
                 fetch('/blog/postcom', {
                     method: "POST",
@@ -278,10 +277,43 @@
                 })
                     .then(function (res) {
                         console.log(res);
+                        location.reload();
                     })
 
             });
 
+
+            $('.keep1').on('click', function () {
+                if ($(this).prop("checked") == 1) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: '已加入收藏夾',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                var userData = localStorage.getItem("token");
+                var userToken = userData ? JSON.parse(userData) : false;
+                var keepData = {};
+                var pn = window.location.pathname.split('/');
+                keepData.atcid = pn[3];
+                keepData.uid = userToken.id;
+                var jsonData = JSON.stringify(keepData);
+                console.log(jsonData);
+                // console.log(JSONDatatoken);
+                fetch('/blog/keepcheck', {
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json;charset=UTF-8"
+                    },
+                    body: jsonData
+                })
+                    .then(function (res) {
+                        console.log(res);
+                    })
+                } else {
+                }
+            });
 
 
             var itemTag = [];
@@ -309,7 +341,6 @@
                         $('.hotTag').prepend(`<a href=""><button class="btn btn-vg-xs shadow-sm">${itemTag[i]}</button></a>`);
                     }
                 })
-
 
             // });</script>
 
