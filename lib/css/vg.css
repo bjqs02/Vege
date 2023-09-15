@@ -523,7 +523,7 @@
   /* logo調整預留 (同btn-vg-2，只改font) */
   .vg-nav-logo {
     position: relative;
-    padding: 10px 0 30px 0;
+    padding: 10px 0 10px 0;
     margin: 0 20px 0 20px;
     overflow: hidden;
     font-size: 2rem;
@@ -1245,7 +1245,7 @@
     display: flex;
     justify-content: center;
     position: sticky;
-    top: 80px;
+    top: 65px;
     background-color: var(--primary-L);
     box-shadow: 0px 0px 18px 0px #7c63553a;
     z-index: 99;

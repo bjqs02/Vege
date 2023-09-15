@@ -177,13 +177,13 @@
     fill: var(--blue);
 }
 
-.con-like .check1:checked~.checkmark .filled {
+/* .con-like .check1:checked~.checkmark .filled {
     display: block
 }
 
 .con-like .check1:checked~.checkmark .celebrate {
-    display: block;
-}
+    display: block; */
+/* } */
 
 @keyframes kfr-filled {
     0% {
