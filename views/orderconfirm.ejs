@@ -160,17 +160,19 @@
                             items = e;
                         }
                         // 訂單內容
-                    var total = 0;
-                    var bonus = 0;
-                    var coupon = 0;
-                    var shippingfee = 0;
-                    $("#summary_items").empty();
-                    $.each(items, function (index, item) {
-                        item.size == 's' ? fee = 160 : fee = 290; // 運費 (S-160 L-290)
-                        item.size == 's' ? item.size = '1~2人' : item.size = '3~4人';
-                        item.useCoupon == null ? '0' : item.useCoupon;
-                        item.c_note == null ? item.c_note = '無備註' : item.c_note;
-                        var trHtml = `
+                        // 如果 null 的項目 不顯示
+
+                        var total = 0;
+                        var bonus = 0;
+                        var coupon = 0;
+                        var shippingfee = 0;
+                        $("#summary_items").empty();
+                        $.each(items, function (index, item) {
+                            item.size == 's' ? fee = 160 : fee = 290; // 運費 (S-160 L-290)
+                            item.size == 's' ? item.size = '1~2人' : item.size = '3~4人';
+                            item.useCoupon == null ? '0' : item.useCoupon;
+                            item.c_note == null ? item.c_note = '無備註' : item.c_note;
+                            var trHtml = `
                                 <tr>
                                 <td>
                                     <p class="m-0">${item.pname}</p>
@@ -179,57 +181,67 @@
                                 <td>${item.price}</td>
                             </tr>
                             `;
-                        $("#summary_items").append(trHtml);
-                        $('#coupondiscount').text(item.useCoupon);
-                        $('#bonusdiscount').text(-item.useBonus);
-                        bonus = parseInt(item.useBonus);
-                        coupon = parseInt(item.useCoupon);
-                        shippingfee += fee;
-                        total += item.price;
-                    })
-                    // 運費計算
-                    var tdHtml = `    
+                            $("#summary_items").append(trHtml);
+                            $('#coupondiscount').text(item.useCoupon);
+                            $('#bonusdiscount').text(-item.useBonus);
+                            bonus = parseInt(item.useBonus);
+                            coupon = parseInt(item.useCoupon);
+                            shippingfee += fee;
+                            total += item.price;
+                        })
+                        // 運費計算
+                        var tdHtml = `    
                         <td>${shippingfee}</td>
                         `;
-                    $('#shippingfee').after(tdHtml)
+                        $('#shippingfee').after(tdHtml)
 
-                    // 總金額計算
-                    $('#total').text(shippingfee + total - bonus + coupon)
+                        // 總金額計算
+                        $('#total').text(shippingfee + total - bonus + coupon)
                     }).then(function (res) {
                         orderid.innerText = res[0].oid;
                         console.log(res[0])
+
+                        // 修正轉帳日期格式
+                        var date = res[0].transDate.split('T')
+                        // console.log(date[0])
+
                         var divHtml = `
                                 <div>
                                     <h5 class="vg-h5">基本資料</h5>
-                                    <p class="vg-p">${res[0].oName}</p>
-                                    <p class="vg-p">${res[0].oTel}</p>
-                                    <p class="vg-p">${res[0].oMail}</p>
+                                    <p class="vg-p" id='name'>${res[0].oName}</p>
+                                    <p class="vg-p" id='tel' >${res[0].oTel}</p>
+                                    <p class="vg-p" id='email'>${res[0].oMail}</p>
                                 </div>
                                 <div>
                                     <h5 class="vg-h5">收件資料</h5>
-                                    <p class="vg-p">宅配</p>
+                                    <p class="vg-p" id='deliveryHome'></p>
                                     <p class="vg-p">${res[0].rName}</p>
-                                    <p class="vg-p">${res[0].rAddr}</p>
                                     <p class="vg-p">${res[0].rTel}</p>
+                                    <p class="vg-p">${res[0].rAddr}</p>
+                                    <p class="vg-p" id='deliveryConv'></p>
                                     <p class="vg-p">${res[0].convName}</p>
                                     <p class="vg-p">${res[0].convTel}</p>
-                                    <p class="vg-p">${res[0].convStore}</p>
+                                    <p class="vg-p" id='convStore'>${res[0].convStore}</p>
                                 </div>
                                 <div>
                                     <h5 class="vg-h5">付款方式</h5>
-                                    <p class="vg-p">轉帳匯款</p>
+                                    <p class="vg-p" id='paymentTrans'></p>
                                     <p class="vg-p">${res[0].transName}</p>
                                     <p class="vg-p">${res[0].transNum}</p>
-                                    <p class="vg-p">${res[0].transDate}</p>
+                                    <p class="vg-p" id='transdate'>${date[0]}</p>
+                                    <p class="vg-p" id='paymentCard'></p>
                                     <p class="vg-p">${res[0].creditName}</p>
                                     <p class="vg-p">${res[0].creditNum}</p>
-                                    <p class="vg-p">${res[0].creditMM}/${res[0].creditYY}</p>
-                                    <p class="vg-p">${res[0].payment}</p>
-                                </div>
+                                    <p class="vg-p" id="creditexpireddate">${res[0].creditMM} / ${res[0].creditYY}</p>
+                                    <p class="vg-p" id="linepay">${res[0].payment}</p>
+                                    </div>
                                 <div>
                                     <h5 class="vg-h5">發票開立</h5>
+                                    <p class="vg-p" id='billD'></p>
                                     <p class="vg-p">${res[0].billDonate}</p>
-                                    <p class="vg-p">${res[0].billPersonal}</p>
+                                    <p class="vg-p" id='billP'></p>
+                                    <p class="vg-p" id='billPersonal'>${res[0].billPersonal}</p>
+                                    <p class="vg-p" id='billC'></p>
                                     <p class="vg-p">${res[0].billCompName}</p>
                                     <p class="vg-p">${res[0].billCompNum}</p>
                                     <p class="vg-p">${res[0].billCompAddr}</p>
@@ -240,13 +252,36 @@
                                 </div>
                         `;
                         orderdetails.innerHTML = divHtml;
+                        if (res[0].creditMM == '' || null) {
+                            $('#creditexpireddate').remove()
+                        }
+                        if (res[0].convName == '' || null) {
+                            $('#convStore').remove()
+                        }
+                        if (res[0].transName == '' || null) {
+                            $('#transdate').remove()
+                        }
+                        if (res[0].billPersonal == null) {
+                            $('#billPersonal').remove()
+                        }
+                        if (res[0].payment == null) {
+                            $('#linepay').remove()
+                        }
+                        res[0].rName != '' ? (deliveryHome.innerText = '宅配') : (deliveryHome.innerText = '')
+                        res[0].convName != '' ? (deliveryConv.innerText = '7-11') : (deliveryConv.innerText = '')
+                        res[0].transName != '' ? (paymentTrans.innerText = '轉帳匯款') : (paymentTrans.innerText = '')
+                        res[0].creditName != '' ? (paymentCard.innerText = '信用卡') : (paymentCard.innerText = '')
+                        res[0].billDonate != '' ? (billD.innerText = '捐贈') : (billD.innerText = '')
+                        res[0].billPersonal != null ? (billP.innerText = '個人') : (billP.innerText = '')
+                        res[0].billCompNum != '' ? (billC.innerText = '公司') : (billC.innerText = '')
                     })
                     sendorder = () => {
                         var oid = orderid.innerText;
                         var time = new Date().getTime();
                         console.log(time)
-                        // 刪除使用者購物金(未完成)
-                        // 更新 本筆訂單 對應的o_status => inactive
+
+
+                        // 更新 本筆訂單 對應的o_status => pending
                         fetch('/editorder/statusinactive/', {
                             method: 'PATCH',
                             headers: {
@@ -257,8 +292,20 @@
                                 o_updatetime: time
                             })
                         }).then(
-                            // 轉址
-                            document.location.href = "/orderprocessing/"
+                            // 刪除使用者購物金
+                            fetch('/updateuser/bonus/', {
+                                method: 'POST',
+                                headers: {
+                                    "Content-Type": "application/json ; charset=UTF-8"
+                                },
+                                body: JSON.stringify({
+                                    uid: uid,
+                                    bonus: bonusdiscount.innerText
+                                })
+                            }).then(
+                                // 轉址
+                                document.location.href = "/orderprocessing/"
+                            )
                         )
                     }
 
