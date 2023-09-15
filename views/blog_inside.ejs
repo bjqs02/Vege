@@ -143,12 +143,13 @@
             <!-- rightrow -->
             <div class="col-md-5 col-lg-3 vg-bd-5 border rightRow">
                 <!-- search -->
+                <!-- search -->
                 <div class="d-flex m-3 searchRow">
                     <div class="form-floating mb-3 w-75">
                         <input type="text" class="form-control" id="floatingInput" placeholder="搜尋">
                         <label for="floatingInput">搜尋</label>
                     </div>
-                    <button class="btn btn-vg serchButton"><i class="bi bi-search"></i></button>
+                    <button id="searchBTN" class="btn btn-vg serchButton"><i class="bi bi-search"></i></button>
 
 
                 </div>
@@ -181,7 +182,7 @@
                         </div>
                     </div>
 
-                    <button class="btn btn-vg m-2 shadow-sm">送出</button>
+                    <button class="btn btn-vg m-2 shadow-sm" id="tagschBtn">送出</button>
                     <br><br>
                 </div>
 
@@ -243,111 +244,132 @@
             <!-- wrap end-->
         </div>
 
-        <div class="vg-footer">
-            copyright
-        </div>
-
-        <script>
-            // $(document).ready(function () {
-
-            $('#sentBtn').click(function () {
-                var userData = localStorage.getItem("token");
-                var userToken = userData ? JSON.parse(userData) : false;
-                // console.log('按下去了');
-                // console.log(userToken);
-
-                // console.log($("#message").val())
-                // var commentuser = JSON.stringify(userToken);
-                var commentData = {};
-                var pn = window.location.pathname.split('/');
-                // console.log(pn[3]);
-                commentData.postcom = $("#message").val();
-                commentData.uid = userToken.id;
-                commentData.atcid = pn[3];
-                var jsonData = JSON.stringify(commentData);
-                console.log(jsonData);
-                // console.log(JSONDatatoken);
-                fetch('/blog/postcom', {
-                    method: "POST",
-                    headers: {
-                        "Content-type": "application/json;charset=UTF-8"
-                    },
-                    body: jsonData
-                    // vgcomment: userToken,
-                })
-                    .then(function (res) {
-                        console.log(res);
-                        location.reload();
-                    })
-
-            });
-
-
-            $('.keep1').on('click', function () {
-                if ($(this).prop("checked") == 1) {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: '已加入收藏夾',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                var userData = localStorage.getItem("token");
-                var userToken = userData ? JSON.parse(userData) : false;
-                var keepData = {};
-                var pn = window.location.pathname.split('/');
-                keepData.atcid = pn[3];
-                keepData.uid = userToken.id;
-                var jsonData = JSON.stringify(keepData);
-                console.log(jsonData);
-                // console.log(JSONDatatoken);
-                fetch('/blog/keepcheck', {
-                    method: "POST",
-                    headers: {
-                        "Content-type": "application/json;charset=UTF-8"
-                    },
-                    body: jsonData
-                })
-                    .then(function (res) {
-                        console.log(res);
-                    })
-                } else {
-                }
-            });
-
-
-            var itemTag = [];
-            fetch('/blog/tags')
-                .then(function (res) {
-                    return res.json();
-                })
-                .then(function (jsonObj) {
-                    // console.log(jsonObj[0].tagname);
-                    for (var i = 1; i < jsonObj.length; i++) {
-                        itemTag.push(jsonObj[i].tagname);
-                    }
-                    $('#includetag').selectivity({
-                        items: itemTag,
-                        multiple: true,
-                        placeholder: '搜尋'
-                    });
-                    $('#notag').selectivity({
-                        items: itemTag,
-                        multiple: true,
-                        placeholder: '搜尋'
-                    });
-                    for (let i = 1; i < 10; i++) {
-                        // console.log($('.hotTag'));
-                        $('.hotTag').prepend(`<a href=""><button class="btn btn-vg-xs shadow-sm">${itemTag[i]}</button></a>`);
-                    }
-                })
-
-            // });</script>
-
-        <script src="js/selectivity-jquery.min.js"></script>
-        <script src="js/blogact.js"></script>
-
         <%- include('share/footer.ejs')%>
+
+            <script>
+
+                $('#sentBtn').click(function () {
+                    var userData = localStorage.getItem("token");
+                    var userToken = userData ? JSON.parse(userData) : false;
+                    var commentData = {};
+                    var pn = window.location.pathname.split('/');
+                    // console.log(pn[3]);
+                    commentData.postcom = $("#message").val();
+                    commentData.uid = userToken.id;
+                    commentData.atcid = pn[3];
+                    var jsonData = JSON.stringify(commentData);
+                    console.log(jsonData);
+                    // console.log(JSONDatatoken);
+                    fetch('/blog/postcom', {
+                        method: "POST",
+                        headers: {
+                            "Content-type": "application/json;charset=UTF-8"
+                        },
+                        body: jsonData
+                        // vgcomment: userToken,
+                    })
+                        .then(function (res) {
+                            console.log(res);
+                            location.reload();
+                        })
+
+                });
+
+
+                $('.keep1').on('click', function () {
+                    if ($(this).prop("checked") == 1) {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: '已加入收藏夾',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        var userData = localStorage.getItem("token");
+                        var userToken = userData ? JSON.parse(userData) : false;
+                        var keepData = {};
+                        var pn = window.location.pathname.split('/');
+                        keepData.atcid = pn[3];
+                        keepData.uid = userToken.id;
+                        var jsonData = JSON.stringify(keepData);
+                        console.log(jsonData);
+                        // console.log(JSONDatatoken);
+                        fetch('/blog/keepcheck', {
+                            method: "POST",
+                            headers: {
+                                "Content-type": "application/json;charset=UTF-8"
+                            },
+                            body: jsonData
+                        })
+                            .then(function (res) {
+                                console.log(res);
+                            })
+                    } else {
+                    }
+                });
+
+
+                var itemTag = [];
+                fetch('/blog/tags')
+                    .then(function (res) {
+                        return res.json();
+                    })
+                    .then(function (jsonObj) {
+                        // console.log(jsonObj[0].tagname);
+                        for (var i = 1; i < jsonObj.length; i++) {
+                            itemTag.push(jsonObj[i].tagname);
+                        }
+                        $('#includetag').selectivity({
+                            items: itemTag,
+                            multiple: true,
+                            placeholder: '搜尋'
+                        });
+                        $('#notag').selectivity({
+                            items: itemTag,
+                            multiple: true,
+                            placeholder: '搜尋'
+                        });
+                        for (let i = 1; i < 10; i++) {
+                            // console.log($('.hotTag'));
+                            $('.hotTag').prepend(`<a href="/blog/tag/${jsonObj[i].tagid}"><button class="btn btn-vg-xs shadow-sm">${jsonObj[i].tagname}</button></a>`);
+                        }
+                    })
+                let searchput = '';
+                $('#floatingInput').on('change', function () {
+                    searchput = $('#floatingInput').val();
+                });
+                $('#searchBTN').on('click', function (e) {
+                    e.preventDefault();
+                    window.location.href = `/blog/search1/${searchput}`;
+                    // console.log(a);
+                });
+
+                let includeTag = 0;
+                let ict;
+                $('#includetag').on('change', function () {
+                    includeTag = $(this).selectivity('value'); // 获取所选标签的值
+                    ict = includeTag.join();
+                    // console.log(ict);
+                });
+                let notag;
+                let nocludeTag = 0;
+                $('#notag').on('change', function () {
+                    nocludeTag = $(this).selectivity('value'); // 获取所选标签的值
+                    // console.log(nocludeTag);
+                    notag = nocludeTag.join();
+                    // console.log(notag);
+                });
+                let sqlQuery = 'SELECT * FROM `article` WHERE ';
+                $('#tagschBtn').on('click', function () {
+                    window.location.href = `/blog/search/${ict}&${notag}`;
+                })
+
+
+            </script>
+
+
+            <script src="js/selectivity-jquery.min.js"></script>
+            <script src="js/blogact.js"></script>
 </body>
 
 </html>

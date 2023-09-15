@@ -120,14 +120,12 @@ blog.get('/search/:in&:no', jp, function(req, res){
     var x = req.params.in.split(',');
     let sqlQuery = "";
     if (x.length > 0) {
-        // sqlQuery += '(';
         for (let i = 0; i < x.length; i++) {
             sqlQuery += 'atTag LIKE \'%' + x[i] + '%\'';
             if (i < x.length - 1) {
                 sqlQuery += ' AND ';
             }
         }
-
     }
 
     var y = req.params.no.split(',');
@@ -135,21 +133,17 @@ blog.get('/search/:in&:no', jp, function(req, res){
         if (x.length > 0) {
             sqlQuery += ' AND ';
         }
-        // sqlQuery += '(';
         for (let i = 0; i < y.length; i++) {
             sqlQuery += 'atTag NOT LIKE \'%' + y[i] + '%\'';
             if (i < y.length - 1) {
                 sqlQuery += ' AND ';
             }
         }
-        // sqlQuery += ')';
     }
 
-    console.log(x);
-    console.log(y);
-    console.log(sqlQuery);
+    // console.log(y);
+    // console.log(sqlQuery);
     var sql = 'SELECT * FROM article WHERE '+sqlQuery;
-    console.log(sql);
     db.query(sql, function(err, tags){
         if(err){
             console.log('search沒抓成功');
@@ -275,8 +269,6 @@ blog.post('/keepcheck', jp, function(req, res){
         }
     })
 })
-
-
 
 
 module.exports = blog;
