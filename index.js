@@ -82,7 +82,8 @@ app.use("/", product);
 // 結帳去(購買資訊輸入)
 app.use("/order", express.static("lib"));
 app.get("/order", login_render, function (req, res) {
-  res.render("order");
+  var body = { storeid : '尚未', storename : '選擇'};
+  res.render("order", {body});
 });
 
 // 確認訂單
