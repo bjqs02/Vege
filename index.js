@@ -110,8 +110,8 @@ app.get("/rateorder", login_render, function (req, res) {
 });
 
 //blog
-let blog = require('./router/blog.js');
-let activityboard = require('./router/activityboard.js');
+let blog = require('./router/blog');
+let activityboard = require('./router/activityboard');
 app.use('/blog',express.static('lib'));
 app.use('/blog/page',express.static('lib'));
 app.use('/blog/inside',express.static('lib'));

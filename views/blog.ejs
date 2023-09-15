@@ -61,8 +61,9 @@
                                         <div class="articleIcon">
                                             <a>
                                                 <div class="con-like">
-                                                    <input title="like" type="checkbox" class="like check1">
-                                                    <div class="checkmark">
+                                                    <input title="like" type="checkbox" class="like check1"
+                                                        id="likeBTN<%- data[i].atcid %>">
+                                                    <div class="checkmark" id="likeIcon<%- data[i].atcid %>">
                                                         <svg viewBox="0 0 24 24" class="outline"
                                                             xmlns="http://www.w3.org/2000/svg">
                                                             <path
@@ -90,8 +91,9 @@
                                             <p class="likePeople" style="margin-left: -12px; padding: 3px;"></p>
                                             <a>
                                                 <div class="con-like con-keep">
-                                                    <input title="like" type="checkbox" class="like keep1">
-                                                    <div class="checkmark">
+                                                    <input title="like" type="checkbox" class="like keep1"
+                                                        id="keepBTN<%- data[i].atcid %>">
+                                                    <div class="checkmark" id="bookmark<%- data[i].atcid %>">
                                                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                                                             width="35px" height="35px" viewBox="0 0 24 24"
                                                             class="outline">
@@ -146,7 +148,7 @@
                     <!-- search -->
                     <div class="d-flex m-3 searchRow">
                         <div class="form-floating mb-3 w-75">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="搜尋">
+                            <input type="text" class="form-control textin" id="floatingInput" placeholder="搜尋">
                             <label for="floatingInput">搜尋</label>
                         </div>
                         <button id="searchBTN" class="btn btn-vg serchButton"><i class="bi bi-search"></i></button>
@@ -164,7 +166,7 @@
                                 tabindex="0">
                                 <div class="selectivity-multiple-input-container form-floating">
                                     <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off"
-                                        class="form-control selectivity-multiple-input" size="23">
+                                        class="form-control textin selectivity-multiple-input" size="23">
                                     <div class="selectivity-clearfix"></div>
 
                                 </div>
@@ -176,7 +178,7 @@
                                 tabindex="0">
                                 <div class="selectivity-multiple-input-container form-floating">
                                     <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off"
-                                        class="form-control selectivity-multiple-input" size="23">
+                                        class="form-control textin selectivity-multiple-input" size="23">
                                     <div class="selectivity-clearfix"></div>
 
                                 </div>
@@ -249,9 +251,126 @@
                 <script src="js/blogact.js"></script>
                 <script src="js/selectivity-jquery.min.js"></script>
                 <script>
+
+                    //抓取會員是否已收藏
+                    function getBookmark() {
+                        fetch('/blog/bookmark')
+                            .then(function (res) {
+                                return res.json();
+                            })
+                            .then(function (jsonObj) {
+                                if (jsonObj.length != 0) {
+                                    for (let i = 0; i < jsonObj.length; i++) {
+                                        $(`#bookmark${jsonObj[i].atcid} svg:nth-child(2)`).css('display', 'block');
+                                    }
+                                }
+                            })
+                    }
+                    getBookmark();
+                    //抓取會員是否已按讚
+                    function getLiked() {
+                        fetch('/blog/likeList')
+                            .then(function (res) {
+                                return res.json();
+                            })
+                            .then(function (jsonObj) {
+                                if (jsonObj.length != 0) {
+                                    for (let i = 0; i < jsonObj.length; i++) {
+                                        $(`#likeIcon${jsonObj[i].atcid} svg:nth-child(2)`).css('display', 'block');
+                                    }
+                                }
+                            })
+                    }
+                    getLiked();
+
+                    //收藏設定非會員需登入，會員加入資料庫且顯示實心icon
+                    $('.keep1').on('click', function (e) {
+                        var userData = localStorage.getItem("token");
+                        var userToken = userData ? JSON.parse(userData) : false;
+                        if (userToken == false) {
+                            Swal.fire({
+                                title: '請先登入會員',
+                                icon: 'warning',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        } else {
+                            var keepData = {};
+                            var pn = e.target.id.substring(7);
+                            keepData.atcid = pn;
+                            keepData.uid = userToken.id;
+                            var jsonData = JSON.stringify(keepData);
+                            fetch('/blog/keepcheck', {
+                                method: "POST",
+                                headers: {
+                                    "Content-type": "application/json;charset=UTF-8"
+                                },
+                                body: jsonData
+                            })
+                                .then(function (res) {
+                                    Swal.fire({
+                                        position: 'center',
+                                        icon: 'success',
+                                        title: '已加入收藏夾',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    $(`#bookmark${pn} svg:nth-child(2)`).css('display', 'block');
+                                })
+
+                        }
+                        // }
+                    });
+                    //愛心設定非會員需登入，會員加入資料庫且顯示實心icon
+                    $('.check1').on('click', function (e) {
+                        let text = $(this).parent().parent().parent().find('p');
+                       let textPlus = $(this).parent().parent().parent().find('p').text();
+                        var userData = localStorage.getItem("token");
+                        var userToken = userData ? JSON.parse(userData) : false;
+                        var pn = e.target.id.substring(7);
+                        if (userToken == false) {
+                            Swal.fire({
+                                title: '請先登入會員',
+                                icon: 'warning',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            $(`#likeIcon${pn} svg:nth-child(2)`).css('display', 'none');
+                        } else {
+                            var keepData = {};
+                            keepData.atcid = pn;
+                            keepData.uid = userToken.id;
+                            var jsonData = JSON.stringify(keepData);
+                            fetch('/blog/likearticle', {
+                                method: "POST",
+                                headers: {
+                                    "Content-type": "application/json;charset=UTF-8"
+                                },
+                                body: jsonData
+                            })
+                                .then(function (res) {
+                                    Swal.fire({
+                                        position: 'center',
+                                        icon: 'success',
+                                        title: '已按讚',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    $(`#likeIcon${pn} svg:nth-child(2)`).css('display', 'block');
+                                    textPlus++;
+                                    text.text(textPlus);
+                                })
+
+                        }
+                        // }
+                    });
+
+
+                    //設定目前頁面下方畫線
                     var a = <%= curr_page %>;
                     $(`.pageset>a:nth-child(${a})`).css('border-bottom', 'rgb(31, 2, 2) solid 2px');
 
+                    //設定上方導覽列
                     $('#qna').addClass('btn-vg-2-active');
                     $('#title1').text('全部分類');
                     $('#title1').prop('href', '/blog/page/1');
@@ -313,16 +432,18 @@
                     })
                 </script>
                 <script>$(document).ready(function () {
-                let searchput = '';
-                $('#floatingInput').on('change', function () {
-                    searchput = $('#floatingInput').val();
-                });
-                $('#searchBTN').on('click', function (e) {
-                    e.preventDefault();
-                    window.location.href = `/blog/search1/${searchput}`;
-                    // console.log(a);
-                });
+                        //抓取搜尋欄位值並跳轉網址頁面
+                        let searchput = '';
+                        $('#floatingInput').on('change', function () {
+                            searchput = $('#floatingInput').val();
+                        });
+                        $('#searchBTN').on('click', function (e) {
+                            e.preventDefault();
+                            window.location.href = `/blog/search1/${searchput}`;
+                            // console.log(a);
+                        });
 
+                        //抓取含有此tag的文章
                         var itemTag = [];
                         fetch('/blog/tags')
                             .then(function (res) {
@@ -349,7 +470,7 @@
                                 }
                             })
 
-
+                        //設定進階搜尋的比對並將資料傳入js並跳轉網址
                         let includeTag = 0;
                         let ict;
                         $('#includetag').on('change', function () {

@@ -13,11 +13,6 @@
 }
 
 
-.header {
-    background-color: rgba(153, 245, 188, 0.535);
-    padding: 20px;
-}
-
 /* navbar */
 .myNavbar>ul {
     list-style: none;
@@ -177,13 +172,13 @@
     fill: var(--blue);
 }
 
-.con-like .like:checked~.checkmark .filled {
+/* .con-like .check1:checked~.checkmark .filled {
     display: block
 }
 
-.con-like .like:checked~.checkmark .celebrate {
-    display: block;
-}
+.con-like .check1:checked~.checkmark .celebrate {
+    display: block; */
+/* } */
 
 @keyframes kfr-filled {
     0% {
@@ -390,7 +385,7 @@ padding-left: 50px;
     white-space: nowrap;
 }
 
-.form-control {
+.textin {
     height: 100px;
 }
 

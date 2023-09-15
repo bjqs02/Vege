@@ -18,7 +18,9 @@ activity.get('/', function(req, res){
             });
         }
     })
-})
+});
+
+//文章內頁
 activity.get('/inside/:id', function(req, res){
     var act_id = req.params.id;
     var sql1 = "select * from activityboard WHERE actid = ?;"
@@ -33,9 +35,9 @@ activity.get('/inside/:id', function(req, res){
             });
         }
     })
-})
+});
 
-
+//文章分類
 activity.get('/category/:id', function(req, res){
     var sql3 = "SELECT * FROM activityboard WHERE actCat = ?;"
     var data = [req.params.id];
@@ -51,8 +53,9 @@ activity.get('/category/:id', function(req, res){
             })
         }
     })
-})
+});
 
+//抽獎功能
 activity.post('/spanValue', jp, function(req, res){
     var spanValue = req.body.spanValue;
     var uid = req.body.uid;
@@ -70,12 +73,6 @@ activity.post('/spanValue', jp, function(req, res){
         }
     })
 })
-
-
-
-
-
-
 
 
 module.exports = activity;

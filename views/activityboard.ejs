@@ -307,50 +307,136 @@
 
             </div>
             <%- include('share/footer.ejs')%>
-            <script>
-                $('#qna').addClass('btn-vg-2-active');
-                $('#title1').text('全部分類');
-                $('#title1').prop('href', '/activityboard');
-                $('#title2').text('限時活動');
-                $('#title2').prop('href', '/activityboard/category/1');
-                $('#title3').text('佈告欄');
-                $('#title3').prop('href', '/activityboard/category/2');
-                $('#title4').css('display', 'none');
-                $('#title5').css('display', 'none');
-               
-                $(function () {
-                    $(`#qa1`).on({
-                        mouseover: function () {
-                            // console.log(this);
-                            $(`#title1`).addClass('btn-vg-3-active');
-                        },
-                        mouseout: function () {
-                            $(`#title1`).removeClass('btn-vg-3-active');
-                        }
-                    });
-                    $(`#qa2`).on({
-                        mouseover: function () {
-                            // console.log(this);
-                            $(`#title2`).addClass('btn-vg-3-active');
-                        },
-                        mouseout: function () {
-                            $(`#title2`).removeClass('btn-vg-3-active');
-                        }
-                    });
-                    $(`#qa3`).on({
-                        mouseover: function () {
-                            // console.log(this);
-                            $(`#title3`).addClass('btn-vg-3-active');
-                        },
-                        mouseout: function () {
-                            $(`#title3`).removeClass('btn-vg-3-active');
-                        }
-                    });
+                <script>
+                    //導覽列設置
+                    $('#qna').addClass('btn-vg-2-active');
+                    $('#title1').text('全部分類');
+                    $('#title1').prop('href', '/activityboard');
+                    $('#title2').text('限時活動');
+                    $('#title2').prop('href', '/activityboard/category/1');
+                    $('#title3').text('佈告欄');
+                    $('#title3').prop('href', '/activityboard/category/2');
+                    $('#title4').css('display', 'none');
+                    $('#title5').css('display', 'none');
 
-                })
-            </script>
- <script src="js/blogact.js"></script>
- <script src="js/selectivity-jquery.min.js"></script>
+                    $(function () {
+                        $(`#qa1`).on({
+                            mouseover: function () {
+                                // console.log(this);
+                                $(`#title1`).addClass('btn-vg-3-active');
+                            },
+                            mouseout: function () {
+                                $(`#title1`).removeClass('btn-vg-3-active');
+                            }
+                        });
+                        $(`#qa2`).on({
+                            mouseover: function () {
+                                // console.log(this);
+                                $(`#title2`).addClass('btn-vg-3-active');
+                            },
+                            mouseout: function () {
+                                $(`#title2`).removeClass('btn-vg-3-active');
+                            }
+                        });
+                        $(`#qa3`).on({
+                            mouseover: function () {
+                                // console.log(this);
+                                $(`#title3`).addClass('btn-vg-3-active');
+                            },
+                            mouseout: function () {
+                                $(`#title3`).removeClass('btn-vg-3-active');
+                            }
+                        });
+
+                    })
+                </script>
+                <script src="js/blogact.js"></script>
+                <script src="js/selectivity-jquery.min.js"></script>
+
+                <script>
+                    //輪盤設置
+                    // 假設您已經有了輪盤的初始角度和旋轉速度
+                    let initialAngle = 0; // 輪盤的初始角度
+                    let rotationSpeed = 3; // 旋轉速度，設置為3秒
+                    let minRevolutions = 5; // 最少旋轉五圈
+                    let spanValue;
+                    // 獲取spin按鈕
+                    let spinBtn = document.querySelector('.spinBtn');
+
+                    spinBtn.onclick = function () {
+                        var userData = localStorage.getItem("token");
+
+                        if (userData == null) {
+                            Swal.fire({
+                                title: '請先登入會員',
+                                icon: 'warning',
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(
+                                setTimeout(() => {
+                                    document.location.href = "/login/userlogin"
+                                }, 2000))
+                        } else {
+
+                            // 計算所需的旋轉角度增量
+                            let minAngle = 360 * minRevolutions;
+                            let angleIncrement = Math.ceil(Math.random() * minAngle + minAngle);
+
+                            // 更新旋轉角度
+                            initialAngle += angleIncrement;
+
+                            // 將旋轉角度轉換為0到360度的範圍
+                            let normalizedAngle = (initialAngle % 360 + 360) % 360;
+
+                            // 計算對應的number div的索引
+                            let numberOfDivs = 5; // 假設有5個number div
+                            let divIndex = Math.floor((normalizedAngle / 360) * numberOfDivs);
+
+                            // 獲取所有number divs
+                            let numberDivs = document.querySelectorAll('.lottoContainer .wheel .number');
+
+                            // 獲取對應的number div
+                            let targetNumberDiv = numberDivs[divIndex];
+
+                            // 獲取對應的span值
+                            spanValue = targetNumberDiv.querySelector('span').textContent;
+
+                            // 更新輪盤的旋轉角度
+                            let wheel = document.querySelector('.wheel');
+                            wheel.style.transition = `transform ${rotationSpeed}s ease-in-out`;
+                            wheel.style.transform = `rotate(${360 - initialAngle}deg)`; // 反向旋轉到對應的數字
+
+                            // // 打印span值
+                            // console.log('對應的span值：', spanValue);
+
+                            setTimeout(() => {
+                                Swal.fire({ text: `您已獲得${spanValue}點`, confirmButtonColor: '#a1c181' }).then(function (result) {
+                                    if (result.value) {
+                                        lottoBg.style.display = 'none';
+                                    }
+                                })
+                            }, 3700)
+
+                            // var userData = localStorage.getItem("token");
+                            var userToken = userData ? JSON.parse(userData) : false;
+                            var valueData = {};
+                            valueData.spanValue = spanValue;
+                            valueData.uid = userToken.id;
+                            var jsonData = JSON.stringify(valueData);
+                            console.log(jsonData);
+                            fetch('/activityboard/spanValue', {
+                                method: "POST",
+                                headers: {
+                                    "Content-type": "application/json;charset=UTF-8"
+                                },
+                                body: jsonData
+                            })
+                                .then(function (res) {
+                                    console.log(res);
+                                })
+                        }
+                    }
+                </script>
 </body>
 
 </html>
