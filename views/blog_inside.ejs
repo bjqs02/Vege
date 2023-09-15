@@ -112,7 +112,7 @@
                                     <img id="nowUserImg" class="img-fluid" src="" alt="">
                                 </div>
                                 <div class="form-group col-xs-12 col-sm-9 col-lg-10">
-                                    <textarea class="form-control" id="message" placeholder="我想說..."
+                                    <textarea class="form-control textin" id="message" placeholder="我想說..."
                                         required=""></textarea>
                                 </div>
                             </fieldset>
@@ -146,7 +146,7 @@
                 <!-- search -->
                 <div class="d-flex m-3 searchRow">
                     <div class="form-floating mb-3 w-75">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="搜尋">
+                        <input type="text" class="form-control textin" id="floatingInput" placeholder="搜尋">
                         <label for="floatingInput">搜尋</label>
                     </div>
                     <button id="searchBTN" class="btn btn-vg serchButton"><i class="bi bi-search"></i></button>
@@ -164,7 +164,7 @@
                             tabindex="0">
                             <div class="selectivity-multiple-input-container form-floating">
                                 <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off"
-                                    class="form-control selectivity-multiple-input" size="23">
+                                    class="form-control textin selectivity-multiple-input" size="23">
                                 <div class="selectivity-clearfix"></div>
 
                             </div>
@@ -175,7 +175,7 @@
                         <div id="notag" class="form-floating mb-3 w-75 selectivity-input example-input" tabindex="0">
                             <div class="selectivity-multiple-input-container form-floating">
                                 <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off"
-                                    class="form-control selectivity-multiple-input" size="23">
+                                    class="form-control textin selectivity-multiple-input" size="23">
                                 <div class="selectivity-clearfix"></div>
 
                             </div>
@@ -247,7 +247,7 @@
         <%- include('share/footer.ejs')%>
 
             <script>
-
+                //抓取會員是否已收藏
                 function getBookmark() {
                     fetch('/blog/bookmark')
                         .then(function (res) {
@@ -278,7 +278,7 @@
                         })
                 }
                 getBookmark();
-
+                //抓取會員是否已按讚
                 function getLiked() {
                     fetch('/blog/likeList')
                         .then(function (res) {
@@ -309,7 +309,7 @@
                         })
                 }
                 getLiked();
-
+                //留言送出資料
                 $('#sentBtn').click(function () {
                     var userData = localStorage.getItem("token");
                     var userToken = userData ? JSON.parse(userData) : false;
@@ -337,7 +337,7 @@
 
                 });
 
-
+                //收藏設定非會員需登入，會員加入資料庫且顯示實心icon
                 $('.keep1').on('click', function () {
                     if ($(this).prop("checked") == 1) {
                         var userData = localStorage.getItem("token");
@@ -355,25 +355,31 @@
                                 },
                                 body: jsonData
                             })
-                            .then(function (res) {
-                                Swal.fire({
-                                    position: 'center',
-                                    icon: 'success',
-                                    title: '已加入收藏夾',
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                });
-                                $(`#bookmarkCheck svg:nth-child(2)`).css('display', 'block');
-                            })
-
+                                .then(function (res) {
+                                    Swal.fire({
+                                        position: 'center',
+                                        icon: 'success',
+                                        title: '已加入收藏夾',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    $(`#bookmarkCheck svg:nth-child(2)`).css('display', 'block');
+                                })
                         } else {
-                            alert('請先登入');
+                            Swal.fire({
+                                title: '請先登入會員',
+                                icon: 'warning',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
                         }
                     }
                 });
-
+                //愛心設定非會員需登入，會員加入資料庫且顯示實心icon
                 $('.check1').on('click', function () {
                     if ($(this).prop("checked") == 1) {
+                        let text = $(this).parent().parent().parent().find('p');
+                       let textPlus = $(this).parent().parent().parent().find('p').text();
                         var userData = localStorage.getItem("token");
                         var userToken = userData ? JSON.parse(userData) : false;
                         if (userToken) {
@@ -389,24 +395,32 @@
                                 },
                                 body: jsonData
                             })
-                            .then(function (res) {
-                                Swal.fire({
-                                    position: 'center',
-                                    icon: 'success',
-                                    title: '已加入收藏夾',
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                });
-                                $(`#likeCheck svg:nth-child(2)`).css('display', 'block');
-                            })
+                                .then(function (res) {
+                                    Swal.fire({
+                                        position: 'center',
+                                        icon: 'success',
+                                        title: '已按讚',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    $(`#likeCheck svg:nth-child(2)`).css('display', 'block');
+
+                                    textPlus++;
+                                    text.text(textPlus);
+                                })
 
                         } else {
-                            alert('請先登入');
+                            Swal.fire({
+                                title: '請先登入會員',
+                                icon: 'warning',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
                         }
                     }
                 });
 
-
+                //抓取含有此tag的文章
                 var itemTag = [];
                 fetch('/blog/tags')
                     .then(function (res) {
@@ -432,6 +446,8 @@
                             $('.hotTag').prepend(`<a href="/blog/tag/${jsonObj[i].tagid}"><button class="btn btn-vg-xs shadow-sm">${jsonObj[i].tagname}</button></a>`);
                         }
                     })
+
+                //抓取搜尋欄位值並跳轉網址頁面
                 let searchput = '';
                 $('#floatingInput').on('change', function () {
                     searchput = $('#floatingInput').val();
@@ -441,7 +457,7 @@
                     window.location.href = `/blog/search1/${searchput}`;
                     // console.log(a);
                 });
-
+                //設定進階搜尋的比對並將資料傳入js並跳轉網址
                 let includeTag = 0;
                 let ict;
                 $('#includetag').on('change', function () {

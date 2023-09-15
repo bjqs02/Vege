@@ -94,7 +94,7 @@ blog.get('/tag/:id', function(req, res){
 })
 
 
-
+//上方分類
 blog.get('/category/:id', function(req, res){
     var art_id2 = req.params.id;
     var sql3 = "SELECT * FROM article WHERE atcCat = ?;"
@@ -117,6 +117,7 @@ blog.get('/category/:id', function(req, res){
     })
 })
 
+//進階搜尋
 blog.get('/search/:in&:no', jp, function(req, res){
     
     var x = req.params.in.split(',');
@@ -164,6 +165,7 @@ blog.get('/search/:in&:no', jp, function(req, res){
     })
 })
 
+//文字搜尋
 blog.get('/search1/:query', jp, function(req, res){
     
     var x = req.params.query;
@@ -188,7 +190,7 @@ blog.get('/search1/:query', jp, function(req, res){
     })
 })
 
-
+//文章內頁
 blog.get('/inside/:id', function(req, res){
     var art_id = req.params.id;
     var sql2 = "SELECT * FROM article WHERE atcid = ?;";
@@ -254,6 +256,7 @@ blog.post('/postcom', jp, function(req, res){
     })
 })
 
+//會員收藏
 blog.post('/keepcheck', jp, function(req, res){
     var sql6 = req.body;
     var uid = req.body.uid;
@@ -273,6 +276,7 @@ blog.post('/keepcheck', jp, function(req, res){
     })
 })
 
+//會員按讚
 blog.post('/likearticle', jp, function(req, res){
     var uid = req.body.uid;
     var atcid = req.body.atcid;
@@ -290,7 +294,7 @@ blog.post('/likearticle', jp, function(req, res){
     })
 })
 
-
+//會員書籤列表
 blog.get('/bookmark', jp, function(req, res){
     var user = [req.cookies.user];
     console.log(user);
@@ -308,6 +312,7 @@ blog.get('/bookmark', jp, function(req, res){
     })
 })
 
+//會員按讚列表
 blog.get('/likeList', jp, function(req, res){
     var user = [req.cookies.user];
     console.log(user);
