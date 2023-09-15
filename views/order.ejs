@@ -412,18 +412,9 @@
                         <p class="vg-ps text-center">編號<span id="orderid"></span></p>
                         <table id="summary_items" class="table ">
                             <tr>
-                                <td>
-                                    <p>蔬菜箱</p>
-                                    <p>1~2人 6箱 每週配送 兒童 辛香料</p>
-                                </td>
-                                <td>500</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p>惜福箱</p>
-                                    <p>1~2人 1箱 單次配送</p>
-                                </td>
-                                <td>300</td>
+                                <th>品項</th>
+                                <th>數量</th>
+                                <th>價格</th>
                             </tr>
                         </table>
                         <table id="summary_coupon" class="table w-50">
@@ -494,7 +485,7 @@
                         items = e;
                     }
                     // 訂單內容
-                    // console.log(items)
+                    console.log(items)
 
                     // 若從資訊確認頁面返回修改，帶入已存在資料庫的資料 (付款方式需重新輸入)
                     items[0].oName != '' || null ? myusername.value = items[0].oName : myusername.value = '';
@@ -512,18 +503,43 @@
                     var bonus = 0;
                     var coupon = 0;
                     var shippingfee = 0;
-                    $("#summary_items").empty();
+                    // $("#summary_items").empty();
                     $.each(items, function (index, item) {
-                        item.size == 's' ? fee = 160 : fee = 290; // 運費 (S-160 L-290)
-                        item.size == 's' ? item.size = '1~2人' : item.size = '3~4人';
                         item.useCoupon == null ? '0' : item.useCoupon;
                         item.c_note == null ? item.c_note = '無備註' : item.c_note;
+                        // item.c_option ? item.c_option = item.c_option : item.c_option = ''; 
+                        
+                        item.size == 's' ? fee = 160 : fee = 290; // 運費 (S-160 L-290)
+                        item.size == 's' ? item.size = '雙人箱(1~2人)' : item.size = '家庭箱(3~4人)';
+                        if (item.freq == 'once') {
+                            item.freq = '單次購買'
+                        } else if (item.freq == '30d') {
+                            item.freq = '每周一次'
+                        } else {
+                            item.freq = '雙周一次'
+                        }
+                        item.c_note == null ? item.c_note = '無備註' : item.c_note
+                        if (item.size == '雙人箱(1~2人)' && item.freq == '單次購買') {
+                            item.price = parseInt(item.price) * item.quantity
+                        } else if (item.size == '家庭箱(3~4人)' && item.freq == '單次購買') {
+                            item.price = (parseInt(item.price) + 200) * item.quantity
+                        } else if (item.size == '雙人箱(1~2人)' && item.freq == '每周一次') {
+                            item.price = (parseInt(item.price) * 4) * item.quantity
+                        } else if (item.size == '家庭箱(3~4人)' && item.freq == '每周一次') {
+                            item.price = ((parseInt(item.price) + 200) * 4) * item.quantity
+                        } else if (item.size == '雙人箱(1~2人)' && item.freq == '雙周一次') {
+                            item.price = (parseInt(item.price) * 4) * item.quantity
+                        } else {
+                            item.price = ((parseInt(item.price) + 200) * 4) * item.quantity
+                        }
+
                         var trHtml = `
-                                <tr>
+                            <tr>
                                 <td>
-                                    <p class="m-0">${item.pname}</p>
+                                    <p class="m-0" id="c_option">${item.product}</p>
                                     <p class="vg-ps">${item.size} ${item.freq} ${item.c_note} </p>
                                 </td>
+                                <td>${item.quantity}</td>
                                 <td>${item.price}</td>
                             </tr>
                             `;
@@ -534,6 +550,10 @@
                         coupon = parseInt(item.useCoupon);
                         shippingfee += fee;
                         total += item.price;
+
+                        if (item.c_option != null || '') {
+                            $("#c_option").after(`<i class="vg-ps" id="c_option">${item.c_option}</i><br/>`)
+                        }
                     })
                     // 運費計算
                     var tdHtml = `    

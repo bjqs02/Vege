@@ -98,6 +98,7 @@
                             <thead>
                                 <tr>
                                     <th>品項</th>
+                                    <th>數量</th>
                                     <th>金額</th>
                                 </tr>
                             </thead>
@@ -156,7 +157,7 @@
                     <!-- order -->
                     <div id="placeorder" class="text-center mt-5">
                         <a class="btn btn-vg-lg mt-2 mb-3 p-3" onclick="placeOrder()">結帳去</a><br />
-                        <a href="/" class="vg-href">繼續購物</a>
+                        <a href="/product" class="vg-href">繼續購物</a>
                     </div>
                 </section>
             </div>
@@ -191,227 +192,45 @@
                         //     )
                         // }
 
-                        // 讀取購物車物件
-                        $.get(`/cart/item/${uid}`, function (e) {
-                            // console.log(e)
-                            if (typeof (e) == 'string') {
-                                items = JSON.parse(e);
-                            } else {
-                                items = e;
-                            }
-                            $("#cartitems").empty();
-                            $.each(items, function (index, item) {
-                                if (item.size == 's' && item.freq == '單次配送') {
-                                    var trHtml = `
-                            <tr class="${item.pid}">
-                                <td class="${item.pid}">${item.pname}</span></td>
-                                <td class="text-start">
-                                    <div>
-                                        <label for="quantity">份量
-                                            <select name="size" id="quantity" class="form-select-sm ${item.pid}" onChange="handleitem(this)">
-                                                <option value="s" selected>1-2</option>
-                                                <option value="l">3-4</option>
-                                            </select>
-                                        </label>
-                                        <label for="delivery">配送
-                                            <select name="freq" id="delivery" class="form-select-sm ${item.pid}" onChange="handleitem(this)">
-                                                <option value="單次配送" selected>單次配送</option>
-                                                <option value="每周一次">每周一次</option>
-                                                <option value="雙周一次">雙周一次</option> 
-                                            </select>
-                                        </label>
-                                        <p class="vg-ps">內容：${item.pinfo} </p>
-                                    </div>
-                                </td>
-                                <td class="${item.pid}">
-                                    <input type="checkbox" value="家有兒童" id="kids1" onclick="addtocnote(this)">
-                                    <label for="kids1">家有兒童</label><br />
-                                    <input type="checkbox" value="辛香料" id="spice1" onclick="addtocnote(this)">
-                                    <label for="spice1">辛香料</label><br />
-                                    <button class="btn btn-vg-xs m-2 shadow-sm w-75 towishbtn" onClick="towishbtn(this)">下次再買</button>
-                                </td>
-                             </tr>         
-                            `;
-                                    $("#cartitems").append(trHtml);
-                                } else if (item.size == 'l' && item.freq == '單次配送') {
-                                    var trHtml = `
-                            <tr class="${item.pid}">
-                                <td class="${item.pid}">${item.pname}</td>
-                                <td class="text-start">
-                                    <div>
-                                        <label for="quantity">份量
-                                            <select name="size" id="quantity" class="form-select-sm ${item.pid}" onChange="handleitem(this)">
-                                                <option value="s">1-2</option>
-                                                <option value="l" selected>3-4</option>
-                                            </select>
-                                        </label>
-                                        <label for="delivery">配送
-                                            <select name="freq" id="delivery" class="form-select-sm ${item.pid}" onChange="handleitem(this)">
-                                                <option value="單次配送" selected>單次配送</option>
-                                                <option value="每周一次">每周一次</option>
-                                                <option value="雙周一次">雙周一次</option> 
-                                            </select>
-                                        </label>
-                                        <p class="vg-ps">內容：${item.pinfo} </p>
-                                    </div>
-                                </td>
-                                <td class="${item.pid}">
-                                    <input type="checkbox" value="家有兒童" id="kids2" onclick="addtocnote(this)">
-                                    <label for="kids2">家有兒童</label><br />
-                                    <input type="checkbox" value="辛香料" id="spice2" onclick="addtocnote(this)">
-                                    <label for="spice2">辛香料</label><br />
-                                    <button class="btn btn-vg-xs m-2 shadow-sm w-75 towishbtn" onClick="towishbtn(this)">下次再買</button>
-                                </td>
-                             </tr>         
-                            `;
-                                    $("#cartitems").append(trHtml);
-                                } else if (item.size == 's' && item.freq == '每周一次') {
-                                    var trHtml = `
-                            <tr class="${item.pid}">
-                                <td class="${item.pid}">${item.pname}</td>
-                                <td class="text-start">
-                                    <div>
-                                        <label for="quantity">份量
-                                            <select name="size" id="quantity" class="form-select-sm ${item.pid}" onChange="handleitem(this)">
-                                                <option value="s" selected>1-2</option>
-                                                <option value="l">3-4</option>
-                                            </select>
-                                        </label>
-                                        <label for="delivery">配送
-                                            <select name="freq" id="delivery" class="form-select-sm ${item.pid}" onChange="handleitem(this)">
-                                                <option value="單次配送">單次配送</option>
-                                                <option value="每周一次" selected>每周一次</option>
-                                                <option value="雙周一次">雙周一次</option> 
-                                            </select>
-                                        </label>
-                                        <p class="vg-ps">內容：${item.pinfo} </p>
-                                    </div>
-                                </td>
-                                <td class="${item.pid}">
-                                    <input type="checkbox" value="家有兒童" id="kids3" onclick="addtocnote(this)">
-                                    <label for="kids3">家有兒童</label><br />
-                                    <input type="checkbox" value="辛香料" id="spice3" onclick="addtocnote(this)">
-                                    <label for="spice3">辛香料</label><br />
-                                    <button class="btn btn-vg-xs m-2 shadow-sm w-75 towishbtn" onClick="towishbtn(this)">下次再買</button>
-                                </td>
-                             </tr>         
-                            `;
-                                    $("#cartitems").append(trHtml);
-                                } else if (item.size == 'l' && item.freq == '每周一次') {
-                                    var trHtml = `
-                            <tr class="${item.pid}">
-                                <td class="${item.pid}">${item.pname}</td>
-                                <td class="text-start">
-                                    <div>
-                                        <label for="quantity">份量
-                                            <select name="size" id="quantity" class="form-select-sm ${item.pid}" onChange="handleitem(this)">
-                                                <option value="s">1-2</option>
-                                                <option value="l" selected>3-4</option>
-                                            </select>
-                                        </label>
-                                        <label for="delivery">配送
-                                            <select name="freq" id="delivery" class="form-select-sm ${item.pid}" onChange="handleitem(this)">
-                                                <option value="單次配送">單次配送</option>
-                                                <option value="每周一次" selected>每周一次</option>
-                                                <option value="雙周一次">雙周一次</option> 
-                                            </select>
-                                        </label>
-                                        <p class="vg-ps">內容：${item.pinfo} </p>
-                                    </div>
-                                </td>
-                                <td class="${item.pid}">
-                                    <input type="checkbox" value="家有兒童" id="kids4" onclick="addtocnote(this)">
-                                    <label for="kids4">家有兒童</label><br />
-                                    <input type="checkbox" value="辛香料" id="spice4" onclick="addtocnote(this)">
-                                    <label for="spice4">辛香料</label><br />
-                                    <button class="btn btn-vg-xs m-2 shadow-sm w-75 towishbtn" onClick="towishbtn(this)">下次再買</button>
-                                </td>
-                             </tr>         
-                            `;
-                                    $("#cartitems").append(trHtml);
-                                } else if (item.size == 's' && item.freq == '雙周一次') {
-                                    var trHtml = `
-                            <tr class="${item.pid}">
-                                <td class="${item.pid}">${item.pname}</td>
-                                <td class="text-start">
-                                    <div>
-                                        <label for="quantity">份量
-                                            <select name="size" id="quantity" class="form-select-sm ${item.pid}" onChange="handleitem(this)">
-                                                <option value="s" selected>1-2</option>
-                                                <option value="l">3-4</option>
-                                            </select>
-                                        </label>
-                                        <label for="delivery">配送
-                                            <select name="freq" id="delivery" class="form-select-sm ${item.pid}" onChange="handleitem(this)">
-                                                <option value="單次配送">單次配送</option>
-                                                <option value="每周一次">每周一次</option>
-                                                <option value="雙周一次" selected>雙周一次</option> 
-                                            </select>
-                                        </label>
-                                        <p class="vg-ps">內容：${item.pinfo} </p>
-                                    </div>
-                                </td>
-                                <td class="${item.pid}">
-                                    <input type="checkbox" value="家有兒童" id="kids5" onclick="addtocnote(this)">
-                                    <label for="kids5">家有兒童</label><br />
-                                    <input type="checkbox" value="辛香料" id="spice5" onclick="addtocnote(this)">
-                                    <label for="spice5">辛香料</label><br />
-                                    <button class="btn btn-vg-xs m-2 shadow-sm w-75 towishbtn" onClick="towishbtn(this)">下次再買</button>
-                                </td>
-                             </tr>         
-                            `;
-                                    $("#cartitems").append(trHtml);
-                                } else {
-                                    var trHtml = `
-                            <tr class="${item.pid}">
-                                <td class="${item.pid}">${item.pname}</td>
-                                <td class="text-start">
-                                    <div>
-                                        <label for="quantity">份量
-                                            <select name="size" id="quantity" class="form-select-sm ${item.pid}"  onChange="handleitem(this)">
-                                                <option value="s">1-2</option>
-                                                <option value="l" selected>3-4</option>
-                                            </select>
-                                        </label>
-                                        <label for="delivery">配送
-                                            <select name="freq" id="delivery" class="form-select-sm ${item.pid}"  onChange="handleitem(this)">
-                                                <option value="單次配送">單次配送</option>
-                                                <option value="每周一次">每周一次</option>
-                                                <option value="雙周一次" selected>雙周一次</option> 
-                                            </select>
-                                        </label>
-                                        <p class="vg-ps">內容：${item.pinfo} </p>
-                                    </div>
-                                </td>
-                                <td class="${item.pid}">
-                                    <input type="checkbox" value="家有兒童" id="kids6" onclick="addtocnote(this)">
-                                    <label for="kids6">家有兒童</label><br />
-                                    <input type="checkbox" value="辛香料" id="spice6" onclick="addtocnote(this)">
-                                    <label for="spice6">辛香料</label><br />
-                                    <button class="btn btn-vg-xs m-2 shadow-sm w-75 towishbtn" onClick="towishbtn(this)">下次再買</button>
-                                </td>
-                             </tr>         
-                            `;
-                                    $("#cartitems").append(trHtml);
-                                }
-                            })
-                        }).then(function (res) {
-                            console.log(res)
+                        function countTotal(items, callback) {
+                            // console.log(res)
                             // 金額試算表格
                             var total = 0;
                             var shippingfee = 0;
-                            res.map((item) => {
+                            items.map((item) => {
                                 // 購買品項
                                 item.size == 's' ? fee = 160 : fee = 290; // 運費 (S-160 L-290)
-                                item.size == 's' ? item.size = '1~2人' : item.size = '3~4人';
+                                item.size == 's' ? item.size = '雙人箱(1~2人)' : item.size = '家庭箱(3~4人)';
+                                if (item.freq == 'once') {
+                                    item.freq = '單次購買'
+                                } else if (item.freq == '30d') {
+                                    item.freq = '每周一次'
+                                } else {
+                                    item.freq = '雙周一次'
+                                }
                                 item.c_note == null ? item.c_note = '無備註' : item.c_note
+                                if (item.size == '雙人箱(1~2人)' && item.freq == '單次購買') {
+                                    item.price = parseInt(item.price) * item.quantity
+                                } else if (item.size == '家庭箱(3~4人)' && item.freq == '單次購買') {
+                                    item.price = (parseInt(item.price) + 200) * item.quantity
+                                } else if (item.size == '雙人箱(1~2人)' && item.freq == '每周一次') {
+                                    item.price = (parseInt(item.price) * 4) * item.quantity
+                                } else if (item.size == '家庭箱(3~4人)' && item.freq == '每周一次') {
+                                    item.price = ((parseInt(item.price) + 200) * 4) * item.quantity
+                                } else if (item.size == '雙人箱(1~2人)' && item.freq == '雙周一次') {
+                                    item.price = (parseInt(item.price) * 4) * item.quantity
+                                } else {
+                                    item.price = ((parseInt(item.price) + 200) * 4) * item.quantity
+                                }
+
                                 var divHtml = `
                             <tr>
                                 <td>
                                     <p class="vg-p">${item.pname}</p>
-                                    <p class="vg-ps">${item.size} ${item.freq} <span class="${item.pid}">${item.c_note}</span></p>
+                                    <p class="vg-ps">${item.size} ${item.freq} <span class="aa${item.pid}">${item.c_note}</span></p>
                                     
                                 </td>
+                                <td>${item.quantity}</td>
                                 <td>${item.price}</td>
                             </tr>
                             `;
@@ -426,6 +245,215 @@
                             $('#shippingfee').after(tdHtml)
                             // 總金額計算 (未含折扣碼與購物金)
                             $('#total').text(shippingfee + total)
+                        }
+
+                        // 讀取購物車物件
+                        $.get(`/cart/item/${uid}`, function (e) {
+                            console.log(e)
+                            if (typeof (e) == 'string') {
+                                items = JSON.parse(e);
+                            } else {
+                                items = e;
+                            }
+                            $("#cartitems").empty();
+                            $.each(items, function (index, item) {
+                                item.c_option ? item.c_option = item.c_option : item.c_option = '';
+                                item.pname.includes("自選") ? item.pinfo = '' : item.pinfo = item.pinfo;
+                                if (item.size == 's' && item.freq == 'once') {
+                                    var trHtml = `
+                            <tr class="aa${item.pid}">
+                                <td class="aa${item.pid}">${item.pname}</span></td>
+                                <td class="text-start">
+                                    <div>
+                                        <label for="quantity">份量
+                                            <select name="size" id="quantity" class="form-select-sm aa${item.pid}" onChange="handleitem(this)">
+                                                <option value="s" selected>1-2</option>
+                                                <option value="l">3-4</option>
+                                            </select>
+                                        </label>
+                                        <label for="delivery">配送
+                                            <select name="freq" id="delivery" class="form-select-sm aa${item.pid}" onChange="handleitem(this)">
+                                                <option value="once" selected>單次配送</option>
+                                                <option value="30d">每周一次</option>
+                                                <option value="60d">雙周一次</option> 
+                                            </select>
+                                        </label>
+                                        <p class="vg-ps">內容：${item.pinfo} ${item.c_option}</p>
+                                    </div>
+                                </td>
+                                <td class="aa${item.pid}">
+                                    <input type="checkbox" value="家有兒童" id="kids${item.pid}" onclick="addtocnote(this)">
+                                    <label for="kids${item.pid}">家有兒童</label><br />
+                                    <input type="checkbox" value="辛香料" id="spice${item.pid}" onclick="addtocnote(this)">
+                                    <label for="spice${item.pid}">辛香料</label><br />
+                                    <button class="btn btn-vg-xs m-2 shadow-sm w-75 towishbtn" onClick="towishbtn(this)">下次再買</button>
+                                </td>
+                             </tr>         
+                            `;
+                                    $("#cartitems").append(trHtml);
+                                } else if (item.size == 'l' && item.freq == 'once') {
+                                    var trHtml = `
+                            <tr class="aa${item.pid}">
+                                <td class="aa${item.pid}">${item.pname}</td>
+                                <td class="text-start">
+                                    <div>
+                                        <label for="quantity">份量
+                                            <select name="size" id="quantity" class="form-select-sm aa${item.pid}" onChange="handleitem(this)">
+                                                <option value="s">1-2</option>
+                                                <option value="l" selected>3-4</option>
+                                            </select>
+                                        </label>
+                                        <label for="delivery">配送
+                                            <select name="freq" id="delivery" class="form-select-sm aa${item.pid}" onChange="handleitem(this)">
+                                                <option value="once" selected>單次配送</option>
+                                                <option value="30d">每周一次</option>
+                                                <option value="60d">雙周一次</option> 
+                                            </select>
+                                        </label>
+                                        <p class="vg-ps">內容：${item.pinfo}  ${item.c_option}</p>
+                                    </div>
+                                </td>
+                                <td class="aa${item.pid}">
+                                    <input type="checkbox" value="家有兒童" id="kids${item.pid}" onclick="addtocnote(this)">
+                                    <label for="kids${item.pid}">家有兒童</label><br />
+                                    <input type="checkbox" value="辛香料" id="spice${item.pid}" onclick="addtocnote(this)">
+                                    <label for="spice${item.pid}">辛香料</label><br />
+                                    <button class="btn btn-vg-xs m-2 shadow-sm w-75 towishbtn" onClick="towishbtn(this)">下次再買</button>
+                                </td>
+                             </tr>         
+                            `;
+                                    $("#cartitems").append(trHtml);
+                                } else if (item.size == 's' && item.freq == '30d') {
+                                    var trHtml = `
+                            <tr class="aa${item.pid}">
+                                <td class="aa${item.pid}">${item.pname}</td>
+                                <td class="text-start">
+                                    <div>
+                                        <label for="quantity">份量
+                                            <select name="size" id="quantity" class="form-select-sm aa${item.pid}" onChange="handleitem(this)">
+                                                <option value="s" selected>1-2</option>
+                                                <option value="l">3-4</option>
+                                            </select>
+                                        </label>
+                                        <label for="delivery">配送
+                                            <select name="freq" id="delivery" class="form-select-sm aa${item.pid}" onChange="handleitem(this)">
+                                                <option value="once">單次配送</option>
+                                                <option value="30d" selected>每周一次</option>
+                                                <option value="60d">雙周一次</option> 
+                                            </select>
+                                        </label>
+                                        <p class="vg-ps">內容：${item.pinfo}  ${item.c_option}</p>
+                                    </div>
+                                </td>
+                                <td class="aa${item.pid}">
+                                    <input type="checkbox" value="家有兒童" id="kids${item.pid}" onclick="addtocnote(this)">
+                                    <label for="kids${item.pid}">家有兒童</label><br />
+                                    <input type="checkbox" value="辛香料" id="spice${item.pid}" onclick="addtocnote(this)">
+                                    <label for="spice${item.pid}">辛香料</label><br />
+                                    <button class="btn btn-vg-xs m-2 shadow-sm w-75 towishbtn" onClick="towishbtn(this)">下次再買</button>
+                                </td>
+                             </tr>         
+                            `;
+                                    $("#cartitems").append(trHtml);
+                                } else if (item.size == 'l' && item.freq == '30d') {
+                                    var trHtml = `
+                            <tr class="aa${item.pid}">
+                                <td class="aa${item.pid}">${item.pname}</td>
+                                <td class="text-start">
+                                    <div>
+                                        <label for="quantity">份量
+                                            <select name="size" id="quantity" class="form-select-sm aa${item.pid}" onChange="handleitem(this)">
+                                                <option value="s">1-2</option>
+                                                <option value="l" selected>3-4</option>
+                                            </select>
+                                        </label>
+                                        <label for="delivery">配送
+                                            <select name="freq" id="delivery" class="form-select-sm aa${item.pid}" onChange="handleitem(this)">
+                                                <option value="once">單次配送</option>
+                                                <option value="30d" selected>每周一次</option>
+                                                <option value="60d">雙周一次</option> 
+                                            </select>
+                                        </label>
+                                        <p class="vg-ps">內容：${item.pinfo} ${item.c_option} </p>
+                                    </div>
+                                </td>
+                                <td class="aa${item.pid}">
+                                    <input type="checkbox" value="家有兒童" id="kids${item.pid}" onclick="addtocnote(this)">
+                                    <label for="kids${item.pid}">家有兒童</label><br />
+                                    <input type="checkbox" value="辛香料" id="spice${item.pid}" onclick="addtocnote(this)">
+                                    <label for="spice${item.pid}">辛香料</label><br />
+                                    <button class="btn btn-vg-xs m-2 shadow-sm w-75 towishbtn" onClick="towishbtn(this)">下次再買</button>
+                                </td>
+                             </tr>         
+                            `;
+                                    $("#cartitems").append(trHtml);
+                                } else if (item.size == 's' && item.freq == '60d') {
+                                    var trHtml = `
+                            <tr class="aa${item.pid}">
+                                <td class="aa${item.pid}">${item.pname}</td>
+                                <td class="text-start">
+                                    <div>
+                                        <label for="quantity">份量
+                                            <select name="size" id="quantity" class="form-select-sm aa${item.pid}" onChange="handleitem(this)">
+                                                <option value="s" selected>1-2</option>
+                                                <option value="l">3-4</option>
+                                            </select>
+                                        </label>
+                                        <label for="delivery">配送
+                                            <select name="freq" id="delivery" class="form-select-sm aa${item.pid}" onChange="handleitem(this)">
+                                                <option value="once">單次配送</option>
+                                                <option value="30d">每周一次</option>
+                                                <option value="60d" selected>雙周一次</option> 
+                                            </select>
+                                        </label>
+                                        <p class="vg-ps">內容：${item.pinfo}  ${item.c_option}</p>
+                                    </div>
+                                </td>
+                                <td class="aa${item.pid}">
+                                    <input type="checkbox" value="家有兒童" id="kids${item.pid}" onclick="addtocnote(this)">
+                                    <label for="kids${item.pid}">家有兒童</label><br />
+                                    <input type="checkbox" value="辛香料" id="spice${item.pid}" onclick="addtocnote(this)">
+                                    <label for="spice${item.pid}">辛香料</label><br />
+                                    <button class="btn btn-vg-xs m-2 shadow-sm w-75 towishbtn" onClick="towishbtn(this)">下次再買</button>
+                                </td>
+                             </tr>         
+                            `;
+                                    $("#cartitems").append(trHtml);
+                                } else {
+                                    var trHtml = `
+                            <tr class="aa${item.pid}">
+                                <td class="aa${item.pid}">${item.pname}</td>
+                                <td class="text-start">
+                                    <div>
+                                        <label for="quantity">份量
+                                            <select name="size" id="quantity" class="form-select-sm aa${item.pid}"  onChange="handleitem(this)">
+                                                <option value="s">1-2</option>
+                                                <option value="l" selected>3-4</option>
+                                            </select>
+                                        </label>
+                                        <label for="delivery">配送
+                                            <select name="freq" id="delivery" class="form-select-sm aa${item.pid}"  onChange="handleitem(this)">
+                                                <option value="once">單次配送</option>
+                                                <option value="30d">每周一次</option>
+                                                <option value="60d" selected>雙周一次</option> 
+                                            </select>
+                                        </label>
+                                        <p class="vg-ps">內容：${item.pinfo}  ${item.c_option}</p>
+                                    </div>
+                                </td>
+                                <td class="aa${item.pid}">
+                                    <input type="checkbox" value="家有兒童" id="kids${item.pid}" onclick="addtocnote(this)">
+                                    <label for="kids${item.pid}">家有兒童</label><br />
+                                    <input type="checkbox" value="辛香料" id="spice${item.pid}" onclick="addtocnote(this)">
+                                    <label for="spice${item.pid}">辛香料</label><br />
+                                    <button class="btn btn-vg-xs m-2 shadow-sm w-75 towishbtn" onClick="towishbtn(this)">下次再買</button>
+                                </td>
+                             </tr>         
+                            `;
+                                    $("#cartitems").append(trHtml);
+                                }
+                            })
+                            countTotal(items);
                         })
 
                         // 讀取購物金
@@ -543,10 +571,10 @@
                             $.each(items, function (index, item) {
                                 var divHtml = `
                             <div class="myItem d-flex position-relative">
-                                <img src="${item.pic}" alt="">
-                                <div class="align-self-center text-center px-2" id=${item.pid}>
+                                <img src="/img/fruitbox.png" alt="">
+                                <div class="align-self-center text-center px-2" id="aa${item.pid}">
                                     <button class="btn btn-outline-dark btn-sm close-btn" onClick="deleteFromWishlist(this)">x</button>
-                                    <p class="vg-p m-0 p-0 ">${item.pname}</p>
+                                    <p class="vg-p m-0 p-0 ">${item.product}</p>
                                     <p class="vg-ps m-0 p-0">${item.price}</p>
                                     <button class="btn btn-vg-xs m-2 shadow-sm" onClick="buynow(this)">立刻買</button>
                                 </div>
@@ -763,28 +791,39 @@
                             }
                         })
 
-                        // 選擇份量和頻率 更新購物車 cart 資料表 (尚未完成)
+                        // 選擇份量和頻率 更新購物車 cart 資料表
                         handleitem = (e) => {
-                            // 份量size || 頻率freq
-                            console.log(e.name)
-                            // value
-                            var temp = e.options.selectedIndex
-                            console.log(e.options[temp].value)
-                            // pid
-                            console.log(e.closest('tr[class*="aa"]').className)
-                            // 產品名稱 ( 卡 )
-                            console.log(e.closest('tr[class*="aa"]'))
-                            // 判斷: 產品名稱+份量+頻率 => pid
-                            // if( e.name == 'size' && e.options[temp].value == 's'){
-                            //     e.closest('tr[class*="aa"]').className = ''
-                            // }
+                            var parent = e.closest('tr[class*="aa"]')
+                            // console.log($(parent).find('td')[0].innerText)
+                            var product = $(parent).find('td')[0].innerText;
+                            var originalPid = parent.className.substr(2);
+                            // console.log(originalPid)
+                            var quantity = $(parent).find('select[name="size"]').val();
+                            // console.log(quantity)
+                            var delivery = $(parent).find('select[name="freq"]').val();
+                            // console.log(delivery)
+                            fetch('/cart/handleitem/', {
+                                method: 'POST',
+                                headers: {
+                                    "Content-Type": "application/json ; charset=UTF-8"
+                                },
+                                body: JSON.stringify({
+                                    product: product,
+                                    freq: delivery,
+                                    size: quantity,
+                                    uid: uid,
+                                    o_pid: originalPid
+                                })
+                            }).then(
+                                location.reload()
+                            )
                         }
-
                         // 將 c_note 推進 cart 資料表
                         var c_note = [];
                         addtocnote = (e) => {
                             // console.log(e.closest('td').className);
                             var pid = e.closest('td').className;
+                            // console.log(pid)
                             if (e.checked) {
                                 if (!c_note[pid]) {
                                     c_note[pid] = [];
@@ -805,7 +844,6 @@
                             // console.log(c_note);
                             Object.keys(c_note).map((pid) => {
                                 var cnotestr = c_note[pid].join(' ');
-                                // console.log(pid);
                                 // console.log(cnotestr);
                                 fetch('/editcart/c_note/', {
                                     method: 'PATCH',
@@ -814,15 +852,15 @@
                                     },
                                     body: JSON.stringify({
                                         c_note: cnotestr,
-                                        pid: pid,
+                                        pid: pid.substr(2),
                                         uid: uid
                                     })
                                 }).then(function () {
                                     // 若取消勾選所有備註項目，金額試算處同步調整內容
                                     if (cnotestr != '') {
-                                        document.querySelector(`span[class=${pid}]`).innerText = cnotestr
+                                        document.querySelector(`span[class="${pid}"]`).innerText = cnotestr
                                     } else {
-                                        document.querySelector(`span[class=${pid}]`).innerText = '無備註'
+                                        document.querySelector(`span[class="${pid}"]`).innerText = '無備註'
                                     }
                                 })
                             });
@@ -841,7 +879,7 @@
                                 },
                                 body: JSON.stringify({
                                     uid: uid,
-                                    pid: pid
+                                    pid: pid.substr(2)
                                 })
                             }).then(
                                 fetch('/cart/deleteitem/', {
@@ -851,7 +889,7 @@
                                     },
                                     body: JSON.stringify({
                                         uid: uid,
-                                        pid: pid
+                                        pid: pid.substr(2)
                                     })
                                 })
                             ).then(
@@ -870,7 +908,7 @@
                                 },
                                 body: JSON.stringify({
                                     uid: uid,
-                                    pid: pid
+                                    pid: pid.substr(2)
                                 })
                             }).then(
                                 fetch('/delwishlist/', {
@@ -880,7 +918,7 @@
                                     },
                                     body: JSON.stringify({
                                         uid: uid,
-                                        pid: pid
+                                        pid: pid.substr(2)
                                     })
                                 })
                             ).then(
@@ -908,7 +946,7 @@
                                         },
                                         body: JSON.stringify({
                                             uid: uid,
-                                            pid: pid
+                                            pid: pid.substr(2)
                                         })
                                     }).then(
                                         function (response) {
@@ -920,9 +958,6 @@
                                 }
                             })
                         }
-
-
-
 
                         // 按下結帳去的動作
                         placeOrder = () => {

@@ -16,7 +16,8 @@ cart_order.use(express.urlencoded({ extended: true }));
 
 // 讀取個別會員購物車
 cart_order.get('/cart/item/:id', function (req, res) {
-    var sql1 = "SELECT * FROM temp_product join cart WHERE cart.pid = temp_product.pid and  cart.uid = ? and cart.c_status = 'active'";
+    // var sql1 = "SELECT * FROM temp_product join cart WHERE cart.pid = temp_product.pid and  cart.uid = ? and cart.c_status = 'active'";
+    var sql1 = "SELECT product.pid, product.product as pname, product_content.content as pinfo , product_content.price as price, product.size, product.freq, cart.quantity, cart.c_option, cart.c_note FROM product_content INNER JOIN product join cart WHERE product_content.product = product.product and cart.pid = product.pid and cart.uid = ? and cart.c_status = 'active';"
     db.query(sql1, [req.params.id], function (err, rows) {
         res.send(rows);
     })
@@ -24,22 +25,42 @@ cart_order.get('/cart/item/:id', function (req, res) {
 
 // 讀取會員願望清單
 cart_order.get('/cart/wishlist/:id', function (req, res) {
-    var sql2 = "SELECT * FROM userinfo, wishlist, temp_product WHERE userinfo.uId = wishlist.uid AND wishlist.pid = temp_product.pid AND userinfo.uId = ? GROUP BY pname ORDER BY wid DESC"
+    // var sql2 = "SELECT * FROM userinfo, wishlist, temp_product WHERE userinfo.uId = wishlist.uid AND wishlist.pid = temp_product.pid AND userinfo.uId = ? GROUP BY pname ORDER BY wid DESC"
+    var sql2 = "SELECT * FROM userinfo, wishlist, product, product_content WHERE userinfo.uId = wishlist.uid AND wishlist.pid = product.pid AND product.product = product_content.product AND userinfo.uId = ? GROUP BY product.product ORDER BY wid DESC"
     db.query(sql2, [req.params.id], function (err, rows) {
         res.send(rows);
     })
 })
 
 // 更新購物車 cart 資料表 的 pid (尚未完成)
-cart_order.put("/cart/item/:id", function (req, res) {
-    var sql3 = "update cart set pid= ? where uid = ? and pid = ?"
-    db.query(sql3,
-        [req.body.newPid, req.body.uid, req.body.pid],
-        function (err, rows) {
-            res.send(JSON.stringify(req.body));
+cart_order.post("/cart/handleitem/", function (req, res) {
+    // 更新購物車 cart 資料表 的 pid (根據變數尋找對應pid)
+    var sql3_1 = "SELECT product.pid FROM product_content join product WHERE product_content.product = product.product and product.category LIKE '%箱%' AND product.product = ? AND product.freq = ? and product.size = ?;"
+    // 更新購物車 cart 資料表 的 pid (把該pid塞回去cart)
+    var sql3_2 = "UPDATE cart set pid= ? where uid = ? and pid = ?"
+
+    var product = req.body.product;
+    var freq = req.body.freq;
+    var size = req.body.size;
+    var uid = req.body.uid;
+    var o_pid = req.body.o_pid;
+
+    db.query(sql3_1, [product, freq, size], function (err, rows) {
+        if (err) {
+            console.error(err);
         }
-    )
+        var newPid = rows[0].pid;
+        db.query(sql3_2, [newPid, uid, o_pid], function (err, result) {
+            if (err) {
+                console.error(err);
+            }
+        });
+    });
+
 })
+
+
+
 
 // 更新購物車 cart 資料表 的 oid || statue => inactive
 cart_order.patch("/editcart/status/", function (req, res) {
@@ -65,7 +86,8 @@ cart_order.post("/editcart/createorder/", function (req, res) {
 
 // 讀取訂購單資訊
 cart_order.get('/order/items/:id', function (req, res) {
-    var sql6 = "SELECT * FROM vgorder join cart join temp_product WHERE vgorder.oid = cart.oid and cart.pid = temp_product.pid and vgorder.uid = ? and vgorder.o_status = 'active'"
+    // var sql6 = "SELECT * FROM vgorder join cart join temp_product WHERE vgorder.oid = cart.oid and cart.pid = temp_product.pid and vgorder.uid = ? and vgorder.o_status = 'active'"
+    var sql6 = "SELECT * FROM vgorder join cart join product join product_content WHERE vgorder.oid = cart.oid and cart.pid = product.pid and product.product = product_content.product and vgorder.uid = ? and vgorder.o_status = 'active'"
     db.query(sql6, [req.params.id], function (err, rows) {
         res.send(rows);
     })
@@ -182,8 +204,15 @@ cart_order.patch("/editcart/c_note/", function (req, res) {
 
 // 讀取使用者購物金
 cart_order.get('/user/bonus/:id', function (req, res) {
-    var sql14 = "SELECT SUM(bonus) as bonus FROM userbonus WHERE uid = ?";
-    db.query(sql14, [req.params.id], function (err, rows) {
+    var sql14 = `
+    SELECT SUM(bonus) as bonus
+    FROM (
+        SELECT SUM(bonus) as bonus FROM userbonus WHERE uid = ?
+        UNION ALL
+        SELECT SUM(lottobonus) as bonus FROM activitylotto WHERE uid = ?
+    ) AS subquery;
+  `
+    db.query(sql14, [req.params.id, req.params.id], function (err, rows) {
         res.send(rows);
     })
 })
@@ -247,9 +276,9 @@ cart_order.post("/updateuserinfo/addr/", function (req, res) {
 cart_order.post('/cvs_callback/', (req, res) => {
     // 從便利商店點選完後 該API用POST方式回傳到指定網址
     var body = req.body
-    console.log( body )
+    console.log(body)
     // 從指定網址返回order頁面，否則會卡在那邊
-    res.render('order', {body});
+    res.render('order', { body });
 })
 
 
@@ -303,11 +332,20 @@ cart_order.post('/server/send/', async (req, res, next) => {
     });
 });
 
+// 綠界信用卡系統API (尚未完成)
+cart_order.post('/credit_callback/', (req, res) => {
+    var body = req.body
+    console.log(body)
+    // 從指定網址返回orderprocessing頁面
+    res.render('orderprocessing');
+})
+
 
 // rateorder 評價訂單相關資料庫指令
-//讀取vgorder訂單狀態及品項
+//讀取vgorder訂單狀態及品項 
 cart_order.get('/getorderstatus/:oid', function (req, res) {
-    var sql23 = "SELECT * FROM vgorder, cart, temp_product where vgorder.oid = cart.oid and cart.pid = temp_product.pid and vgorder.oid = ? ";
+    // var sql23 = "SELECT * FROM vgorder, cart, temp_product where vgorder.oid = cart.oid and cart.pid = temp_product.pid and vgorder.oid = ? ";
+    var sql23 = "SELECT * FROM vgorder, cart, product where vgorder.oid = cart.oid and cart.pid = product.pid and vgorder.oid = ? ";
     db.query(sql23, [req.params.oid], function (err, rows) {
         res.send(rows);
     })
