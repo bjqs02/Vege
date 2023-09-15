@@ -10,6 +10,9 @@ var { login_render, login_api } = require("./middleware/auth_login");
 app.set("view engine", "ejs");
 require("dotenv").config();
 
+var cors = require("cors");
+app.use(cors());
+
 // 首頁
 app.use("/", express.static("lib"));
 app.get("/", function (req, res) {
