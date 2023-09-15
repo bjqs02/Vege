@@ -177,11 +177,11 @@
     fill: var(--blue);
 }
 
-.con-like .like:checked~.checkmark .filled {
+.con-like .check1:checked~.checkmark .filled {
     display: block
 }
 
-.con-like .like:checked~.checkmark .celebrate {
+.con-like .check1:checked~.checkmark .celebrate {
     display: block;
 }
 

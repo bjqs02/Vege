@@ -86,9 +86,11 @@
                                     // console.log(jsonObj.data.token);
                                     var newToken = JSON.stringify(jsonObj.data);
                                     var cookieToken = JSON.stringify(jsonObj.data.token);
+                                    var cookieUser = JSON.stringify(jsonObj.data.id);
                                     var now = new Date();
                                     var expirationTime = new Date(now.getTime() + 1 * 24 * 60 * 60 * 1000);
                                     document.cookie = `token=${cookieToken}; expires=${expirationTime.toUTCString()}; Domain=127.0.0.1; path=/; port=2407`;
+                                    document.cookie = `user=${cookieUser}; expires=${expirationTime.toUTCString()}; Domain=127.0.0.1; path=/; port=2407`;
                                     localStorage.setItem('token', newToken);
                                     setTimeout(function () {
                                         location.href = "/";

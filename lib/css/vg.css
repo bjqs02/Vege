@@ -1245,7 +1245,7 @@
     display: flex;
     justify-content: center;
     position: sticky;
-    top: 65px;
+    top: 80px;
     background-color: var(--primary-L);
     box-shadow: 0px 0px 18px 0px #7c63553a;
     z-index: 99;

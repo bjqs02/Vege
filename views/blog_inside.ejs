@@ -37,7 +37,7 @@
                     <a>
                         <div class="con-like">
                             <input title="like" type="checkbox" class="like check1">
-                            <div class="checkmark">
+                            <div class="checkmark" id="likeCheck">
                                 <svg viewBox="0 0 24 24" class="outline" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z">
@@ -63,7 +63,7 @@
                     <a>
                         <div class="con-like con-keep">
                             <input title="like" type="checkbox" class="like keep1">
-                            <div class="checkmark">
+                            <div class="checkmark" id="bookmarkCheck">
                                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35px" height="35px"
                                     viewBox="0 0 24 24" class="outline">
                                     <path
@@ -248,6 +248,68 @@
 
             <script>
 
+                function getBookmark() {
+                    fetch('/blog/bookmark')
+                        .then(function (res) {
+                            console.log('抓書籤');
+                            console.log(res);
+                            return res.json();
+                        })
+                        .then(function (jsonObj) {
+                            console.log('書籤');
+                            console.log(jsonObj.length);
+                            console.log(jsonObj[0].atcid);
+                            let bookmarks = [];
+                            if (jsonObj.length != 0) {
+                                console.log('抓到書籤');
+                                for (let i = 0; i < jsonObj.length; i++) {
+                                    bookmarks.push(jsonObj[i].atcid);
+                                }
+                                console.log(bookmarks);
+                                var pn = window.location.pathname.split('/');
+                                // console.log(typeof pn[3].toString());
+                                var arcId = parseInt(pn[3]);
+                                var arcHasId = bookmarks.indexOf(arcId);
+                                if (arcHasId != -1) {
+                                    $(`#bookmarkCheck svg:nth-child(2)`).css('display', 'block');
+                                    // console.log('ok');
+                                }
+                            }
+                        })
+                }
+                getBookmark();
+
+                function getLiked() {
+                    fetch('/blog/likeList')
+                        .then(function (res) {
+                            console.log('抓愛心');
+                            console.log(res);
+                            return res.json();
+                        })
+                        .then(function (jsonObj) {
+                            console.log('愛心');
+                            console.log(jsonObj.length);
+                            console.log(jsonObj[0].atcid);
+                            let bookmarks = [];
+                            if (jsonObj.length != 0) {
+                                console.log('抓到愛心');
+                                for (let i = 0; i < jsonObj.length; i++) {
+                                    bookmarks.push(jsonObj[i].atcid);
+                                }
+                                console.log(bookmarks);
+                                var pn = window.location.pathname.split('/');
+                                // console.log(typeof pn[3].toString());
+                                var arcId = parseInt(pn[3]);
+                                var arcHasId = bookmarks.indexOf(arcId);
+                                if (arcHasId != -1) {
+                                    $(`#likeCheck svg:nth-child(2)`).css('display', 'block');
+                                    // console.log('ok');
+                                }
+                            }
+                        })
+                }
+                getLiked();
+
                 $('#sentBtn').click(function () {
                     var userData = localStorage.getItem("token");
                     var userToken = userData ? JSON.parse(userData) : false;
@@ -278,33 +340,69 @@
 
                 $('.keep1').on('click', function () {
                     if ($(this).prop("checked") == 1) {
-                        Swal.fire({
-                            position: 'center',
-                            icon: 'success',
-                            title: '已加入收藏夾',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
                         var userData = localStorage.getItem("token");
                         var userToken = userData ? JSON.parse(userData) : false;
-                        var keepData = {};
-                        var pn = window.location.pathname.split('/');
-                        keepData.atcid = pn[3];
-                        keepData.uid = userToken.id;
-                        var jsonData = JSON.stringify(keepData);
-                        console.log(jsonData);
-                        // console.log(JSONDatatoken);
-                        fetch('/blog/keepcheck', {
-                            method: "POST",
-                            headers: {
-                                "Content-type": "application/json;charset=UTF-8"
-                            },
-                            body: jsonData
-                        })
-                            .then(function (res) {
-                                console.log(res);
+                        if (userToken) {
+                            var keepData = {};
+                            var pn = window.location.pathname.split('/');
+                            keepData.atcid = pn[3];
+                            keepData.uid = userToken.id;
+                            var jsonData = JSON.stringify(keepData);
+                            fetch('/blog/keepcheck', {
+                                method: "POST",
+                                headers: {
+                                    "Content-type": "application/json;charset=UTF-8"
+                                },
+                                body: jsonData
                             })
-                    } else {
+                            .then(function (res) {
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'success',
+                                    title: '已加入收藏夾',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                $(`#bookmarkCheck svg:nth-child(2)`).css('display', 'block');
+                            })
+
+                        } else {
+                            alert('請先登入');
+                        }
+                    }
+                });
+
+                $('.check1').on('click', function () {
+                    if ($(this).prop("checked") == 1) {
+                        var userData = localStorage.getItem("token");
+                        var userToken = userData ? JSON.parse(userData) : false;
+                        if (userToken) {
+                            var keepData = {};
+                            var pn = window.location.pathname.split('/');
+                            keepData.atcid = pn[3];
+                            keepData.uid = userToken.id;
+                            var jsonData = JSON.stringify(keepData);
+                            fetch('/blog/likearticle', {
+                                method: "POST",
+                                headers: {
+                                    "Content-type": "application/json;charset=UTF-8"
+                                },
+                                body: jsonData
+                            })
+                            .then(function (res) {
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'success',
+                                    title: '已加入收藏夾',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                $(`#likeCheck svg:nth-child(2)`).css('display', 'block');
+                            })
+
+                        } else {
+                            alert('請先登入');
+                        }
                     }
                 });
 

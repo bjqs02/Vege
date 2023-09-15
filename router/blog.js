@@ -4,6 +4,8 @@ var blog = express.Router();
 var db = require('../db');
 var bp = require('body-parser');
 var jp = bp.json();
+var bluebird = require('bluebird');
+bluebird.promisifyAll(db);
 
 
 //分頁
@@ -161,6 +163,7 @@ blog.get('/search/:in&:no', jp, function(req, res){
         }
     })
 })
+
 blog.get('/search1/:query', jp, function(req, res){
     
     var x = req.params.query;
@@ -267,6 +270,58 @@ blog.post('/keepcheck', jp, function(req, res){
             console.log(tags);
             res.send('ok');
         }
+    })
+})
+
+blog.post('/likearticle', jp, function(req, res){
+    var uid = req.body.uid;
+    var atcid = req.body.atcid;
+   let keep = `INSERT INTO atclike (uid, atcid) VALUES ( ${uid}, ${atcid});`
+
+       db.query(keep, function(err, tags){
+        if(err){
+            console.log('like存放成功');
+            console.log(err);
+        } else {
+            console.log('like存放成功');
+            console.log(tags);
+            res.send('ok');
+        }
+    })
+})
+
+
+blog.get('/bookmark', jp, function(req, res){
+    var user = [req.cookies.user];
+    console.log(user);
+    var sql = "Select * from atckeep where uid = ?;"
+    db.query(sql, user, function(err, bookmark){
+           if(err){
+            console.log('抓書籤失敗');
+            console.log(err);
+           } else {
+            console.log('抓書籤成功');
+            console.log(bookmark);
+            res.json(bookmark);
+           }
+        
+    })
+})
+
+blog.get('/likeList', jp, function(req, res){
+    var user = [req.cookies.user];
+    console.log(user);
+    var sql = "Select * from atclike where uid = ?;"
+    db.query(sql, user, function(err, atcs){
+           if(err){
+            console.log('抓書籤失敗');
+            console.log(err);
+           } else {
+            console.log('抓書籤成功');
+            console.log(atcs);
+            res.json(atcs);
+           }
+        
     })
 })
 
