@@ -129,7 +129,7 @@ app.use('/activityboard', activityboard);
 app.use('/member', express.static('lib'));
 var member = require("./router/member");
 app.use("/member", member);
-app.get("/member", login_api, function (req, res) {
+app.get("/member", login_render, function (req, res) {
   res.render("member_index");
 });
 

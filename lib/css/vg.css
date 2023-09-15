@@ -538,16 +538,18 @@
   
   /* logo調整預留 (同btn-vg-2，只改font) */
   .vg-nav-logo {
+    max-width: 70px;
     position: relative;
-    padding: 10px 0 30px 0;
+    padding: 12px 0 10px 0;
     margin: 0 20px 0 20px;
     overflow: hidden;
-    font-size: 2rem;
-    font-weight: bolder;
-    line-height: 1rem;
     cursor: pointer;
   }
   
+  .vg-nav-logo img {
+    max-width: 100%;
+  }
+
   .vg-nav a {
     float: left;
     display: block;
@@ -597,8 +599,10 @@
     height: 0;
   }
 
+  /* 使用者部分圖示 */
+  /* .icon = #navUser */
   #navCart,
-  #navUser {
+  .icon {
     height: 35px;
     width: 35px;
     margin: 5px 0;
@@ -613,31 +617,18 @@
     cursor: pointer;
     z-index: 2;
   }
-
-  #logoutBTN {
-    margin: 5px 0;
-    position: fixed;
-    top: 0px;
-    right: 120px;
-    z-index: 2;
-    visibility: hidden;
-  }
-
-  #userName {
-    margin: 5px 0;
-    position: fixed;
-    top: 35px;
-    right: 130px;
-    z-index: 2;
-    text-align: center;
+  
+  .icon.login {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    clip-path: circle(50% at 50% 50%);
+    cursor: pointer;
   }
 
   #navUser>img{
-    border-radius: 50%;
-    height: inherit;
-    width: inherit;
-    object-fit: cover;
-    padding-top: 0px;
+    width: 100%;
   }
   
   #navUser {
@@ -647,16 +638,66 @@
   #navUser.change {
     right: 70px;
   }
-
-  #navUser.green {
-    width: 45px !important;
-    height: 45px !important;
-    right: 70px;
-    margin-top: 9px !important;
-    margin-bottom: 0 !important;
-    font-size: 20px !important;
+  
+  #navUser.login {
+    right: 65px;
   }
   
+  #navUser.green {
+    width: 45px;
+    height: 45px;
+    right: 75px;
+    margin-top: 9px;
+    margin-bottom: 0;
+    font-size: 20px;
+  }
+  
+  #logoutBTN {
+    margin: 5px 0;
+    position: fixed;
+    top: 3px;
+    right: 115px;
+    z-index: 2;
+    visibility: hidden;
+  }
+  
+  #logoutBTN.change {
+    padding: 3px 10px;
+    top: 4px;
+    right: 135px;
+  }
+
+  #logoutBTN.green {
+    padding: 3px 10px;
+    top: 4px;
+    right: 135px;
+    border-color: white;
+  }
+
+  #logoutBTN.green:hover {
+    padding: 3px 10px;
+    top: 4px;
+    right: 135px;
+    background-color: var(--sc-g-Dark);
+  }
+  
+  #userName {
+    position: fixed;
+    top: 22px;
+    right: 190px;
+  }
+  
+  #userName.change {
+    top: 40px;
+    right: 135px;
+  }
+
+  #userName.green {
+    top: 40px;
+    right: 135px;
+  }
+  
+  /* 購物車圖示 */
   #navCart {
     right: 25px;
   }
