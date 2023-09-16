@@ -11,8 +11,8 @@ eval.post("/result", jp, function (req, res) {
   console.log("--------1213--------");
   console.log(body);
   var sql =
-    "select * from produces where type not in (?) and temp not in (?,?) and protein not in (?) and calories not in (?) order by rand() limit 6;";
-  //
+    "SELECT product.product, product.category, product.firm, info.season FROM product INNER JOIN info ON product.product = info.product WHERE (product.category = '蔬菜' OR product.category = '水果') AND (info.season = '9,10,11' OR info.season = '全年' or info.season = '12,1,2'or info.season = '3,4,5') AND product.category not in (?) and temp not in (?,?) and protein not in (?) and calories not in (?) order by rand() limit 6";
+
   var data = [body.product, body.hot, body.cold, body.protein, body.calories];
   db.query(sql, data, function (err, fields) {
     if (err) {
@@ -21,6 +21,7 @@ eval.post("/result", jp, function (req, res) {
     } else {
       console.log("成功讀取資料庫!!");
       console.log(fields);
+      res.send(fields);
     }
     eval.get("/result", function (req, res) {
       res.send(fields);

@@ -1,17 +1,17 @@
 let express = require("express");
 let product = express.Router();
 let mysql = require("../db");
+var { login_render, login_api } = require("../middleware/auth_login");
 product.get("/", function (req, res) {
-  let sql = "SELECT product FROM product WHERE category = '蔬果箱';";
+  let sql = "SELECT DISTINCT product FROM product WHERE category = '蔬果箱';";
   let sql1 =
     "SELECT info.product, product_content.image FROM info JOIN product_content ON info.product = product_content.product WHERE info.season ORDER BY RAND() LIMIT 6;";
   let sql2 =
-    "SELECT product.pid, product.product, product_content.content, product_content.feature, product_content.price, activity.off_act, activity.act_content,activity.act_content2,activity.act_content3,activity.act_time FROM product_content INNER JOIN product ON product_content.product = product.product LEFT JOIN activity ON product_content.product = activity.product WHERE product.category = '蔬果箱';"; // 新增的查询语句
+    "SELECT product.pid, product.product, product_content.content, product_content.feature, product_content.price, activity.off_act, activity.act_content, activity.act_content2, activity.act_content3, activity.act_time FROM product_content INNER JOIN product ON product_content.product = product.product LEFT JOIN activity ON product_content.product = activity.product WHERE product.category = '蔬果箱' GROUP BY product.product ORDER BY product.pid ASC;";
   let sql3 =
-    "SELECT product.product, product.category, product.firm, info.season FROM product INNER JOIN info ON product.product = info.product WHERE (product.category = '蔬菜' ) AND (info.season = '9,10,11' OR info.season = '全年' or info.season = '12,1,2');";
+    "SELECT product.product, product.category, product.firm, info.season FROM product INNER JOIN info ON product.product = info.product WHERE (product.category = '蔬菜' ) AND (info.season = '9,10,11' OR info.season = '全年' or info.season = '12,1,2'or info.season = '3,4,5');";
   let sql4 =
     "SELECT product.product, product.category, product.firm, info.season FROM product INNER JOIN info ON product.product = info.product WHERE (product.category = '水果' ) AND (info.season = '9,10,11' OR info.season = '全年' or info.season = '12,1,2'or info.season = '3,4,5');";
-  // 定义一个对象来存储三组数据
 
   let data = {
     names: [],
@@ -25,24 +25,20 @@ product.get("/", function (req, res) {
     if (err) {
       console.log("水果箱名稱連結錯誤");
       console.log(err);
-      res.status(500).send("数据库错误");
+      res.status(500).send("水果箱名稱連結錯誤");
       return;
     }
-    // 将查询结果存储在data对象中
     data.names = rows;
 
-    // 在第一个查询完成后，执行第二个查询
     mysql.query(sql1, function (err, rows) {
       if (err) {
         console.log("圖片取得失敗");
         console.log(err);
-        res.status(500).send("数据库错误");
+        res.status(500).send("圖片數據取得失敗");
         return;
       }
-      // 将第二个查询结果存储在data对象中
       data.images = rows;
 
-      // 在第二个查询完成后，执行第三个查询
       mysql.query(sql2, function (err, rows) {
         if (err) {
           console.log("產品資訊取得失敗");
@@ -50,12 +46,11 @@ product.get("/", function (req, res) {
           res.status(500).send("数据库错误");
           return;
         }
-        // 将第三个查询结果存储在data对象中
         data.con = rows;
 
         mysql.query(sql3, function (err, rows) {
           if (err) {
-            console.log("蔬菜品項取得失敗");
+            console.log("蔬菜品項去得失敗");
             console.log(err);
             res.status(500).send("数据库错误");
             return;
@@ -81,46 +76,95 @@ product.get("/", function (req, res) {
   });
 
   product.use(express.json());
-  product.post("/cardData", (req, res) => {
-    const cardDataArr = req.body; // 获取请求中的JSON数据
 
-    // 循环遍历 cardDataArr 数组并插入数据库
-    cardDataArr.forEach((cardData) => {
-      const { productId, productName, commodity, sumValue } = cardData;
+  product.post("/cardData", async (req, res) => {
+    const cardDataArr = req.body;
 
-      const sql =
-        "INSERT INTO text(bid, productName, commodity, sumValue) VALUES (?, ?, ?, ?)";
-      const values = [productId, productName, commodity, sumValue];
+    try {
+      for (const cardData of cardDataArr) {
+        const { uid, quantity, c_option, product, size, freq, fid } = cardData;
+        const sql8 =
+          "SELECT pid FROM product WHERE product = ? and size = ? and freq = ?;";
+        const getpid = [product, size, freq];
 
-      mysql.query(sql, values, function (err, results) {
-        if (err) {
-          console.error("插入数据时出错: " + err.message);
-          return;
-        }
-        console.log("成功插入数据，插入ID:", results.insertId);
-      });
-    });
+        mysql.query(sql8, getpid, (err, results) => {
+          if (err) {
+            console.error("取得產品id失敗:", err);
+            res.status(500).send("取得產品id失敗"); // Send an error response
+            return;
+          }
 
-    res.send("数据插入成功"); // 发送响应
+          console.log("查詢id结果:", results);
+
+          if (results.length === 0) {
+            console.error("找不到產品id");
+            res.status(404).send("找不到產品id");
+            return;
+          }
+
+          const pid = results[0].pid;
+          console.log("取得產品id:", pid);
+
+          const addcart =
+            "INSERT INTO cart (uid, pid, quantity, c_option, fid) VALUES (?, ?, ?, ?, ?)";
+          const addcartValues = [uid, pid, quantity, c_option, fid];
+
+          mysql.query(addcart, addcartValues, (err) => {
+            if (err) {
+              console.error("產品添加失敗:", err);
+              res.status(500).send("產品添加失敗");
+            } else {
+              res.send("卡片產品添加成功");
+            }
+          });
+        });
+      }
+    } catch (err) {
+      console.error("发生错误:", err);
+      res.status(500).send("发生错误"); // Send an error response
+    }
   });
 
-  product.post("/delcardData", (req, res) => {
-    const productIdToDelete = req.body.productId; // 从请求中获取要删除的产品ID
+  product.post("/delcartData", async (req, res) => {
+    const delDataArr = req.body;
+    try {
+      for (const delCart of delDataArr) {
+        const { productId, userId } = delCart;
 
-    // 使用 productIdToDelete 编写 SQL 查询语句
-    const deleteQuery = "DELETE FROM text WHERE bid = ?";
+        // Query the maximum c_createtime
+        const maxCreateTimeQuery =
+          "SELECT MAX(c_createtime) AS max_createtime FROM cart WHERE uid = ? AND fid = ?";
+        const maxCreateTimeValues = [userId, productId]; // Corrected variable name
+        mysql.query(maxCreateTimeQuery, maxCreateTimeValues, (err, results) => {
+          if (err) {
+            console.error("取得產品時間錯誤:", err);
+            res.status(500).send("取得產品時間錯誤");
+            return;
+          }
+          console.log("時間查詢结果:", results);
+          if (results.length === 0 || !results[0].max_createtime) {
+            console.error("No matching records found");
+            res.status(404).send("No matching records found");
+          }
 
-    // 使用 MySQL 连接执行删除操作
-    mysql.query(deleteQuery, [productIdToDelete], (err, results) => {
-      if (err) {
-        console.error("删除数据时出错: " + err.message);
-        res.status(500).send("删除数据时出错");
-        return;
+          const maxCreateTime = results[0].max_createtime;
+          const deleteQuery =
+            "DELETE FROM cart WHERE uid = ? AND fid = ? AND c_createtime = ?";
+          const deleteValues = [userId, productId, maxCreateTime];
+          mysql.query(deleteQuery, deleteValues, (err) => {
+            if (err) {
+              console.error("刪除失敗:", err);
+              res.status(500).send("刪除失敗");
+            } else {
+              res.send("卡片已刪除");
+            }
+          });
+        });
       }
-
-      console.log("成功删除行数: " + results.affectedRows);
-      res.send("数据删除成功"); // 发送响应
-    });
+    } catch (err) {
+      console.error("連接錯誤: " + err.message);
+      res.status(500).send("連接錯誤");
+    }
   });
 });
 
