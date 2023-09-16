@@ -50,6 +50,11 @@
             <!-- 以下是script -->
             <%- include('share/vg-main.ejs') %>
                 <script>
+                    if($.cookie('email') != '') {
+                        $('#regEmail').val($.cookie('email'));
+                    } else {
+                        console.log('沒有email');
+                    }
                     $('#regEmail').on({
                         blur: function () {
                             var re = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
@@ -151,7 +156,7 @@
                                     });
                                     setTimeout(function () {
                                         location.href = "/login/userlogin";
-                                    }, 3000);
+                                    }, 2000);
                                 }
                             });
                         }
