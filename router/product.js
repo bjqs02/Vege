@@ -43,16 +43,16 @@ product.get("/", function (req, res) {
         if (err) {
           console.log("產品資訊取得失敗");
           console.log(err);
-          res.status(500).send("数据库错误");
+          res.status(500).send("產品資訊錯誤");
           return;
         }
         data.con = rows;
 
         mysql.query(sql3, function (err, rows) {
           if (err) {
-            console.log("蔬菜品項去得失敗");
+            console.log("蔬菜品項取得失敗");
             console.log(err);
-            res.status(500).send("数据库错误");
+            res.status(500).send("產品資訊錯誤");
             return;
           }
           data.veg = rows;

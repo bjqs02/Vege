@@ -19,7 +19,7 @@
         <section class="main-box">
           <section class="middleContent d-flex">
             <aside class="asideNav fu_tab">
-              <ul class="asideNav-ul">
+              <ul class="asideNav-ul" id="parentElement">
                 <% for (let i = 0; i < data.names.length; i++) { %>
                 <li class="vg-bd-5">
                   <button
@@ -109,7 +109,7 @@
                       >
                         <h4 class="vg-h4 mb-0">請選擇您喜歡的蔬果</h4>
                         <strong class="over"></strong>
-                        <button type="button" class="btn-close"></button>
+                        <button type="button" class="btn-close bcl"></button>
                       </div>
                       <div class="cons">
                         <h5 class="vg-h5"><strong>蔬菜</strong></h5>
@@ -186,11 +186,10 @@
                   <p>
                     60day金額:
                     <span class="price1"
-                      ><%= (parseInt(data.con[t].price)* 4)*2 %>元</span
+                      ><%= parseInt(data.con[t].price)* 4 %>元</span
                     >
                     <span class="price3">
-                      ~<%= ((parseInt(data.con[t].price) + 200) * 4)*2
-                      %>元</span
+                      ~<%= parseInt(data.con[t].price)* 4 %>元</span
                     >
                   </p>
                   <p>總金額: <span class="toal price4"></span></p>
@@ -235,10 +234,10 @@
                     style="font-size: 10px"
                   ></span
                   ><br />
-                  <div>
+                  <div class="fv_con">
                     <h5 class="d-inline vg-h5">內容:</h5>
                     <br />
-                    <strong class="buyfv commodity"></strong>
+                    <strong class="buyfv commodity"></strong>v
                   </div>
                   <button class="btn btn-vg chage m-0">選擇蔬果</button>
                   <button class="btn btn-vg w-50 m-0 addCard">
@@ -270,9 +269,10 @@
                   <br />
                   <label for="commodity" class="vg-h5">商品規格</label>
                   <select class="commodity">
-                    <option value="double">雙人箱(1~2人)</option>
-                    <option value="family">家庭箱(3~4人)</option>
+                    <option value="once" data-size="s">雙人箱(1~2人)</option>
+                    <option value="once" data-size="m">家庭箱(3~4人)</option>
                   </select>
+
                   <br />
                   <h5 class="d-inline vg-h5">數量:</h5>
                   <span
@@ -320,10 +320,10 @@
                   </p>
                   <label for="commodity" class="vg-h5">商品規格</label>
                   <select name="commodity" class="commodity">
-                    <option value="">雙人箱(30day)</option>
-                    <option value="">雙人箱(60day)</option>
-                    <option value="">家庭箱(30day)</option>
-                    <option value="">家庭箱(60day)</option>
+                    <option value="30d" data-size="s">雙人箱(30day)</option>
+                    <option value="60d" data-size="l">雙人箱(60day)</option>
+                    <option value="30d" data-size="m">家庭箱(30day)</option>
+                    <option value="60d" data-size="xl">家庭箱(60day)</option>
                   </select>
                   <br />
 
@@ -382,6 +382,7 @@
       </main>
     </header>
     <%- include('share/footer') %>
+
     <script src="js/Product_Page.js"></script>
     <script src="js/vg.js"></script>
   </body>
