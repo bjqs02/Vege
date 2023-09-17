@@ -7,7 +7,7 @@ product.get("/", function (req, res) {
   let sql1 =
     "SELECT info.product, product_content.image FROM info JOIN product_content ON info.product = product_content.product WHERE info.season ORDER BY RAND() LIMIT 6;";
   let sql2 =
-    "SELECT product.product, MAX(product.pid) AS pid, MAX(product_content.content) AS content, MAX(product_content.feature) AS feature, MAX(product_content.price) AS price, MAX(activity.off_act) AS off_act, MAX(activity.act_content) AS act_content, MAX(activity.act_content2) AS act_content2, MAX(activity.act_content3) AS act_content3, MAX(activity.act_time) AS act_time FROM product_content INNER JOIN product ON product_content.product = product.product LEFT JOIN activity ON product_content.product = activity.product WHERE product.category = '蔬果箱' GROUP BY product.product ORDER BY MAX(product.pid) ASC LIMIT 0, 25;";
+    "SELECT product.pid, product.product, product_content.content, product_content.feature, product_content.price, activity.off_act, activity.act_content, activity.act_content2, activity.act_content3, activity.act_time FROM product_content INNER JOIN product ON product_content.product = product.product LEFT JOIN activity ON product_content.product = activity.product WHERE product.category = '蔬果箱' GROUP BY product.product ORDER BY product.pid ASC;";
   let sql3 =
     "SELECT product.product, product.category, product.firm, info.season FROM product INNER JOIN info ON product.product = info.product WHERE (product.category = '蔬菜' ) AND (info.season = '9,10,11' OR info.season = '全年' or info.season = '12,1,2'or info.season = '3,4,5');";
   let sql4 =
