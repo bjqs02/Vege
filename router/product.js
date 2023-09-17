@@ -7,7 +7,7 @@ product.get("/", function (req, res) {
   let sql1 =
     "SELECT info.product, product_content.image FROM info JOIN product_content ON info.product = product_content.product WHERE info.season ORDER BY RAND() LIMIT 6;";
   let sql2 =
-    "SELECT product.product, MAX(product.pid) AS pid, MAX(product_content.content) AS content, MAX(product_content.feature) AS feature, MAX(product_content.price) AS price, MAX(activity.off_act) AS off_act, MAX(activity.act_content) AS act_content, MAX(activity.act_content2) AS act_content2, MAX(activity.act_content3) AS act_content3, MAX(activity.act_time) AS act_time FROM product_content INNER JOIN product ON product_content.product = product.product LEFT JOIN activity ON product_content.product = activity.product WHERE product.category = '蔬果箱' GROUP BY product.product ORDER BY MAX(product.pid) ASC LIMIT 0, 25;";
+    "SELECT product.product,MAX(product_content.image) AS image, MAX(product.pid) AS pid, MAX(product_content.content) AS content, MAX(product_content.feature) AS feature, MAX(product_content.price) AS price, MAX(activity.off_act) AS off_act, MAX(activity.act_content) AS act_content, MAX(activity.act_content2) AS act_content2, MAX(activity.act_content3) AS act_content3, MAX(activity.act_content4) AS act_content4,MAX(activity.act_content5) AS act_content5,MAX(activity.act_content6) AS act_content6,MAX(activity.act_time) AS act_time FROM product_content INNER JOIN product ON product_content.product = product.product LEFT JOIN activity ON product_content.product = activity.product WHERE product.category = '蔬果箱' GROUP BY product.product ORDER BY MAX(product.pid) ASC LIMIT 0, 25;";
   let sql3 =
     "SELECT product.product, product.category, product.firm, info.season FROM product INNER JOIN info ON product.product = info.product WHERE (product.category = '蔬菜' ) AND (info.season = '9,10,11' OR info.season = '全年' or info.season = '12,1,2'or info.season = '3,4,5');";
   let sql4 =
@@ -81,7 +81,8 @@ product.get("/", function (req, res) {
     const cardDataArr = req.body;
 
     try {
-      for (const cardData of cardDataArr) {
+      const dataArray = Object.values(cardDataArr); // 将对象的值转换为数组
+      for (const cardData of dataArray) {
         const { uid, quantity, c_option, product, size, freq, fid } = cardData;
         const sql8 =
           "SELECT pid FROM product WHERE product = ? and size = ? and freq = ?;";
@@ -93,7 +94,9 @@ product.get("/", function (req, res) {
             res.status(500).send("取得產品id失敗"); // Send an error response
             return;
           }
-
+          console.log("查詢product结果:", product);
+          console.log("查詢size结果:", size);
+          console.log("查詢freq结果:", freq);
           console.log("查詢id结果:", results);
 
           if (results.length === 0) {
@@ -109,12 +112,12 @@ product.get("/", function (req, res) {
             "INSERT INTO cart (uid, pid, quantity, c_option, fid) VALUES (?, ?, ?, ?, ?)";
           const addcartValues = [uid, pid, quantity, c_option, fid];
 
-          mysql.query(addcart, addcartValues, (err) => {
+          mysql.query(addcart, addcartValues, (err, results) => {
             if (err) {
               console.error("產品添加失敗:", err);
               res.status(500).send("產品添加失敗");
             } else {
-              res.send("卡片產品添加成功");
+              res.send(results);
             }
           });
         });
@@ -166,6 +169,16 @@ product.get("/", function (req, res) {
       res.status(500).send("連接錯誤");
     }
   });
+
+  // 讀取每個會員
+  // product.get("/cart/item/:id", function (req, res) {
+  //   // var sql1 = "SELECT * FROM temp_product join cart WHERE cart.pid = temp_product.pid and  cart.uid = ? and cart.c_status = 'active'";
+  //   var sql99 =
+  //     "SELECT product.pid, product.product as pname, product_content.image as img, product_content.content as pinfo , product_content.price as price, product.size, product.freq, cart.quantity, cart.c_option, cart.c_note, cart.fid FROM product_content INNER JOIN product join cart WHERE product_content.product = product.product and cart.pid = product.pid and cart.uid = ? and cart.c_status = 'active';";
+  //   mysql.query(sql99, [req.params.id], function (err, rows) {
+  //     res.send(rows);
+  //   });
+  // });
 });
 
 module.exports = product;

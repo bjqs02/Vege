@@ -55,21 +55,8 @@
               </div>
               <div class="middle_all">
                 <div class="middle_img">
-                  <% if(data.con[t].product === data.con[0].product){ %>
-                  <img class="vg-bd-5 mainImg" src="img/蔬果健康箱.png" />
-                  <% } else if(data.con[t].product === data.con[1].product) {%>
-                  <img class="vg-bd-5 mainImg" src="img/蔬果減脂箱.png" />
-                  <% }else if(data.con[t].product === data.con[2].product) {%>
-                  <img class="vg-bd-5 mainImg" src="img/果果箱.png" />
-                  <% }else if(data.con[t].product === data.con[3].product) {%>
-                  <img class="vg-bd-5 mainImg" src="img/菜菜箱.png" />
-                  <% }else if(data.con[t].product === data.con[4].product) {%>
-                  <img class="vg-bd-5 mainImg" src="img/盛產箱.png" />
-                  <% }else if(data.con[t].product === data.con[5].product) {%>
-                  <img class="vg-bd-5 mainImg" src="img/中秋箱.png" />
-                  <% }else{ %>
-                  <img class="vg-bd-5 mainImg" src="img/自選蔬果箱.png" />
-                  <% } %>
+                  <img class="vg-bd-5 mainImg" src="<%= data.con[t].image %>" />
+
                   <!-- 取得這個img當作購物圖片-->
                   <div class="middle_imgs">
                     <% for(let i = 0; i < data.images.length; i++) { %>
@@ -88,10 +75,16 @@
                     運費根據黑貓低溫配送基本價 <br />
                     宅配/超商取貨為同樣價格
                   </p>
+                  <label for="commodity" class="vg-h5">商品規格</label>
+                  <select class="commodity">
+                    <option value="once" data-size="s">雙人箱(1~2人)</option>
+                    <option value="once" data-size="l">家庭箱(3~4人)</option>
+                  </select>
+                  <br />
                   <span>
                     最低金額:<span class="price1">
                       <%= data.con[t].price %></span
-                    >元 </span
+                    >元</span
                   ><br />
                   <span>
                     最高金額:
@@ -174,25 +167,29 @@
                   </p>
                   <h5 class="vg-h5">價格:</h5>
                   <p>30day一期運費160元 、60day 一期運費290元</p>
+                  <label for="commodity" class="vg-h5">商品規格</label>
+                  <select name="commodity" class="commodity">
+                    <option value="30d" data-size="s">雙人箱(30day)</option>
+                    <option value="60d" data-size="l">雙人箱(60day)</option>
+                    <option value="30d" data-size="s">家庭箱(30day)</option>
+                    <option value="60d" data-size="l">家庭箱(60day)</option>
+                  </select>
+                  <br />
                   <p>
-                    30day金額:
-                    <span class="price1"
-                      ><%= parseInt(data.con[t].price)* 4 %>元</span
-                    >
-                    <span class="price3">
-                      ~<%= (parseInt(data.con[t].price) + 200) * 4 %>元</span
-                    >
+                    <span>
+                      單箱最低金額:<span class="price1">
+                        <%= data.con[t].price %></span
+                      >元</span
+                    ><br />
+                    <span>
+                      單箱最高金額:
+                      <span class="price3"
+                        ><%= parseInt(data.con[t].price)+200 %></span
+                      >元
+                    </span>
                   </p>
-                  <p>
-                    60day金額:
-                    <span class="price1"
-                      ><%= parseInt(data.con[t].price)* 4 %>元</span
-                    >
-                    <span class="price3">
-                      ~<%= parseInt(data.con[t].price)* 4 %>元</span
-                    >
-                  </p>
-                  <p>總金額: <span class="toal price4"></span></p>
+                  <p>單箱: <span class="toal"></span></p>
+                  <p>總金額: <span class="toal2 price4"></span></p>
                   <div class="fv_box vg-bd-5">
                     <div class="vg-bd-5 mo_con">
                       <div
@@ -237,7 +234,7 @@
                   <div class="fv_con">
                     <h5 class="d-inline vg-h5">內容:</h5>
                     <br />
-                    <strong class="buyfv commodity"></strong>v
+                    <strong class="buyfv commodity"></strong>
                   </div>
                   <button class="btn btn-vg chage m-0">選擇蔬果</button>
                   <button class="btn btn-vg w-50 m-0 addCard">
@@ -248,29 +245,31 @@
                 <div class="middle_Con">
                   <h5 class="vg-h5">特色:</h5>
                   <p><%= data.con[t].feature %></p>
-                  <p><%= data.con[t].content %>(雙人箱)</p>
-                  <p>五樣水果、五樣蔬菜(家庭箱)</p>
+                  <p>
+                    <span class="concon"><%= data.con[t].content %></span
+                    >(雙人箱)
+                  </p>
+                  <p><span class="concon2">五樣水果、五樣蔬菜</span>(家庭箱)</p>
                   <span>(內容以當季蔬菜組裝出貨)</span>
                   <p>
                     運費根據黑貓低溫配送基本價 <br />
                     宅配/超商取貨為同樣價格
                   </p>
-                  <span>
-                    雙人箱(1~2人):<span class="price1">
-                      <%= data.con[t].price %></span
-                    >元 </span
-                  ><br />
-                  <span>
-                    家庭箱(3~4人):
+                  <p>
+                    <span>雙人箱(1~2人)</span
+                    ><span class="price1"> <%= data.con[t].price %></span>元
+                  </p>
+                  <p>
+                    <span>家庭箱(3~4人)</span>
                     <span class="price3"
                       ><%= parseInt(data.con[t].price)+200 %></span
                     >元
-                  </span>
+                  </p>
                   <br />
                   <label for="commodity" class="vg-h5">商品規格</label>
                   <select class="commodity">
                     <option value="once" data-size="s">雙人箱(1~2人)</option>
-                    <option value="once" data-size="m">家庭箱(3~4人)</option>
+                    <option value="once" data-size="l">家庭箱(3~4人)</option>
                   </select>
 
                   <br />
@@ -322,8 +321,8 @@
                   <select name="commodity" class="commodity">
                     <option value="30d" data-size="s">雙人箱(30day)</option>
                     <option value="60d" data-size="l">雙人箱(60day)</option>
-                    <option value="30d" data-size="m">家庭箱(30day)</option>
-                    <option value="60d" data-size="xl">家庭箱(60day)</option>
+                    <option value="30d" data-size="s">家庭箱(30day)</option>
+                    <option value="60d" data-size="l">家庭箱(60day)</option>
                   </select>
                   <br />
 
@@ -367,11 +366,22 @@
                   <h5 class="vg-h5">最新活動</h5>
                   <p><%= data.con[t].off_act %></p>
                   <h5 class="vg-h5">活動內容</h5>
-                  <p><%= data.con[t].act_content %></p>
-                  <p><%= data.con[t].act_content2 %></p>
-                  <p><%= data.con[t].act_content3 %></p>
+                  <p>
+                    <span><%= data.con[t].act_content %></span><br />
+                    <span><%= data.con[t].act_content2 %></span><br />
+                    <span><%= data.con[t].act_content3 %></span><br />
+                    <span><%= data.con[t].act_content4 %></span><br />
+                    <span><%= data.con[t].act_content5 %></span><br />
+                    <span><%= data.con[t].act_content6 %></span>
+                  </p>
+
                   <h5 class="vg-h5">活動時間</h5>
-                  <h6>活動連結: <a href="#">水果拚拚樂</a></h6>
+                  <h6>
+                    詳細:
+                    <a href="http://127.0.0.1:2407/activityboard/inside/2"
+                      >水果拚拚樂</a
+                    >
+                  </h6>
                   <p><%= data.con[t].act_time %></p>
                 </div>
               </div>
