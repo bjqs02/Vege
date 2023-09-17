@@ -776,6 +776,8 @@
                         return
                     }
 
+                    rAddr.value == '' ? rAddr.value = homeAdd.value : rAddr.value
+
                     var oid = orderid.innerText;
                     var formdata = $('#orderdetails').serializeArray();
                     // 增加表格以外的資料

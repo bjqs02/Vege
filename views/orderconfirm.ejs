@@ -293,13 +293,17 @@
                         res[0].billPersonal != null ? (billP.innerText = '個人') : (billP.innerText = '')
                         res[0].billCompNum != '' ? (billC.innerText = '公司') : (billC.innerText = '')
                     })
+
+                    // 按下 送出訂單 按鈕的事件綁定
                     sendorder = () => {
                         var oid = orderid.innerText;
                         var time = new Date().getTime();
-                        console.log(time)
+                        // console.log(time)
+                        var summary_total = $('#total').text()
+                        // console.log(summary_total)
 
 
-                        // 更新 本筆訂單 對應的o_status => pending
+                        // 更新 本筆訂單 對應的o_status active => pending
                         fetch('/editorder/statusinactive/', {
                             method: 'PATCH',
                             headers: {
@@ -322,9 +326,39 @@
                                 })
                             }).then(
                                 // 轉址
-                                document.location.href = "/orderprocessing/"
+                                // document.location.href = "/orderprocessing/"
                             )
                         )
+
+                        // 串接LINEPAY 金流 (未完成)
+                        if (linepay.innerText == "linepay") {
+                            // console.log('linepay')
+                            // 轉址linepay v2 服務 (建立訂單)
+                            fetch('/payments/linepay/', {
+                                method: 'POST',
+                                headers: {
+                                    "Content-Type": "application/json ; charset=UTF-8",
+                                },
+                                body: JSON.stringify({
+                                    amount: summary_total,
+                                    orderId: oid
+                                })
+                            })
+                                .then((res) => {
+                                    return res.json()
+                                })
+                                .then((r) => {
+                                    // console.log( r.info.paymentUrl.web )
+                                    // 打開付款頁面
+                                    document.location.href = r.info.paymentUrl.web
+                                })
+
+                        } else {
+                            // console.log('非linepay')
+                            // 轉址
+                            document.location.href = "/orderprocessing/"
+                        }
+
                     }
 
 

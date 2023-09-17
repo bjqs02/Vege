@@ -9,6 +9,9 @@ var up = bodyParser.urlencoded({ extended: true });
 var bluebird = require("bluebird");
 bluebird.promisifyAll(db);
 
+var cors = require("cors");
+cart_order.use(cors());
+
 // cart 購物流程相關資料庫指令
 cart_order.use(express.json());
 cart_order.use(express.urlencoded({ extended: true }));
@@ -153,6 +156,7 @@ cart_order.patch("/editorder/details/:oid", function (req, res) {
 // 更新 vgorder 資料表 的 o_statue => inactive 與 o_updatetime
 cart_order.patch("/editorder/statusinactive/", function (req, res) {
   var sql77 =
+    // "update vgorder set o_status = 'pending', o_updatetime = ? where oid = ? ";
     "update vgorder set o_status = 'pending', o_updatetime = ? where oid = ? ";
   db.query(sql77, [req.body.o_updatetime, req.body.oid], function (err, rows) {
     res.send(JSON.stringify(req.body));
@@ -352,6 +356,52 @@ cart_order.post("/credit_callback/", (req, res) => {
   // 從指定網址返回orderprocessing頁面
   res.render("orderprocessing");
 });
+
+// LINEPAY系統API (尚未完整完成)
+var rp = require('request-promise');
+
+// 建立 linepay訂單
+cart_order.post('/payments/linepay/', async function (req, res, next) {
+  var payments = await rp({
+    method: 'POST',
+    uri: `https://sandbox-api-pay.line.me/v2/payments/request`,
+    json: true,
+    headers: {
+      'X-LINE-ChannelId': process.env.LINE_PAY_CHANNELID,
+      'X-LINE-ChannelSecret': process.env.LINE_PAY_SECRET
+    },
+    body: {
+      "amount": req.body.amount,
+      "productName": "vege box",
+      // confirmUrl 會呼叫的 API 
+      "confirmUrl": 'http://127.0.0.1:2407/line_callback/',
+      "orderId": req.body.orderId,
+      "currency": "TWD"
+    }
+  });
+  console.log(payments)
+  // console.log(payments.info.transactionId)
+  // console.log(payments.info.paymentUrl.web)
+  res.send(payments);
+});
+
+// confirmUrl 會呼叫的 API (可導向，但未完成驗證已付款功能)
+cart_order.get("/line_callback/", async (req, res) => {
+  var payments = await rp({
+    method: 'POST',
+    uri: `https://sandbox-api-pay.line.me/v2/payments/${req.query.transactionId}/confirm`,
+    json: true,
+    headers: {
+      'X-LINE-ChannelId': process.env.LINE_PAY_CHANNELID,
+      'X-LINE-ChannelSecret': process.env.LINE_PAY_SECRET
+    },
+    
+  });
+
+  setTimeout(()=>{  res.redirect("http://127.0.0.1:2407/orderprocessing") },3000)
+});
+
+
 
 // rateorder 評價訂單相關資料庫指令
 //讀取vgorder訂單狀態及品項
