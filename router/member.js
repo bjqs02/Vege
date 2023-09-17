@@ -1,7 +1,14 @@
 var express = require('express');
+var bodyParser = require('body-parser');
+var dayjs = require('dayjs');
 var member = express.Router();
 var db = require('../db');
 
+// 解析客戶端POST的資料
+member.use(bodyParser.json());
+member.use(bodyParser.urlencoded({ extended: true }));
+
+// 基本資料
 member.get('/basicInfo', function(req, res) {
     res.render('m_basicInfo')
 })
