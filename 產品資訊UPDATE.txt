@@ -5,6 +5,8 @@ ALTER TABLE `cart` ADD `c_option` VARCHAR(50) NULL AFTER `pid`;
 
 ALTER TABLE `cart` ADD quantity TINYINT NOT NULL DEFAULT '1' AFTER `pid`;
 
+ALTER TABLE `cart` ADD fid VARCHAR(20) NOT NULL AFTER `c_status`;
+
 CREATE TABLE product (
    pid INT AUTO_INCREMENT PRIMARY KEY,
     product VARCHAR(30) NOT NULL,

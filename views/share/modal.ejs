@@ -532,7 +532,7 @@
         感謝您的耐心等候，我們已根據您的體質與需求選品6樣適合您攝取的蔬果，現在前往商品頁為您自動選取箱對應蔬果的客製化蔬果箱。
         <br />
       </div>
-      <div class="modal-footer d-flex justify-content-center">
+      <div class="modal-footer d-flex justify-content-center aa">
         <button
           class="btn btn-vg-reg"
           data-bs-target="#dxQType"
@@ -540,7 +540,7 @@
         >
           重新診斷
         </button>
-        <a class="btn btn-vg-reg" href="/eval/result">前往商品頁</a>
+        <a class="btn btn-vg-reg go_shop" href="#">前往商品頁</a>
       </div>
     </div>
   </div>
@@ -613,11 +613,28 @@
         "Content-Type": "application/json;charset=UTF-8",
       },
       body: datas,
-    });
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((responseData) => {
+        // 在这里处理服务器返回的数据，例如：
+        console.log("Response data:", responseData);
+        // console.log(responseData[0].product);
+        set(responseData);
+        openCity(event, "fu_tab7");
+      })
+      .catch((error) => {
+        console.error("輸入錯誤", error);
+      });
   };
 
   dxQ7_cold.onclick = function () {
     timeoutNext();
+
     data.cold = "cold";
     var datas = JSON.stringify(data);
     fetch("/eval/result", {
@@ -626,7 +643,23 @@
         "Content-Type": "application/json;charset=UTF-8",
       },
       body: datas,
-    });
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((responseData) => {
+        // 在这里处理服务器返回的数据，例如：
+        console.log("Response data:", responseData);
+        // console.log(responseData[0].product);
+        set(responseData);
+        openCity(event, "fu_tab7");
+      })
+      .catch((error) => {
+        console.error("輸入錯誤", error);
+      });
   };
 
   function timeoutNext() {
@@ -637,26 +670,4 @@
       $("#dxResult").modal("show");
     }, 4000);
   }
-  //   window.onload = function () {
-  // young.onclick = function () {
-  //     data.two = 'age is young';
-  //     var datas = JSON.stringify(data);
-  //     fetch('/modal', {
-  //         method: "POST",
-  //         headers: {
-  //             "Content-Type": "application/json;charset=UTF-8"
-  //         },
-  //         body: datas
-  //     });
-  // }
-  // var result = JSON.stringify(datas);
-  // console.log(typeof datas);
-  //     fetch('/modal', {
-  //                     method: "POST",
-  //                     headers: {
-  //                         "Content-Type": "application/json;charset=UTF-8"
-  //                     },
-  //                     body: datas
-  //                 });
-  //   };
 </script>

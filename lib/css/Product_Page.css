@@ -1,7 +1,6 @@
 @charset "UTF-8";
 * {
   box-sizing: border-box;
-  
 }
 
 a {
@@ -15,10 +14,8 @@ a:hover {
 }
 
 body {
-  overflow-x: hidden;
   min-width: 400px;
   overflow: auto;
-  /* 當我點開btn 背景固定   ---------------------*/
 }
 
 header {
@@ -34,7 +31,6 @@ header {
 header main#product_main {
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 @media screen and (max-width: 1100px) {
   header main#product_main {
@@ -46,8 +42,6 @@ header main#product_main section.main-box {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* box-shadow: inset 0px 5px 13px 0px #000000; */
-  background-color: rgb(255, 255, 255);
 }
 @media screen and (max-width: 1100px) {
   header main#product_main section.main-box {
@@ -55,40 +49,38 @@ header main#product_main section.main-box {
   }
 }
 header main#product_main section.main-box aside.asideNav {
-  width: 20vw;
+  width: 40%;
+  display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
+
 @media screen and (max-width: 1100px) {
   header main#product_main section.main-box aside.asideNav {
-    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
   }
 }
 header main#product_main section.main-box aside.asideNav ul.asideNav-ul {
   display: flex;
   padding: 0;
   list-style-type: none;
-  justify-content: end;
-  align-items: end;
   flex-direction: column;
-  margin-top: 50px;
+  width: 100%;
 }
 @media screen and (max-width: 1100px) {
   header main#product_main section.main-box aside.asideNav ul.asideNav-ul {
     justify-content: center;
     align-items: center;
-    width: 100vw;
+    width: 100%;
     margin-top: 20px;
   }
 }
 header main#product_main section.main-box aside.asideNav ul.asideNav-ul li {
-  /* background-color: #0d5946; */
-  width: auto;
-  /* box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.4117647059); */
+  width: 100%;
 }
 @media screen and (max-width: 1100px) {
   header main#product_main section.main-box aside.asideNav ul.asideNav-ul li {
@@ -103,6 +95,28 @@ header
   aside.asideNav
   ul.asideNav-ul
   li
+  button {
+  width: 50%;
+}
+
+@media screen and (max-width: 1100px) {
+  header
+    main#product_main
+    section.main-box
+    aside.asideNav
+    ul.asideNav-ul
+    li
+    button {
+    width: 100%;
+  }
+}
+
+header
+  main#product_main
+  section.main-box
+  aside.asideNav
+  ul.asideNav-ul
+  li
   .action {
   color: rgb(255, 255, 255);
   background-color: var(--primary-2);
@@ -110,35 +124,31 @@ header
 /* header main#product_main section.main-box aside.asideNav {
   color: blanchedalmond;
 } */
-.asideNav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.tab {
+
+/* .tab {
   width: 10rem;
-}
+} */
 .btn-vg {
   z-index: 2;
 }
-header main#product_main section.main-box section.middleContent {
+/* header main#product_main section.main-box section.middleContent {
   display: flex;
-}
+} */
 @media screen and (max-width: 1100px) {
   header main#product_main section.main-box section.middleContent {
     width: 100%;
     flex-direction: column;
   }
 }
-header
+/* header
   main#product_main
   section.main-box
   section.middleContent
   section.middle_box1 {
   display: none;
   margin: 0 auto;
-}
-@media screen and (max-width: 1100px) {
+} */
+/* @media screen and (max-width: 1100px) {
   header
     main#product_main
     section.main-box
@@ -147,15 +157,15 @@ header
     justify-content: center;
     align-items: center;
   }
-}
-header
+} */
+/* header
   main#product_main
   section.main-box
   section.middleContent
   section.middle_box1
   div.middle_box {
   display: flex;
-}
+} */
 
 div.middle_box {
   background-color: var(--primary-L);
@@ -172,6 +182,27 @@ div.middle_box {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+  header
+    main#product_main
+    section.main-box
+    section.middleContent
+    section.middle_box1
+    div.middle_box
+    div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  header
+    main#product_main
+    section.main-box
+    section.middleContent
+    section.middle_box1
+    div.middle_box
+    h3 {
+    padding: 0;
+    margin: 0;
   }
 }
 header
@@ -226,8 +257,8 @@ header
   .vg-h3-div2
   div.box
   button.act {
-    color: rgb(255, 255, 255);
-    background-color: var(--primary-2);
+  color: rgb(255, 255, 255);
+  background-color: var(--primary-2);
 }
 header
   main#product_main
@@ -304,6 +335,7 @@ header
   div {
   flex-wrap: wrap;
 }
+
 header
   main#product_main
   section.main-box
@@ -429,14 +461,14 @@ img:hover {
   width: 100vw;
   height: 100vh;
   position: fixed;
-  z-index: 2;
+  z-index: 1055;
   background-color: #00000070;
   display: none;
 }
 .fv_box {
   position: fixed;
   display: none;
-  z-index: 200;
+  z-index: 1056;
   width: 40vw;
   height: auto;
   background-color: white;
@@ -506,7 +538,6 @@ strong.over {
   animation: shake 0.2s ease 2; /* 摇晃两次，每次0.5秒 */
 }
 
-
-.fu_nav:hover{
+.fu_nav:hover {
   background-color: var(--primary-2);
 }

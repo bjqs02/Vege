@@ -44,6 +44,11 @@
             <!-- 以下是script -->
             <%- include('share/vg-main.ejs') %>
                 <script>
+                    if($.cookie('email') != '') {
+                        $('#loginEmail').val($.cookie('email'));
+                    } else {
+                        console.log('沒有email');
+                    }
                     let token = '';
                     $('#submit').on('click', function (e) {
                         e.preventDefault();
@@ -91,7 +96,19 @@
                                     var expirationTime = new Date(now.getTime() + 1 * 24 * 60 * 60 * 1000);
                                     document.cookie = `token=${cookieToken}; expires=${expirationTime.toUTCString()}; Domain=127.0.0.1; path=/; port=2407`;
                                     document.cookie = `user=${cookieUser}; expires=${expirationTime.toUTCString()}; Domain=127.0.0.1; path=/; port=2407`;
+                                    document.cookie = `email=${data.email}; expires=Thu, 01 Jan 1970 00:00:00 UTC; Domain=127.0.0.1; path=/; port=2407`;
                                     localStorage.setItem('token', newToken);
+                                    const Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'center',
+                                        showConfirmButton: false,
+                                        timer: 3000,
+                                        timerProgressBar: false,
+                                    });
+                                    Toast.fire({
+                                        icon: 'success',
+                                        title: '登入成功!畫面將跳轉至首頁'
+                                    });
                                     setTimeout(function () {
                                         location.href = "/";
                                     }, 2000);
