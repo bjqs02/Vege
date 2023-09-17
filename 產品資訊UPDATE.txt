@@ -129,6 +129,56 @@ VALUES
 ('自選蔬果箱', '蔬果箱', '太陽&舒果', null, null,  null,'30d','s'),
 ('自選蔬果箱', '蔬果箱', '太陽&舒果', null, null,  null,'30d','l'),
 ('自選蔬果箱', '蔬果箱', '太陽&舒果', null, null,  null,'60d','s'),
-('自選蔬果箱', '蔬果箱', '太陽&舒果', null, null,  null,'60d','l')
+('自選蔬果箱', '蔬果箱', '太陽&舒果', null, null,  null,'60d','l');
+
+
+-- `cardtype` 與 `ushopaddress`
+
+CREATE TABLE `cardtype` (
+  `ctId` int(2) NOT NULL,
+  `cardname` varchar(16) NOT NULL,
+  `cardimg` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 資料表新增資料前，先清除舊資料 `cardtype`
+--
+
+TRUNCATE TABLE `cardtype`;
+--
+-- 傾印資料表的資料 `cardtype`
+--
+
+INSERT INTO `cardtype` (`ctId`, `cardname`, `cardimg`) VALUES
+(3, 'JCB', 'img/jcb.png'),
+(4, 'VISA', 'img/visa.png'),
+(5, 'Master Card', 'img/mastercard2.png');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `ushopaddress`
+--
+
+CREATE TABLE `ushopaddress` (
+  `uId` int(11) NOT NULL,
+  `sId` int(11) NOT NULL,
+  `shopName` varchar(16) NOT NULL,
+  `Name` varchar(16) NOT NULL,
+  `Phone` varchar(16) NOT NULL,
+  `address` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 資料表新增資料前，先清除舊資料 `ushopaddress`
+--
+
+TRUNCATE TABLE `ushopaddress`;
+--
+-- 傾印資料表的資料 `ushopaddress`
+--
+
+INSERT INTO `ushopaddress` (`uId`, `sId`, `shopName`, `Name`, `Phone`, `address`) VALUES
+(1001, 134523, '台中黎明店', '王媽媽', '0923515377', '台中市南屯區三厝里黎明路二段406號');
 
 
