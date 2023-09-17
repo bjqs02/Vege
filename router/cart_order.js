@@ -395,9 +395,8 @@ cart_order.get("/line_callback/", async (req, res) => {
       'X-LINE-ChannelId': process.env.LINE_PAY_CHANNELID,
       'X-LINE-ChannelSecret': process.env.LINE_PAY_SECRET
     },
-    
+    // 需用body 攜帶 amount和 twd資料進行付款驗證
   });
-
   setTimeout(()=>{  res.redirect("http://127.0.0.1:2407/orderprocessing") },3000)
 });
 
