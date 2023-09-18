@@ -188,7 +188,7 @@
                             var trHtml = `
                             <tr>
                                 <td>
-                                    <p class="m-0" id="c_option">${item.product}</p>
+                                    <p class="m-0" id=${item.product}>${item.product}</p>
                                     <p class="vg-ps">${item.size} ${item.freq} ${item.c_note} </p>
                                 </td>
                                 <td>${item.quantity}</td>
@@ -203,9 +203,11 @@
                             shippingfee += fee;
                             total += item.price;
 
-                            if (item.c_option != null || '') {
-                                $("#c_option").after(`<i class="vg-ps" id="c_option">${item.c_option}</i><br/>`)
-                            }
+                            if ( item.c_option.includes(',') ) {
+                            item.c_option = item.c_option.split(',').slice(1,7);
+                            console.log(item.c_option);
+                            $(`#${item.product}`).append(`<br/><i class="vg-ps">${item.c_option}</i><br/>`)
+                        }
                         })
                         // 運費計算
                         var tdHtml = `    
