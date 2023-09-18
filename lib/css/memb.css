@@ -207,7 +207,6 @@ body {
     background-color: var(--secondary-g);
     color: white;
     animation: shake-br 2s ease-in-out ;
-    z-index: 1;
 }
 
 #memb-CS:before {
