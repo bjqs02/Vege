@@ -362,6 +362,7 @@ var rp = require('request-promise');
 
 // 建立 linepay訂單
 cart_order.post('/payments/linepay/', async function (req, res, next) {
+  var amount;
   var payments = await rp({
     method: 'POST',
     uri: `https://sandbox-api-pay.line.me/v2/payments/request`,
@@ -379,26 +380,43 @@ cart_order.post('/payments/linepay/', async function (req, res, next) {
       "currency": "TWD"
     }
   });
+  amount = req.body.amount;
   console.log(payments)
   // console.log(payments.info.transactionId)
   // console.log(payments.info.paymentUrl.web)
   res.send(payments);
+
+  // confirmUrl 會呼叫的 API (可導向，但未完成驗證已付款功能)
+  cart_order.get("/line_callback/", async (req, res) => {
+    var payments = await rp({
+      method: 'POST',
+      uri: `https://sandbox-api-pay.line.me/v2/payments/${req.query.transactionId}/confirm`,
+      json: true,
+      headers: {
+        'X-LINE-ChannelId': process.env.LINE_PAY_CHANNELID,
+        'X-LINE-ChannelSecret': process.env.LINE_PAY_SECRET
+      },
+      body:{
+        // 需用body 攜帶 amount和 twd資料進行付款驗證
+        "amount" : amount,
+        "currency" : "TWD"
+      }
+    });
+    console.log(payments)
+    // res.send( payments )
+    if( payments.returnMessage == "Success."){
+      // res.json({ success: true });
+      setTimeout(() => { res.redirect("http://127.0.0.1:2407/orderprocessing") }, 5000)
+    } else {
+      res.send('有什麼東西出錯了，請關閉網頁重新操作！')
+      // res.json({ success: false });
+      // setTimeout(() => { res.redirect("http://127.0.0.1:2407/orderconfirm") }, 3000)
+    }
+  });
+
 });
 
-// confirmUrl 會呼叫的 API (可導向，但未完成驗證已付款功能)
-cart_order.get("/line_callback/", async (req, res) => {
-  var payments = await rp({
-    method: 'POST',
-    uri: `https://sandbox-api-pay.line.me/v2/payments/${req.query.transactionId}/confirm`,
-    json: true,
-    headers: {
-      'X-LINE-ChannelId': process.env.LINE_PAY_CHANNELID,
-      'X-LINE-ChannelSecret': process.env.LINE_PAY_SECRET
-    },
-    // 需用body 攜帶 amount和 twd資料進行付款驗證
-  });
-  setTimeout(()=>{  res.redirect("http://127.0.0.1:2407/orderprocessing") },3000)
-});
+
 
 
 

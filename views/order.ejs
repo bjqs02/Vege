@@ -572,6 +572,7 @@
                     // 點選 同會員資料 的功能
                     $('#memberdata').on('click', () => {
                         $.get(`/getuserinfo/${uid}`, function (res) {
+                            console.log(res[0])
                             myusername.value = res[0].Name
                             userTel.value = res[0].Phone
                             userMail.value = res[0].Email
