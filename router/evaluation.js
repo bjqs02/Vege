@@ -16,7 +16,7 @@ eval.post("/result", jp, function (req, res) {
   var data = [body.product, body.hot, body.cold, body.protein, body.calories];
   db.query(sql, data, function (err, fields) {
     if (err) {
-      console.log("QQ 沒獨到資料庫喔...");
+      console.log("QQ 沒讀到資料庫喔...");
       console.log(err);
     } else {
       console.log("成功讀取資料庫!!");
