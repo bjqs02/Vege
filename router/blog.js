@@ -276,10 +276,14 @@ blog.post('/keepcheck', jp, function(req, res){
     })
 })
 
+// UPDATE article SET actlike = 100 WHERE atcid = 1;
+
 //會員按讚
 blog.post('/likearticle', jp, function(req, res){
     var uid = req.body.uid;
     var atcid = req.body.atcid;
+    var like = req.body.like;
+    console.log(like);
    let keep = `INSERT INTO atclike (uid, atcid) VALUES ( ${uid}, ${atcid});`
 
        db.query(keep, function(err, tags){
@@ -289,7 +293,18 @@ blog.post('/likearticle', jp, function(req, res){
         } else {
             console.log('like存放成功');
             console.log(tags);
-            res.send('ok');
+            // res.send('ok');
+
+            db.query('UPDATE article SET actlike = ? WHERE atcid = ?;', [like, atcid], function(err, ok){
+                if(err){
+                    console.log('更新like數字err');
+                } else {
+                    console.log('更新like數字ok!');
+                    res.send('ok');
+
+                }
+            })
+
         }
     })
 })

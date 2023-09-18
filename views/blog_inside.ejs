@@ -59,7 +59,7 @@
                             </div>
                         </div>
                     </a>
-                    <p class="likePeople" style="margin-left: -12px; padding: 3px;"></p>
+                    <p class="likePeople" style="margin-left: -12px; padding: 3px;"><%- data.article[0].actlike %></p>
                     <a>
                         <div class="con-like con-keep">
                             <input title="like" type="checkbox" class="like keep1">
@@ -265,7 +265,7 @@
                                 for (let i = 0; i < jsonObj.length; i++) {
                                     bookmarks.push(jsonObj[i].atcid);
                                 }
-                                console.log(bookmarks);
+                                // console.log(bookmarks);
                                 var pn = window.location.pathname.split('/');
                                 // console.log(typeof pn[3].toString());
                                 var arcId = parseInt(pn[3]);
@@ -377,16 +377,21 @@
                 });
                 //愛心設定非會員需登入，會員加入資料庫且顯示實心icon
                 $('.check1').on('click', function () {
-                    if ($(this).prop("checked") == 1) {
-                        let text = $(this).parent().parent().parent().find('p');
-                       let textPlus = $(this).parent().parent().parent().find('p').text();
-                        var userData = localStorage.getItem("token");
-                        var userToken = userData ? JSON.parse(userData) : false;
-                        if (userToken) {
+                    // console.log($(this).next().children('svg:nth-child(2)').css('display') !== 'block');
+                    var userData = localStorage.getItem("token");
+                    var userToken = userData ? JSON.parse(userData) : false;
+
+                    if (userToken) {
+                        if ($(this).next().children('svg:nth-child(2)').css('display') !== 'block') {
+                            let text = $(this).parent().parent().parent().find('p');
+                            let textPlus = $(this).parent().parent().parent().find('p').text();
+
                             var keepData = {};
                             var pn = window.location.pathname.split('/');
                             keepData.atcid = pn[3];
                             keepData.uid = userToken.id;
+                            keepData.like = parseInt($('.likePeople').text()) + 1;
+                            console.log(keepData);
                             var jsonData = JSON.stringify(keepData);
                             fetch('/blog/likearticle', {
                                 method: "POST",
@@ -410,13 +415,41 @@
                                 })
 
                         } else {
-                            Swal.fire({
-                                title: '請先登入會員',
-                                icon: 'warning',
-                                showConfirmButton: false,
-                                timer: 1500
+                            let text = $(this).parent().parent().parent().find('p');
+                            let textPlus = $(this).parent().parent().parent().find('p').text();
+                            var userData = localStorage.getItem("token");
+                            var userToken = userData ? JSON.parse(userData) : false;
+
+                            var keepData = {};
+                            var pn = window.location.pathname.split('/');
+                            keepData.atcid = pn[3];
+                            keepData.uid = userToken.id;
+                            keepData.like = parseInt($('.likePeople').text()) - 1;
+                            console.log(keepData);
+                            var jsonData = JSON.stringify(keepData);
+                            fetch('/blog/likearticle', {
+                                method: "POST",
+                                headers: {
+                                    "Content-type": "application/json;charset=UTF-8"
+                                },
+                                body: jsonData
                             })
+                                .then(function (res) {
+                                   
+                                    $(`#likeCheck svg:nth-child(2)`).css('display', 'none');
+
+                                    textPlus--;
+                                    text.text(textPlus);
+                                })
                         }
+                    } else {
+                        
+                        Swal.fire({
+                            title: '請先登入會員',
+                            icon: 'warning',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
                     }
                 });
 
