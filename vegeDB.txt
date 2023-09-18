@@ -1,0 +1,1408 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- 主機： 127.0.0.1
+-- 產生時間： 2023-09-18 04:59:39
+-- 伺服器版本： 10.4.28-MariaDB
+-- PHP 版本： 8.2.4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- 資料庫： `vege`
+--
+CREATE DATABASE IF NOT EXISTS `vege` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `vege`;
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `activity`
+--
+
+CREATE TABLE `activity` (
+  `product` varchar(30) NOT NULL,
+  `off_price` varchar(10) DEFAULT NULL,
+  `off_act` varchar(100) DEFAULT NULL,
+  `act_content` varchar(200) NOT NULL,
+  `act_content2` varchar(100) DEFAULT NULL,
+  `act_content3` varchar(100) DEFAULT NULL,
+  `act_content4` varchar(100) DEFAULT NULL,
+  `act_content5` varchar(100) DEFAULT NULL,
+  `act_content6` varchar(100) DEFAULT NULL,
+  `act_time` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- 傾印資料表的資料 `activity`
+--
+
+INSERT INTO `activity` (`product`, `off_price`, `off_act`, `act_content`, `act_content2`, `act_content3`, `act_content4`, `act_content5`, `act_content6`, `act_time`) VALUES
+('中秋箱', '0.1', '❄低溫店取選7-ELEVEN超商❄取件完成就送【CITY CAFE中杯冰拿鐵】，共500杯，讓你線上買菜又消暑。 *每筆訂單贈乙杯，共500杯，數量有限，送完為止。', '1.兌換序號將於取件完成14天內，以Line@或簡訊發放。', '2.兌換期限：即日起至2023/10/30，逾期失效恕不補發。', '3.訂單出貨後若有修改、變更及退貨退款之情形致最終未符合活動規則，將不提供兌換序號。', '4.訂單出貨後若有修改、變更及退貨退款之情形致最終未符合活動規則，將不提供兌換序號。', '5.vege保有隨時修改活動辦法及贈品或中止本活動或變更同等價值商品之權利。', '6.參加者於參加本活動之同時，即同意接受本活動之活動辦法與規範。', '2023/09/15至2023/10/15'),
+('果果箱', '0.1', '❄低溫店取選7-ELEVEN超商❄取件完成就送【CITY CAFE中杯冰拿鐵】，共500杯，讓你線上買菜又消暑。 *每筆訂單贈乙杯，共500杯，數量有限，送完為止。', '1.兌換序號將於取件完成14天內，以Line@或簡訊發放。', '2.兌換期限：即日起至2023/10/30，逾期失效恕不補發。', '3.訂單出貨後若有修改、變更及退貨退款之情形致最終未符合活動規則，將不提供兌換序號。', '4.訂單出貨後若有修改、變更及退貨退款之情形致最終未符合活動規則，將不提供兌換序號。', '5.vege保有隨時修改活動辦法及贈品或中止本活動或變更同等價值商品之權利。', '6.參加者於參加本活動之同時，即同意接受本活動之活動辦法與規範。', '2023/09/15至2023/10/15'),
+('盛產箱', '0.1', '❄低溫店取選7-ELEVEN超商❄取件完成就送【CITY CAFE中杯冰拿鐵】，共500杯，讓你線上買菜又消暑。 *每筆訂單贈乙杯，共500杯，數量有限，送完為止。', '1.兌換序號將於取件完成14天內，以Line@或簡訊發放。', '2.兌換期限：即日起至2023/10/30，逾期失效恕不補發。', '3.訂單出貨後若有修改、變更及退貨退款之情形致最終未符合活動規則，將不提供兌換序號。', '4.訂單出貨後若有修改、變更及退貨退款之情形致最終未符合活動規則，將不提供兌換序號。', '5.vege保有隨時修改活動辦法及贈品或中止本活動或變更同等價值商品之權利。', '6.參加者於參加本活動之同時，即同意接受本活動之活動辦法與規範。', '2023/09/15至2023/10/15'),
+('自選蔬果箱', '0.1', '❄低溫店取選7-ELEVEN超商❄取件完成就送【CITY CAFE中杯冰拿鐵】，共500杯，讓你線上買菜又消暑。 *每筆訂單贈乙杯，共500杯，數量有限，送完為止。', '1.兌換序號將於取件完成14天內，以Line@或簡訊發放。', '2.兌換期限：即日起至2023/10/30，逾期失效恕不補發。', '3.訂單出貨後若有修改、變更及退貨退款之情形致最終未符合活動規則，將不提供兌換序號。', '4.訂單出貨後若有修改、變更及退貨退款之情形致最終未符合活動規則，將不提供兌換序號。', '5.vege保有隨時修改活動辦法及贈品或中止本活動或變更同等價值商品之權利。', '6.參加者於參加本活動之同時，即同意接受本活動之活動辦法與規範。', '2023/09/15至2023/10/15'),
+('菜菜箱', '0.1', '❄低溫店取選7-ELEVEN超商❄取件完成就送【CITY CAFE中杯冰拿鐵】，共500杯，讓你線上買菜又消暑。 *每筆訂單贈乙杯，共500杯，數量有限，送完為止。', '1.兌換序號將於取件完成14天內，以Line@或簡訊發放。', '2.兌換期限：即日起至2023/10/30，逾期失效恕不補發。', '3.訂單出貨後若有修改、變更及退貨退款之情形致最終未符合活動規則，將不提供兌換序號。', '4.訂單出貨後若有修改、變更及退貨退款之情形致最終未符合活動規則，將不提供兌換序號。', '5.vege保有隨時修改活動辦法及贈品或中止本活動或變更同等價值商品之權利。', '6.參加者於參加本活動之同時，即同意接受本活動之活動辦法與規範。', '2023/09/15至2023/10/15'),
+('蔬果健康箱', '0.1', '❄低溫店取選7-ELEVEN超商❄取件完成就送【CITY CAFE中杯冰拿鐵】，共500杯，讓你線上買菜又消暑。 *每筆訂單贈乙杯，共500杯，數量有限，送完為止。', '1.兌換序號將於取件完成14天內，以Line@或簡訊發放。', '2.兌換期限：即日起至2023/10/30，逾期失效恕不補發。', '3.訂單出貨後若有修改、變更及退貨退款之情形致最終未符合活動規則，將不提供兌換序號。', '4.訂單出貨後若有修改、變更及退貨退款之情形致最終未符合活動規則，將不提供兌換序號。', '5.vege保有隨時修改活動辦法及贈品或中止本活動或變更同等價值商品之權利。', '6.參加者於參加本活動之同時，即同意接受本活動之活動辦法與規範。', '2023/09/15至2023/10/15'),
+('蔬果減脂箱', '0.1', '❄低溫店取選7-ELEVEN超商❄取件完成就送【CITY CAFE中杯冰拿鐵】，共500杯，讓你線上買菜又消暑。 *每筆訂單贈乙杯，共500杯，數量有限，送完為止。', '1.兌換序號將於取件完成14天內，以Line@或簡訊發放。', '2.兌換期限：即日起至2023/10/30，逾期失效恕不補發。', '3.訂單出貨後若有修改、變更及退貨退款之情形致最終未符合活動規則，將不提供兌換序號。', '4.訂單出貨後若有修改、變更及退貨退款之情形致最終未符合活動規則，將不提供兌換序號。', '5.vege保有隨時修改活動辦法及贈品或中止本活動或變更同等價值商品之權利。', '6.參加者於參加本活動之同時，即同意接受本活動之活動辦法與規範。', '2023/09/15至2023/10/15');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `cart`
+--
+
+CREATE TABLE `cart` (
+  `cid` smallint(6) NOT NULL,
+  `uid` varchar(50) NOT NULL,
+  `c_createtime` timestamp NOT NULL DEFAULT current_timestamp(),
+  `pid` varchar(50) NOT NULL,
+  `quantity` tinyint(4) NOT NULL DEFAULT 1,
+  `c_option` varchar(50) DEFAULT NULL,
+  `c_note` varchar(50) DEFAULT NULL,
+  `oid` varchar(50) DEFAULT NULL,
+  `c_status` varchar(10) NOT NULL DEFAULT 'active',
+  `fid` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `contactform`
+--
+
+CREATE TABLE `contactform` (
+  `cId` int(11) NOT NULL,
+  `Name` varchar(20) NOT NULL,
+  `Tel` varchar(20) NOT NULL,
+  `Email` varchar(50) NOT NULL,
+  `Subject` varchar(100) NOT NULL,
+  `Msg` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 傾印資料表的資料 `contactform`
+--
+
+INSERT INTO `contactform` (`cId`, `Name`, `Tel`, `Email`, `Subject`, `Msg`) VALUES
+(1, '王傳一', '0912345678', 'abc@gmail.com', '配送問題', '如果我沒空取貨怎麼辦?'),
+(2, '神經病', '0987654321', 'def@hotmail.com', '網站問題', '可以告訴我你的logo怎麼設計的嗎?'),
+(3, '李筱逵', '0912356383', 'cl940222@gmail.com', 'hi', 'this is for test'),
+(4, '葉大熊', '0935468415', 'bear@gmail.com', 'Test', 'test test'),
+(5, '林文祥', '0908080871', 'happy@outlook.com', '會員問題', '請問加入會員會比較便宜嗎?'),
+(6, '汪大偉', '0953124584', 'wang@wang.com', '汪汪', '汪汪汪');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `evaluation`
+--
+
+CREATE TABLE `evaluation` (
+  `vgId` int(11) NOT NULL,
+  `vgname` varchar(30) NOT NULL,
+  `Type` varchar(30) NOT NULL,
+  `Temp` varchar(30) NOT NULL,
+  `Protein` varchar(30) NOT NULL,
+  `Calories` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- 傾印資料表的資料 `evaluation`
+--
+
+INSERT INTO `evaluation` (`vgId`, `vgname`, `Type`, `Temp`, `Protein`, `Calories`) VALUES
+(13, '香蕉', 'fruit', 'medium', 'high', 'low'),
+(14, '桃子', 'fruit', 'medium', 'high', 'low'),
+(15, '草莓', 'fruit', 'medium', 'high', 'low'),
+(16, '棗子', 'fruit', 'medium', 'high', 'low'),
+(35, '花椰菜', 'vege', 'medium', 'high', 'low'),
+(46, '蘆筍', 'vege', 'medium', 'high', 'low');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `farmer`
+--
+
+CREATE TABLE `farmer` (
+  `fId` int(11) NOT NULL,
+  `fName` varchar(20) NOT NULL,
+  `fArea` varchar(10) NOT NULL,
+  `fImg` varchar(256) NOT NULL,
+  `vegeType` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 傾印資料表的資料 `farmer`
+--
+
+INSERT INTO `farmer` (`fId`, `fName`, `fArea`, `fImg`, `vegeType`) VALUES
+(1, '農民有機農場', '花蓮市吉安鄉', 'img/farmer_000.jpg', '玉米、白蘿蔔、紅蘿蔔、芹菜、莧菜、萵苣、韭菜、蔥、芥藍、茼蒿、韭菜花、青江菜、紅鳳菜。'),
+(2, '誠信有機農場', '高雄燕巢', 'img/farmer_001.jpg', '包葉菜、短期葉菜、根莖菜、花菜、果菜、瓜菜、豆菜、瓜果、萵苣、茼蒿、菾菜、青蒜、蔥、韭菜、韭菜花。'),
+(3, '種菜有機農場', '花蓮市壽豐鄉', 'img/farmer_002.jpg', '蓮藕、百香果、秋葵、番茄、青椒、辣椒、胡瓜、苦瓜、冬瓜、南瓜、絲瓜、花胡瓜。'),
+(4, '安心有機農場', '南投縣信義鄉', 'img/farmer_003.jpg', '有機芋頭、龍鬚菜、柚子、南瓜、扁蒲、北瓜、花胡瓜、胡瓜、冬瓜。'),
+(5, '頂級有機農場', '雲林元長', 'img/farmer_004.jpg', '香蕉、紅龍果、百香果、葡萄、楊桃、草莓、柿、棗、蘋果、柚子、柑桔、檸檬、白菜、芥菜、油菜、菠菜。'),
+(6, '萬歲有機農場', '新北市土城區', 'img/farmer_005.jpg', '青松菜、芝麻菜、龍鬚菜、山菠菜、蘿蔔、胡蘿蔔、金針、青花菜、花椰菜、青花筍、茄子、玉米。'),
+(7, '玉美有機農場', '台中市大肚區', 'img/farmer_006.jpg', '青花筍、青花菜、番茄、玉米、茄子、黃秋葵、辣椒、青椒、豇豆、豌豆、敏豆、醜豆、絲瓜、苦瓜。'),
+(8, '伯賢有機農場', '苗栗縣泰安鄉', 'img/farmer_007.jpg', '百香果、紅龍果、菠蘿蜜、香蕉、芭蕉、木瓜、鳳梨、梅、李、水蜜桃、芒果、金桔、柳丁。'),
+(9, '良好有機農場', '南投縣埔里鎮', 'img/farmer_008.jpg', '敏豆、西瓜、香瓜、紅龍果、香蕉、番石榴、芒果、龍眼、楊梅、桃、柚子、柑桔。'),
+(10, '很菜有機農場', '台中市東勢區', 'img/farmer_009.jpg', '木瓜、百香果、香蕉、火龍果、無花果、酪梨、紅龍果、番石榴、草莓、李、蘋果、柑桔、柚子、檸檬、柳橙。'),
+(11, '超菜有機農場', '新北市中和區', 'img/farmer_010.jpg', '結球萵苣、半結球萵苣、包心芥菜、白菜、蕹菜、紅鳳菜、葉菜甘藷、龍鬚菜、油菜、青江菜、芥藍、菠菜。'),
+(12, '這裡有機農場', '台中市東勢區', 'img/farmer_011.jpg', '葉用芥菜、山菠菜、青松菜、青油菜、竹筍、胡蘿蔔、蘿蔔、蘆筍、蒜頭、花椰菜、青花菜、木耳、杏鮑菇、香菇、甜椒。'),
+(13, '安好有機農場', '桃園市觀音區', 'img/farmer_012.jpg', '辣椒、食用玉米、玉米筍、秋葵、番茄、南瓜、扁蒲、胡瓜、花胡瓜、苦瓜、絲瓜、丹參、當歸、洛神葵、薄荷。'),
+(14, '文樂有機農場', '南投縣仁愛鄉', 'img/farmer_013.jpg', '白菜、芥菜、芹菜、青江菜、茼蒿、莧菜、菠菜、菾菜、萵苣、葉菜甘藷、蕹菜。'),
+(15, '多多有機農場', '苗栗西湖', 'img/farmer_014.jpg', '豌豆苗、山蘇、山茼蒿、川七、葉用芥菜、青松菜、羽衣甘藍、山菠菜、蘿蔔、薑、胡蘿蔔、馬鈴薯、大心芥菜、球莖甘藍、筊白筍、竹筍。');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `firm_info`
+--
+
+CREATE TABLE `firm_info` (
+  `firm` varchar(20) NOT NULL,
+  `cost` varchar(20) DEFAULT NULL,
+  `ship_address` varchar(100) NOT NULL,
+  `firm_address` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- 傾印資料表的資料 `firm_info`
+--
+
+INSERT INTO `firm_info` (`firm`, `cost`, `ship_address`, `firm_address`) VALUES
+('舒果', '90', ' 408台中市南屯區黎明路二段658號', '408台中市南屯區黎明路二段658號'),
+('陽光', '40', ' 408台中市南屯區公益路二段51號18樓', '408台中市南屯區公益路二段51號18樓');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `info`
+--
+
+CREATE TABLE `info` (
+  `product` varchar(30) NOT NULL,
+  `season` varchar(10) NOT NULL,
+  `weight` varchar(20) NOT NULL,
+  `send` varchar(20) NOT NULL,
+  `save` varchar(100) NOT NULL,
+  `note` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- 傾印資料表的資料 `info`
+--
+
+INSERT INTO `info` (`product`, `season`, `weight`, `send`, `save`, `note`) VALUES
+('冬瓜', '6,7,8', '約1.5公斤', '常溫', '通風陰涼處', '請保持表面乾燥以延長保存期限。'),
+('四季豆', '6,7,8', '約0.2公斤', '冷藏', '冷藏保存', '不要洗四季豆，以免增加水分。'),
+('地瓜葉', '9,10,11', '約0.2公斤', '常溫', '常溫保存', '建議使用前泡水清洗以去除塵土。'),
+('大白菜', '3,4,5', '約0.5公斤', '冷藏', '冷藏保存', '请注意不要擠壓，以免變質。'),
+('大黃瓜', '6,7,8', '約0.3公斤', '冷藏', '冷藏保存', '不要切片，以免流失水分。'),
+('奇異果', '全年', '約0.2公斤', '常溫', '陰涼處', '可切片後冷藏保存，以保持口感。'),
+('小白菜', '3,4,5', '約0.2公斤', '冷藏', '冷藏保存', '選擇葉子翠綠的小白菜。'),
+('小黃瓜', '6,7,8', '約0.15公斤', '冷藏', '冷藏保存', '不要切片，以免流失水分。'),
+('木瓜', '全年', '約0.5公斤', '常溫', '陰涼處', '避免陽光直射，以免變質。'),
+('李子', '6,7,8', '約0.2公斤', '室溫', '室溫保存', '不要放入冷藏，以免影響風味。'),
+('枇杷', '6,7,8', '約0.1公斤', '室溫', '室溫保存', '選擇稍軟的枇杷以享受最佳口感。'),
+('柚子', '12,1,2', '約0.3公斤', '常溫', '陰涼處', '保持乾燥以防霉變。'),
+('柳橙', '12,1,2', '約0.2公斤', '常溫', '陰涼處', '避免陽光直射，以免變質。'),
+('柿子', '9,10,11', '約0.2公斤', '常溫', '陰涼處', '避免潮濕環境，以延長保存期限。'),
+('桃子', '6,7,8', '約0.3公斤', '常溫', '陰涼處', '避免陽光直射，以免變質。'),
+('棗子', '9,10,11', '約0.2公斤', '常溫', '陰涼處', '保持乾燥，避免潮濕。'),
+('橘子', '12,1,2', '約0.2公斤', '常溫', '陰涼處', '避免陽光直射，以免變質。'),
+('櫻桃', '3,4,5', '約0.2公斤', '冷藏', '冷藏保存', '保持清潔以防異味。'),
+('水梨', '9,10,11', '約0.3公斤', '常溫', '陰涼處', '避免陽光直射，以免變質。'),
+('油菜', '3,4,5', '約0.3公斤', '冷藏', '冷藏保存', '請保持清潔，以免食用時有異味。'),
+('洋蔥', '全年', '約0.3公斤', '常溫', '陰涼處', '請避免陽光直射，以免發芽。'),
+('牛番茄', '6,7,8', '約0.3公斤', '室溫', '室溫保存', '不要放入冰箱，以免影響風味。'),
+('白蘿蔔', '全年', '約0.3公斤', '常溫', '陰涼處', '請避免陽光直射，以免發芽或變質。'),
+('秋葵', '9,10,11', '約0.2公斤', '常溫', '陰涼處', '建議在陰涼處保存，避免長時間曝曬。'),
+('空心菜', '6,7,8', '約0.3公斤', '冷藏', '冷藏保存', '建議保持清潔，避免沾潮。'),
+('竹筍', '3,4,5', '約0.3公斤', '冷藏', '冷藏保存', '請注意保持新鮮度，避免長時間曝曬。'),
+('筊白筍', '3,4,5', '約0.3公斤', '冷藏', '冷藏保存', '請保持新鮮度，避免長時間曝曬。'),
+('紅蘿蔔', '12,1,2', '約0.3公斤', '冷藏', '冷藏保存', '去除葉子以延長保存期限。'),
+('紅鳳菜', '12,1,2', '約0.15公斤', '冷藏', '冷藏保存', '選擇無斑點的新鮮紅鳳菜以獲得最佳風味。'),
+('絲瓜', '6,7,8', '約0.3公斤', '常溫', '常溫保存', '請避免擠壓，以免變質。'),
+('美生菜', '6,7,8', '約0.2公斤', '冷藏', '冷藏保存', '選擇葉子嫩綠的美生菜。'),
+('聖女小番茄', '全年', '約0.2公斤', '常溫', '陰涼處', '保持清潔以防異味。'),
+('芒果', '6,7,8', '約0.3公斤', '常溫', '陰涼處', '建議冷藏保存，以保持新鮮度。'),
+('芥菜', '3,4,5', '約0.2公斤', '冷藏', '冷藏保存', '請泡水清洗，以去除塵土。'),
+('芥藍菜', '3,4,5', '約0.2公斤', '冷藏', '冷藏保存', '請避免潮濕環境，以免變質。'),
+('芭樂', '6,7,8', '約0.4公斤', '常溫', '陰涼處', '保持新鮮度，避免變質。'),
+('花椰菜', '9,10,11', '約0.5公斤', '冷藏', '冷藏保存', '保持完整的花椰菜頭以減少水分流失。'),
+('芹菜', '全年', '約0.2公斤', '冷藏', '冷藏保存', '用濕布包裹以保持新鮮度。'),
+('苦瓜', '6,7,8', '約0.3公斤', '常溫', '陰涼處', '可切片後冷藏保存，以保持口感。'),
+('茄子', '6,7,8', '約0.3公斤', '常溫', '陰涼處', '請保持乾燥，避免變質。'),
+('茼蒿', '3,4,5', '約0.2公斤', '冷藏', '冷藏保存', '保持葉子乾燥以延長保存期限。'),
+('草莓', '3,4,5', '約0.2公斤', '冷藏', '冷藏保存', '保持清潔以防異味。'),
+('草菇', '全年', '約0.15公斤', '冷藏', '冷藏保存', '不要長時間浸泡，用清水洗淨即可。'),
+('荔枝', '6,7,8', '約0.3公斤', '常溫', '陰涼處', '避免擠壓，以免變質。'),
+('莧菜', '6,7,8', '約0.2公斤', '冷藏', '冷藏保存', '建議避免潮濕環境，以延長保存期限。'),
+('菠菜', '3,4,5', '約0.15公斤', '冷藏', '冷藏保存', '選擇葉子嫩綠的菠菜。'),
+('萵苣', '3,4,5', '約0.2公斤', '冷藏', '冷藏保存', '用塑膠袋包裹以保持新鮮度。'),
+('葡萄', '6,7,8', '約0.3公斤', '冷藏', '冷藏保存', '保持乾燥，避免潮濕。'),
+('葡萄柚', '12,1,2', '約0.3公斤', '室溫', '室溫保存', '選擇有光澤的葡萄柚以獲得最佳風味。'),
+('蓮霧', '6,7,8', '約0.2公斤', '常溫', '陰涼處', '保持清潔以防異味。'),
+('蘆筍', '3,4,5', '約0.25公斤', '冷藏', '冷藏保存', '修剪蘆筍底部並浸泡在水中以保持新鮮。'),
+('蘋果', '9,10,11', '約0.3公斤', '常溫', '陰涼處', '避免陽光直射，以免變質。'),
+('過貓', '全年', '約0.05公斤', '室溫', '室溫保存', '避免陽光直射，保持通風。'),
+('金桔', '12,1,2', '約0.2公斤', '常溫', '陰涼處', '避免陽光直射以延長保存期限。'),
+('金針菇', '全年', '約0.1公斤', '冷藏', '冷藏保存', '不要長時間浸泡，用清水洗淨即可。'),
+('金針菜', '3,4,5', '約0.2公斤', '冷藏', '冷藏保存', '請保持清潔，以免影響口感。'),
+('青椒', '6,7,8', '約0.2公斤', '冷藏', '冷藏保存', '請避免潮濕環境，以免變質。'),
+('青江菜', '12,1,2', '約0.2公斤', '冷藏', '冷藏保存', '注意不要擠壓，以免受損。'),
+('韭菜', '3,4,5', '約0.1公斤', '冷藏', '冷藏保存', '請注意不要擠壓，以免變質。'),
+('香瓜', '6,7,8', '約0.3公斤', '常溫', '陰涼處', '保持新鮮度，避免變質。'),
+('香菇', '全年', '約0.2公斤', '冷藏', '冷藏保存', '不要浸泡在水中，用濕布擦拭以清潔。'),
+('香蕉', '全年', '約0.2公斤', '常溫', '陰涼處', '請不要擠壓，以免變質。'),
+('高麗菜', '全年', '約0.5公斤', '常溫', '陰涼處', '請保持清潔，以免影響風味。'),
+('鳳梨', '6,7,8', '約0.4公斤', '常溫', '陰涼處', '避免擠壓，以免變質。'),
+('黃豆芽', '全年', '約0.2公斤', '常溫', '陰涼處', '可切段後冷藏保存，以保持口感。'),
+('黑木耳', '全年', '約0.1公斤', '冷藏', '冷藏保存', '不要長時間浸泡，用清水洗淨即可。'),
+('龍眼', '6,7,8', '約0.3公斤', '常溫', '陰涼處', '請保持乾燥，以免霉變。'),
+('龍鬚菜', '12,1,2', '約0.15公斤', '冷藏', '冷藏保存', '注意不要擠壓，以免受損。');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `produces`
+--
+
+CREATE TABLE `produces` (
+  `vgId` int(11) NOT NULL,
+  `vgname` varchar(20) NOT NULL,
+  `Type` varchar(10) NOT NULL,
+  `Temp` varchar(10) NOT NULL,
+  `Protein` varchar(10) NOT NULL,
+  `Calories` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 傾印資料表的資料 `produces`
+--
+
+INSERT INTO `produces` (`vgId`, `vgname`, `Type`, `Temp`, `Protein`, `Calories`) VALUES
+(1, '龍眼', 'fruit', 'hot', 'high', 'high'),
+(2, '荔枝', 'fruit', 'hot', 'high', 'low'),
+(3, '芒果', 'fruit', 'hot', 'low', 'high'),
+(4, '櫻桃', 'fruit', 'hot', 'high', 'high'),
+(5, '金桔', 'fruit', 'hot', 'low', 'low'),
+(6, '芭樂', 'fruit', 'medium', 'low', 'low'),
+(7, '蘋果', 'fruit', 'medium', 'low', 'high'),
+(8, '葡萄', 'fruit', 'medium', 'low', 'high'),
+(9, '柳橙', 'fruit', 'medium', 'low', 'low'),
+(10, '枇杷', 'fruit', 'medium', 'low', 'low'),
+(11, '木瓜', 'fruit', 'medium', 'low', 'low'),
+(12, '奇異果', 'fruit', 'medium', 'high', 'high'),
+(13, '香蕉', 'fruit', 'medium', 'high', 'low'),
+(14, '桃子', 'fruit', 'medium', 'high', 'low'),
+(15, '草莓', 'fruit', 'medium', 'high', 'low'),
+(16, '棗子', 'fruit', 'medium', 'high', 'low'),
+(17, '聖女小番茄', 'fruit', 'medium', 'high', 'low'),
+(18, '水梨', 'fruit', 'cold', 'low', 'high'),
+(19, '李子', 'fruit', 'cold', 'low', 'high'),
+(20, '葡萄柚', 'fruit', 'cold', 'low', 'low'),
+(21, '柚子', 'fruit', 'cold', 'low', 'low'),
+(22, '鳳梨', 'fruit', 'cold', 'low', 'high'),
+(23, '橘子', 'fruit', 'cold', 'low', 'low'),
+(24, '香瓜', 'fruit', 'cold', 'high', 'low'),
+(25, '柿子', 'fruit', 'cold', 'low', 'high'),
+(26, '蓮霧', 'fruit', 'cold', 'low', 'low'),
+(27, '洋蔥', 'vege', 'hot', 'low', 'high'),
+(28, '韭菜', 'vege', 'hot', 'high', 'high'),
+(29, '茼蒿', 'vege', 'hot', 'low', 'low'),
+(30, '紅鳳菜', 'vege', 'hot', 'high', 'low'),
+(31, '四季豆', 'vege', 'medium', 'low', 'high'),
+(32, '地瓜葉', 'vege', 'medium', 'high', 'high'),
+(33, '豆芽', 'vege', 'medium', 'high', 'high'),
+(34, '芥蘭', 'vege', 'medium', 'high', 'high'),
+(35, '花椰菜', 'vege', 'medium', 'high', 'low'),
+(36, '青江菜', 'vege', 'medium', 'low', 'low'),
+(37, '秋葵', 'vege', 'medium', 'high', 'high'),
+(38, '紅蘿蔔', 'vege', 'medium', 'low', 'high'),
+(39, '茄子', 'vege', 'medium', 'low', 'low'),
+(40, '香菇', 'vege', 'medium', 'high', 'high'),
+(41, '高麗菜', 'vege', 'medium', 'low', 'high'),
+(42, '菠菜', 'vege', 'medium', 'high', 'low'),
+(43, '黑木耳', 'vege', 'medium', 'low', 'high'),
+(44, '萵苣', 'vege', 'medium', 'low', 'low'),
+(45, '牛番茄', 'vege', 'medium', 'low', 'low'),
+(46, '蘆筍', 'vege', 'medium', 'high', 'low'),
+(47, '大白菜', 'vege', 'cold', 'low', 'low'),
+(48, '大黃瓜', 'vege', 'cold', 'low', 'low'),
+(49, '小白菜', 'vege', 'cold', 'low', 'low'),
+(50, '小黃瓜', 'vege', 'cold', 'low', 'low'),
+(51, '冬瓜', 'vege', 'cold', 'low', 'low'),
+(52, '白蘿蔔', 'vege', 'cold', 'low', 'low'),
+(53, '地瓜葉', 'vege', 'cold', 'high', 'high'),
+(54, '竹筍', 'vege', 'cold', 'low', 'high'),
+(55, '油菜', 'vege', 'cold', 'low', 'low'),
+(56, '空心菜', 'vege', 'cold', 'high', 'low'),
+(57, '芥菜', 'vege', 'cold', 'low', 'low'),
+(58, '芹菜', 'vege', 'cold', 'low', 'low'),
+(59, '金針菇', 'vege', 'cold', 'high', 'high'),
+(60, '美生菜', 'vege', 'cold', 'high', 'high'),
+(61, '苦瓜', 'vege', 'cold', 'low', 'low'),
+(62, '草菇', 'vege', 'cold', 'high', 'high'),
+(63, '莧菜', 'vege', 'cold', 'low', 'low'),
+(64, '筊白筍', 'vege', 'cold', 'low', 'low'),
+(65, '絲瓜', 'vege', 'cold', 'low', 'low'),
+(66, '菠菜', 'vege', 'cold', 'high', 'low'),
+(67, '過貓', 'vege', 'cold', 'high', 'high'),
+(68, '龍鬚菜', 'vege', 'cold', 'low', 'high');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `product`
+--
+
+CREATE TABLE `product` (
+  `pid` int(11) NOT NULL,
+  `product` varchar(30) NOT NULL,
+  `category` varchar(20) NOT NULL,
+  `firm` varchar(20) NOT NULL,
+  `Temp` varchar(10) DEFAULT NULL,
+  `Protein` varchar(10) DEFAULT NULL,
+  `Calories` varchar(10) DEFAULT NULL,
+  `freq` varchar(10) DEFAULT NULL,
+  `size` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- 傾印資料表的資料 `product`
+--
+
+INSERT INTO `product` (`pid`, `product`, `category`, `firm`, `Temp`, `Protein`, `Calories`, `freq`, `size`) VALUES
+(1, '大白菜', '蔬菜', '陽光', 'cold', 'low', 'low', NULL, NULL),
+(2, '冬瓜', '蔬菜', '陽光', 'cold', 'low', 'low', NULL, NULL),
+(3, '地瓜葉', '蔬菜', '陽光', 'medium', 'high', 'high', NULL, NULL),
+(4, '竹筍', '蔬菜', '陽光', 'cold', 'low', 'high', NULL, NULL),
+(5, '油菜', '蔬菜', '陽光', 'cold', 'low', 'low', NULL, NULL),
+(6, '空心菜', '蔬菜', '陽光', 'cold', 'high', 'low', NULL, NULL),
+(7, '芥菜', '蔬菜', '陽光', 'cold', 'low', 'low', NULL, NULL),
+(8, '芥藍菜', '蔬菜', '陽光', 'medium', 'high', 'high', NULL, NULL),
+(9, '金針花', '蔬菜', '陽光', 'medium', 'high', 'low', NULL, NULL),
+(10, '洋蔥', '蔬菜', '陽光', 'hot', 'low', 'high', NULL, NULL),
+(11, '秋葵', '蔬菜', '陽光', 'medium', 'high', 'high', NULL, NULL),
+(12, '苦瓜', '蔬菜', '陽光', 'cold', 'low', 'low', NULL, NULL),
+(13, '茄子', '蔬菜', '陽光', 'medium', 'low', 'low', NULL, NULL),
+(14, '莧菜', '蔬菜', '陽光', 'cold', 'low', 'low', NULL, NULL),
+(15, '筊白筍', '蔬菜', '陽光', 'cold', 'low', 'low', NULL, NULL),
+(16, '絲瓜', '蔬菜', '陽光', 'cold', 'low', 'low', NULL, NULL),
+(17, '黃豆芽', '蔬菜', '陽光', 'medium', 'high', 'high', NULL, NULL),
+(18, '高麗菜', '蔬菜', '陽光', 'medium', 'low', 'high', NULL, NULL),
+(19, '白蘿蔔', '蔬菜', '陽光', 'cold', 'low', 'low', NULL, NULL),
+(20, '韭菜', '蔬菜', '陽光', 'hot', 'high', 'high', NULL, NULL),
+(21, '茼蒿', '蔬菜', '陽光', 'hot', 'low', 'low', NULL, NULL),
+(22, '紅鳳菜', '蔬菜', '陽光', 'hot', 'high', 'low', NULL, NULL),
+(23, '四季豆', '蔬菜', '陽光', 'medium', 'low', 'high', NULL, NULL),
+(24, '花椰菜', '蔬菜', '陽光', 'medium', 'high', 'low', NULL, NULL),
+(25, '青椒', '蔬菜', '陽光', 'medium', 'low', 'low', NULL, NULL),
+(26, '青江菜', '蔬菜', '陽光', 'medium', 'low', 'low', NULL, NULL),
+(27, '紅蘿蔔', '蔬菜', '陽光', 'medium', 'low', 'high', NULL, NULL),
+(28, '香菇', '蔬菜', '陽光', 'medium', 'high', 'high', NULL, NULL),
+(29, '菠菜', '蔬菜', '陽光', 'medium', 'high', 'low', NULL, NULL),
+(30, '黑木耳', '蔬菜', '陽光', 'medium', 'low', 'high', NULL, NULL),
+(31, '萵苣', '蔬菜', '陽光', 'medium', 'low', 'low', NULL, NULL),
+(32, '牛番茄', '蔬菜', '陽光', 'medium', 'low', 'low', NULL, NULL),
+(33, '蘆筍', '蔬菜', '陽光', 'medium', 'high', 'low', NULL, NULL),
+(34, '大黃瓜', '蔬菜', '陽光', 'cold', 'low', 'low', NULL, NULL),
+(35, '小白菜', '蔬菜', '陽光', 'cold', 'low', 'low', NULL, NULL),
+(36, '小黃瓜', '蔬菜', '陽光', 'cold', 'low', 'low', NULL, NULL),
+(37, '芹菜', '蔬菜', '陽光', 'cold', 'low', 'low', NULL, NULL),
+(38, '金針菇', '蔬菜', '陽光', 'cold', 'high', 'high', NULL, NULL),
+(39, '美生菜', '蔬菜', '陽光', 'cold', 'high', 'high', NULL, NULL),
+(40, '草菇', '蔬菜', '陽光', 'cold', 'high', 'high', NULL, NULL),
+(41, '過貓', '蔬菜', '陽光', 'cold', 'high', 'high', NULL, NULL),
+(42, '龍鬚菜', '蔬菜', '陽光', 'cold', 'low', 'high', NULL, NULL),
+(43, '龍眼', '水果', '舒果', 'hot', 'high', 'high', NULL, NULL),
+(44, '荔枝', '水果', '舒果', 'hot', 'high', 'low', NULL, NULL),
+(45, '芒果', '水果', '舒果', 'hot', 'low', 'high', NULL, NULL),
+(46, '櫻桃', '水果', '舒果', 'hot', 'high', 'high', NULL, NULL),
+(47, '金桔', '水果', '舒果', 'hot', 'low', 'low', NULL, NULL),
+(48, '芭樂', '水果', '舒果', 'medium', 'low', 'low', NULL, NULL),
+(49, '葡萄', '水果', '舒果', 'medium', 'low', 'high', NULL, NULL),
+(50, '柳橙', '水果', '舒果', 'medium', 'low', 'low', NULL, NULL),
+(51, '木瓜', '水果', '舒果', 'medium', 'low', 'low', NULL, NULL),
+(52, '奇異果', '水果', '舒果', 'medium', 'high', 'high', NULL, NULL),
+(53, '蘋果', '水果', '舒果', 'medium', 'low', 'high', NULL, NULL),
+(54, '香蕉', '水果', '舒果', 'medium', 'high', 'low', NULL, NULL),
+(55, '桃子', '水果', '舒果', 'medium', 'high', 'low', NULL, NULL),
+(56, '草莓', '水果', '舒果', 'medium', 'high', 'low', NULL, NULL),
+(57, '棗子', '水果', '舒果', 'medium', 'high', 'low', NULL, NULL),
+(58, '聖女小番茄', '水果', '舒果', 'medium', 'high', 'low', NULL, NULL),
+(59, '水梨', '水果', '舒果', 'cold', 'low', 'high', NULL, NULL),
+(60, '柚子', '水果', '舒果', 'cold', 'low', 'low', NULL, NULL),
+(61, '鳳梨', '水果', '舒果', 'cold', 'low', 'high', NULL, NULL),
+(62, '橘子', '水果', '舒果', 'cold', 'low', 'low', NULL, NULL),
+(63, '香瓜', '水果', '舒果', 'cold', 'high', 'low', NULL, NULL),
+(64, '柿子', '水果', '舒果', 'cold', 'low', 'high', NULL, NULL),
+(65, '蓮霧', '水果', '舒果', 'cold', 'low', 'low', NULL, NULL),
+(66, '枇杷', '水果', '舒果', 'medium', 'low', 'low', NULL, NULL),
+(67, '李子', '水果', '舒果', 'cold', 'low', 'high', NULL, NULL),
+(68, '葡萄柚', '水果', '舒果', 'cold', 'low', 'low', NULL, NULL),
+(69, '蔬果健康箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, 'once', 's'),
+(70, '蔬果健康箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, 'once', 'm'),
+(71, '蔬果健康箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, '30d', 's'),
+(72, '蔬果健康箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, '30d', 'm'),
+(73, '蔬果健康箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, '60d', 'l'),
+(74, '蔬果健康箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, '60d', 'xl'),
+(75, '蔬果減脂箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, 'once', 's'),
+(76, '蔬果減脂箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, 'once', 'm'),
+(77, '蔬果減脂箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, '30d', 's'),
+(78, '蔬果減脂箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, '30d', 'm'),
+(79, '蔬果減脂箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, '60d', 'l'),
+(80, '蔬果減脂箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, '60d', 'xl'),
+(81, '果果箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, 'once', 's'),
+(82, '果果箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, 'once', 'm'),
+(83, '果果箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, '30d', 's'),
+(84, '果果箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, '30d', 'm'),
+(85, '果果箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, '60d', 'l'),
+(86, '果果箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, '60d', 'xl'),
+(87, '菜菜箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, 'once', 's'),
+(88, '菜菜箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, 'once', 'm'),
+(89, '菜菜箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, '30d', 's'),
+(90, '菜菜箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, '30d', 'm'),
+(91, '菜菜箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, '60d', 'l'),
+(92, '菜菜箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, '60d', 'xl'),
+(93, '盛產箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, 'once', 's'),
+(94, '盛產箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, 'once', 'm'),
+(95, '盛產箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, '30d', 's'),
+(96, '盛產箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, '30d', 'm'),
+(97, '盛產箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, '60d', 'l'),
+(98, '盛產箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, '60d', 'xl'),
+(99, '中秋箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, 'once', 's'),
+(100, '中秋箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, 'once', 'm'),
+(101, '中秋箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, '30d', 's'),
+(102, '中秋箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, '30d', 'm'),
+(103, '中秋箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, '60d', 'l'),
+(104, '中秋箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, '60d', 'xl'),
+(105, '自選蔬果箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, 'once', 's'),
+(106, '自選蔬果箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, 'once', 'm'),
+(107, '自選蔬果箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, '30d', 's'),
+(108, '自選蔬果箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, '30d', 'm'),
+(109, '自選蔬果箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, '60d', 'l'),
+(110, '自選蔬果箱', '蔬果箱', '太陽&舒果', NULL, NULL, NULL, '60d', 'xl');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `product_content`
+--
+
+CREATE TABLE `product_content` (
+  `product` varchar(30) NOT NULL,
+  `price` varchar(20) NOT NULL,
+  `stock` varchar(10) NOT NULL,
+  `content` varchar(300) DEFAULT NULL,
+  `feature` varchar(300) DEFAULT NULL,
+  `image` varchar(300) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- 傾印資料表的資料 `product_content`
+--
+
+INSERT INTO `product_content` (`product`, `price`, `stock`, `content`, `feature`, `image`) VALUES
+('中秋箱', '500', '20', '三樣水果、三樣蔬菜和節令節氣小物', '我們的將以各種節日為主題，包括中秋節、萬聖節、聖誕節等。每個主題都將提供與節日相關的特色水果和蔬菜，讓客戶在節慶期間享受到獨特的飲食體驗，並且在享受節日美食的同時，也能獲得最佳的營養。', 'img/中秋箱.png'),
+('冬瓜', '50', '20', NULL, '冬瓜是一種多水分的蔬菜，有著淡淡的甜味，通常用於湯或燉菜中，也可以做成冬瓜茶，有助於清熱解毒。', 'https://media.istockphoto.com/id/955886890/zh/%E7%85%A7%E7%89%87/%E7%99%BD%E5%86%AC%E7%93%9C.jpg?s=612x612&w=0&k=20&c=19dbsiwfEDMCO3_emm9n8zrntSqkVHSGqtq7r3UQPn0='),
+('四季豆', '50', '20', NULL, '口感清脆，含大量的鐵質，具有造血、補血作用，炒煮時湯色常呈黑褐色，這是鐵質氧化現象，建議可以連湯食用。', 'https://watermark.lovepik.com/photo/20211120/large/lovepik-sauteed-green-beans-picture_500499194.jpg'),
+('地瓜葉', '50', '20', NULL, '地瓜葉是地瓜植物的葉子部分，富含維生素和礦物質。它們可以炒、燉或用於湯中，有時候還會包成春捲。', 'https://thumbs.dreamstime.com/b/%E9%A3%9F%E7%94%A8%E7%94%9C%E5%8F%B6%E4%B8%9B%E9%9B%84%E9%BB%84-%E7%99%BD%E8%89%B2%E8%83%8C%E6%99%AF%E4%B8%AD%E5%8F%AF%E9%A3%9F%E7%94%9C%E5%8F%B6%E7%81%8C%E6%9C%A8%E9%9B%84%E9%BB%84-181258624.jpg'),
+('大白菜', '50', '20', NULL, '常見的蔬菜之一，有著脆嫩的葉子和甜美的味道。它是很多中國菜式的主要成分，如酸菜魚和炸醬麵。', 'https://images.hk.epochtimes.com//uploads/pictures/240031/content_shutterstock_144170077.jpg'),
+('大黃瓜', '50', '20', NULL, ' 口感清脆、大黃瓜含有高達90%的水分，含糖量低，是一款低熱量又高纖的高飽足感蔬菜。', 'https://live.staticflickr.com/1640/25071945159_8b5b84de68_c.jpg'),
+('奇異果', '100', '20', NULL, '奇異果有綠色或金黃色的外皮，內部有綠色果肉，帶有微酸和甜味。它們是維生素C的良好來源，通常生吃，也可以切片加入沙拉或果昔。', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0ldxcNoF34BRrO8zaBM7S4mcjRIXV3VF0gw&usqp=CAU'),
+('小白菜', '50', '20', NULL, ' 食纖維含量較多，可以促進腸壁的蠕動，幫助腸胃消化', 'https://png.pngtree.com/png-clipart/20230207/original/pngtree-canola-green-shanghai-green-ingredients-png-image_8948305.png'),
+('小黃瓜', '50', '20', NULL, ' 水分很多，占了90%，吃起來鮮脆多汁。 它含有豐富的鉀，可以促進體內廢物和鹽分排除；還有維生素Ｃ，有美白效果，有愛美的女生會拿它來敷臉。', 'https://images.freeimages.com/images/large-previews/ea0/gherkins-1322837.jpg'),
+('木瓜', '100', '20', NULL, '木瓜有橙色或綠色的果肉，帶有甜味和淡淡的木瓜香氣。它們富含維生素C和纖維，通常生吃，也用於沙拉或果汁中。', 'https://live.staticflickr.com/4777/26836730478_b3fa626c62_b.jpg'),
+('李子', '100', '20', NULL, '含有維生素B12、蛋白質、胡蘿蔔素、鈣、磷、鐵、天門冬素、氨基酸與纖維質，營養豐富，正如同它的顏色一樣，吃了會讓人臉色紅潤。', 'https://live.staticflickr.com/7878/32432879937_23e728bd6b_b.jpg'),
+('枇杷', '100', '20', NULL, '果皮易剝、果肉厚、柔軟多汁、種子小、風味佳', 'https://live.staticflickr.com/65535/32743578157_900f7b6d8c_b.jpg'),
+('果果箱', '550', '20', '五樣水果', '將提供各種當令當季水果，確保客戶每次打開箱子都能品嚐到不同種類的水果', 'img/果果箱.png'),
+('柚子', '100', '20', NULL, '柚子是一種大型柑橘水果，有著橙色或粉紅色的果肉，味道有時酸，有時甜。柚子通常生吃，也可以榨汁或用於沙拉。', 'https://live.staticflickr.com/65535/47686721811_32cf1efb64_b.jpg'),
+('柳橙', '100', '20', NULL, '柳橙是一種柑橘水果，有橙色的果皮和多汁的果肉。它們可以直接吃，也可以榨汁飲用。', 'https://upload.wikimedia.org/wikipedia/commons/c/c4/Orange-Fruit-Pieces.jpg'),
+('柿子', '100', '20', NULL, '柿子有著橙色的外皮和甜味的果肉，通常生吃，也可以曬乾成柿餅。', 'https://live.staticflickr.com/65535/50611318513_e83f8acbff_b.jpg'),
+('桃子', '100', '20', NULL, '桃子有柔軟的外皮和多汁的果肉，帶有甜味和芳香。它們通常生吃，也用於水果沙拉、派或果醬中。', 'https://live.staticflickr.com/7812/46459598505_52dea02977_b.jpg'),
+('棗子', '100', '20', NULL, '棗子是一種小型的水果，有著濃郁的甜味和黏性的質地。它們通常生吃，也可以用於糕點或餡料中。', 'https://live.staticflickr.com/65535/32743583677_ac663b74b6_b.jpg'),
+('橘子', '100', '20', NULL, '橘子是常見的柑橘水果，有著橙色的果皮和多汁的果肉，是維生素C的豐富來源，通常生吃，也可以榨汁。', 'https://live.staticflickr.com/65535/47686721311_96fd923b84_b.jpg'),
+('櫻桃', '100', '20', NULL, '櫻桃是小而圓的水果，有各種品種，有時味道酸甜，有時非常甜。它們通常生吃，也可以用於派、果醬、或果汁中。', 'https://media.uweekly.sg/wp-content/uploads/2022/09/20220916-health-1.jpg'),
+('水梨', '100', '20', NULL, '水梨有著脆嫩的質地和甜味，是維生素C和纖維的來源。它們通常生吃，也可以用於沙拉或製作水梨果凍。', 'https://img.lovepik.com/free-png/20220128/lovepik-hosui-png-image_402015199_wh1200.png'),
+('油菜', '50', '20', NULL, '油菜是一種綠葉蔬菜，有豐富的維生素和礦物質，可以炒、燉、或用於火鍋。', 'https://img.lovepik.com/free-png/20211208/lovepik-green-vegetable-rape-png-image_401413740_wh1200.png'),
+('洋蔥', '50', '20', NULL, '洋蔥有著辛辣的味道，可生吃或用於各種料理中，如炒飯、湯、漢堡等。', 'https://www.publicdomainpictures.net/pictures/210000/nahled/fresh-onions.jpg'),
+('牛番茄', '50', '20', NULL, '是果肉膠質多，跟一般的番茄汁多易爛不同故歐美人士習慣拿來燉煮牛肉而得此名稱。', 'https://wacaimg1.waca.ec/uploads/shops/21352/products/61/61af06f788d161d84adf69dc1acf99f6.jpg'),
+('白蘿蔔', '50', '20', NULL, '除了白嫩嫩的肉以外，從葉到皮都有營養價值。 植物的外皮最接近太陽，合成抗紫外線物質的能力高', 'https://media.istockphoto.com/id/158690297/zh/%E7%85%A7%E7%89%87/daikon-radishes-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=XMKgp7W-T864jvumtISaf0QeSK5cIgF0D96ben2_QmA='),
+('盛產箱', '300', '20', '以當季盛產蔬果為主做搭配', '根據不同季節的變化，提供最具盛產的蔬菜和水果，我們也注重提供高性價比的選擇，獲得更多的價值，享受新鮮蔬果，同時保持合理的價格。', 'img/盛產箱.png'),
+('秋葵', '50', '20', NULL, '秋葵有著軟嫩的莖和毛茸茸的葉子，常用於炒菜或湯中，有時也用於串燒。', 'https://www.publicdomainpictures.net/pictures/320000/nahled/fresh-okra-in-basket-top-view.jpg'),
+('空心菜', '50', '20', NULL, '空心菜的莖部中空，所以得名。它有著苦甜的味道，常見於亞洲炒菜中，尤其是蒜炒空心菜。', 'https://fertilizer-no1.com/wp-content/uploads/2021/06/RWSy9XIBd4Bm1__YwSNN.jpg'),
+('竹筍', '50', '20', NULL, '竹筍是竹子的新生芽，有著爽脆的質地和淡淡的竹香味。它們常用於炒菜或燉湯。', 'https://thumb.photo-ac.com/f0/f058c00d8be05269577388d7ebb9bc81_t.jpeg'),
+('筊白筍', '50', '20', NULL, '筊白筍是一種筍類蔬菜，有著脆嫩的質地，常見於炒飯、涼拌、或火鍋。', 'https://live.staticflickr.com/65535/8157058486_a90a399bb3_b.jpg'),
+('紅蘿蔔', '50', '20', NULL, '纖維質少且甜度高，口感與風味極佳，可生吃亦可熟食。', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvQU3y1Qhwt_s6qhWWy7U0UXpgfHJ7CycIfw&usqp=CAU'),
+('紅鳳菜', '50', '20', NULL, '葉片較厚，上葉面是素綠色，背葉面呈紫紅色，因為煮熟後汁液也呈現紫紅色，所以被稱為紅菜，因為富含鐵質，的確有著補血的功效。', 'https://s3-ap-southeast-1.amazonaws.com/zhonglingdev/resource/goods/item_V2080-0.jpg'),
+('絲瓜', '50', '20', NULL, '絲瓜有著綿軟的質地，通常用於炒、湯或涼拌。', 'https://thumb.photo-ac.com/1a/1a459a790b25aa47a46c98ffb2ffc286_t.jpeg'),
+('美生菜', '50', '20', NULL, ' 美生菜風味甜、帶水分，也相對強調口感。 想讓美生菜保有翠綠與脆口度，摘下的美生菜經過清水清洗後，只要再浸泡過冰水，就能使美生菜更有清脆的口感。', 'https://i.epochtimes.com/assets/uploads/2022/01/id13516476-3-shutterstock_1156310086-600x400.jpg'),
+('聖女小番茄', '100', '20', NULL, '聖女小番茄是小巧的蕃茄，通常紅色或黃色，味道鮮甜，是沙拉和小吃的常見成分。', 'https://img4.momoshop.com.tw/goodsimg/0010/288/104/10288104_O.jpg?t=1692289662'),
+('自選蔬果箱', '400', '20', '基本價400元，消費者若選擇超過基本價，系統根據選擇的產品往上疊加價格，上限600元(諾品項需要更多請聯繫客服，會有專人為您服務)', '可以根據自己的口味和偏好挑選特定的蔬菜和水果，提供多種不同的蔬菜和水果供客戶選擇，從新鮮的時令水果到各種營養豐富的蔬菜，滿足各種膳食需求。', 'img/自選蔬果箱.png'),
+('芒果', '100', '20', NULL, '芒果有著金黃色的果肉，帶有濃郁的芳香和甜味。它們常用於沙拉、冰淇淋、果昔和各種甜點中。', 'https://live.staticflickr.com/7872/33498363158_c18101ecff_b.jpg'),
+('芥菜', '50', '20', NULL, '芥菜有著辛辣的味道，是許多中國菜式中的一部分，常用於炒、燉、或作為餡料。', 'https://cc.tvbs.com.tw/img/program/upload/2023/01/06/20230106121344-e8b8d689.jpg'),
+('芥藍菜', '50', '20', NULL, '芥藍菜是一種深綠色的蔬菜，富含維生素和纖維，通常用於炒、燉或烹製成沙拉。', 'https://media.istockphoto.com/id/1403858540/zh/%E7%85%A7%E7%89%87/chinese-kale-or-kailaan-or-hong-kong-kale-isolated-on-white.jpg?s=612x612&w=0&k=20&c=ke1bq5unWXML2aHgl9DxRQ0jG2MPtCbqz2fnpwvBNYY='),
+('芭樂', '100', '20', NULL, '芭樂是一種綠色或粉紅色的水果，有著微甜的味道，富含維生素C。它們通常生吃，也可以用於沙拉或果汁中。', 'https://live.staticflickr.com/4793/26836731028_eb19ecb84e_b.jpg'),
+('花椰菜', '50', '20', NULL, '根部粗大，我們吃的是它的花球，由肥嫩的主軸和肉質花梗組成，形成半球形，表面呈花朵狀。', 'https://images.freeimages.com/images/large-previews/847/healthy-green-broccoli-vegetables-1321408.jpg'),
+('芹菜', '50', '20', NULL, ' 是個營養價值相當高的天然食材，最大的特色就是對降血壓非常有幫助，是常見被設計在降血壓食譜當中的食材之一', 'https://media.istockphoto.com/id/492464736/zh/%E7%85%A7%E7%89%87/fresh-celery-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=w6pZVmr5oMYMzqOkNeobZ6T9Gglvgt0lX_ytB3JQRAM='),
+('苦瓜', '50', '20', NULL, '苦瓜味道苦澀，但富含維生素和礦物質，常見於亞洲料理中，可以炒、煮湯或填充。', 'https://www.publicdomainpictures.net/pictures/50000/nahled/baby-bitter-gourd-in-pile-green-go.jpg'),
+('茄子', '50', '20', NULL, '茄子有多種品種，有著不同的形狀和顏色。它們常被用於炒、燉、煎、或烤。', 'https://media.istockphoto.com/id/1328668312/zh/%E7%85%A7%E7%89%87/whole-eggplant-on-wooden-background.jpg?s=612x612&w=0&k=20&c=Z1f-HLz0D4MN8KJf55vDKu0SCFVJefkRTFV5-Jw91JA='),
+('茼蒿', '50', '20', NULL, '根、莖都可食用，纖維細嫩，含有豐富的胡蘿蔔素、粗纖維、維生素A及C，還有鐵和鈣，有助腸胃蠕動', 'https://png.pngtree.com/png-clipart/20201209/original/pngtree-chrysanthemum-png-image_5626134.jpg'),
+('草莓', '100', '20', NULL, '草莓是小而紅色的水果，有著酸甜的味道，富含維生素C和纖維。它們通常生吃，也用於沙拉、甜點或果醬中。', 'https://images.pexels.com/photos/46174/strawberries-berries-fruit-freshness-46174.jpeg'),
+('草菇', '50', '20', NULL, ' 增加乳汁，防止壞血病，促進創傷癒合，護肝健胃，增強人體免疫力，是優良的食葯兼用型的營養保健食品。', 'https://i.epochtimes.com/assets/uploads/2021/09/id13211361-shutterstock_179535833.jpg'),
+('荔枝', '100', '20', NULL, '荔枝是一種外皮帶有粗糙鱗片的水果，內部有多汁、甜蜜的果肉。它們是夏季的熱門水果，可以生吃或加入水果沙拉。', 'https://img.lovepik.com/free-png/20210919/lovepik-litchi-png-image_400305463_wh1200.png'),
+('莧菜', '50', '20', NULL, '莧菜有綠色或紅色的葉子，富含維生素和礦物質，通常用於炒、涼拌或湯中。', 'https://media.istockphoto.com/id/519731362/zh/%E7%85%A7%E7%89%87/spinach-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=-rk96uiENonaIbNRMIDmlLwdUJ2hMXqKjiuy1AihGE8='),
+('菜菜箱', '250', '20', '五樣蔬菜', '將提供一系列新鮮、當令、當季的綠色蔬菜，包括葉菜、根莖類、豆類等等，確保每次都能享受到最優質的蔬菜', 'img/菜菜箱.png'),
+('菠菜', '50', '20', NULL, '莖葉肥嫩滑利，根味甘美，適於涼拌、炒食、做餡、做湯，均甚可口，且其莖葉、根、籽都有一定的治療功效。', 'https://cc.tvbs.com.tw/img/program/_data/i/upload/2019/03/21/20190321151513-2bd02044-me.jpg'),
+('萵苣', '50', '20', NULL, '具有重要的抗癌物質萵苣苦素，能夠分解食物中的致癌物質亞硝胺，對於預防肝癌、胃癌等消化系統癌症有一定程度的作用', 'https://en.pimg.jp/021/283/413/1/21283413.jpg'),
+('葡萄', '100', '20', NULL, '葡萄有著圓形或橢圓形的果實，可以是紅、綠、或黑色。它們可以生吃，也可以用於製作葡萄酒、乾葡萄或果汁。', 'https://thumb.photo-ac.com/66/66de49aaa9f4411a9961da458b98993c_t.jpeg'),
+('葡萄柚', '100', '20', NULL, ' 葡萄柚含有非常豐富的維生素B1、B2和Ｃ、檸檬酸、鈉、鉀、鈣、纖維素、果膠、葉酸等，且卡路里低', 'https://thumbs.dreamstime.com/b/%E7%BA%A2%E8%89%B2%E7%9A%84%E8%91%A1%E8%90%84%E6%9F%9A-4099223.jpg'),
+('蓮霧', '100', '20', NULL, '蓮霧是一種圓形的水果，外皮帶有粉紅色或黃色，內部有透明的果肉，有著清爽的味道。它們通常生吃，也用於沙拉或果汁中。', 'https://live.staticflickr.com/4032/4443962819_d6e6a5d186_b.jpg'),
+('蔬果健康箱', '550', '20', '四樣水果、三樣蔬菜', '蔬果健康箱可以提供有機種植的蔬菜和水果選擇，確保你的食物不含農藥和化學添加劑，同時更加環保，也可以選擇定期交付蔬果健康箱，確保他們每週或每月都有足夠的新鮮食物供應', 'img/蔬果健康箱.png'),
+('蔬果減脂箱', '450', '20', '三樣水果、四樣蔬菜', '每份蔬果減脂箱中的蔬菜和水果都經過精確的熱量計算，更容易控制每餐的熱量攝取也會附帶一本低卡路里和減脂食譜', 'img/蔬果減脂箱.png'),
+('蘆筍', '50', '20', NULL, '有利於延緩皮膚老化，幫助美容與保養，因此料理時應避免高溫久煮，才能減少營養素流失', 'https://wacaimg1.waca.ec/uploads/shops/21352/products/61/61af06f788d161d84adf69dc1acf99f6.jpg'),
+('蘋果', '100', '20', NULL, '蘋果是常見的水果，有各種品種，有著多樣的味道，從甜到酸都有。蘋果可以生吃，也可以用於烘焙、果醬、或製作蘋果醋。', 'https://images.pexels.com/photos/209439/pexels-photo-209439.jpeg'),
+('過貓', '50', '20', NULL, ' 過貓生命力強韌，耐濕又耐熱，很少有病蟲害。', 'https://doqvf81n9htmm.cloudfront.net/data/crop_article/35647/152.jpg_1140x855.jpg'),
+('金桔', '100', '20', NULL, '金桔是一種小型柑橘水果，外皮光滑且帶有明亮的橙色。它們有酸甜的味道，通常整顆吃或用於調味料中。', 'https://media.istockphoto.com/id/453251305/zh/%E7%85%A7%E7%89%87/ripe-kumquat-fruits.jpg?s=612x612&w=0&k=20&c=zJGK7BYL8-WneXIYhail5B3n1nc_5xi6P6zQvsfeoNA='),
+('金針花', '50', '20', NULL, '金針花是一種嫩筍，長而細，有著簡單的味道。它們通常用於涼拌、火鍋或湯中。', 'https://thumb.photo-ac.com/1d/1d1fb9c49ae6f93c2d02afb0231811bd_t.jpeg'),
+('金針菇', '50', '20', NULL, ' 金針菇富含維他命C、B2、多種多醣體及膳食纖維等，具有補肝、益腸胃、防癌的功效，', 'https://img.lovepik.com/element/40153/2550.png_1200.png'),
+('青椒', '50', '20', NULL, '含豐富維生素A、B、C、K 與鐵、磷、鉀等礦物質，有助造血及促進新陳代謝，且維生素A、C都可增強身體抵抗力，防止中暑、恢復體力。', 'https://thumb.photo-ac.com/12/126d41b334edcab332a5c2e3d6c0007c_t.jpeg'),
+('青江菜', '50', '20', NULL, '鈣含量高，也有深色蔬菜中豐富的維生素C、β-胡蘿蔔素與葉酸，另外它特有的硫化物也是抗氧化的好幫手。', 'https://img.lovepik.com/free-png/20220127/lovepik-shanghai-green-png-image_401942951_wh1200.png'),
+('韭菜', '50', '20', NULL, '多年生常綠草本植物，具宿根性，耐寒且喜歡在陰濕肥沃的環境生長，在日照充足和乾燥環境中會使葉尖呈現焦黃色', 'https://static.tvbs.com.tw/health2.0/images/uploads/2023/06/20230608112832-38w8tYnL.jpg'),
+('香瓜', '100', '20', NULL, '香瓜是一種多汁的夏季水果，有著淡淡的香味和甜味。它們通常生吃，也可以用於沙拉或果汁中。', 'https://live.staticflickr.com/65535/49703544141_74f4012b03_b.jpg'),
+('香菇', '50', '20', NULL, '具有低脂質，高蛋白質、高多醣體、胺基酸種類多及富含維生素之特性', 'https://en.pimg.jp/050/837/587/1/50837587.jpg'),
+('香蕉', '100', '20', NULL, '香蕉有平滑的外皮，內部有軟嫩的果肉，味道甜美，是維生素B6和鉀的良好來源。香蕉通常生吃，也可以用於烘焙、果昔或製作香蕉冰淇淋。', 'https://pixnio.com/free-images/2018/12/08/2018-12-08-16-01-59.jpg'),
+('高麗菜', '50', '20', NULL, '高麗菜是一種綠葉蔬菜，有豐富的纖維和維生素，常用於涼拌、炒、或做成捲餅。', 'https://live.staticflickr.com/65535/49342874362_8af341944a_b.jpg'),
+('鳳梨', '100', '20', NULL, '鳳梨有著帶刺的外皮，內部有多汁的果肉，味道酸甜。它們通常生吃，也用於沙拉、果汁或烘焙中。', 'https://live.staticflickr.com/65535/49582150878_d8f870d72e_b.jpg'),
+('黃豆芽', '50', '20', NULL, '黃豆芽是黃豆的嫩芽，富含蛋白質和維生素，常用於炒、涼拌、或湯中。', 'https://media.istockphoto.com/id/178605117/zh/%E7%85%A7%E7%89%87/bean-sprouts.jpg?s=612x612&w=0&k=20&c=Fe-PTSsY7O79hs8ol59WUmzo_VP2V9yn-P04zEk9AYo='),
+('黑木耳', '50', '20', NULL, '味甘性平，歸脾、肺、肝、大腸經，是中國人普遍的食用菌種之一。', 'https://img.lovepik.com/free-png/20211124/lovepik-fresh-auricularia-auricula-png-image_401110544_wh1200.png'),
+('龍眼', '100', '20', NULL, '龍眼是一種紅色或粉紅色的水果，有著甜美的味道和多汁的質地。它們通常生吃，也可以用於製作果醬、甜品或糕點。', 'https://media.istockphoto.com/id/899601224/zh/%E7%85%A7%E7%89%87/%E6%A1%82%E5%9C%93-%E9%BE%8D%E7%9C%BC-%E7%99%BD%E8%89%B2%E8%83%8C%E6%99%AF%E4%B8%8A.jpg?s=612x612&w=0&k=20&c=-xH2b-1L5hSIM6s8--Z1POMqSqFmVyQNbzrl9zkW3rc='),
+('龍鬚菜', '50', '20', NULL, ' 有豐富的維生素 A 、 B1 、 B2 及鉀、鈣、鎂、磷、鐵、鋅等多種營養素，而且熱量極低', 'https://cdn.cybassets.com/media/W1siZiIsIjE5MDczL3Byb2R1Y3RzLzM3NzM1NDc1LzE2NjA1NTYzMjhfNzI2ODQxMzZiNzUwZGZhMjU0MGQuanBlZyJdLFsicCIsInRodW1iIiwiNjAweDYwMCJdXQ.jpeg?sha=020402cc42171787');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `qa`
+--
+
+CREATE TABLE `qa` (
+  `qId` int(11) NOT NULL,
+  `qType` varchar(5) NOT NULL,
+  `question` varchar(100) NOT NULL,
+  `answer` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 傾印資料表的資料 `qa`
+--
+
+INSERT INTO `qa` (`qId`, `qType`, `question`, `answer`) VALUES
+(1, 'A', '忘記密碼', '<strong>請使用以下步驟：</strong><br>1. 前往「會員登入」<br>2. 點一下「忘記密碼」，依指示進行操作修改密碼，更改完畢後再重新登入 若經過一段時間，您仍然沒有收到 Vege 密碼提醒郵件，請查看您的垃圾郵件信件箱。仍無法解決您的問題請洽<a href=\"/contact\" class=\"vg-href-inline\">官方客服</a>詢問。'),
+(2, 'A', '會員註冊問題', '每位消費者可註冊成為Vege會員，但一組手機號碼與email僅能註冊一次會員，且不同帳號間不得主張合併或移轉相關權利。<br>2021/1/1 系統更新後，新舊會員首次登入皆須以新會員方式註冊，系統將比對在 SAP 內的 [行動電話]、[email] 與 [姓名]比對，只要完全符合會員系統內資料，將自動整合購物金的餘額及等級原有權益不受影響。舊會員登入後會馬上出現所屬會員等級及點數。消費後亦同。唯新會員資料會待隔天後顯示。'),
+(3, 'A', '如何成為會員', '凡在 Vege 消費滿新台幣 1,000 元，並配合填妥申請書之必填欄位，即可成為購物金會員，如有未完全填寫資料之情事，恕無法成為購物金會員。'),
+(4, 'A', '會員升級規則', '據消費金額，將會員分為以下等級： 台灣椪柑→單次消費付款金額滿 1,000 元（含）以上，即享 2% 購物金 金鑽鳳梨→單次或一年內累積消費付款金額滿 20,000元（含）以上，即享 5% 購物金 老欉楊桃→單次或一年內累積消費付款金額滿 70,000元（含）以上，即享 7% 購物金 白玉荷包→單次或一年內累積消費付款金額滿 150,000元（含）以上，即享 10% 購物金。'),
+(5, 'A', '註冊時收不到簡訊驗證', '請先確認是否有開啟收發企業簡訊功能，或請洽詢您的電信業者確認原因。'),
+(6, 'A', '會員資料變更', '您可隨時依您所註冊的手機號碼、密碼登入，並透過【會員資料維護】功能選項，進行修改。如有修改手機號碼，購物金顯示 及 使用購物金 將於次日生效，請留意謝謝。若使用上有任何問題，請您與本公司<a href=\"/contact\" class=\"vg-href-inline\">官方客服</a>聯繫，本公司將竭誠為您服務。'),
+(7, 'A', '會員升等及降等問題', '會員資格為終身有效，當日消費達到升等門檻，會員等級將在次日生效並以升等後的門檻來計算購物金。並於每年 12 月底(依到貨日計算)統計會員該累積年度的總消費金額(※累計金額計算週期為前一年1/1-12/31，依到貨日計算)，依消費金額提供次年度的回饋金等級，若達當年度門檻消費金額次年度將維持，若消費不足時將降等。'),
+(8, 'B', '會員資格有期限嗎?', '會員資格為終身有效，電腦系統於每年12月底統計會員該累積年度的總消費金額，依消費金額提供次年度的回饋金等級。'),
+(9, 'B', '我要如何累積購物金?', '官網購物，請登入會員專區，依指示填妥相關資料，即可自動累積。'),
+(10, 'B', '如何查詢我的購物金?', '登入網站，在會員專區進行查詢。'),
+(11, 'B', '消費後的購物金，何時生效可抵用?', '購物金以開立發票後的次日生效。'),
+(12, 'B', '購物金等值新台幣多少錢呢?', '1元購物金價值同等於新台幣1元。'),
+(13, 'B', '用購物金抵用的消費還可以再累積購物金嗎?', '使用購物金抵用消費金額無法再累積購物金。'),
+(14, 'B', '如何使用購物金抵用消費?', '登入會員後於系統中選擇抵。'),
+(15, 'B', '不同帳號的購物金可以轉讓或合併嗎?', '購物金僅供會員本人依購物金抵用辦法抵用，不得轉讓予第三人、不得要求合併不同會員帳號之購物金，亦不得兌換現金。'),
+(16, 'B', '如果我取消訂單，購物金要如何退回?', '若因商品缺貨須取消訂單，或商品瑕疵因素須辦理退款，則於辦理取消訂單或退款時，退還原抵用於該商品之等值購物金。其返回購物金之作業時間最少需7個工作天，惟實際工作天仍以系統商作業為主。'),
+(17, 'B', '有沒有商品不能累積及抵用購物金?', '目前所有商品皆能累計及抵用，若未來有特定商品無法累積或抵用，將會特別註明。'),
+(18, 'B', '購物金有使用期限嗎?', '購物金累積年度為每年1月1日至12月31日，期間累計之購物金至下一累積年度12月31日前有效。 例如：2017年1月1日至2017年12月31日（含當日）累積之購物金，有效使用期限為2018年12月31日（含當日）前，以此類推。'),
+(19, 'C', '訂單明細如何查詢?', '可透過<a href=\"/user/order\" class=\"vg-href-inline\">【會員專區】【我的訂單】</a>查詢六個月內的交易記錄。'),
+(20, 'C', '請問付款方式有哪些?', '可直接以 VISA、MasterCard、聯合信用卡、JCB、美國運通卡 信用卡進行線上刷卡方式結帳，目前不提供分期付款服務。'),
+(21, 'C', '不是會員可以網路購物嗎？', '目前VEGE官網僅供會員結帳的服務。會員可累計消費購物金。'),
+(22, 'C', '訂單確認送出後，內容及數量有誤該如何更改？', '1.當會員確認訂單送出後，即無法進行修改，如有需要調整請在到貨日2天以前至會員專區【我的訂單>點擊訂單>訂單詳細>取消訂單】並重新訂購<br>\r\n2.訂購日與到貨日間隔2個工作天內的訂單，一但成立就無法取消。<br>\r\n3.訂單貨態一但顯示出貨以後，就無法再取消或是修改到貨日及配送地址。<br>\r\n'),
+(23, 'C', '我要如何取消訂單或變更訂單?', '若您已完成付款，如需 \"變更訂單\" 或 \"進行取消退貨\" 請於在「到貨日三天以前」至會員專區【我的訂單>點擊訂單>訂單詳細>取消訂單】 訂單貨態一但顯示「已備貨」以後，就無法再取消或是修改到貨日及配送地址。如有其他相關問題請於到貨日前三天中午 12：00 前致電客服中心04-2344-3509，將有專人為您處理相關事項。'),
+(24, 'C', '取消訂單何時退款?', '若取消訂單後，依到貨日其退款之作業時間最少需7～10個工作天，惟實際工作天仍以系統商作業為主。<br>\r\n<span class=\"text=danger\">( ※請注意，預購商品若取消訂單，將比一般訂單需要更長的退款作業時間，依到貨日約莫10~14個工作天，還請見諒。)</span>\r\n'),
+(25, 'C', '遇到商品瑕疵、破損想要退貨怎麼辦？', '為保障消費者權益，若消費者在我們賣場購買的商品有品質不良或發現為過期品時，請先暫停食用，並立即反應聯絡<a href=\"\" class=\"vg-href-inline\">客服中心</a>，將有專人為您處理相關事項。'),
+(26, 'D', '今天訂購商品，明天可以到貨嗎？', '不行，由於訂購當日的晚上12:00為當日訂單截止時間，從訂購當日到到貨時間需2個工作天。到貨日期於每週二至每週六。舉凡自然因素、人為因素及其他不可避免之因素而影響出貨作業，將由客服人員另行電話通知。 '),
+(27, 'D', '宅配的送貨時間有沒有辦法指定時間？', '很抱歉，本公司配送委由『黑貓宅急便』配送服務，實際配達時間將受當日配送狀況影響，實際到貨時間以物流公司通知為主，惟將以您勾選的時段為第一優先!且因物流公司會規劃路線行程，只能選擇 13時前及 14-18時 兩個時段，確切的配送時間由運送人員與收件人連絡的送貨時間為主。'),
+(28, 'D', '可以寄送海外或離島嗎？', '目前配送範圍僅限台灣本島，外島及其他國家暫不提供訂單及配送服務。'),
+(29, 'D', '如果到貨日當天臨時有事，無法在家收貨怎麼辦？', '到貨日當天無法收貨時，可於訂單出貨前來電聯絡客服中心04-2344-3509，我們會依您的需求更改收貨地點或收貨日期，但若您事前未告知公司，此次出貨相關費用則將會由客戶自行負責。'),
+(30, 'D', '商品若一直沒收到怎麼辦？', '請直接連繫客服人員，告知我們訂購人資料：訂購者姓名、身分證字號、商品名稱、訂購單編號，我們將會立即為您追蹤貨品的運送狀況。'),
+(31, 'D', '如何得知出貨及到貨時間?', '在您訂購完成後，系統會自動發送一封訂單確認信，付款完成後會依您預定的出貨日期，將商品送至您指定的收貨地址。'),
+(32, 'D', '溫層不同，運費金額是否可以合併計算', '冷藏品若與常溫品配送日期相同者可合併計算，將一起以冷藏配送。'),
+(33, 'D', '運費是如何計算？購物滿多少錢可以免運費配送呢?', '每筆訂單運費一律固定: 小箱 $160/單；大箱 $290/單，且訂單不限配送次數。'),
+(34, 'D', '網站內的商品全年皆可到貨嗎?', '適逢例假日、春節假期及國定假日暫不出貨，暫停出貨日期以訂單流程中說明為主。'),
+(35, 'D', '請問是否有網購食品業者的買賣定型化契約 ?', '有的，因商品效期長短不一，為保證消費者權益，消費者收受到產品的剩餘效期參考如下 有效期限≦ 10日者，消費者收受日起算，至少距有效日期前 1 日以上 ＞10日、 ≦31日者，消費者收受日起算，至少距有效日期前 5 日以上 ＞1個月、 ＜ 6個月者，消費者收受日起算，至少距有效日期前10日以上 ≧6個月、 ≦12個月者，消費者收受日起算，至少距有效日期前30日以上 ＞12個月、 ≦24個月者，消費者收受日起算，至少距有效日期前60日以上 產物保險 旺旺友聯產物產品責任保險單號 1200第06PLON000827號 投保金額 5000萬 食品業者登錄字號 A-170123456-00000-3'),
+(36, 'E', '超商取貨，今天訂購商品，明天可以到貨嗎？', '超商取貨到貨日最快為訂購日+2工作天到貨(週日不配送)，實際到貨時間以超商發送簡訊通知為主。'),
+(37, 'E', '超商取貨配送方式，是否可以取消訂單?', '不行，<span class=\"text-danger\">訂單一但成立將無法取消，也無法再變更到貨門市及收件姓名、電話</span>。( 因超取訂單成立皆進入備貨狀態，故無法取消訂單 )，送出訂單前，請務必確認 商品品項、數量 以及 到貨門市 收件資訊 是否正確再送出。<br>\r\n包裹到貨後，系統會發送簡訊通知領取，包裹在超商僅保留5天，超過時間未取貨將系統將自動進行 退貨及退款作業，退款作業至少需要14個工作天，退貨商品將不保留，需自行再重新訂購。\r\n'),
+(38, 'E', '如何得知出貨及到貨時間?', '在您訂購完成後，系統會自動發送一封訂單確認信，付款完成後就會安排出貨，將商品送至您指定的超商店家。<br>\r\n超商取貨到貨日最快為訂購日+2工作天到貨(週日不配送)，實際到貨時間以超商發送簡訊通知為主。<br>\r\n<span class=\"text-danger\">商品到貨後，系統會發送簡訊通知領取，商品在超商僅保留5天</span>，超過時間未取貨將自動進行退貨退款作業，退款作業至少需要14個工作天，退貨商品將不保留，需自行再重新訂購。\r\n'),
+(39, 'E', '超商取貨在店天數僅在超商保留5天，超過時間如何處理? 退款方式?', '<span class=\"text-danger\">超商取貨僅在超商保留5天</span> (以收到到店簡訊通知日期為主)，超過時間未取貨將自動進行 退貨及退款 作業，退貨商品將不保留，需自行再重新訂購，退款作業至少需要14個工作天以上(惟實際工作天仍以系統商作業為主)。'),
+(40, 'E', '超取包裹只會有一箱嗎? 哪裡可以查詢有幾箱包裹?', '不一定，因超商包裹有材積限制，如愈您訂購商品多寡，會由倉管人員做 單箱 或 多箱 出貨處理。<br>\r\n可以透過【會員專區】→【我的訂單】的配送資訊，查看到該訂單的【超取物流編號】，如系統顯示幾組單號就為幾箱包裹。<br>\r\n包裹至超商也會以簡訊通知，如有多箱包裹，將會收到多封簡訊。EX：如有2箱包裹，將會收到2封到店通知簡訊。以此類推\r\n'),
+(41, 'E', '如何查看訂單包裹配送狀態?', '可以透過【會員專區】→【我的訂單】的配送資訊，查看到該訂單的【超取物流編號】。<br>\r\n如須查詢送貨進度，請至 貨件配送進度 輸入該訂單的【超取物流編號】做查詢。\r\n'),
+(42, 'E', '超商取貨 如何選取到貨全家門市?', '於結帳頁面可點選 取貨門市，目前僅提供配送至台灣本島可配送的縣店舖。<br>\r\n實際以系統可選擇的門市為主。\r\n'),
+(43, 'E', '若店舖發生閉店，導致無法正常收取配送之包裹，該如何解決？', '可以透過【會員專區】→【我的訂單】的配送資訊，查看到該訂單的狀態。<br>\r\n如若店舖發生閉店或整修，導致無法正常收取配送之包裹，包裹異常將會系統將自動退貨及退款，消費者請需自行再重新訂購。\r\n'),
+(44, 'E', '超取運費是如何計算？購物滿多少錢可以免運費配送呢?', '每筆訂單運費一律固定: 小箱 $160/單；大箱 $290/單，且訂單不限配送次數。'),
+(45, 'E', '商品若一直沒收到怎麼辦？ 或商品包裹有問題?', '請直接連繫客服人員，告知我們訂購人資料：訂購者姓名、身分證字號、商品名稱、訂購單編號，我們將會立即為您追蹤貨品的運送狀況。');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `sgs`
+--
+
+CREATE TABLE `sgs` (
+  `sgsId` int(11) NOT NULL,
+  `sgsDate` datetime NOT NULL,
+  `origin` varchar(50) NOT NULL,
+  `item` varchar(20) NOT NULL,
+  `result` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 傾印資料表的資料 `sgs`
+--
+
+INSERT INTO `sgs` (`sgsId`, `sgsDate`, `origin`, `item`, `result`) VALUES
+(1, '2023-10-03 23:59:59', '花蓮市吉安鄉', '農民-玉米', '合格'),
+(2, '2023-10-03 23:59:59', '花蓮市吉安鄉', '農民-白蘿蔔', '合格'),
+(3, '2023-10-02 23:59:59', '花蓮市吉安鄉', '農民-紅蘿蔔', '合格'),
+(4, '2023-10-02 23:59:59', '花蓮市吉安鄉', '農民-芹菜', '合格'),
+(5, '2023-10-01 23:59:59', '花蓮市吉安鄉', '農民-莧菜', '合格'),
+(6, '2023-10-01 23:59:59', '花蓮市吉安鄉', '農民-萵苣', '合格'),
+(7, '2023-09-30 23:59:59', '花蓮市吉安鄉', '農民-韭菜', '合格'),
+(8, '2023-09-28 23:59:59', '花蓮市吉安鄉', '農民-蔥', '合格'),
+(9, '2023-09-30 23:59:59', '花蓮市吉安鄉', '農民-芥藍', '合格'),
+(10, '2023-09-28 23:59:59', '花蓮市吉安鄉', '農民-茼蒿', '合格'),
+(11, '2023-09-29 23:59:59', '花蓮市吉安鄉', '農民-韭菜花', '合格'),
+(12, '2023-09-29 23:59:59', '花蓮市吉安鄉', '農民-青江菜', '合格'),
+(13, '2023-09-27 23:59:59', '花蓮市吉安鄉', '農民-紅鳳菜', '合格'),
+(14, '2023-09-30 23:59:59', '高雄燕巢', '誠信-芹菜', '合格'),
+(15, '2023-09-30 23:59:59', '高雄燕巢', '誠信-包葉菜', '合格'),
+(16, '2023-10-02 23:59:59', '高雄燕巢', '誠信-短期葉菜', '合格'),
+(17, '2023-10-02 23:59:59', '高雄燕巢', '誠信-根莖菜', '合格'),
+(18, '2023-10-02 23:59:59', '高雄燕巢', '誠信-花菜', '合格'),
+(19, '2023-10-02 23:59:59', '高雄燕巢', '誠信-果菜', '合格'),
+(20, '2023-10-01 23:59:59', '高雄燕巢', '誠信-瓜菜', '合格'),
+(21, '2023-10-01 23:59:59', '高雄燕巢', '誠信-豆菜', '合格'),
+(22, '2023-10-01 23:59:59', '高雄燕巢', '誠信-瓜果', '合格'),
+(23, '2023-10-01 23:59:59', '高雄燕巢', '誠信-萵苣', '合格'),
+(24, '2023-10-03 23:59:59', '高雄燕巢', '誠信-茼蒿', '合格'),
+(25, '2023-10-03 23:59:59', '高雄燕巢', '誠信-菾菜', '合格'),
+(26, '2023-10-03 23:59:59', '高雄燕巢', '誠信-青蒜', '合格'),
+(27, '2023-10-03 23:59:59', '高雄燕巢', '誠信-蔥', '合格'),
+(28, '2023-09-28 23:59:59', '高雄燕巢', '誠信-韭菜', '合格'),
+(29, '2023-09-28 23:59:59', '高雄燕巢', '誠信-韭菜花', '合格'),
+(30, '2023-09-27 23:59:59', '花蓮市壽豐鄉', '種菜-蓮藕', '合格'),
+(31, '2023-09-28 23:59:59', '花蓮市壽豐鄉', '種菜-百香果', '合格'),
+(32, '2023-09-29 23:59:59', '花蓮市壽豐鄉', '種菜-秋葵', '合格'),
+(33, '2023-09-30 23:59:59', '花蓮市壽豐鄉', '種菜-番茄', '合格'),
+(34, '2023-10-01 23:59:59', '花蓮市壽豐鄉', '種菜-青椒', '合格'),
+(35, '2023-10-02 23:59:59', '花蓮市壽豐鄉', '種菜-辣椒', '合格'),
+(36, '2023-10-03 23:59:59', '花蓮市壽豐鄉', '種菜-胡瓜', '合格'),
+(37, '2023-10-03 23:59:59', '花蓮市壽豐鄉', '種菜-苦瓜', '合格'),
+(38, '2023-09-28 23:59:59', '花蓮市壽豐鄉', '種菜-冬瓜', '合格'),
+(39, '2023-09-29 23:59:59', '花蓮市壽豐鄉', '種菜-南瓜', '合格'),
+(40, '2023-09-30 23:59:59', '花蓮市壽豐鄉', '種菜-絲瓜', '合格'),
+(41, '2023-09-27 23:59:59', '花蓮市壽豐鄉', '種菜-花胡瓜', '合格'),
+(42, '2023-09-27 23:59:59', '南投縣信義鄉', '安心-芋頭', '合格'),
+(43, '2023-09-28 23:59:59', '南投縣信義鄉', '安心-龍鬚菜', '合格'),
+(44, '2023-09-29 23:59:59', '南投縣信義鄉', '安心-柚子', '合格'),
+(45, '2023-09-30 23:59:59', '南投縣信義鄉', '安心-南瓜', '合格'),
+(46, '2023-10-01 23:59:59', '南投縣信義鄉', '安心-扁蒲', '合格'),
+(47, '2023-10-02 23:59:59', '南投縣信義鄉', '安心-北瓜', '合格'),
+(48, '2023-10-03 23:59:59', '南投縣信義鄉', '安心-花胡瓜', '合格'),
+(49, '2023-10-03 23:59:59', '南投縣信義鄉', '安心-胡瓜', '合格'),
+(50, '2023-09-28 23:59:59', '南投縣信義鄉', '安心-冬瓜', '合格'),
+(51, '2023-09-30 23:59:59', '雲林元長', '頂級-香蕉', '合格'),
+(52, '2023-09-30 23:59:59', '雲林元長', '頂級-紅龍果', '合格'),
+(53, '2023-10-02 23:59:59', '雲林元長', '頂級-百香果', '合格'),
+(54, '2023-10-02 23:59:59', '雲林元長', '頂級-葡萄', '合格'),
+(55, '2023-10-02 23:59:59', '雲林元長', '頂級-楊桃', '合格'),
+(56, '2023-10-02 23:59:59', '雲林元長', '頂級-草莓', '合格'),
+(57, '2023-10-01 23:59:59', '雲林元長', '頂級-柿', '合格'),
+(58, '2023-10-01 23:59:59', '雲林元長', '頂級-棗', '合格'),
+(59, '2023-10-01 23:59:59', '雲林元長', '頂級-蘋果', '合格'),
+(60, '2023-10-01 23:59:59', '雲林元長', '頂級-柚子', '合格'),
+(61, '2023-10-03 23:59:59', '雲林元長', '頂級-柑桔', '合格'),
+(62, '2023-10-03 23:59:59', '雲林元長', '頂級-檸檬', '合格'),
+(63, '2023-10-03 23:59:59', '雲林元長', '頂級-白菜', '合格'),
+(64, '2023-10-03 23:59:59', '雲林元長', '頂級-芥菜', '合格'),
+(65, '2023-09-28 23:59:59', '雲林元長', '頂級-油菜', '合格'),
+(66, '2023-09-28 23:59:59', '雲林元長', '頂級-菠菜', '合格'),
+(67, '2023-10-03 23:59:59', '新北市土城區', '萬歲-青松菜', '合格'),
+(68, '2023-10-03 23:59:59', '新北市土城區', '萬歲-芝麻菜', '合格'),
+(69, '2023-10-02 23:59:59', '新北市土城區', '萬歲-龍鬚菜', '合格'),
+(70, '2023-10-02 23:59:59', '新北市土城區', '萬歲-山菠菜', '合格'),
+(71, '2023-10-01 23:59:59', '新北市土城區', '萬歲-蘿蔔', '合格'),
+(72, '2023-10-01 23:59:59', '新北市土城區', '萬歲-胡蘿蔔', '合格'),
+(73, '2023-09-30 23:59:59', '新北市土城區', '萬歲-金針', '合格'),
+(74, '2023-09-30 23:59:59', '新北市土城區', '萬歲-青花菜', '合格'),
+(75, '2023-09-30 23:59:59', '新北市土城區', '萬歲-花椰菜', '合格'),
+(76, '2023-10-02 23:59:59', '新北市土城區', '萬歲-青花筍', '合格'),
+(77, '2023-10-02 23:59:59', '新北市土城區', '萬歲-茄子', '合格'),
+(78, '2023-10-02 23:59:59', '新北市土城區', '萬歲-玉米', '合格'),
+(79, '2023-10-02 23:59:59', '台中市大肚區', '玉美-青花筍', '合格'),
+(80, '2023-10-01 23:59:59', '台中市大肚區', '玉美-青花菜', '合格'),
+(81, '2023-10-01 23:59:59', '台中市大肚區', '玉美-番茄', '合格'),
+(82, '2023-10-01 23:59:59', '台中市大肚區', '玉美-玉米', '合格'),
+(83, '2023-10-01 23:59:59', '台中市大肚區', '玉美-茄子', '合格'),
+(84, '2023-10-03 23:59:59', '台中市大肚區', '玉美-黃秋葵', '合格'),
+(85, '2023-10-03 23:59:59', '台中市大肚區', '玉美-辣椒', '合格'),
+(86, '2023-10-03 23:59:59', '台中市大肚區', '玉美-青椒', '合格'),
+(87, '2023-10-03 23:59:59', '台中市大肚區', '玉美-豇豆', '合格'),
+(88, '2023-09-28 23:59:59', '台中市大肚區', '玉美-豌豆', '合格'),
+(89, '2023-09-28 23:59:59', '台中市大肚區', '玉美-敏豆', '合格'),
+(90, '2023-10-03 23:59:59', '台中市大肚區', '玉美-醜豆', '合格'),
+(91, '2023-10-03 23:59:59', '台中市大肚區', '玉美-絲瓜', '合格'),
+(92, '2023-10-02 23:59:59', '台中市大肚區', '玉美-苦瓜', '合格'),
+(93, '2023-10-02 23:59:59', '苗栗縣泰安鄉', '伯賢-百香果', '合格'),
+(94, '2023-10-01 23:59:59', '苗栗縣泰安鄉', '伯賢-紅龍果', '合格'),
+(95, '2023-10-01 23:59:59', '苗栗縣泰安鄉', '伯賢-菠蘿蜜', '合格'),
+(96, '2023-09-30 23:59:59', '苗栗縣泰安鄉', '伯賢-香蕉', '合格'),
+(97, '2023-10-03 23:59:59', '苗栗縣泰安鄉', '伯賢-芭蕉', '合格'),
+(98, '2023-10-03 23:59:59', '苗栗縣泰安鄉', '伯賢-木瓜', '合格'),
+(99, '2023-10-02 23:59:59', '苗栗縣泰安鄉', '伯賢-鳳梨', '合格'),
+(100, '2023-10-02 23:59:59', '苗栗縣泰安鄉', '伯賢-梅', '合格'),
+(101, '2023-10-01 23:59:59', '苗栗縣泰安鄉', '伯賢-李', '合格'),
+(102, '2023-10-01 23:59:59', '苗栗縣泰安鄉', '伯賢-水蜜桃', '合格'),
+(103, '2023-09-30 23:59:59', '苗栗縣泰安鄉', '伯賢-芒果', '合格'),
+(104, '2023-09-28 23:59:59', '苗栗縣泰安鄉', '伯賢-金桔', '合格'),
+(105, '2023-09-30 23:59:59', '苗栗縣泰安鄉', '伯賢-柳丁', '合格'),
+(106, '2023-09-28 23:59:59', '南投縣埔里鎮', '良好-敏豆', '合格'),
+(107, '2023-09-29 23:59:59', '南投縣埔里鎮', '良好-西瓜', '合格'),
+(108, '2023-09-29 23:59:59', '南投縣埔里鎮', '良好-香瓜', '合格'),
+(109, '2023-09-27 23:59:59', '南投縣埔里鎮', '良好-紅龍果', '合格'),
+(110, '2023-09-30 23:59:59', '南投縣埔里鎮', '良好-香蕉', '合格'),
+(111, '2023-09-30 23:59:59', '南投縣埔里鎮', '良好-番石榴', '合格'),
+(112, '2023-10-02 23:59:59', '南投縣埔里鎮', '良好-芒果', '合格'),
+(113, '2023-10-02 23:59:59', '南投縣埔里鎮', '良好-龍眼', '合格'),
+(114, '2023-10-02 23:59:59', '南投縣埔里鎮', '良好-楊梅', '合格'),
+(115, '2023-10-02 23:59:59', '南投縣埔里鎮', '良好-桃', '合格'),
+(116, '2023-10-01 23:59:59', '南投縣埔里鎮', '良好-柚子', '合格'),
+(117, '2023-10-01 23:59:59', '南投縣埔里鎮', '良好-柑桔', '合格'),
+(118, '2023-10-01 23:59:59', '台中市東勢區', '很菜-木瓜', '合格'),
+(119, '2023-10-01 23:59:59', '台中市東勢區', '很菜-百香果', '合格'),
+(120, '2023-10-03 23:59:59', '台中市東勢區', '很菜-香蕉', '合格'),
+(121, '2023-10-03 23:59:59', '台中市東勢區', '很菜-火龍果', '合格'),
+(122, '2023-10-03 23:59:59', '台中市東勢區', '很菜-無花果', '合格'),
+(123, '2023-10-03 23:59:59', '台中市東勢區', '很菜-酪梨', '合格'),
+(124, '2023-09-28 23:59:59', '台中市東勢區', '很菜-紅龍果', '合格'),
+(125, '2023-09-28 23:59:59', '台中市東勢區', '很菜-番石榴', '合格'),
+(126, '2023-09-28 23:59:59', '台中市東勢區', '很菜-草莓', '合格'),
+(127, '2023-09-29 23:59:59', '台中市東勢區', '很菜-李', '合格'),
+(128, '2023-09-29 23:59:59', '台中市東勢區', '很菜-蘋果', '合格'),
+(129, '2023-09-27 23:59:59', '台中市東勢區', '很菜-柑桔', '合格'),
+(130, '2023-09-30 23:59:59', '台中市東勢區', '很菜-柚子', '合格'),
+(131, '2023-09-30 23:59:59', '台中市東勢區', '很菜-檸檬', '合格'),
+(132, '2023-10-02 23:59:59', '台中市東勢區', '很菜-柳橙', '合格'),
+(133, '2023-10-02 23:59:59', '新北市中和區', '超菜-結球萵苣', '合格'),
+(134, '2023-10-02 23:59:59', '新北市中和區', '超菜-半結球萵苣', '合格'),
+(135, '2023-10-02 23:59:59', '新北市中和區', '超菜-包心芥菜', '合格'),
+(136, '2023-10-01 23:59:59', '新北市中和區', '超菜-白菜', '合格'),
+(137, '2023-10-01 23:59:59', '新北市中和區', '超菜-蕹菜', '合格'),
+(138, '2023-10-01 23:59:59', '新北市中和區', '超菜-紅鳳菜', '合格'),
+(139, '2023-10-01 23:59:59', '新北市中和區', '超菜-葉菜甘藷', '合格'),
+(140, '2023-10-03 23:59:59', '新北市中和區', '超菜-龍鬚菜', '合格'),
+(141, '2023-10-03 23:59:59', '新北市中和區', '超菜-油菜', '合格'),
+(142, '2023-10-03 23:59:59', '新北市中和區', '超菜-青江菜', '合格'),
+(143, '2023-10-03 23:59:59', '新北市中和區', '超菜-芥藍', '合格'),
+(144, '2023-09-28 23:59:59', '新北市中和區', '超菜-菠菜', '合格'),
+(145, '2023-09-28 23:59:59', '台中市東勢區', '這裡-葉用芥菜', '合格'),
+(146, '2023-09-28 23:59:59', '台中市東勢區', '這裡-山菠菜', '合格'),
+(147, '2023-09-29 23:59:59', '台中市東勢區', '這裡-青松菜', '合格'),
+(148, '2023-09-29 23:59:59', '台中市東勢區', '這裡-青油菜', '合格'),
+(149, '2023-09-27 23:59:59', '台中市東勢區', '這裡-竹筍', '合格'),
+(150, '2023-09-30 23:59:59', '台中市東勢區', '這裡-胡蘿蔔', '合格'),
+(151, '2023-09-30 23:59:59', '台中市東勢區', '這裡-蘿蔔', '合格'),
+(152, '2023-10-02 23:59:59', '台中市東勢區', '這裡-蘆筍', '合格'),
+(153, '2023-10-02 23:59:59', '台中市東勢區', '這裡-蒜頭', '合格'),
+(154, '2023-10-02 23:59:59', '台中市東勢區', '這裡-花椰菜', '合格'),
+(155, '2023-10-02 23:59:59', '台中市東勢區', '這裡-青花菜', '合格'),
+(156, '2023-10-01 23:59:59', '台中市東勢區', '這裡-木耳', '合格'),
+(157, '2023-10-01 23:59:59', '台中市東勢區', '這裡-杏鮑菇', '合格'),
+(158, '2023-10-01 23:59:59', '台中市東勢區', '這裡-香菇', '合格'),
+(159, '2023-10-01 23:59:59', '台中市東勢區', '這裡-甜椒', '合格'),
+(160, '2023-10-03 23:59:59', '桃園市觀音區', '安好-辣椒', '合格'),
+(161, '2023-10-03 23:59:59', '桃園市觀音區', '安好-食用玉米', '合格'),
+(162, '2023-10-03 23:59:59', '桃園市觀音區', '安好-玉米筍', '合格'),
+(163, '2023-10-03 23:59:59', '桃園市觀音區', '安好-秋葵', '合格'),
+(164, '2023-09-28 23:59:59', '桃園市觀音區', '安好-番茄', '合格'),
+(165, '2023-09-28 23:59:59', '桃園市觀音區', '安好-南瓜', '合格'),
+(166, '2023-09-28 23:59:59', '桃園市觀音區', '安好-扁蒲', '合格'),
+(167, '2023-09-28 23:59:59', '桃園市觀音區', '安好-胡瓜', '合格'),
+(168, '2023-09-29 23:59:59', '桃園市觀音區', '安好-花胡瓜', '合格'),
+(169, '2023-09-29 23:59:59', '桃園市觀音區', '安好-苦瓜', '合格'),
+(170, '2023-09-27 23:59:59', '桃園市觀音區', '安好-絲瓜', '合格'),
+(171, '2023-09-30 23:59:59', '桃園市觀音區', '安好-丹參', '合格'),
+(172, '2023-09-30 23:59:59', '桃園市觀音區', '安好-當歸', '合格'),
+(173, '2023-10-02 23:59:59', '桃園市觀音區', '安好-洛神葵', '合格'),
+(174, '2023-10-02 23:59:59', '桃園市觀音區', '安好-薄荷', '合格'),
+(175, '2023-10-02 23:59:59', '南投縣仁愛鄉', '文樂-白菜', '合格'),
+(176, '2023-10-02 23:59:59', '南投縣仁愛鄉', '文樂-芥菜', '合格'),
+(177, '2023-10-01 23:59:59', '南投縣仁愛鄉', '文樂-芹菜', '合格'),
+(178, '2023-10-01 23:59:59', '南投縣仁愛鄉', '文樂-青江菜', '合格'),
+(179, '2023-10-01 23:59:59', '南投縣仁愛鄉', '文樂-茼蒿', '合格'),
+(180, '2023-10-01 23:59:59', '南投縣仁愛鄉', '文樂-莧菜', '合格'),
+(181, '2023-10-03 23:59:59', '南投縣仁愛鄉', '文樂-菠菜', '合格'),
+(182, '2023-10-03 23:59:59', '南投縣仁愛鄉', '文樂-菾菜', '合格'),
+(183, '2023-10-03 23:59:59', '南投縣仁愛鄉', '文樂-萵苣', '合格'),
+(184, '2023-10-03 23:59:59', '南投縣仁愛鄉', '文樂-蕹菜', '合格'),
+(185, '2023-09-28 23:59:59', '南投縣仁愛鄉', '文樂-葉菜甘藷', '合格'),
+(186, '2023-09-28 23:59:59', '苗栗西湖', '多多-豌豆苗', '合格'),
+(187, '2023-10-03 23:59:59', '苗栗西湖', '多多-山蘇', '合格'),
+(188, '2023-10-03 23:59:59', '苗栗西湖', '多多-山茼蒿', '合格'),
+(189, '2023-10-03 23:59:59', '苗栗西湖', '多多-川七', '合格'),
+(190, '2023-10-03 23:59:59', '苗栗西湖', '多多-葉用芥菜', '合格'),
+(191, '2023-09-28 23:59:59', '苗栗西湖', '多多-青松菜', '合格'),
+(192, '2023-09-28 23:59:59', '苗栗西湖', '多多-羽衣甘藍', '合格'),
+(193, '2023-09-28 23:59:59', '苗栗西湖', '多多-山菠菜', '合格'),
+(194, '2023-09-28 23:59:59', '苗栗西湖', '多多-蘿蔔', '合格'),
+(195, '2023-09-29 23:59:59', '苗栗西湖', '多多-薑', '合格'),
+(196, '2023-09-29 23:59:59', '苗栗西湖', '多多-胡蘿蔔', '合格'),
+(197, '2023-09-27 23:59:59', '苗栗西湖', '多多-馬鈴薯', '合格'),
+(198, '2023-09-30 23:59:59', '苗栗西湖', '多多-大心芥菜', '合格'),
+(199, '2023-09-30 23:59:59', '苗栗西湖', '多多-球莖甘藍', '合格'),
+(200, '2023-10-02 23:59:59', '苗栗西湖', '多多-筊白筍', '合格'),
+(201, '2023-10-02 23:59:59', '苗栗西湖', '多多-竹筍', '合格');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `spice`
+--
+
+CREATE TABLE `spice` (
+  `category` varchar(20) NOT NULL,
+  `spice` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `supportmsg`
+--
+
+CREATE TABLE `supportmsg` (
+  `replyId` int(11) NOT NULL,
+  `Msg` varchar(500) NOT NULL,
+  `Time` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 傾印資料表的資料 `supportmsg`
+--
+
+INSERT INTO `supportmsg` (`replyId`, `Msg`, `Time`) VALUES
+(1, '親愛的顧客您好，每筆訂單限2次可延後配送蔬果箱，經查看您的訂單尚未延期過，這邊將為您延後配送時間一周，一樣會在周一進行發貨，謝謝', '2023-08-29 10:10:00'),
+(2, '您好，延後配送不會有加收費用沒有錯，謝謝您', '2023-08-29 12:38:20'),
+(3, '親愛的顧客您好，購物金的到期日為領取時間隔一年的12月31日，經查看您的購物金都還能使用到2024年12月31日', '2023-08-29 15:15:07');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `temp_coupon`
+--
+
+CREATE TABLE `temp_coupon` (
+  `coupon` varchar(50) NOT NULL,
+  `discount` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- 傾印資料表的資料 `temp_coupon`
+--
+
+INSERT INTO `temp_coupon` (`coupon`, `discount`) VALUES
+('c001', '-20'),
+('c002', '*0.9');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `temp_product`
+--
+
+CREATE TABLE `temp_product` (
+  `pid` varchar(50) NOT NULL,
+  `pname` varchar(20) NOT NULL,
+  `pinfo` varchar(100) NOT NULL,
+  `size` varchar(10) NOT NULL,
+  `freq` varchar(10) NOT NULL,
+  `price` smallint(6) NOT NULL,
+  `pic` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- 傾印資料表的資料 `temp_product`
+--
+
+INSERT INTO `temp_product` (`pid`, `pname`, `pinfo`, `size`, `freq`, `price`, `pic`) VALUES
+('aa001', '蔬果健康箱', '四樣水果、三樣蔬菜', 's', '每周一次', 550, 'img\\fruitbox.png'),
+('aa0012', '蔬果健康箱', '四樣水果、三樣蔬菜', 'l', '每周一次', 750, 'img\\fruitbox.png'),
+('aa0013', '蔬果健康箱', '四樣水果、三樣蔬菜', 'l', '雙周一次', 750, 'img\\fruitbox.png'),
+('aa0014', '蔬果健康箱', '四樣水果、三樣蔬菜', 's', '雙周一次', 550, 'img\\fruitbox.png'),
+('aa0015', '蔬果健康箱', '四樣水果、三樣蔬菜', 's', '單次配送', 550, 'img\\fruitbox.png'),
+('aa002', '蔬果減脂箱', '三樣水果、四樣蔬菜', 'l', '雙周一次', 650, 'img\\fruitbox.png'),
+('aa003', '只想吃菜菜箱', '五樣蔬菜', 's', '單次配送', 250, 'img\\fruitbox.png'),
+('aa004', '假期箱', '三樣水果、三樣蔬菜、節令節氣小物', 's', '單次配送', 500, 'img\\fruitbox.png');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `text`
+--
+
+CREATE TABLE `text` (
+  `cid` int(11) NOT NULL,
+  `bid` varchar(30) NOT NULL,
+  `productName` varchar(30) NOT NULL,
+  `commodity` varchar(30) DEFAULT NULL,
+  `sumValue` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `useraddress`
+--
+
+CREATE TABLE `useraddress` (
+  `uId` int(11) NOT NULL,
+  `Name` varchar(16) NOT NULL,
+  `Phone` varchar(16) NOT NULL,
+  `address` varchar(256) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 傾印資料表的資料 `useraddress`
+--
+
+INSERT INTO `useraddress` (`uId`, `Name`, `Phone`, `address`) VALUES
+(1001, '王大同', '0912345678', '台中市南區建國南路1段255號'),
+(1001, '王美麗', '0912345679', '台中市南區建國南路1段255號'),
+(1002, '李曉潔', '0933396969', '台北市大安區忠孝東路四段200號'),
+(1003, '郭靜香', '0911122345', '高雄市左營區博愛二路757號'),
+(1003, '陳樂', '0912123123', '台南市中西區忠義路二段1號');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `userbonus`
+--
+
+CREATE TABLE `userbonus` (
+  `uId` int(11) NOT NULL,
+  `Time` datetime NOT NULL DEFAULT current_timestamp(),
+  `bonus` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 傾印資料表的資料 `userbonus`
+--
+
+INSERT INTO `userbonus` (`uId`, `Time`, `bonus`) VALUES
+(1001, '2023-06-01 20:15:13', 50),
+(1001, '2023-07-03 19:53:37', -50),
+(1001, '2023-07-03 19:54:50', 60),
+(1002, '2023-08-01 15:37:17', 20);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `usercard`
+--
+
+CREATE TABLE `usercard` (
+  `uId` int(11) NOT NULL,
+  `card` varchar(16) NOT NULL,
+  `bank` varchar(16) NOT NULL,
+  `default` int(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 傾印資料表的資料 `usercard`
+--
+
+INSERT INTO `usercard` (`uId`, `card`, `bank`, `default`) VALUES
+(1001, '0000111122223333', '玉山銀行', 1),
+(1001, '4444555566667777', '台新銀行', 0),
+(1002, '8888999900001111', '國泰世華銀行', 1),
+(1003, '2222333344445555', '華南銀行', 1);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `userinfo`
+--
+
+CREATE TABLE `userinfo` (
+  `uId` int(11) NOT NULL,
+  `Email` varchar(50) DEFAULT NULL,
+  `Name` varchar(16) DEFAULT NULL,
+  `Phone` varchar(16) DEFAULT NULL,
+  `Img` varchar(100) DEFAULT NULL,
+  `Birthday` datetime DEFAULT NULL,
+  `Gender` varchar(3) DEFAULT NULL,
+  `carrier` varchar(20) DEFAULT NULL,
+  `bonus` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 傾印資料表的資料 `userinfo`
+--
+
+INSERT INTO `userinfo` (`uId`, `Email`, `Name`, `Phone`, `Img`, `Birthday`, `Gender`, `carrier`, `bonus`) VALUES
+(1001, 'apple_pie@gmail.com', '王大同', '0912345678', 'https://dummyimage.com/300x300/000000/fff&text=apple+pie', '1994-01-01 00:00:00', 'M', '/5C3S4N1', NULL),
+(1002, 'blueberry_muffin@gmail.com', '李曉潔', '0933396969', 'https://dummyimage.com/300x300/000000/fff&text=blueberry+muffin', '1985-03-31 00:00:00', 'F', '/S5FGRG8', NULL),
+(1003, 'cranberry@gmail.com', '郭靜香', '0911122345', 'https://dummyimage.com/300x300/000000/fff&text=cranberry', '1979-11-26 00:00:00', 'F', '/RB5SDHT', NULL),
+(1004, 'happy@gmail.com', '陳樂', '0912123123', 'https://dummyimage.com/300x300/000000/fff&text=happy', '1985-08-26 00:00:00', 'M', '/RK9SKHD', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `userlogin`
+--
+
+CREATE TABLE `userlogin` (
+  `uID` int(11) NOT NULL,
+  `Email` varchar(50) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `token` varchar(200) DEFAULT NULL,
+  `createTime` datetime NOT NULL DEFAULT current_timestamp(),
+  `updateTime` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 傾印資料表的資料 `userlogin`
+--
+
+INSERT INTO `userlogin` (`uID`, `Email`, `password`, `token`, `createTime`, `updateTime`) VALUES
+(1001, 'apple_pie@gmail.com', '$2a$10$W2CeC8wta6TiR456Wwod7uosw7dTI3zqsqhRQRAOUkMMr7dTCdGoK', NULL, '2022-10-15 18:12:10', '2023-09-12 11:06:54'),
+(1002, 'blueberry_muffin@gmail.com', '$2a$10$xHwXIgtyIxDwhsA9rpv1fuIGFG320MaBYaI/tnob4ERMjTNV1IIJO', NULL, '2020-08-17 15:00:59', '2023-09-12 11:06:54'),
+(1003, 'cranberry@gmail.com', '$2a$10$M42KUO0OoC5fB4ftb3/I9Ovg6uwEj7W8I6SvDqEQ3UFE95huqSSx6', NULL, '2021-03-08 01:15:13', '2023-09-12 11:06:54'),
+(1004, 'happy@gmail.com', '$2a$10$wAcGWSRo3k.zwajKO/1aouqcxPWjCSQzeNc/fMIYgzorbaGocmooG', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ3NjI1MTcsImV4cCI6MTY5NDg0ODkxN30.WfmxDzrUPOWo-geHvg_L7ik8aimi0XcoD-tA4dBIEVc', '2021-09-05 03:15:13', '2023-09-12 11:06:54');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `usermsg`
+--
+
+CREATE TABLE `usermsg` (
+  `uId` int(11) NOT NULL,
+  `msgType` varchar(10) NOT NULL,
+  `Msg` varchar(500) NOT NULL,
+  `Img` varchar(500) DEFAULT NULL,
+  `Time` datetime NOT NULL DEFAULT current_timestamp(),
+  `replyId` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 傾印資料表的資料 `usermsg`
+--
+
+INSERT INTO `usermsg` (`uId`, `msgType`, `Msg`, `Img`, `Time`, `replyId`) VALUES
+(1001, '配送問題', '我下周出差不在家可以延後配送一周嗎?', NULL, '2023-08-29 10:01:58', 1),
+(1001, '配送問題', '想確認延後配送不會有加收費用對嗎?', NULL, '2023-08-29 12:33:15', 2),
+(1002, '購物金問題', '我想確認我的購物金是否有到期日', NULL, '2023-08-29 15:08:51', 3);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `vgorder`
+--
+
+CREATE TABLE `vgorder` (
+  `oid` varchar(50) NOT NULL,
+  `uid` varchar(50) NOT NULL,
+  `o_ceatetime` timestamp NOT NULL DEFAULT current_timestamp(),
+  `useCoupon` varchar(10) DEFAULT NULL,
+  `useBonus` smallint(6) DEFAULT NULL,
+  `paid` varchar(10) NOT NULL DEFAULT 'unpaid',
+  `oName` varchar(20) DEFAULT NULL,
+  `oTel` varchar(30) DEFAULT NULL,
+  `oMail` varchar(50) DEFAULT NULL,
+  `rName` varchar(20) DEFAULT NULL,
+  `rTel` varchar(30) DEFAULT NULL,
+  `rAddr` varchar(50) DEFAULT NULL,
+  `convName` varchar(20) DEFAULT NULL,
+  `convTel` varchar(30) DEFAULT NULL,
+  `convStore` varchar(50) DEFAULT NULL,
+  `payment` varchar(50) DEFAULT NULL,
+  `transName` varchar(20) DEFAULT NULL,
+  `transNum` varchar(20) DEFAULT NULL,
+  `transDate` date DEFAULT NULL,
+  `creditName` varchar(20) DEFAULT NULL,
+  `creditNum` varchar(20) DEFAULT NULL,
+  `creditMM` varchar(3) DEFAULT NULL,
+  `creditYY` varchar(3) DEFAULT NULL,
+  `creditCSV` varchar(3) DEFAULT NULL,
+  `billDonate` varchar(50) DEFAULT NULL,
+  `billPersonal` varchar(20) DEFAULT NULL,
+  `billCompName` varchar(50) DEFAULT NULL,
+  `billCompNum` varchar(10) DEFAULT NULL,
+  `billCompAddr` varchar(50) DEFAULT NULL,
+  `o_note` varchar(250) DEFAULT NULL,
+  `o_status` varchar(50) DEFAULT 'active',
+  `o_updatetime` varchar(30) DEFAULT NULL,
+  `o_cancel_time` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- 傾印資料表的資料 `vgorder`
+--
+
+INSERT INTO `vgorder` (`oid`, `uid`, `o_ceatetime`, `useCoupon`, `useBonus`, `paid`, `oName`, `oTel`, `oMail`, `rName`, `rTel`, `rAddr`, `convName`, `convTel`, `convStore`, `payment`, `transName`, `transNum`, `transDate`, `creditName`, `creditNum`, `creditMM`, `creditYY`, `creditCSV`, `billDonate`, `billPersonal`, `billCompName`, `billCompNum`, `billCompAddr`, `o_note`, `o_status`, `o_updatetime`, `o_cancel_time`) VALUES
+('4140847', '1002', '2023-09-05 20:05:54', NULL, NULL, 'unpaid', 'aa', 'aa', 'aaa', 'aa', 'aa', '', '', '', NULL, NULL, '', '', '0000-00-00', '', '', '', '', '', NULL, NULL, '', '', '', 'aaa', 'inactive', '1693973208164', NULL),
+('8430352', '1004', '2023-09-05 09:18:15', NULL, NULL, 'unpaid', '李大美', '0912333444', '111@gmail.com', '陳怡君', '0966707506', '桃園縣龜山區中山路112號', '', '', NULL, NULL, '陳怡君', '12345', '2023-09-09', '', '', '', '', '', NULL, NULL, '', '', '', '好晚了該睡覺了', 'inactive', '1693937252161', NULL),
+('8472034', '1002', '2023-09-05 10:43:08', NULL, NULL, 'unpaid', '測試用', '測試用', '測試用', '', '', '', '', '', NULL, NULL, '', '', '0000-00-00', '測試用', '測試用', '測試用', '測試用', '測試用', NULL, NULL, '測試用', '測試用', '測試用', '測試用測試用測試用測試用測試用', 'inactive', '1693939982392', NULL),
+('9014842', '1001', '2023-09-05 08:02:10', NULL, NULL, 'unpaid', '李小美', '0912333444', 'aa@gmail.com', '王大華', '0966707506', '桃園縣龜山區中山路112號', '', '', NULL, NULL, '陳怡君', '12345', '2023-09-09', '', '', '', '', '', NULL, NULL, '', '', '', '我愛吃香蕉和蘋果', 'active', NULL, NULL),
+('937362', '1004', '2023-09-05 10:40:15', NULL, NULL, 'unpaid', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'active', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `wishlist`
+--
+
+CREATE TABLE `wishlist` (
+  `wid` tinyint(4) NOT NULL,
+  `uid` varchar(50) NOT NULL,
+  `pid` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- 傾印資料表的資料 `wishlist`
+--
+
+INSERT INTO `wishlist` (`wid`, `uid`, `pid`) VALUES
+(1, '1001', 'aa001'),
+(2, '1002', 'aa002'),
+(3, '1002', 'aa003'),
+(4, '1003', 'aa004'),
+(5, '1004', 'aa004'),
+(6, '1004', 'aa0012');
+
+--
+-- 已傾印資料表的索引
+--
+
+--
+-- 資料表索引 `activity`
+--
+ALTER TABLE `activity`
+  ADD PRIMARY KEY (`product`);
+
+--
+-- 資料表索引 `cart`
+--
+ALTER TABLE `cart`
+  ADD UNIQUE KEY `cid` (`cid`);
+
+--
+-- 資料表索引 `contactform`
+--
+ALTER TABLE `contactform`
+  ADD PRIMARY KEY (`cId`);
+
+--
+-- 資料表索引 `evaluation`
+--
+ALTER TABLE `evaluation`
+  ADD PRIMARY KEY (`vgId`);
+
+--
+-- 資料表索引 `farmer`
+--
+ALTER TABLE `farmer`
+  ADD PRIMARY KEY (`fId`);
+
+--
+-- 資料表索引 `firm_info`
+--
+ALTER TABLE `firm_info`
+  ADD PRIMARY KEY (`firm`);
+
+--
+-- 資料表索引 `info`
+--
+ALTER TABLE `info`
+  ADD PRIMARY KEY (`product`);
+
+--
+-- 資料表索引 `produces`
+--
+ALTER TABLE `produces`
+  ADD PRIMARY KEY (`vgId`);
+
+--
+-- 資料表索引 `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`pid`);
+
+--
+-- 資料表索引 `product_content`
+--
+ALTER TABLE `product_content`
+  ADD PRIMARY KEY (`product`);
+
+--
+-- 資料表索引 `qa`
+--
+ALTER TABLE `qa`
+  ADD PRIMARY KEY (`qId`);
+
+--
+-- 資料表索引 `sgs`
+--
+ALTER TABLE `sgs`
+  ADD PRIMARY KEY (`sgsId`);
+
+--
+-- 資料表索引 `spice`
+--
+ALTER TABLE `spice`
+  ADD PRIMARY KEY (`category`);
+
+--
+-- 資料表索引 `supportmsg`
+--
+ALTER TABLE `supportmsg`
+  ADD PRIMARY KEY (`replyId`);
+
+--
+-- 資料表索引 `temp_coupon`
+--
+ALTER TABLE `temp_coupon`
+  ADD PRIMARY KEY (`coupon`);
+
+--
+-- 資料表索引 `temp_product`
+--
+ALTER TABLE `temp_product`
+  ADD PRIMARY KEY (`pid`);
+
+--
+-- 資料表索引 `text`
+--
+ALTER TABLE `text`
+  ADD PRIMARY KEY (`cid`);
+
+--
+-- 資料表索引 `userinfo`
+--
+ALTER TABLE `userinfo`
+  ADD PRIMARY KEY (`uId`);
+
+--
+-- 資料表索引 `userlogin`
+--
+ALTER TABLE `userlogin`
+  ADD PRIMARY KEY (`uID`),
+  ADD UNIQUE KEY `Email` (`Email`);
+
+--
+-- 資料表索引 `vgorder`
+--
+ALTER TABLE `vgorder`
+  ADD PRIMARY KEY (`oid`);
+
+--
+-- 資料表索引 `wishlist`
+--
+ALTER TABLE `wishlist`
+  ADD PRIMARY KEY (`wid`);
+
+--
+-- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
+--
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `cid` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `contactform`
+--
+ALTER TABLE `contactform`
+  MODIFY `cId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `evaluation`
+--
+ALTER TABLE `evaluation`
+  MODIFY `vgId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `farmer`
+--
+ALTER TABLE `farmer`
+  MODIFY `fId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `produces`
+--
+ALTER TABLE `produces`
+  MODIFY `vgId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `product`
+--
+ALTER TABLE `product`
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `qa`
+--
+ALTER TABLE `qa`
+  MODIFY `qId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `sgs`
+--
+ALTER TABLE `sgs`
+  MODIFY `sgsId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=202;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `supportmsg`
+--
+ALTER TABLE `supportmsg`
+  MODIFY `replyId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `text`
+--
+ALTER TABLE `text`
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `userlogin`
+--
+ALTER TABLE `userlogin`
+  MODIFY `uID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1007;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `wishlist`
+--
+ALTER TABLE `wishlist`
+  MODIFY `wid` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -8,6 +8,7 @@ ALTER TABLE `cart` ADD quantity TINYINT NOT NULL DEFAULT '1' AFTER `pid`;
 ALTER TABLE `cart` ADD fid VARCHAR(20) NOT NULL AFTER `c_status`;
 
 
+
 UPDATE product_content
 SET image = 'img/蔬果減脂箱.png'
 WHERE product = '蔬果減脂箱';
