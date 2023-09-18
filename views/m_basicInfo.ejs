@@ -2,100 +2,125 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>會員中心</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>會員中心</title>
 
-    <%- include('share/head_link.ejs') %>
-    
+  <%- include('share/head_link.ejs') %>
+
     <!-- member的 CSS、JS 引用 -->
     <%- include('share/memb_link.ejs') %>
 </head>
 
 <body>
-<%- include('share/m_green_header.ejs') %>
+  <%- include('share/m_green_header.ejs') %>
 
-<%- include('share/m_HSidebar.ejs') %>
-    
-    <!-- contents -->
-    <div class="flex-grow-1">
+    <%- include('share/m_HSidebar.ejs') %>
+
+      <!-- contents -->
+      <div class="flex-grow-1">
         <%- include('share/m_notify.ejs') %>
 
-        <!-- content -->
-        <div class="memb-content">
+          <!-- content -->
+          <div class="memb-content">
             <h4 class="vg-h4">會員基本資料</h4>
-    
+
             <form action="" class="memb-basicInfo needs-validation row" novalidate>
               <div class="col-12">
                 <div class="form-floating">
-                  <input type="email" class="form-control form-control-lg" id="userMail"  placeholder="user@example.com" value="user@example.com" disabled>
+                  <input type="email" class="form-control form-control-lg" id="userMail" placeholder="user@example.com"
+                  value=" <%= dataInfo[0].Email %>" disabled>
                   <label for="userMail">電子郵件 (帳號)</label>
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-floating">
-                  <input type="text" class="form-control" id="userFname" placeholder="請填寫姓" required>
+                  <input type="text" class="form-control" id="userFname" placeholder="請填寫姓" value="<%= dataInfo[0].firstN %>" required>
                   <label for="userFname">姓</label>
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-floating">
-                  <input type="text" class="form-control" id="userLname" placeholder="請填寫名" required>
+                  <input type="text" class="form-control" id="userLname" placeholder="請填寫名" value="<%= dataInfo[0].lastN %>" required>
                   <label for="userLname">名</label>
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-floating">
-                  <input type="date" class="form-control" id="userBirthday" placeholder="請選擇您的生日" required>
+                  <input type="date" class="form-control" id="userBirthday" placeholder="請選擇您的生日" value="<%= Birthday %>" required>
                   <label for="userBirthday">生日</label>
                 </div>
               </div>
               <div class="col-6">
                 <label class="d-flex">性別</label>
                 <div class="form-check form-check-inline mt-2 ms-3 me-5">
-                  <input class="form-check-input" type="radio" id="userGender-M" name="gender" value="M">
+                  <% if( dataInfo[0].Gender == 'M' ) { %>
+                    <input class="form-check-input" type="radio" id="userGender-M" name="Gender" value="M" checked>
+                    <% }else { %>
+                    <input class="form-check-input" type="radio" id="userGender-M" name="Gender" value="M">
+                  <% } %>
                   <label class="form-check-label" for="userGender-M">生理男</label>
                 </div>
                 <div class="form-check form-check-inline ms-2">
-                  <input class="form-check-input" type="radio" id="userGender-F" name="gender" value="F">
+                  <% if( dataInfo[0].Gender == 'F' ) { %>
+                  <input class="form-check-input" type="radio" id="userGender-F" name="Gender" value="F" checked>
+                  <% }else { %>  
+                  <input class="form-check-input" type="radio" id="userGender-F" name="Gender" value="F">
+                  <% } %>  
                   <label class="form-check-label" for="userGender-F">生理女</label>
                 </div>
               </div>
               <div class="col-12">
                 <div class="form-floating">
-                  <input type="tel" class="form-control" id="userPhone" data-error="郵件格式錯誤"
-                  placeholder="請填入您的電話" pattern="\d{4}[-]\d{8}" required>
-                  <label for="userPhone">電話</label>
+                  <input type="tel" class="form-control" id="userPhone" data-error="電話格式錯誤" placeholder="請填入您的連絡電話"
+                    pattern="\d{4}[-]\d{8}" value="<%= dataInfo[0].Phone %>"  required>
+                  <label for="userPhone">連絡電話</label>
                   <div class="help-block with-errors"></div>
                 </div>
               </div>
               <div class="col-12">
                 <div class="form-floating">
-                  <input type="text" class="form-control" id="usercarrier" placeholder="請填入您的電子發票載具">
+                  <input type="text" class="form-control" id="usercarrier" placeholder="請填入您的電子發票載具" value="<%= dataInfo[0].carrier %>">
                   <label for="usercarrier">發票載具</label>
                 </div>
               </div>
               <div class="col-12 text-center mt-5">
-                <button class="btn btn-vg-lg" type="submit">儲存個人資料</button>
+                <button class="btn btn-vg-lg" type="button" onclick="edit(<%= dataInfo[0].uId %>)">儲存個人資料</button>
               </div>
             </form>
 
             <br><br><br><br><br><br><br><br>
             <br><br><br><br><br><br><br><br>
             <br><br><br><br><br><br><br><br>
-        </div>
-    </div>
+          </div>
+      </div>
 
     <%- include('share/m_multF.ejs') %>
 
-<%- include('share/footer.ejs') %>
+  <%- include('share/footer.ejs') %>
 
 <script>
-// 設定使用者
-var userData = localStorage.getItem('token');
-var userToken = userData ? JSON.parse(userData) : false;
-// 設定目前使用者id
-var uid = userToken.id;
+
+function edit(uId) {
+  var userName = userFname.value + userLname.value;
+  var Gender = $('input:checked[name="Gender"]').val();
+
+  fetch(`/member/basicInfo/edit`, {
+    method: 'POST',
+    headers:{"Content-Type": "application/json ; charset=UTF-8"},
+    body: JSON.stringify({ 
+      Email: userMail.value,
+      Name: userName,
+      Birthday: userBirthday.value,
+      Gender: Gender,
+      Phone: userPhone.value,
+      carrier: usercarrier.value
+    })
+  }).then(
+    document.location.href = `/member/basicInfo/${uId}`
+  )
+}
+
 
 </script>
 

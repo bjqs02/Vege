@@ -187,8 +187,8 @@ body {
     width: 110px;
     height: 110px;
     padding: 25px 60px 25px 16px;
-    position: relative;
-    left: 70px;
+    /* position: relative;
+    left: 70px; */
     border: none;
     border-radius: 0;
     color: var(--sc-g-Dark);
@@ -200,10 +200,23 @@ body {
     z-index: 0;
 }
 
+.CS {
+    display: block;
+    width: 110px;
+    position: relative;
+    left: 70px;
+    text-decoration: none;
+}
+
+.CS:hover {
+    left: 40px;
+    z-index: 1;
+}
+
 #memb-CS:hover {
     padding-right: 50px;
     padding-bottom: 25px;
-    left: 40px;
+    /* left: 40px; */
     background-color: var(--secondary-g);
     color: white;
     animation: shake-br 2s ease-in-out ;
