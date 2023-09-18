@@ -1203,6 +1203,7 @@ INSERT INTO `userbonus` (`uId`, `Time`, `bonus`) VALUES
 (1001, '2023-07-03 19:53:37', -50),
 (1001, '2023-07-03 19:54:50', 60),
 (1002, '2023-08-01 15:37:17', 20);
+(1004, '2023-06-01 15:37:17', 150);
 
 -- --------------------------------------------------------
 
@@ -1253,8 +1254,8 @@ CREATE TABLE `userinfo` (
 INSERT INTO `userinfo` (`uId`, `Email`, `Name`, `Phone`, `Img`, `Birthday`, `Gender`, `carrier`, `bonus`) VALUES
 (1001, 'apple_pie@gmail.com', '王大同', '0912345678', 'https://dummyimage.com/300x300/000000/fff&text=apple+pie', '1994-01-01 00:00:00', 'M', '/5C3S4N1', NULL),
 (1002, 'blueberry_muffin@gmail.com', '李曉潔', '0933396969', 'https://dummyimage.com/300x300/000000/fff&text=blueberry+muffin', '1985-03-31 00:00:00', 'F', '/S5FGRG8', NULL),
-(1003, 'cranberry@gmail.com', '郭靜香', '0911122345', 'https://dummyimage.com/300x300/000000/fff&text=cranberry', '1979-11-26 00:00:00', 'F', '/RB5SDHT', NULL),
-(1004, 'happy@gmail.com', '陳樂', '0912123123', 'https://dummyimage.com/300x300/000000/fff&text=happy', '1985-08-26 00:00:00', 'M', '/RK9SKHD', NULL);
+(1003, 'cranberry@gmail.com', '郭靜香', '0911657749', 'https://dummyimage.com/300x300/000000/fff&text=cranberry', '1979-11-26 00:00:00', 'F', '/RB5SDHT', NULL),
+(1004, 'happy@gmail.com', '陳樂', '0912334597', 'https://dummyimage.com/300x300/000000/fff&text=happy', '1985-08-26 00:00:00', 'M', '/RK9SKHD', NULL);
 
 -- --------------------------------------------------------
 
