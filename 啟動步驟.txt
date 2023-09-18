@@ -1,4 +1,4 @@
-1. setupDB.txt 裡的內容全部匯至你的mysql
+1. vageDB.txt 裡的內容全部匯至你的mysql
 
 2. 依據使用的不同要變更密碼喔
     XAMPP => db.js 檔案裡更改密碼
