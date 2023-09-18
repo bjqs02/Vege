@@ -283,7 +283,7 @@ h2 {
 
 .pSlide2-track {
     display: flex;
-    width: calc(250px*10);
+    width: calc(250px*30);
     animation: scroll 60s linear infinite;
 }
 
