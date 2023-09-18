@@ -109,13 +109,37 @@
                                     </div>
                                 </div>`);
                             }
+                            for (var i = 0; i < jsonObj.length; i++) {
+                                console.log(jsonObj[i].product);
+                                $('#sec4 .pSlide-track').append(`
+                                <div class="pSlide" id="pSlide${i+10}">
+                                    <div class="card text-center" style="width: 18rem;">
+                                        <div class="card-header">
+                                            ${jsonObj[i].product}
+                                        </div>
+                                        <img class="card-img-top" src="" alt="Card image cap" id="productImg${i}">
+                                        <div class="card-body">
+                                            <h5 class="card-title">內容物</h5>
+                                            <p class="card-text">${jsonObj[i].content}</p>
+                                            <a href="/product" class="btn btn-vg">前往商品頁面</a>
+                                        </div>
+                                    </div>
+                                </div>`);
+                            }
                             $('#productImg0').prop('src','img/中秋箱.png');
+                            $('#productImg10').prop('src','img/中秋箱.png');
                             $('#productImg1').prop('src','img/果果箱.png');
+                            $('#productImg11').prop('src','img/果果箱.png');
                             $('#productImg2').prop('src','img/盛產箱.png');
+                            $('#productImg12').prop('src','img/盛產箱.png');
                             $('#productImg3').prop('src','img/自選蔬果箱.png');
+                            $('#productImg13').prop('src','img/自選蔬果箱.png');
                             $('#productImg4').prop('src','img/菜菜箱.png');
+                            $('#productImg14').prop('src','img/菜菜箱.png');
                             $('#productImg5').prop('src','img/蔬果健康箱.png');
+                            $('#productImg15').prop('src','img/蔬果健康箱.png');
                             $('#productImg6').prop('src','img/蔬果減脂箱.png');
+                            $('#productImg16').prop('src','img/蔬果減脂箱.png');
                             $('#pSlide3 p.card-text').html('客製化自由選購蔬果');
                         });
 
@@ -144,6 +168,7 @@
                                 </div>
                             </div>`)
                         }
+                        
                     })
                 </script>
 
