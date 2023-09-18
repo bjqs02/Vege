@@ -534,7 +534,7 @@
                             })
                             .then(function (jsonObj) {
                                 // console.log(jsonObj[0].tagname);
-                                for (var i = 1; i < jsonObj.length; i++) {
+                                for (var i = 0; i < jsonObj.length; i++) {
                                     itemTag.push(jsonObj[i].tagname);
                                 }
                                 $('#includetag').selectivity({
