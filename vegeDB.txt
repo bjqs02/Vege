@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2023-09-18 04:59:39
+-- 產生時間： 2023-09-18 05:10:31
 -- 伺服器版本： 10.4.28-MariaDB
 -- PHP 版本： 8.2.4
 
@@ -58,6 +58,224 @@ INSERT INTO `activity` (`product`, `off_price`, `off_act`, `act_content`, `act_c
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `activityboard`
+--
+
+CREATE TABLE `activityboard` (
+  `actid` int(11) NOT NULL,
+  `actTitle` varchar(50) NOT NULL,
+  `actImg` varchar(500) NOT NULL,
+  `acttime` timestamp NOT NULL DEFAULT current_timestamp(),
+  `actText` varchar(5000) DEFAULT NULL,
+  `actCat` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 傾印資料表的資料 `activityboard`
+--
+
+INSERT INTO `activityboard` (`actid`, `actTitle`, `actImg`, `acttime`, `actText`, `actCat`) VALUES
+(1, '中秋送禮，齊賞柚月', 'img/act-moonfruit11.png', '2023-09-12 09:45:36', '一年一次的中秋節又到啦，中秋禮盒送禮準備好了嗎？除了必吃的蛋黃酥 ,月餅之外!每一年超季節限定的新鮮文旦！除了自己吃之外，送禮也超推薦！', 1),
+(2, '選7-ELEVEN超商取件，冷凍包裹收件好方便：【取件完成】再請你喝中杯冰拿鐵', 'img/act-coffe.jpg', '2023-09-12 09:45:36', '❄低溫店取選7-ELEVEN超商❄取件完成就送【CITY CAFE中杯冰拿鐵】，共500杯，讓你線上買菜又消暑。\r\n            *每筆訂單贈乙杯，共500杯，數量有限，送完為止。\r\n        \r\n            <p><strong><span style=\"color: #993300;\">活動說明：</span></strong>\r\n            </p>\r\n            <ol>\r\n                <li>活動日期：2023/09/15至2023/10/15</li>\r\n                <li>兌換序號將於取件完成14天內，以Line@或簡訊發放。</li>\r\n                <li>兌換期限：即日起至2023/10/30，逾期失效恕不補發。</li>\r\n                <li>訂單出貨後若有修改、變更及退貨退款之情形致最終未符合活動規則，將不提供兌換序號。</li>\r\n                <li>悠活農村保有隨時修改活動辦法及贈品或中止本活動或變更同等價值商品之權利。</li>\r\n                <li>參加者於參加本活動之同時，即同意接受本活動之活動辦法與規範。</li>\r\n                <li>若有任何問題請上班時間致電客服<a href=\"tel:02-27480366\">00-1234-5678</a>。</li>\r\n            </ol>', 1),
+(3, '海葵颱風09/04暫停出貨公告', 'img/act-typhoon.jpg', '2023-09-12 09:45:36', '【颱風假休假公告】因應政府公告休假，全體員工9月4號暫停客服、出貨服務，造成不便還請見諒！', 2),
+(4, '上傳粽子與蔬果箱合照，抽好禮', 'img/act-duanwu.jpg', '2023-09-12 09:45:36', '端午節要吃得健康又有趣，國健署邀請大家一起發揮創意，將粽子與蔬果結合，展現創意吃粽料理。上傳粽子創意吃法，就有機會抽獎獲得好禮!', 1),
+(5, '【防詐騙】本網不會以電話請您提供銀行帳戶、信用卡資料或要求操作ATM付款', 'img/act-dontlie.jpg', '2023-09-12 09:45:36', '1.網站不會以電話請您提供銀行帳戶、信用卡資料或要求操作ATM付款. 2.聽到扣款有誤操作疏失需要提高警覺. 3.隨時致電官方電話查核真相.', 2);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `activitylotto`
+--
+
+CREATE TABLE `activitylotto` (
+  `lottoid` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `lottotime` timestamp NOT NULL DEFAULT current_timestamp(),
+  `lottobonus` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 傾印資料表的資料 `activitylotto`
+--
+
+INSERT INTO `activitylotto` (`lottoid`, `uid`, `lottotime`, `lottobonus`) VALUES
+(1, 1001, '2023-09-13 18:18:52', 50),
+(11, 1004, '2023-09-14 19:19:52', 50);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `article`
+--
+
+CREATE TABLE `article` (
+  `atcid` int(11) NOT NULL,
+  `atcTitle` varchar(50) NOT NULL,
+  `atcimg` varchar(600) NOT NULL,
+  `atcText` varchar(5000) NOT NULL,
+  `atcTime` timestamp NOT NULL DEFAULT current_timestamp(),
+  `atcCat` int(11) NOT NULL,
+  `atTag` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 傾印資料表的資料 `article`
+--
+
+INSERT INTO `article` (`atcid`, `atcTitle`, `atcimg`, `atcText`, `atcTime`, `atcCat`, `atTag`) VALUES
+(1, '鳳梨酵素到底在夯甚麼？您不可不知道的鳳梨酵素功效 2大成分是關鍵', 'https://images.agriharvest.tw/wp-content/uploads/2022/03/0-11-1024x680.jpg', '近年來，鳳梨酵素成為了一項非常流行的營養保健話題；鳳梨酵素指的是從鳳梨中提取的一種天然酵素，具有多種保健功效和美容效果，它含有豐富的蛋白酶、纖維素酶和果酸等成分，被認為對消化、排毒、抗發炎、瘦身等方面有益處。\r\n                    <p><strong><span style=\"\"color: #993300;\"\"><span><strong><span\r\n                                            style=\"\"color: #993300;\"\">►鳳梨酵素能幫助消化，來自於蛋白酶與纖維素酶</span></strong></span></span></strong>\r\n                    </p>\r\n                    <p><span>鳳梨酵素在消化方面具有顯著的作用，其中2大成份助益最大就是<strong><span\r\n                                    style=\"\"color: #993300;\"\">蛋白酶</span></strong><span>與</span><strong><span\r\n                                    style=\"\"color: #993300;\"\">纖維素酶</span></strong>，蛋白酶可以幫助分解蛋白質，促進食物的消化和吸收，減輕胃腸負擔。纖維素酶則有助於分解纖維素，促進腸道蠕動，緩解便秘問題。此外，鳳梨酵素還含有豐富的果酸，能促進胃酸分泌，改善消化不良。</span>\r\n                    </p>\r\n                    <p><strong><span style=\"\"color: #993300;\"\"><span>►鳳梨酵素有助於抗炎和抗氧化，還有天然去角質作用</span></span></strong></p>\r\n                    <p><span>鳳<span style=\"\"color: #993300;\"\"><span\r\n                                    style=\"\"color: #000000;\"\">梨酵素還被廣泛應用於美容領域，具有天然的去角質作用，可以去除死皮細胞，使肌膚更加光滑細緻。同時，鳳梨酵素還具有抗炎和抗氧化的特性，可以減少皮膚細胞的氧化損傷，抑制黑色素的生成，使皮膚更加明亮均勻。</span></span></span><span\r\n                            style=\"\"color: #993300;\"\"><span style=\"\"color: #000000;\"\"><br>\r\n                            </span></span></p>\r\n                    <h5 class=\"\"vg-h5\"\">\r\n                        <span>由於鳳梨酵素具有多種保健和美容功效，因此在市場上越來越受到關注，許多人選擇食用鳳梨酵素補充劑或使用含有鳳梨酵素成分的護膚產品，來達到想要實現健康的願景。<span\r\n                                style=\"\"color: #ff0000;\"\">但是使用這些產品前，應該注意每個人的身體狀況和需求不同，建議在使用鳳梨酵素前諮詢專業意見，確保安全和適當的使用方式。</span></span>\r\n                    </h5>', '2023-09-11 13:41:05', 2, '排毒鳳梨酵素蛋白酶鳳梨'),
+(2, '覺得疲倦是因為缺少這5種食物！', 'https://cw1.tw/CH/images/channel_master/5a5a6829-34f5-4463-b486-e5a116f1caa8.jpg', '每天都覺得累，卻永遠也睡不飽嗎？小心這是沉默的器官「肝臟」發出的警告！現代人生活忙碌，時常暴飲暴食，', '2023-09-11 13:41:05', 2, '疲倦排毒'),
+(3, '桑椹果醬', 'https://d3l76hx23vw40a.cloudfront.net/recipe/webp/bk33-012.webp', '桑椹果醬除了用來搭配吐司麵包、鬆餅蛋糕或蘇打餅乾之外，加入原味優格和燕麥中增添酸味，更適合夏天享用', '2023-09-11 13:41:05', 3, '桑椹果醬'),
+(4, '秋葵蘋果汁', 'https://d3l76hx23vw40a.cloudfront.net/recipe/webp/bk160-025a.webp', '秋葵洗淨後去蒂切細丁；蘋果、芹菜洗淨後去根與蒂，切細丁。 · 將所有蔬果放入果汁機中，加入水 · 使用瞬間', '2023-09-11 13:41:05', 3, '秋葵蘋果'),
+(5, '苗栗卓蘭「來哥果園」悠遊深山間的高接梨', 'https://greenblob.azureedge.net/upload/News_3032/202307220912061.png', '來哥在苗栗卓蘭的景山耕作，每天在山頭間奔波，種植多款品種的梨子，可以說是名副其實的梨子大王。對他來', '2023-09-11 13:41:05', 4, '梨子'),
+(6, '香蕉色階表！蕉你看熟度', 'https://www.buydirectlyfromfarmers.tw/media/uploads/images/products/2021/09/pic-banana-ripe-1.jpg', '依據不同「色階」的香蕉，每100公克的營養價值說明如下： 綠香蕉：抗性澱粉最多、纖維較高吃了有飽足感，', '2023-09-11 13:41:05', 1, '香蕉'),
+(7, '別浪費掉！玉米鬚的4個功效大公開！', 'https://taiwan-bonbon-farmer.com/wp-content/uploads/2017/12/k2_items_src_6783792c7419427295335dc3ce02b000.jpg.webp', '大家都愛光煮玉米，把玉米鬚扔掉。專家指出，這其實是浪費。在中藥裡，玉米鬚又稱“龍鬚”，性平，有廣泛的', '2023-09-11 13:41:05', 2, '玉米玉米鬚'),
+(8, '冬天預防感冒，橘子最好，但你知道嗎?橘皮也很有用處啊', 'https://taiwan-bonbon-farmer.com/wp-content/uploads/2016/11/k2_items_src_7586bcdd7a745d843a3897512742ccdb.jpg.webp', '冬天盛產柑橘類，每次吃橘子，我都先將外橘皮洗乾淨、擦乾，然後完整的剝下外皮，放在陽台通風和可以日曬', '2023-09-11 13:41:05', 1, '柑橘橘皮'),
+(9, '你也時常貧血需要補血嗎？網議10大「補血食物」報你知！', 'https://www.foodnext.net/dispPageBox/getFile/GetImg.aspx?FileLocation=%2fPJ-FOODNEXT%2fFiles%2f&FileName=photo-60035-i.jpg', '若是想要快速有效率的補血，建議能夠選擇動物性來源的鐵質效果更佳，由於人體對於動物性鐵質的吸收率會高', '2023-09-11 13:41:05', 2, '紅棗菠菜芝麻葡萄'),
+(10, '殺鳳梨不求人！削皮切肉撇步大公開', 'https://img.ltn.com.tw/Upload/food/page/2016/09/19/160919-3877-3-ptWQl.jpg', '基本拿法：削鳳梨皮時，一手拿刀、一手握住尾部鳳梨葉柄處較好施力，因此削皮前須先將尾部的鳳梨葉尖銳處', '2023-09-11 13:41:05', 1, '鳳梨'),
+(11, '鳳梨酥', 'https://imageproxy.icook.network/resize?background=255%2C255%2C255&nocrop=true&stripmeta=true&type=auto&url=http%3A%2F%2Ftokyo-kitchen.icook.tw.s3.amazonaws.com%2Fuploads%2Frecipe%2Fcover%2F438095%2F4f37c4671f4befbd.jpg&width=443', '鳳梨酥 · 主要原料：鳳梨冬瓜醬(冬瓜、麥芽糖、砂糖、鳳梨、棕櫚油、奶油、食鹽)、低筋麵粉、無鹽奶油、無水', '2023-09-11 13:41:05', 3, '鳳梨'),
+(12, '為甚麼吃鳳梨會咬舌、嘴破？', 'https://bigbro.tw/wp-content/uploads/2021/05/20210510141656_58.jpg', '鳳梨「咬舌頭」的原因，來自鳳梨含有獨特的鳳梨蛋白酶（鳳梨酵素），這種酵素能分解蛋白質，幫助消化吸收', '2023-09-11 13:41:05', 1, '鳳梨'),
+(13, '從選購教學到鳳梨怎樣最好吃一次告訴你', 'https://www.mirrormedia.com.tw/assets/images/20210401114034-ad16a9d11fbdf31d7b4cadbb7ea14f49-tablet.jpg', '1、大小及外觀：挑選約1.2～1.8公斤（2～3台斤），果實結實飽滿呈圓筒狀，果目（鳳梨表皮）平展無裂縫及', '2023-09-11 13:41:05', 1, '鳳梨'),
+(14, '巨無霸西瓜鳳梨 新品種超熱銷', 'https://taiwan-bonbon-farmer.com/wp-content/uploads/2022/06/wmpineapple001b.jpg', '「這粒鳳梨怎麼那麼大，是一般鳳梨的2、3倍大吧」，這是高樹果農郭智偉嘗試新品種鳳梨，尚未正式命名，但', '2023-09-11 13:41:05', 1, '鳳梨'),
+(15, '「手採」VS「竿採」選擇「手採青梅」口感風味較好', 'https://taiwan-bonbon-farmer.com/wp-content/uploads/2022/03/images_Article-column_plum-diy_P002.jpg.webp', '青梅大都產在山區，山區因地勢陡峭通常較難以採收，採收又分為「手採」或「竿採」；竿採為最大宗的採收方', '2023-09-11 13:41:05', 1, '梅子青梅'),
+(16, '夏日熱浪來襲！網友熱議10大解熱食物讓你消暑一夏', 'https://www.foodnext.net/dispPageBox/getFile/GetImg.aspx?FileLocation=%2fPJ-FOODNEXT%2fFiles%2f&FileName=photo-59114-i.jpg', '觀察近2023年4月3日至2023年7月3日網友針對「消暑食物」相關話題的討論，可以發現「西瓜」引起網友熱議', '2023-09-11 13:41:05', 2, '西瓜鳳梨'),
+(17, '竹山蘇姊的無農藥地瓜', 'https://www.yooho.com.tw/images/upload/Image/Nantou-sweetpotato-tax1-1.JPG', '竹山鎮位於南投縣西南邊，氣候溫和且雨量適中，加上緊鄰濁水溪，灌溉取水十分方便，且溪水富含有機質與礦物質，最適宜發展農業，因此成為南投最早墾拓的地方。\r\n\r\n                    <p><strong><span style=\"\"color: #993300;\"\">嘉慶君也愛吃的「皇帝薯」</span></strong></p>\r\n                    <p>種植地瓜已有十多年經驗的蘇姊表示，任何地方幾乎都可以種出地瓜，但是地瓜口感與風味取決於土壤與天候，竹山地瓜好吃在於這裡的日照充足，土壤是半沙半土，引用的是發源於阿里山的濁水溪支流清水溪的河水來灌溉，良好的水質，清新的空氣，無汙染的土壤所種出來的番薯，質感較Q軟、味道特別甜美可口。相傳嘉慶君為太子時遊經竹山，因貪玩錯過旅舍，借住於當地農家，農夫煮甘薯饗客，嘉慶君吃後大為讚賞，後人便稱為「皇帝薯」。\r\n                    </p>\r\n                    <p><strong><span style=\"\"color: #993300;\"\">好吃免大條的地瓜</span></strong></p>\r\n                    <p>蘇姊一直都是遵循自然農法來管理田區，採用無農藥、無化學肥料、無除草劑的方式栽培，品種從台農57、台農64、日本金時、紫玉地瓜皆有。拿著鋤頭往土壤輕輕一掘，根部露出了一條條的地瓜，旁邊還有蚯蚓扭來扭去，凸顯了這裡土壤的排水性跟透氣度。蘇姊還說，台農64是竹山特有的原生種紅番薯，它的表皮呈淡棕黃色，體型比一般常見的蕃薯迷你，又有地瓜「好吃免大條」的說法。\r\n                    </p>\r\n                    <p><strong><span style=\"\"color: #993300;\"\">無毒農業的新未來</span></strong></p>\r\n                    <p>蘇姊表示，從小看長輩使用慣行農法，然而現在草生栽培和無毒農業觀念日漸普遍，她也樂見有越來越多許多在外地打拼的老友退休返鄉後，便跟隨在地農友的腳步投入無毒栽種，希望未來有優秀的農友互相交流，一起邁步向前走，創造竹山在地無毒農業的新未來。\r\n                    </p>\r\n                    <p><img src=\"\"https://www.yooho.com.tw/images/upload/Image/Nantou-sweetpotato-tax4-2.JPG\"\" width=\"\"600\"\"\r\n                            height=\"\"400\"\" alt=\"\"\"\"></p>\r\n                    <p style=\"\"color:#888\"\">▲綠葉紅骨的是台農64號地瓜，表皮呈淡棕黃色，肉則呈深橙紅色。</p>\r\n', '2023-09-11 13:41:05', 4, '地瓜'),
+(18, '蠔油悶苦瓜', 'https://imageproxy.icook.network/resize?background=255%2C255%2C255&nocrop=true&stripmeta=true&type=auto&url=http%3A%2F%2Ftokyo-kitchen.icook.tw.s3.amazonaws.com%2Fuploads%2Frecipe%2Fcover%2F443176%2Fe500b17666b2cda3.jpg&width=443', '肝臟都有極大的幫助，但很多朋友對於它的苦卻不能接受，如果沒有苦過怎能感受到回甘的滋味呢!小廚選用', '2023-09-11 13:41:05', 3, '苦瓜'),
+(19, '百香果奶酪', 'https://d3l76hx23vw40a.cloudfront.net/recipe/webp/bk151-042b.webp', '奶酪的樸質沒有華麗裝飾醇濃飽滿就足以難忘慢火熬煮百香果醬金黃透亮為樸實內在覆上閃爍頭紗酸甜而濃郁化', '2023-09-11 13:41:05', 3, '百香果'),
+(20, '涼拌茄子', 'https://imageproxy.icook.network/resize?background=255%2C255%2C255&nocrop=true&stripmeta=true&type=auto&url=http%3A%2F%2Ftokyo-kitchen.icook.tw.s3.amazonaws.com%2Fuploads%2Frecipe%2Fcover%2F439956%2F8e423410d313a9d3.jpg&width=443', '茄子去頭尾蒂頭，再對切成兩大段（鍋子可放得下的大小）洗淨備用。 · 取一鍋水，待水滾後加入一大匙沙拉', '2023-09-11 13:41:05', 3, '茄子'),
+(21, '塔香蕃茄涼拌筍', 'https://imageproxy.icook.network/resize?background=255%2C255%2C255&nocrop=true&stripmeta=true&type=auto&url=http%3A%2F%2Ftokyo-kitchen.icook.tw.s3.amazonaws.com%2Fuploads%2Frecipe%2Fcover%2F112980%2F5bbb81e1032eba71.jpg&width=443', '今日分享的涼拌筍料理，其實是搭配上簡易版的莎莎醬。 這樣吃起來的涼拌筍一樣清脆爽口，且無損筍子本身的', '2023-09-11 13:41:05', 3, '番茄竹筍'),
+(22, '一根玉米的熱量、營養成分？吃玉米的功效、好處大公開', 'https://imgs.gvm.com.tw/upload/gallery/20220531/105800.jpg', '在許多料理中，玉米常以配菜的角色出現在餐桌上，讓不少人以為玉米是蔬菜；但其實玉米屬於五榖根莖類，吃1根大約等於8分滿的飯量，因此可以做為主食並代替白米飯。此外', '2023-09-13 23:22:45', 2, '玉米'),
+(23, '玉米不是只含澱粉！玉米黃素護眼超讚，玉米3大營養功效不吃可惜', 'https://images.agriharvest.tw/wp-content/uploads/2022/09/1-23-1024x768.jpg', '夜市常見的烤玉米或水煮玉米，不僅是廣受大人小孩喜愛零食，其本身也擁有多種營養功效。例如玉米蘊含「植化素」有助對抗癌症，而玉米黃素則有益眼睛健康。', '2023-09-13 23:24:28', 2, '玉米'),
+(24, '「全穀類之王」營養密度是白飯6倍！玉米看這3處挑最甜最新鮮', 'https://tokyo-kitchen.icook.network/uploads/step/cover/775561/d21309cc2aa8e2cb.jpg', '台灣營養基金會副執行長陳巧明曾指出，玉米的營養素眾多，富含維生素A、維生素C、維生素E、葉黃素、玉米黃素、α-胡蘿蔔素及鐵、鈣、鎂、鉀，等營養素及礦物質。而玉米的。', '2023-09-13 23:25:50', 2, '玉米'),
+(25, '起司奶油玉米杯', 'https://imageproxy.icook.network/resize?background=255%2C255%2C255&nocrop=true&stripmeta=true&type=auto&url=http%3A%2F%2Ftokyo-kitchen.icook.tw.s3.amazonaws.com%2Fuploads%2Frecipe%2Fcover%2F446104%2F42f4cb9054543b07.jpg&width=443', '烤肉就是要來點甜食，解解膩…這起司奶油玉米杯，是一道很棒的甜點喔', '2023-09-13 23:28:16', 3, '玉米'),
+(26, '陽光下的玉米小農-鹿野鄉郭怡君', 'https://cdn2.ettoday.net/images/4974/d4974787.jpg', '郭怡君善用網路平台增加曝光度，建立自有Facebook粉絲頁─鹿野小農水果玉米品牌，將日常農事分享粉絲，拉近與消費者的距離，逐漸打開品牌知名度，並累積不少支持的顧客。', '2023-09-13 23:29:52', 4, '玉米'),
+(27, '【玉米圖鑑】白玉米甜玉米糯玉米你愛吃哪一種？玉米顏色為何多彩？來看玉米的10個秘密', 'https://www.newsmarket.com.tw/files/2021/09/%E7%8E%89%E7%B1%B3%E5%AE%B6%E6%97%8F%E5%9C%96-r.jpg', '「感謝玉米神賜我糧食。」這可能是數千年前馬雅人的謝飯禱告，玉米至今仍是全球重要糧食，全球一年生產10億公噸的玉米、有三成人口以玉米為主食，玉米在地球擁有自己的日不落帝國，從早餐的玉米穀片、便當店的配菜、速食店裡的玉米濃湯、電影院的爆米花、夜市燒烤玉米都有其蹤跡，近年來連生質能也會用到玉米。', '2023-09-13 23:33:58', 1, '玉米');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `atckeep`
+--
+
+CREATE TABLE `atckeep` (
+  `uid` int(11) NOT NULL,
+  `atcid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 傾印資料表的資料 `atckeep`
+--
+
+INSERT INTO `atckeep` (`uid`, `atcid`) VALUES
+(1004, 14),
+(1004, 18),
+(1004, 9),
+(1004, 10),
+(1004, 4);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `atclike`
+--
+
+CREATE TABLE `atclike` (
+  `uid` int(11) NOT NULL,
+  `atcid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 傾印資料表的資料 `atclike`
+--
+
+INSERT INTO `atclike` (`uid`, `atcid`) VALUES
+(1004, 2),
+(1004, 5),
+(1004, 19),
+(1004, 6),
+(1004, 3);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `atcxtag`
+--
+
+CREATE TABLE `atcxtag` (
+  `atcid` int(11) NOT NULL,
+  `tagid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 傾印資料表的資料 `atcxtag`
+--
+
+INSERT INTO `atcxtag` (`atcid`, `tagid`) VALUES
+(1, 1),
+(1, 18),
+(1, 27),
+(1, 10),
+(2, 2),
+(2, 1),
+(3, 3),
+(3, 19),
+(4, 4),
+(4, 20),
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 8),
+(8, 22),
+(9, 9),
+(9, 23),
+(9, 25),
+(9, 26),
+(10, 10),
+(11, 10),
+(12, 10),
+(13, 10),
+(14, 10),
+(15, 11),
+(15, 24),
+(16, 12),
+(16, 10),
+(17, 13),
+(18, 14),
+(19, 15),
+(20, 16),
+(21, 17),
+(21, 28),
+(22, 7),
+(23, 7),
+(24, 7),
+(25, 7),
+(26, 7),
+(27, 7);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `cardtype`
+--
+
+CREATE TABLE `cardtype` (
+  `ctId` int(2) NOT NULL,
+  `cardname` varchar(16) NOT NULL,
+  `cardimg` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- 傾印資料表的資料 `cardtype`
+--
+
+INSERT INTO `cardtype` (`ctId`, `cardname`, `cardimg`) VALUES
+(3, 'JCB', 'img/jcb.png'),
+(4, 'VISA', 'img/visa.png'),
+(5, 'Master Card', 'img/mastercard2.png');
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `cart`
 --
 
@@ -73,6 +291,29 @@ CREATE TABLE `cart` (
   `c_status` varchar(10) NOT NULL DEFAULT 'active',
   `fid` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `comment`
+--
+
+CREATE TABLE `comment` (
+  `cmtid` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `atcid` int(11) NOT NULL,
+  `cmtText` varchar(300) NOT NULL,
+  `cmtTime` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 傾印資料表的資料 `comment`
+--
+
+INSERT INTO `comment` (`cmtid`, `uid`, `atcid`, `cmtText`, `cmtTime`) VALUES
+(1, 1001, 1, '漲知識了!', '2023-09-11 00:31:05'),
+(2, 1002, 1, '原來鳳梨酵素那麼厲害!', '2023-09-11 00:31:05'),
+(3, 1001, 17, '買過蘇姊的地瓜好好吃!', '2023-09-11 00:31:54');
 
 -- --------------------------------------------------------
 
@@ -912,6 +1153,51 @@ INSERT INTO `supportmsg` (`replyId`, `Msg`, `Time`) VALUES
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `tag`
+--
+
+CREATE TABLE `tag` (
+  `tagid` int(11) NOT NULL,
+  `tagname` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 傾印資料表的資料 `tag`
+--
+
+INSERT INTO `tag` (`tagid`, `tagname`) VALUES
+(1, '排毒'),
+(2, '疲倦'),
+(3, '桑椹'),
+(4, '秋葵'),
+(5, '梨子'),
+(6, '香蕉'),
+(7, '玉米'),
+(8, '柑橘'),
+(9, '紅棗'),
+(10, '鳳梨'),
+(11, '梅子'),
+(12, '西瓜'),
+(13, '地瓜'),
+(14, '苦瓜'),
+(15, '百香果'),
+(16, '茄子'),
+(17, '番茄'),
+(18, '鳳梨酵素'),
+(19, '果醬'),
+(20, '蘋果'),
+(21, '玉米鬚'),
+(22, '橘皮'),
+(23, '菠菜'),
+(24, '青梅'),
+(25, '芝麻'),
+(26, '葡萄'),
+(27, '蛋白酶'),
+(28, '竹筍');
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `temp_coupon`
 --
 
@@ -1121,6 +1407,28 @@ INSERT INTO `usermsg` (`uId`, `msgType`, `Msg`, `Img`, `Time`, `replyId`) VALUES
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `ushopaddress`
+--
+
+CREATE TABLE `ushopaddress` (
+  `uId` int(11) NOT NULL,
+  `sId` int(11) NOT NULL,
+  `shopName` varchar(16) NOT NULL,
+  `Name` varchar(16) NOT NULL,
+  `Phone` varchar(16) NOT NULL,
+  `address` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- 傾印資料表的資料 `ushopaddress`
+--
+
+INSERT INTO `ushopaddress` (`uId`, `sId`, `shopName`, `Name`, `Phone`, `address`) VALUES
+(1001, 134523, '台中黎明店', '王媽媽', '0923515377', '台中市南屯區三厝里黎明路二段406號');
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `vgorder`
 --
 
@@ -1206,10 +1514,34 @@ ALTER TABLE `activity`
   ADD PRIMARY KEY (`product`);
 
 --
+-- 資料表索引 `activityboard`
+--
+ALTER TABLE `activityboard`
+  ADD PRIMARY KEY (`actid`);
+
+--
+-- 資料表索引 `activitylotto`
+--
+ALTER TABLE `activitylotto`
+  ADD PRIMARY KEY (`lottoid`);
+
+--
+-- 資料表索引 `article`
+--
+ALTER TABLE `article`
+  ADD PRIMARY KEY (`atcid`);
+
+--
 -- 資料表索引 `cart`
 --
 ALTER TABLE `cart`
   ADD UNIQUE KEY `cid` (`cid`);
+
+--
+-- 資料表索引 `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`cmtid`);
 
 --
 -- 資料表索引 `contactform`
@@ -1284,6 +1616,12 @@ ALTER TABLE `supportmsg`
   ADD PRIMARY KEY (`replyId`);
 
 --
+-- 資料表索引 `tag`
+--
+ALTER TABLE `tag`
+  ADD PRIMARY KEY (`tagid`);
+
+--
 -- 資料表索引 `temp_coupon`
 --
 ALTER TABLE `temp_coupon`
@@ -1331,10 +1669,34 @@ ALTER TABLE `wishlist`
 --
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `activityboard`
+--
+ALTER TABLE `activityboard`
+  MODIFY `actid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `activitylotto`
+--
+ALTER TABLE `activitylotto`
+  MODIFY `lottoid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `article`
+--
+ALTER TABLE `article`
+  MODIFY `atcid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `cart`
 --
 ALTER TABLE `cart`
   MODIFY `cid` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `cmtid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `contactform`
@@ -1383,6 +1745,12 @@ ALTER TABLE `sgs`
 --
 ALTER TABLE `supportmsg`
   MODIFY `replyId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `tag`
+--
+ALTER TABLE `tag`
+  MODIFY `tagid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `text`
