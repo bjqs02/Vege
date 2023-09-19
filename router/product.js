@@ -12,13 +12,15 @@ product.get("/", function (req, res) {
     "SELECT product.product, product.category, product.firm, info.season FROM product INNER JOIN info ON product.product = info.product WHERE (product.category = '蔬菜' ) AND (info.season = '9,10,11' OR info.season = '全年' or info.season = '12,1,2'or info.season = '3,4,5');";
   let sql4 =
     "SELECT product.product, product.category, product.firm, info.season FROM product INNER JOIN info ON product.product = info.product WHERE (product.category = '水果' ) AND (info.season = '9,10,11' OR info.season = '全年' or info.season = '12,1,2'or info.season = '3,4,5');";
-
+  let sql5 =
+    "SELECT info.product,info.save,info.note FROM info WHERE info.season ORDER BY RAND() LIMIT 6;";
   let data = {
     names: [],
     images: [],
     con: [],
     veg: [],
     fruit: [],
+    info: [],
   };
 
   mysql.query(sql, function (err, rows) {
@@ -65,9 +67,19 @@ product.get("/", function (req, res) {
             }
 
             data.fruit = rows;
+            mysql.query(sql5, function (err, rows) {
+              if (err) {
+                console.log("提醒取得失敗");
+                console.log(err);
+                res.status(500).send("資料庫錯誤");
+                return;
+              }
 
-            res.render("product", {
-              data: data,
+              data.info = rows;
+
+              res.render("product", {
+                data: data,
+              });
             });
           });
         });
@@ -155,6 +167,19 @@ product.get("/", function (req, res) {
       console.error("連接錯誤: " + err.message);
       res.status(500).send("連接錯誤");
     }
+  });
+
+  product.get("/getinfo", (req, res) => {
+    // 执行数据库查询，将结果转为JSON并返回
+    mysql.query(sql5, function (err, rows) {
+      if (err) {
+        console.log("提醒取得失敗");
+        console.log(err);
+        res.status(500).json({ error: "資料庫錯誤" });
+        return;
+      }
+      res.json(rows); // Assuming rows is an array of objects
+    });
   });
 });
 

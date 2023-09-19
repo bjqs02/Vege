@@ -21,11 +21,6 @@
         <section class="main-box">
           <section class="middleContent d-flex">
             <aside class="asideNav fu_tab">
-              <div class="smtext">
-                <div class="smtext1">
-                  <h5 class="vg-h5">貼心小提醒</h5>
-                </div>
-              </div>
               <ul class="asideNav-ul" id="parentElement">
                 <% for (let i = 0; i < data.names.length; i++) { %>
                 <li class="vg-bd-5">
@@ -69,14 +64,27 @@
                     <img class="ch" src="<%= data.images[i].image %>" />
                     <% } %>
                   </div>
+                  <div id="smtextContent" class="smtext">
+                    <h5 class="vg-h4">貼心提醒</h5>
+                    <p class="vg-h5">
+                      蔬果:<span id="productInfo" class="vg-p ms-2"></span>
+                    </p>
+                    <p class="vg-h5">
+                      保存方法:<span id="saveInfo" class="vg-p ms-2"></span>
+                    </p>
+                    <p class="vg-h5">
+                      注意事項:<span id="noteInfo" class="vg-p ms-2"></span>
+                    </p>
+                  </div>
                 </div>
+
                 <% if(data.con[t].product === data.con[6].product) { %>
                 <div class="middle_Con">
                   <h5 class="vg-h5">菜單特色:</h5>
                   <p><%= data.con[t].feature %></p>
                   <h5 class="vg-h5">蔬果內容:</h5>
                   <div class="div_2">
-                    <p>雙人箱 <%= data.con[t].content %></p>
+                    <p class="p-0 m-0">每箱 <%= data.con[t].content %></p>
                   </div>
                   <p>
                     (內容以當季蔬菜組裝出貨) <br />運費根據黑貓低溫配送基本價
@@ -181,20 +189,16 @@
                     <br />
                     訂購期 60 天 (需於90天內配送完畢 &含延後2次)
                   </p>
-                  <h5 class="vg-h5">訂閱優惠</h5>
-                  <p class="text-danger">
-                    選每周一次或雙周一次享有運費優惠！！
-                  </p>
+                  <h5 class="vg-h5">
+                    訂閱優惠
+                    <span class="text-danger vg-p sp2">
+                      選每周一次或雙周一次享有運費優惠！！
+                    </span>
+                  </h5>
+
+                  <p>30day一期運費160元 <br />60day 一期運費290元</p>
+
                   <h5 class="vg-h5">價格:</h5>
-                  <p>30day一期運費160元 、60day 一期運費290元</p>
-                  <label for="commodity" class="vg-h5">商品規格</label>
-                  <select class="commodity">
-                    <option value="30d" data-size="s">雙人箱(30day)</option>
-                    <option value="60d" data-size="l">雙人箱(60day)</option>
-                    <option value="30d" data-size="s">家庭箱(30day)</option>
-                    <option value="60d" data-size="l">家庭箱(60day)</option>
-                  </select>
-                  <br />
                   <p>
                     <span>
                       單箱最低金額:<span class="price1">
@@ -208,7 +212,17 @@
                       >元
                     </span>
                   </p>
-                  <p>單箱: <span class="toal"></span></p>
+                  <h5 class="vg-h5">選擇商品規格:</h5>
+                  <label for="commodity" class="vg-h5">商品規格</label>
+                  <select class="commodity">
+                    <option value="30d" data-size="s">雙人箱(30day)</option>
+                    <option value="60d" data-size="l">雙人箱(60day)</option>
+                    <option value="30d" data-size="s">家庭箱(30day)</option>
+                    <option value="60d" data-size="l">家庭箱(60day)</option>
+                  </select>
+                  <br />
+
+                  <p>單箱價格: <span class="toal"></span></p>
                   <p>總金額: <span class="toal2 price4"></span></p>
                   <div class="fv_box vg-bd-5">
                     <div class="vg-bd-5 mo_con">
@@ -304,7 +318,7 @@
                     >元
                   </p>
                   <h5 class="vg-h5">選擇商品規格:</h5>
-                  <label for="commodity">選擇商品:</label>
+                  <label for="commodity" class="mt-2">選擇商品:</label>
                   <select class="commodity">
                     <option></option>
                     <option value="once" data-size="s">雙人箱(1~2人)</option>
