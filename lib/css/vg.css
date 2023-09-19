@@ -575,7 +575,7 @@
   .vg-nav .icon:last-child {
     display: none;
     font-size: 35px;
-    margin-right: 10px;
+    margin-right: 5px;
     color: var(--primary-1);
   }
   
@@ -1263,8 +1263,10 @@
       float: right;
       display: block;
       position: fixed;
+      padding: 0;
+      margin: 0;
       right: 10px;
-      top: 10px;
+      top: 4px;
     }
   
     .vg-nav.responsive {
@@ -1273,8 +1275,8 @@
   
     .vg-nav.responsive .icon:last-child {
       position: fixed;
-      right: 10px;
-      top: 10px;
+      right: 8px;
+      top: 4px;
     }
   
     .vg-nav.responsive a,
@@ -1297,11 +1299,21 @@
       width: 0;
     }
   
+    #logoutBTN {
+      padding: 3px 0;
+      right: 170px;
+    }
+
+    #userName {
+      top: 40px;
+      right: 172px;
+    }
+
     #navCart,
     #navUser {
       width: 45px;
       height: 45px;
-      margin-top: 9px;
+      margin-top: 4px;
       margin-bottom: 0;
       top: 3px;
       right: 65px;
@@ -1312,6 +1324,10 @@
       right: 110px;
     }
   
+    #navUser.login {
+      right: 115px;
+    }
+
     #navCart .bag-count {
       width: 18px;
       height: 18px;
@@ -1413,8 +1429,8 @@
         display: block;
         position: absolute;
         /* z-index: 5; */
-        right: -5px;;
-        margin-top: -10px;
+        right: 14px;;
+        margin-top: -13px;
     }
 
 
@@ -1432,13 +1448,13 @@
       .vg-navbar-2.responsive a.icon:last-child {
         display: block;
         position: absolute;
-        right: -5px;
-        top: 0;        
-        margin-top: -10px;
+        right: 14px;  
+        margin-top: -13px;
       }
 
     .vg-navbar-2 {
         padding: 0px !important;
+        top: 58px;
     }
 
     .vg-navbar-2.responsive.vg-sticky  {
