@@ -46,7 +46,7 @@
                 <div class="row align-items-center">
                     <div class="col-7 form-floating mb-3">
                         <input type="text" class="form-control ps-5" id="floatingInput" placeholder="姓名"
-                            style="letter-spacing: 1px;" name="name" >
+                            style="letter-spacing: 1px;" name="name">
                         <label for="floatingInput" class="ms-3">姓名 </label>
                     </div>
                     <span class="col-5 vg-p pb-3">
@@ -93,17 +93,23 @@
                     var userToken = userData ? JSON.parse(userData) : false;
                     let userId = userToken.id;
 
-                    if(userToken) {
-                        console.log(userToken.name);
-                        console.log(userToken);
-                        document.querySelector('#floatingInput').value = userToken.name;
-                        document.querySelector('#floatingTel').value = userToken.phone;
-                        document.querySelector('#floatingEmail').value = userToken.email;
-                        if(userToken.gender == 'M') {
-                            document.querySelector('#mr').checked = true;
-                        } 
-                        
+                    if (userToken) {
+                        fetch(`/login/user/${userId}`)
+                            .then(function (res) {
+                                return res.json();
+
+                            })
+                            .then(function (jsonObj) {
+                                console.log(jsonObj)
+                                document.querySelector('#floatingInput').value = jsonObj.Name;
+                                document.querySelector('#floatingTel').value = jsonObj.Phone;
+                                document.querySelector('#floatingEmail').value = jsonObj.Email;
+                                if (jsonObj.Gender == 'M') {
+                                    document.querySelector('#mr').checked = true;
+                                }
+                            })
                     }
+
 
 
                     $('#floatingInput, #floatingSubject, #floatingTextarea2').on({

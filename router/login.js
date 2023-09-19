@@ -33,6 +33,18 @@ login.get('/register', function (req, res) {
     res.render('register');
 })
 
+login.get('/user/:id', function(req, res){
+    db.query('select * from userinfo where uid = ?', [req.params.id], function(err, userinfo){
+        if(err) {
+            console.log('抓用戶資料失敗');
+            console.log(err);
+        } else {
+            console.log('抓用戶資料成功');
+            res.json(userinfo[0]);
+        }
+    })
+})
+
 login.post('/register', jp, async function (req, res) {
     var body = req.body;
     const pwd = body.pwd;
