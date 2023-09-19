@@ -29,13 +29,15 @@ header {
   }
 }
 header main#product_main {
-  display: flex;
-  flex-direction: column;
+  background-color: var(--primary-L);;
+
 }
 @media screen and (max-width: 1100px) {
   header main#product_main {
     width: 100%;
     height: 100%;
+  background-color: var(--primary-L);;
+
   }
 }
 header main#product_main section.main-box {
@@ -49,11 +51,10 @@ header main#product_main section.main-box {
   }
 }
 header main#product_main section.main-box aside.asideNav {
-  width: 40%;
+  width: 30%;
   display: flex;
-  justify-content: center;
-  align-items: center;
   text-align: center;
+  flex-direction: column;
 }
 
 @media screen and (max-width: 1100px) {
@@ -64,21 +65,45 @@ header main#product_main section.main-box aside.asideNav {
     width: 100%;
   }
 }
+
+.smtext{
+    margin-top: 35px;
+}
+.smtext1{
+  width: 100%;
+  margin: 20px;
+  height: 300px;
+  background-color:rgb(251,249,237) ;
+  border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 header main#product_main section.main-box aside.asideNav ul.asideNav-ul {
-  display: flex;
+  /* display: flex;  */
   padding: 0;
   list-style-type: none;
-  flex-direction: column;
+  /* flex-direction: column; */
   width: 100%;
 }
-@media screen and (max-width: 1100px) {
+/* @media screen and (max-width: 1100px) {
   header main#product_main section.main-box aside.asideNav ul.asideNav-ul {
     justify-content: center;
     align-items: center;
     width: 100%;
     margin-top: 20px;
   }
-}
+} */
 header main#product_main section.main-box aside.asideNav ul.asideNav-ul li {
   width: 100%;
 }
@@ -170,7 +195,21 @@ header
 div.middle_box {
   background-color: var(--primary-L);
   display: flex;
+  width: 100%;
 }
+
+header
+main#product_main
+section.main-box
+section.middleContent
+section.middle_box1
+div.middle_box
+div.vg-h3-div
+h3 {
+padding: 0;
+margin-left:10px;
+}
+
 
 @media screen and (max-width: 1100px) {
   header
@@ -200,9 +239,10 @@ div.middle_box {
     section.middleContent
     section.middle_box1
     div.middle_box
+    div.vg-h3-div
     h3 {
     padding: 0;
-    margin: 0;
+    margin:0;
   }
 }
 header
@@ -213,8 +253,8 @@ header
   div.middle_box
   .vg-h3-div {
   display: flex;
-  align-items: center; /* 可选，将按钮垂直居中对齐 */
-  width: 50%; /* 左侧占50%宽度 */
+  align-items: center; 
+  width: 50%;
 }
 header
   main#product_main
@@ -224,6 +264,7 @@ header
   div.middle_box
   .vg-h3-div2 {
   display: flex;
+  width: 100%;
   margin: 10px;
 }
 header
@@ -235,7 +276,7 @@ header
   .vg-h3-div2
   div.box {
   color: white;
-  /* margin: 10px; */
+  margin: 10px;
   /* width: 4rem; */
   /* background-color: var(--bg-2); */
   /* -webkit-clip-path: polygon(
@@ -277,10 +318,7 @@ header
   section.middle_box1
   div.middle_all {
   display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
-  margin-bottom: 20px;
 }
 
 .addCard,
@@ -308,11 +346,12 @@ header
   section.middle_box1
   div.middle_all
   div.middle_Con {
+    background-color: white;
   padding: 10px;
   margin-bottom: 20px;
   color: rgb(0, 0, 0);
-  width: 400px;
-  height: 600px;
+  width: 50%;
+  height: 700px;
 }
 @media screen and (max-width: 1100px) {
   header
@@ -325,7 +364,7 @@ header
     width: 100%;
   }
 }
-header
+/* header
   main#product_main
   section.main-box
   section.middleContent
@@ -334,9 +373,9 @@ header
   div.middle_Con
   div {
   flex-wrap: wrap;
-}
+} */
 
-header
+/* header
   main#product_main
   section.main-box
   section.middleContent
@@ -349,7 +388,7 @@ header
   margin: 5px;
   padding: 5px;
   border: 0.3px solid black;
-}
+} */
 header
   main#product_main
   section.main-box
@@ -357,38 +396,28 @@ header
   section.middle_box1
   div.middle_all
   div.middle_img {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 400px;
-  height: 420px;
-  flex-wrap: wrap;
-}
-header
-  main#product_main
-  section.main-box
-  section.middleContent
-  section.middle_box1
-  div.middle_all
-  div.middle_img
-  button.vg_fru {
-  flex-wrap: wrap;
-  flex-direction: column;
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 20px;
+    color: rgb(0, 0, 0);
+    width: 40%;
+    height: 700px;
+  }
+
+  div.middle_img img {
+    width: 24rem;
+    height: 23rem; 
+    background-size: contain;
+  }
+
+
+div.middle_all .middle_imgs img {
   width: 50px;
-}
-header
-  main#product_main
-  section.main-box
-  section.middleContent
-  section.middle_box1
-  div.middle_all
-  div.middle_img
-  img {
-  width: 22rem;
-  height: 23rem;
+  height: 50px;
   background-size: contain;
+  margin: 1px;
 }
-header
+/* header
   main#product_main
   section.main-box
   section.middleContent
@@ -398,8 +427,8 @@ header
   button {
   margin: 0;
   padding: 0;
-}
-header
+} */
+/* header
   main#product_main
   section.main-box
   section.middleContent
@@ -408,8 +437,8 @@ header
   div.middle_img
   div.middle_imgs {
   background-size: contain;
-}
-@media screen and (max-width: 1100px) {
+} */
+/* @media screen and (max-width: 1100px) {
   header
     main#product_main
     section.main-box
@@ -421,20 +450,8 @@ header
     display: flex;
     background-size: contain;
   }
-}
-header
-  main#product_main
-  section.main-box
-  section.middleContent
-  section.middle_box1
-  div.middle_all
-  div.middle_img
-  div.middle_imgs
-  img {
-  width: 50px;
-  height: 50px;
-  background-size: contain;
-}
+} */
+
 @media screen and (max-width: 1100px) {
   header
     main#product_main
@@ -445,16 +462,20 @@ header
     div.middle_img
     div.middle_imgs
     img {
-    margin-left: 10px;
+    margin-left: 5px;
+
   }
 }
-#show {
+/* #show {
   display: line;
-}
+} */
 
 /* 图片点击效果 */
 img:hover {
   cursor: pointer;
+  transform: scale(1.1); /* 或者其他比例，1 表示不变，大于 1 放大，小于 1 缩小 */
+  border: 1px solid var(--primary-2);
+  margin: 3px;
 } /*# sourceMappingURL=Product_Page.css.map */
 
 .black {
@@ -541,3 +562,40 @@ strong.over {
 .fu_nav:hover {
   background-color: var(--primary-2);
 }
+
+h5{
+  border-bottom:2px var(--primary-2) solid ;
+  padding-bottom:5px 
+}
+
+.div_2{
+  border: 0.3px solid  var(--primary-1);
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin-bottom: 10px;
+
+}
+
+
+.sp1{
+  margin-right: 30px;
+}
+.sp2{
+  margin-left: 30px;
+}
+
+.commodity{
+  border-radius: 10px;
+border:#0D5946 1px solid;
+margin-bottom: 10px;
+padding: 1px;
+}
+.fa-minus{
+  margin-right: 55px;
+}
+
+/* .brod{
+  border: 0.3px solid black;
+  padding: 2px;
+} */
