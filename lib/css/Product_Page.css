@@ -29,21 +29,18 @@ header {
   }
 }
 header main#product_main {
-  background-color: var(--primary-L);;
-
+  background-color: var(--primary-L);
 }
 @media screen and (max-width: 1100px) {
   header main#product_main {
     width: 100%;
     height: 100%;
-  background-color: var(--primary-L);;
-
+    background-color: var(--primary-L);
   }
 }
 header main#product_main section.main-box {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
 }
 @media screen and (max-width: 1100px) {
   header main#product_main section.main-box {
@@ -66,28 +63,17 @@ header main#product_main section.main-box aside.asideNav {
   }
 }
 
-.smtext{
-    margin-top: 35px;
+.smtext {
+  margin-top: 35px;
 }
-.smtext1{
+.smtext1 {
   width: 100%;
-  margin: 20px;
-  height: 300px;
-  background-color:rgb(251,249,237) ;
+  height: 200px;
+  background-color: rgb(251, 249, 237);
   border-radius: 10px;
+
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 header main#product_main section.main-box aside.asideNav ul.asideNav-ul {
   /* display: flex;  */
@@ -199,17 +185,16 @@ div.middle_box {
 }
 
 header
-main#product_main
-section.main-box
-section.middleContent
-section.middle_box1
-div.middle_box
-div.vg-h3-div
-h3 {
-padding: 0;
-margin-left:10px;
+  main#product_main
+  section.main-box
+  section.middleContent
+  section.middle_box1
+  div.middle_box
+  div.vg-h3-div
+  h3 {
+  padding: 0;
+  margin-left: 10px;
 }
-
 
 @media screen and (max-width: 1100px) {
   header
@@ -242,7 +227,7 @@ margin-left:10px;
     div.vg-h3-div
     h3 {
     padding: 0;
-    margin:0;
+    margin: 0;
   }
 }
 header
@@ -253,7 +238,7 @@ header
   div.middle_box
   .vg-h3-div {
   display: flex;
-  align-items: center; 
+  align-items: center;
   width: 50%;
 }
 header
@@ -346,7 +331,7 @@ header
   section.middle_box1
   div.middle_all
   div.middle_Con {
-    background-color: white;
+  background-color: white;
   padding: 10px;
   margin-bottom: 20px;
   color: rgb(0, 0, 0);
@@ -396,26 +381,25 @@ header
   section.middle_box1
   div.middle_all
   div.middle_img {
-    background-color: white;
-    padding: 10px;
-    margin-bottom: 20px;
-    color: rgb(0, 0, 0);
-    width: 40%;
-    height: 700px;
-  }
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 20px;
+  color: rgb(0, 0, 0);
+  width: 40%;
+  height: 700px;
+}
 
-  div.middle_img img {
-    width: 24rem;
-    height: 23rem; 
-    background-size: contain;
-  }
-
+div.middle_img img {
+  width: 20rem;
+  height: 23rem;
+  background-size: contain;
+}
 
 div.middle_all .middle_imgs img {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   background-size: contain;
-  margin: 1px;
+  margin-left: 5px;
 }
 /* header
   main#product_main
@@ -428,7 +412,7 @@ div.middle_all .middle_imgs img {
   margin: 0;
   padding: 0;
 } */
-/* header
+header
   main#product_main
   section.main-box
   section.middleContent
@@ -437,7 +421,7 @@ div.middle_all .middle_imgs img {
   div.middle_img
   div.middle_imgs {
   background-size: contain;
-} */
+}
 /* @media screen and (max-width: 1100px) {
   header
     main#product_main
@@ -463,7 +447,21 @@ div.middle_all .middle_imgs img {
     div.middle_imgs
     img {
     margin-left: 5px;
+  }
 
+  header
+    main#product_main
+    section.main-box
+    section.middleContent
+    section.middle_box1
+    div.middle_all
+    div.middle_img {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
 /* #show {
@@ -473,7 +471,9 @@ div.middle_all .middle_imgs img {
 /* 图片点击效果 */
 img:hover {
   cursor: pointer;
-  transform: scale(1.1); /* 或者其他比例，1 表示不变，大于 1 放大，小于 1 缩小 */
+  transform: scale(
+    1.1
+  ); /* 或者其他比例，1 表示不变，大于 1 放大，小于 1 缩小 */
   border: 1px solid var(--primary-2);
   margin: 3px;
 } /*# sourceMappingURL=Product_Page.css.map */
@@ -563,35 +563,33 @@ strong.over {
   background-color: var(--primary-2);
 }
 
-h5{
-  border-bottom:2px var(--primary-2) solid ;
-  padding-bottom:5px 
+h5 {
+  border-bottom: 2px var(--primary-2) solid;
+  padding-bottom: 5px;
 }
 
-.div_2{
-  border: 0.3px solid  var(--primary-1);
+.div_2 {
+  border: 0.3px solid var(--primary-1);
   display: flex;
   flex-direction: column;
   padding: 10px;
   margin-bottom: 10px;
-
 }
 
-
-.sp1{
+.sp1 {
   margin-right: 30px;
 }
-.sp2{
+.sp2 {
   margin-left: 30px;
 }
 
-.commodity{
+.commodity {
   border-radius: 10px;
-border:#0D5946 1px solid;
-margin-bottom: 10px;
-padding: 1px;
+  border: #0d5946 1px solid;
+  margin-bottom: 10px;
+  padding: 1px;
 }
-.fa-minus{
+.fa-minus {
   margin-right: 55px;
 }
 
