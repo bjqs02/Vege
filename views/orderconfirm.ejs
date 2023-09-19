@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/img/fruitbox_s.png">
     <title>確認訂單</title>
 
     <!-- vg style -->
@@ -285,7 +286,7 @@
                             $('#billPersonal').remove()
                         }
                         if (res[0].payment == null) {
-                            $('#linepay').remove()
+                            $('#linepay').css('visibility','hidden')
                         }
                         res[0].rName != '' ? (deliveryHome.innerText = '宅配') : (deliveryHome.innerText = '')
                         res[0].convName != '' ? (deliveryConv.innerText = '7-11') : (deliveryConv.innerText = '')
@@ -333,7 +334,7 @@
                         )
 
                         // 串接LINEPAY 金流 (部分完成)
-                        if (linepay.innerText == "linepay") {
+                        if ( linepay.innerText == "linepay" ) {
                             // console.log('linepay')
                             // 轉址linepay v2 服務 (建立訂單)
                             fetch('/payments/linepay/', {
