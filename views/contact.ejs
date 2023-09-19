@@ -46,7 +46,7 @@
                 <div class="row align-items-center">
                     <div class="col-7 form-floating mb-3">
                         <input type="text" class="form-control ps-5" id="floatingInput" placeholder="姓名"
-                            style="letter-spacing: 1px;" name="name">
+                            style="letter-spacing: 1px;" name="name" >
                         <label for="floatingInput" class="ms-3">姓名 </label>
                     </div>
                     <span class="col-5 vg-p pb-3">
@@ -88,128 +88,145 @@
 
             <!-- 以下是script -->
             <%- include('share/vg-main.ejs') %>
-            <script>
-                $('#floatingInput, #floatingSubject, #floatingTextarea2').on({
-                    blur: function () {
-                        // console.log($(this).prop('value'));
-                        if ($(this).prop('value') == '') {
-                            $(this).addClass('is-invalid');
-                        } else {
-                            $(this).addClass('is-valid');
-                        }
-                    },
-                    focus: function () {
-                        $(this).removeClass('is-valid');
-                        $(this).removeClass('is-invalid');
+                <script>
+                    var userData = localStorage.getItem("token");
+                    var userToken = userData ? JSON.parse(userData) : false;
+                    let userId = userToken.id;
+
+                    if(userToken) {
+                        console.log(userToken.name);
+                        console.log(userToken);
+                        document.querySelector('#floatingInput').value = userToken.name;
+                        document.querySelector('#floatingTel').value = userToken.phone;
+                        document.querySelector('#floatingEmail').value = userToken.email;
+                        if(userToken.gender == 'M') {
+                            document.querySelector('#mr').checked = true;
+                        } 
+                        
                     }
-                });
-                $('#floatingTel').on({
-                    blur: function () {
-                        var re = /^09[0-9]{8}$/;
-                        var telVal = $(this).prop('value');
-                        var result = re.test(telVal)
-                        if (result == false || telVal == '') {
-                            $(this).addClass('is-invalid');
-                        } else {
-                            $(this).addClass('is-valid');
+
+
+                    $('#floatingInput, #floatingSubject, #floatingTextarea2').on({
+                        blur: function () {
+                            // console.log($(this).prop('value'));
+                            if ($(this).prop('value') == '') {
+                                $(this).addClass('is-invalid');
+                            } else {
+                                $(this).addClass('is-valid');
+                            }
+                        },
+                        focus: function () {
+                            $(this).removeClass('is-valid');
+                            $(this).removeClass('is-invalid');
                         }
-                    },
-                    focus: function () {
-                        $(this).removeClass('is-valid');
-                        $(this).removeClass('is-invalid');
-                    }
-                });
-                $('#floatingEmail').on({
-                    blur: function () {
-                        var re = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
-                        var mail = $(this).prop('value');
-                        var result = re.test(mail)
-                        if (result == false || mail == '') {
-                            $(this).addClass('is-invalid');
-                            console.log('invalid');
-                        } else {
-                            $(this).addClass('is-valid');
-                            console.log('valid');
+                    });
+                    $('#floatingTel').on({
+                        blur: function () {
+                            var re = /^09[0-9]{8}$/;
+                            var telVal = $(this).prop('value');
+                            var result = re.test(telVal)
+                            if (result == false || telVal == '') {
+                                $(this).addClass('is-invalid');
+                            } else {
+                                $(this).addClass('is-valid');
+                            }
+                        },
+                        focus: function () {
+                            $(this).removeClass('is-valid');
+                            $(this).removeClass('is-invalid');
                         }
-                    },
-                    focus: function () {
-                        $(this).removeClass('is-valid');
-                        $(this).removeClass('is-invalid');
-                    }
-                });
+                    });
+                    $('#floatingEmail').on({
+                        blur: function () {
+                            var re = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+                            var mail = $(this).prop('value');
+                            var result = re.test(mail)
+                            if (result == false || mail == '') {
+                                $(this).addClass('is-invalid');
+                                console.log('invalid');
+                            } else {
+                                $(this).addClass('is-valid');
+                                console.log('valid');
+                            }
+                        },
+                        focus: function () {
+                            $(this).removeClass('is-valid');
+                            $(this).removeClass('is-invalid');
+                        }
+                    });
 
 
-                $('#submit').on('click', function (e) {
-                    e.preventDefault();
-                    var data = $('#contactForm').serializeArray()
-                    JSONData = serializeToJSON(data)
+                    $('#submit').on('click', function (e) {
+                        e.preventDefault();
+                        var data = $('#contactForm').serializeArray()
+                        JSONData = serializeToJSON(data)
 
-                    console.log(data);
-                    var a = $('input, textarea').hasClass('is-invalid');
-                    var b = $('#floatingInput').prop('value');
-                    var c = $('#floatingTel').prop('value');
-                    var d = $('#floatingEmail').prop('value');
-                    var e = $('#floatingSubject').prop('value');
-                    var f = $('#floatingTextarea2').prop('value');
-                    if (a == true || b == '' || c == '' || d == '' || e == '' || f == '') {
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'center',
-                            showConfirmButton: false,
-                            timer: 3000,
-                            timerProgressBar: false,
-                        })
-                        Toast.fire({
-                            icon: 'error',
-                            title: '訊息送出失敗...<br>請確認所有欄位都填寫正確。',                                    
-                        })
-                    } else {
-                        // $('#successMsg').slideDown(1000);
-                        // setTimeout(function () {
-                        //     $('#successMsg').slideUp(1000);
-                        // }, 3000);
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'center',
-                            showConfirmButton: false,
-                            timer: 3000,
-                            timerProgressBar: false,
-                        })
+                        console.log(data);
+                        var a = $('input, textarea').hasClass('is-invalid');
+                        var b = $('#floatingInput').prop('value');
+                        var c = $('#floatingTel').prop('value');
+                        var d = $('#floatingEmail').prop('value');
+                        var e = $('#floatingSubject').prop('value');
+                        var f = $('#floatingTextarea2').prop('value');
+                        if (a == true || b == '' || c == '' || d == '' || e == '' || f == '') {
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'center',
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: false,
+                            })
+                            Toast.fire({
+                                icon: 'error',
+                                title: '訊息送出失敗...<br>請確認所有欄位都填寫正確。',
+                            })
+                        } else {
+                            // $('#successMsg').slideDown(1000);
+                            // setTimeout(function () {
+                            //     $('#successMsg').slideUp(1000);
+                            // }, 3000);
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'center',
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: false,
+                            })
 
-                        Toast.fire({
-                            icon: 'success',
-                            title: '訊息送出成功! <br>我們會盡速與您聯絡，請留意您的信箱。'
-                        })
+                            Toast.fire({
+                                icon: 'success',
+                                title: '訊息送出成功! <br>我們會盡速與您聯絡，請留意您的信箱。'
+                            })
 
-                        // 舊寫法
-                        // var xhttp = new XMLHttpRequest();
-                        // xhttp.open("POST", "/contact", true);
-                        // xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-                        // console.log(JSONData);
-                        // xhttp.send(JSONData);
+                            // 舊寫法
+                            // var xhttp = new XMLHttpRequest();
+                            // xhttp.open("POST", "/contact", true);
+                            // xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                            // console.log(JSONData);
+                            // xhttp.send(JSONData);
 
-                        // 新寫法
-                        fetch('/contact', {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json;charset=UTF-8"
-                            },
-                            body: JSONData
-                        })
+                            // 新寫法
+                            fetch('/contact', {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json;charset=UTF-8"
+                                },
+                                body: JSONData
+                            })
 
-                        setTimeout(function(){
+                            setTimeout(function () {
                                 location.reload();
                             }, 1000);
-                    }
-
-
-                    function serializeToJSON(data) {
-                        var values = {};
-                        for (index in data) {
-                            values[data[index].name] = data[index].value;
                         }
-                        return JSON.stringify(values)
-                    }
-                })
 
-            </script>
+
+                        function serializeToJSON(data) {
+                            var values = {};
+                            for (index in data) {
+                                values[data[index].name] = data[index].value;
+                            }
+                            return JSON.stringify(values)
+                        }
+                    })
+
+                </script>

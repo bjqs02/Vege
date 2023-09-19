@@ -14,7 +14,8 @@ contact.post('/', jp, function(req, res){
     var data = [body.name, body.tel, body.mail, body.subject, body.message];
     db.query(sql, data, function(err, fields) {
         if (err) {
-            console.log("QQ 沒放進資料庫喔...")
+            console.log("QQ 沒放進資料庫喔...");
+            console.log(err);
         } else {
             console.log("成功放進資料庫!!");
         }

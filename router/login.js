@@ -107,7 +107,10 @@ login.post('/userlogin', jp, async function (req, res) {
                     id: resultC[0].uID,
                     name: resultC[0].Name,
                     token: resultC[0].token,
-                    img: resultC[0].Img
+                    img: resultC[0].Img,
+                    email: resultC[0].Email,
+                    gender: resultC[0].Gender,
+                    phone: resultC[0].Phone
                 }
             });
             console.log('登入回傳成功');
