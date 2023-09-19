@@ -90,17 +90,17 @@
 @media (min-width: 720px) {
     #paperplane {
         width: 100px;
-        animation: moveAndRotatePC 5s ease forwards;
+        animation: moveAndRotatePC 8s ease forwards;
     }
 }
 
 @keyframes moveAndRotatePC {
     0% {
-        transform: translateX(-20em) rotate(0deg);
+        transform: translateX(-25em) rotate(0deg);
     }
 
     100% {
-        transform: translateX(8em) rotate(45deg);
+        transform: translateX(11em) rotate(45deg);
     }
 }
 
