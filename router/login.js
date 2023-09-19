@@ -47,12 +47,16 @@ login.get('/user/:id', function(req, res){
 
 login.post('/register', jp, async function (req, res) {
     var body = req.body;
+     
+    // 這個是客戶提供的密碼 將他加鹽hash之後放進資料庫
     const pwd = body.pwd;
     const salt = 10;
     bcrypt.hash(pwd, salt, function (err, hash) {
         if (err) {
-            console.log(err);
+            console.log(err); // hash失敗
         } else {
+
+            // hash 成功
             var sql1 = "INSERT INTO `userLogin` (`Email`, `password`) VALUES (?,?);";
             var sql2 = "SELECT * FROM userlogin where Email = ?;";
             var sql3 = "INSERT INTO `userinfo` (`uID`, `Email`) VALUES (?,?);";
@@ -89,9 +93,12 @@ login.post('/userlogin', jp, async function (req, res) {
     var data = [body.email];
 
     try {
+        // 抓userlogin資料
         const resultA = await db.queryAsync(sql1, data);
         console.log('login sql1 success');
 
+        // password 儲存 密碼進行compare比對後的結果(true|false)
+        // 將userlogin裡的密碼跟 使用者輸入的密碼進行比對
         const passwordMatch = await new Promise((resolve, reject) => {
             bcrypt.compare(body.pwd, resultA[0].password, function (err, result) {
                 if (err) {
@@ -102,6 +109,7 @@ login.post('/userlogin', jp, async function (req, res) {
             });
         });
 
+        // 密碼比對是匹配的 做以下的事情
         if (passwordMatch) {
             const payload = resultA[0].uid;
             var token = jwt.sign({ 'id': payload }, `${process.env.SECRET_KEY}`, { expiresIn: 60 * 60 * 24 });
