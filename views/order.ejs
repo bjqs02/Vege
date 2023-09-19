@@ -96,18 +96,18 @@
                                     <div class="accordion-body">
                                         <nav class="">
                                             <div class="nav nav-tabs row" id="" role="tablist">
-                                                <button class="nav-link col active" id="nav-home-tab"
+                                                <button class="nav-link col nav_home_tab active" id="nav-home-tab"
                                                     data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
                                                     role="tab" aria-controls="nav-home"
                                                     aria-selected="false">宅配</button>
-                                                <button class="nav-link col" id="nav-seven-tab" data-bs-toggle="tab"
+                                                <button class="nav-link nav_seven_tab col" id="nav-seven-tab" data-bs-toggle="tab"
                                                     data-bs-target="#nav-seven" type="button" role="tab"
                                                     aria-controls="nav-seven" aria-selected="true">7-11</button>
                                             </div>
                                         </nav>
                                         <div class="tab-content" id="">
                                             <!-- 宅配 -->
-                                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                                            <div class="tab-pane fade show active nav_home" id="nav-home" role="tabpanel"
                                                 aria-labelledby="nav-home-tab" tabindex="0">
                                                 <div action="" class="needs-validation">
                                                     <div class="float-end me-3">
@@ -179,29 +179,33 @@
                                                 </div>
                                             </div>
                                             <!-- 7-11 -->
-                                            <div class="tab-pane fade show" id="nav-seven" role="tabpanel"
+                                            <div class="tab-pane fade show nav_seven" id="nav-seven" role="tabpanel"
                                                 aria-labelledby="nav-seven-tab" tabindex="0">
                                                 <div action="" class="convenientstore">
+                                                    <div class="w-100 text-end me-4">
+                                                        <input type="checkbox" id="basicdataConv" class="" /><label
+                                                            for="basicdataConv" class="">同訂購資訊</label><br />
+                                                    </div>
                                                     <div class="d-flex">
                                                         <div class="form-floating form-group m-2">
                                                             <input type="text" name="convName" id="sevenName"
-                                                                class="form-control" placeholder="">
-                                                            <label for="sevenName">取貨人姓名</label>
+                                                                class="form-control text-center" placeholder="">
+                                                            <label for="sevenName">姓名</label>
                                                         </div>
                                                         <div class="form-floating form-group m-2">
                                                             <input type="tel" name="convTel" id="sevenTel"
-                                                                class="form-control" pattern="^(09)[0-9]{8}$"
-                                                                placeholder="">
-                                                            <label for="sevenTel">取貨人手機</label>
+                                                                class="form-control text-center"
+                                                                pattern="^(09)[0-9]{8}$" placeholder="">
+                                                            <label for="sevenTel">手機</label>
                                                         </div>
                                                     </div>
                                                     <div>
                                                         <input type="text" name="convStore" id="convStore"
-                                                            value=<%=body.storeid %><%= body.storename %>
-                                                            class="form-control w-50 d-inline my-3" readonly>
-                                                            <a href="https://emap.presco.com.tw/c2cemap.ashx?eshopid=870&&servicetype=1&url=http://127.0.0.1:2407/cvs_callback"
-                                                                class="vg-href w-50 ms-2 d-inline"
-                                                                id="external-link">選擇取貨7-11</a>
+                                                            value=<%=body.storeid + body.storename %>
+                                                        class="form-control w-50 d-inline my-3" readonly>
+                                                        <a href="https://emap.presco.com.tw/c2cemap.ashx?eshopid=870&&servicetype=1&url=http://127.0.0.1:2407/cvs_callback"
+                                                            class="vg-href w-50 ms-2 d-inline" id="external-link"
+                                                            onclick="handleConvCookie()">選擇取貨7-11</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -476,6 +480,7 @@
                 // 設定目前使用者id
                 var uid = userToken.id;
 
+
                 // 連結訂單資料表 vgorder
                 $.get(`/order/items/${uid}`, function (e) {
                     // console.log(e)
@@ -499,6 +504,18 @@
                     items[0].billCompAddr != '' || null ? companyAdd.value = items[0].billCompAddr : companyAdd.value = '';
                     items[0].o_note != '' || null ? o_note.value = items[0].o_note : o_note.value = '';
 
+                    // 如果cookie有超商資料，收件資訊打開7-11頁面並顯示cookie儲存訊息(使用者已輸入過的資訊)
+                    if (convStore.value != "尚未選擇") {
+                        // console.log( convStore.value )
+                        $('.nav_home_tab,.nav_home').removeClass("active")
+                        $('.nav_seven_tab,.nav_seven').addClass("active")
+                        myusername.value = localStorage.getItem('oName');
+                        userTel.value = localStorage.getItem('oTel');
+                        userMail.value = localStorage.getItem('oMail');
+                        sevenName.value = localStorage.getItem('convName');
+                        sevenTel.value = localStorage.getItem('convTel');
+                    }
+
                     var total = 0;
                     var bonus = 0;
                     var coupon = 0;
@@ -508,7 +525,7 @@
                         item.useCoupon == null ? '0' : item.useCoupon;
                         item.c_note == null ? item.c_note = '無備註' : item.c_note;
                         // item.c_option ? item.c_option = item.c_option : item.c_option = ''; 
-                        
+
                         item.size == 's' ? fee = 160 : fee = 290; // 運費 (S-160 L-290)
                         item.size == 's' ? item.size = '雙人箱(1~2人)' : item.size = '家庭箱(3~4人)';
                         if (item.freq == 'once') {
@@ -551,8 +568,8 @@
                         shippingfee += fee;
                         total += item.price;
 
-                        if ( item.c_option.includes(',') ) {
-                            item.c_option = item.c_option.split(',').slice(1,7);
+                        if (item.c_option != null && item.c_option.includes(',')) {
+                            item.c_option = item.c_option.split(',').slice(1, 7);
                             console.log(item.c_option);
                             $(`#${item.product}`).append(`<br/><i class="vg-ps">${item.c_option}</i><br/>`)
                         }
@@ -614,6 +631,12 @@
                         homeName.value = myusername.value
                         homeTel.value = userTel.value
                     })
+
+                    $('#basicdataConv').on('click', function () {
+                        sevenName.value = myusername.value
+                        sevenTel.value = userTel.value
+                    })
+
                     // 點選 信用卡頁籤 自動帶入信用卡號
                     $('#nav-card-tab').on('click', () => {
                         $.get(`/getuserinfo/payment/${uid}`, (res) => {
@@ -735,7 +758,16 @@
                     )
                 }
 
-
+                // 將使用者輸入資訊存入cookie (針對7-11收件)
+                function handleConvCookie() {
+                    // console.log('OK')
+                    // document.cookie = `convTel=${sevenTel.value}; expires=Thu, 01 Jan 1970 00:00:00 UTC; Domain=127.0.0.1; path=/; port=2407`;
+                    localStorage.setItem('oName', myusername.value)
+                    localStorage.setItem('oTel', userTel.value)
+                    localStorage.setItem('oMail', userMail.value)
+                    localStorage.setItem('convName', sevenName.value)
+                    localStorage.setItem('convTel', sevenTel.value)
+                }
 
                 // 從order 前往 確認訂單 的動作
                 function getdetails() {
