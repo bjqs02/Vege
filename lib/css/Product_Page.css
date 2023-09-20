@@ -450,14 +450,14 @@ header
 } */
 
 /* 图片点击效果 */
-img:hover {
+img.mainImg:hover,img.ch:hover {
   cursor: pointer;
   transform: scale(
     1.1
   ); /* 或者其他比例，1 表示不变，大于 1 放大，小于 1 缩小 */
   border: 1px solid var(--primary-2);
   margin: 3px;
-} /*# sourceMappingURL=Product_Page.css.map */
+} 
 
 .black {
   width: 100vw;
@@ -504,11 +504,13 @@ h5.hoh5 {
 
 .f_1 {
   margin: 3px;
+  position: relative;
+
 }
 .cons {
   height: 300px;
   overflow: auto;
-  position: relative;
+
 }
 .body-no-scroll {
   overflow: hidden;
@@ -601,8 +603,17 @@ h5 {
 
 .fa-fire{
   position: absolute;
+  top: -5px;
+  left: -5px;
 }
 .fa-snowflake{
   position: absolute;
-
+  top: -5px;
+  left: -5px;
+}
+.bs{
+  width: 35px;
+  position: absolute;
+  top: -10px;
+  left: -15px;
 }

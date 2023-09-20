@@ -14,7 +14,7 @@
   </head>
   <body>
     <div class="black"></div>
-    <%- include('share/modal') %> <%- include('share/header') %>
+    <%- include('share/header') %> <%- include('share/modal') %>
     <header>
       <main id="product_main">
         <section class="main-box">
@@ -135,10 +135,6 @@
                           <div class="cons">
                             <h5 class="vg-h5"><strong>蔬菜</strong></h5>
                             <% for(let f = 0 ;f < data.veg.length ;f++ ){ %>
-                            <i
-                              class="fa-solid fa-fire"
-                              style="color: #ff0000"
-                            ></i>
 
                             <button class="btn f_1 f_2" data-pay="100">
                               <%= data.veg[f].product %>
@@ -146,10 +142,6 @@
                             <% } %>
                             <h5 class="vg-h5 hoh5"><strong>水果</strong></h5>
                             <% for(let f = 0 ;f < data.fruit.length ;f++ ){ %>
-                            <i
-                              class="fa-solid fa-snowflake"
-                              style="color: #8ea9d7"
-                            ></i>
                             <button class="btn f_1 f_2" data-pay="50">
                               <%= data.fruit[f].product %>
                             </button>
@@ -240,7 +232,7 @@
                       >
                         <h4 class="vg-h4 mb-0">請選擇您喜歡的蔬果</h4>
                         <strong class="over"></strong>
-                        <button type="button" class="btn-close"></button>
+                        <button type="button" class="btn-close bcl"></button>
                       </div>
                       <div class="cons">
                         <h5 class="vg-h5"><strong>蔬菜</strong></h5>
