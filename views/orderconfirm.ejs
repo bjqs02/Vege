@@ -206,7 +206,7 @@
 
                             if ( item.c_option.includes(',') ) {
                             item.c_option = item.c_option.split(',').slice(1,7);
-                            console.log(item.c_option);
+                            // console.log(item.c_option);
                             $(`#${item.product}`).append(`<br/><i class="vg-ps">${item.c_option}</i><br/>`)
                         }
                         })
@@ -220,7 +220,7 @@
                         $('#total').text(shippingfee + total - bonus + coupon)
                     }).then(function (res) {
                         orderid.innerText = res[0].oid;
-                        console.log(res[0])
+                        // console.log(res[0])
 
                         // 修正轉帳日期格式
                         var date = res[0].transDate.split('T')
