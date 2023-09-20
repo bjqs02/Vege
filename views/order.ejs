@@ -491,7 +491,7 @@
                         items = e;
                     }
                     // 訂單內容
-                    console.log(items)
+                    // console.log(items)
 
                     // 若從資訊確認頁面返回修改，帶入已存在資料庫的資料 (付款方式需重新輸入)
                     items[0].oName != '' || null ? myusername.value = items[0].oName : myusername.value = '';
@@ -571,7 +571,7 @@
 
                         if (item.c_option != null && item.c_option.includes(',')) {
                             item.c_option = item.c_option.split(',').slice(1, 7);
-                            console.log(item.c_option);
+                            // console.log(item.c_option);
                             $(`#${item.product}`).append(`<br/><i class="vg-ps">${item.c_option}</i><br/>`)
                         }
                     })
@@ -590,7 +590,7 @@
                     // 點選 同會員資料 的功能
                     $('#memberdata').on('click', () => {
                         $.get(`/getuserinfo/${uid}`, function (res) {
-                            console.log(res[0])
+                            // console.log(res[0])
                             myusername.value = res[0].Name
                             userTel.value = res[0].Phone
                             userMail.value = res[0].Email
@@ -819,7 +819,7 @@
                     // 增加表格以外的資料
                     var alldata = [...formdata, { name: 'oid', value: oid }]
                     var JSONData = serializeToJSON(alldata);
-                    console.log(JSONData);
+                    // console.log(JSONData);
 
                     if (contract.checked && reminder.checked) {
                         fetch(`/editorder/details/${oid}`, {

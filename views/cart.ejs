@@ -194,7 +194,6 @@
                         // }
 
                         function countTotal(items, callback) {
-                            // console.log(res)
                             // 金額試算表格
                             var total = 0;
                             var shippingfee = 0;
@@ -250,7 +249,8 @@
 
                         // 讀取購物車物件
                         $.get(`/cart/item/${uid}`, function (e) {
-                            console.log(e)
+                            // 購物車item一覽
+                            // console.log(e)
                             if (typeof (e) == 'string') {
                                 items = JSON.parse(e);
                             } else {
@@ -561,12 +561,8 @@
                             })
                         }
 
-
-
                         // 讀取願望清單物件
                         $.get(`/cart/wishlist/${uid}`, function (e) {
-                            console.log( 'bb',e ) // []
-                            console.log( 'aa', $('tr[class*="aa"]').length ) // 0
                             if (typeof (e) == 'string') {
                                 items = JSON.parse(e);
                             } else if ( e == '' && $('tr[class*="aa"]').length == 0 ){
@@ -990,7 +986,8 @@
                                 )
                             } else {
                                 var oid = parseInt((Math.random()) * 10000000)
-                                console.log(oid)
+                                // 亂數產生的oid
+                                // console.log(oid)
                                 // 每個item 的 c_status 由 active 轉為 inactive
                                 fetch('/editcart/status/', {
                                     method: 'PATCH',
