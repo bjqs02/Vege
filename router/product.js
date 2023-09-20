@@ -67,19 +67,9 @@ product.get("/", function (req, res) {
             }
 
             data.fruit = rows;
-            mysql.query(sql5, function (err, rows) {
-              if (err) {
-                console.log("提醒取得失敗");
-                console.log(err);
-                res.status(500).send("資料庫錯誤");
-                return;
-              }
 
-              data.info = rows;
-
-              res.render("product", {
-                data: data,
-              });
+            res.render("product", {
+              data: data,
             });
           });
         });
@@ -89,34 +79,36 @@ product.get("/", function (req, res) {
 
   product.use(express.json());
 
-  const { promisify } = require("util");
+  let { promisify } = require("util");
 
-  const queryAsync = promisify(mysql.query).bind(mysql);
+  let queryAsync = promisify(mysql.query).bind(mysql);
 
   product.post("/cardData", async (req, res) => {
-    const cardDataArr = req.body;
+    let cardDataArr = req.body;
 
     try {
-      const dataArray = Object.values(cardDataArr);
-      for (const cardData of dataArray) {
-        const { uid, quantity, c_option, product, size, freq, fid } = cardData;
-        const sql8 =
+      let dataArray = Object.values(cardDataArr);
+      for (let cardData of dataArray) {
+        let { uid, quantity, c_option, product, size, freq, fid } = cardData;
+        let sql8 =
           "SELECT pid FROM product WHERE product = ? and size = ? and freq = ?";
-        const getpid = [product, size, freq];
+        let getpid = [product, size, freq];
 
-        const results = await queryAsync(sql8, getpid);
+        let results = await queryAsync(sql8, getpid);
 
         if (results.length === 0) {
           console.error("找不到產品id");
           return res.status(404).send("找不到產品id");
         }
-
-        const pid = results[0].pid;
+        console.log("product = " + product);
+        console.log("size = " + size);
+        console.log("freq = " + freq);
+        let pid = results[0].pid;
         console.log("取得產品id:", pid);
 
-        const addcart =
+        let addcart =
           "INSERT INTO cart (uid, pid, quantity, c_option, fid) VALUES (?, ?, ?, ?, ?)";
-        const addcartValues = [uid, pid, quantity, c_option, fid];
+        let addcartValues = [uid, pid, quantity, c_option, fid];
 
         await queryAsync(addcart, addcartValues);
       }
