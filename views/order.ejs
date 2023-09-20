@@ -536,6 +536,12 @@
                         } else {
                             item.freq = '雙周一次'
                         }
+
+                         // 設定自選箱價格
+                         if (item.product.includes('自選')) {
+                                    item.price = localStorage.getItem('optionPrice');
+                                }
+
                         item.c_note == null ? item.c_note = '無備註' : item.c_note
                         if (item.size == '雙人箱(1~2人)' && item.freq == '單次購買') {
                             item.price = parseInt(item.price) * item.quantity
@@ -570,7 +576,7 @@
                         total += item.price;
 
                         if (item.c_option != null && item.c_option.includes(',')) {
-                            item.c_option = item.c_option.split(',').slice(1, 7);
+                            item.c_option = item.c_option.split(',').slice(1,);
                             // console.log(item.c_option);
                             $(`#${item.product}`).append(`<br/><i class="vg-ps">${item.c_option}</i><br/>`)
                         }

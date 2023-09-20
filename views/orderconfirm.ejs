@@ -171,6 +171,12 @@
                             } else {
                                 item.freq = '雙周一次'
                             }
+
+                            // 設定自選箱價格
+                            if (item.product.includes('自選')) {
+                                item.price = localStorage.getItem('optionPrice');
+                            }
+
                             item.c_note == null ? item.c_note = '無備註' : item.c_note
                             if (item.size == '雙人箱(1~2人)' && item.freq == '單次購買') {
                                 item.price = parseInt(item.price) * item.quantity
@@ -203,12 +209,12 @@
                             coupon = parseInt(item.useCoupon);
                             shippingfee += fee;
                             total += item.price;
-
-                            if ( item.c_option != null && item.c_option.includes(',') ) {
-                            item.c_option = item.c_option.split(',').slice(1,7);
-                            // console.log(item.c_option);
-                            $(`#${item.product}`).append(`<br/><i class="vg-ps">${item.c_option}</i><br/>`)
-                        }
+                            // console.log(item.c_option)
+                            if (item.c_option != '' && item.c_option.includes(',')) {
+                                item.c_option = item.c_option.split(',').slice(1, 7);
+                                // console.log(item.c_option);
+                                $(`#${item.product}`).append(`<br/><i class="vg-ps">${item.c_option}</i><br/>`)
+                            }
                         })
                         // 運費計算
                         var tdHtml = `    
@@ -286,7 +292,7 @@
                             $('#billPersonal').remove()
                         }
                         if (res[0].payment == null) {
-                            $('#linepay').css('visibility','hidden')
+                            $('#linepay').css('visibility', 'hidden')
                         }
                         res[0].rName != '' ? (deliveryHome.innerText = '宅配') : (deliveryHome.innerText = '')
                         res[0].convName != '' ? (deliveryConv.innerText = '7-11') : (deliveryConv.innerText = '')
@@ -334,7 +340,7 @@
                         )
 
                         // 串接LINEPAY 金流 (部分完成)
-                        if ( linepay.innerText == "linepay" ) {
+                        if (linepay.innerText == "linepay") {
                             // console.log('linepay')
                             // 轉址linepay v2 服務 (建立訂單)
                             fetch('/payments/linepay/', {

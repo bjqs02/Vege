@@ -249,6 +249,19 @@ cart_order.get("/getcoupon/:coupon", function (req, res) {
   });
 });
 
+// 讀取自選箱個別蔬果價格
+cart_order.post("/getitemprice", function (req, res) {
+  // 當價格以資料庫數據為主時
+  // var sql15_2 = "SELECT price FROM product_content WHERE product = ?;"
+  // 當價格在product.ejs寫死 蔬菜100+水果50時
+  var sql15_2 = "SELECT category FROM product WHERE product = ?;"
+  db.query(sql15_2, [req.body.product], function (err, rows) {
+    // console.log((JSON.stringify(rows)))
+    console.log(Object.values(JSON.parse(JSON.stringify(rows))))
+    res.send(Object.values(JSON.parse(JSON.stringify(rows))))
+  });
+});
+
 // order 頁面相關資料庫指令
 // 取得訂購者存放會員資料
 cart_order.get("/getuserinfo/:id", function (req, res) {
