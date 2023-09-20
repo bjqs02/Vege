@@ -65,6 +65,7 @@
                   </div>
                   <div class="smtext">
                     <h5 class="vg-h4">貼心提醒</h5>
+
                     <p class="vg-h5">
                       蔬果:<span class="vg-p ms-2 productInfo"></span>
                     </p>
@@ -134,12 +135,21 @@
                           <div class="cons">
                             <h5 class="vg-h5"><strong>蔬菜</strong></h5>
                             <% for(let f = 0 ;f < data.veg.length ;f++ ){ %>
+                            <i
+                              class="fa-solid fa-fire"
+                              style="color: #ff0000"
+                            ></i>
+
                             <button class="btn f_1 f_2" data-pay="100">
                               <%= data.veg[f].product %>
                             </button>
                             <% } %>
                             <h5 class="vg-h5 hoh5"><strong>水果</strong></h5>
                             <% for(let f = 0 ;f < data.fruit.length ;f++ ){ %>
+                            <i
+                              class="fa-solid fa-snowflake"
+                              style="color: #8ea9d7"
+                            ></i>
                             <button class="btn f_1 f_2" data-pay="50">
                               <%= data.fruit[f].product %>
                             </button>

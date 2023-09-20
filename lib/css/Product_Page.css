@@ -508,6 +508,7 @@ h5.hoh5 {
 .cons {
   height: 300px;
   overflow: auto;
+  position: relative;
 }
 .body-no-scroll {
   overflow: hidden;
@@ -596,4 +597,12 @@ h5 {
   position: absolute;
   right: 0;
   top: 0;
+}
+
+.fa-fire{
+  position: absolute;
+}
+.fa-snowflake{
+  position: absolute;
+
 }
