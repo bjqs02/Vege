@@ -64,7 +64,7 @@
                     <% } %>
                   </div>
                   <div class="smtext">
-                    <h5 class="vg-h4">貼心提醒</h5>
+                    <h5 class="vg-h4">貼心小叮嚀</h5>
 
                     <p class="vg-h5">
                       蔬果:<span class="vg-p ms-2 productInfo"></span>
@@ -118,7 +118,7 @@
                       </select>
                       <br />
                       <p class="p-0 m-0">
-                        總金額: <span class="toal price4"></span>
+                        總金額: <span class="toal price4">0</span>元
                       </p>
                       <div class="fv_box vg-bd-5">
                         <div class="vg-bd-5 mo_con">
@@ -135,7 +135,6 @@
                           <div class="cons">
                             <h5 class="vg-h5"><strong>蔬菜</strong></h5>
                             <% for(let f = 0 ;f < data.veg.length ;f++ ){ %>
-
                             <button class="btn f_1 f_2" data-pay="100">
                               <%= data.veg[f].product %>
                             </button>
@@ -150,6 +149,24 @@
                           <div
                             class="mo_foot d-flex justify-content-end align-items-center"
                           >
+                            <span>圖標:</span>
+                            <span
+                              ><img src="/img/天平.png" class="bas" />平性</span
+                            >
+                            <span>
+                              <i
+                                class="fa-solid fa-fire dd"
+                                style="color: #ff0000"
+                              ></i>
+                              熱性</span
+                            >
+                            <span
+                              ><i
+                                class="fa-solid fa-snowflake dd"
+                                style="color: rgb(142, 169, 215)"
+                              ></i
+                              >寒性</span
+                            >
                             <button class="btn btn-vg goSure">確認</button>
                           </div>
                         </div>
@@ -223,20 +240,15 @@
                   </select>
                   <br />
 
-                  <p>單箱價格: <span class="toal"></span></p>
-                  <p>總金額: <span class="toal2 price4"></span></p>
+                  <p>單箱價格: <span class="toal">0</span>元</p>
+                  <p>總金額: <span class="toal2 price4">0</span>元</p>
                   <div class="fv_box vg-bd-5">
                     <div class="vg-bd-5 mo_con">
                       <div
                         class="mo_header vg-bd-5 d-flex justify-content-between align-items-center"
                       >
                         <h4 class="vg-h4 mb-0">請選擇您喜歡的蔬果</h4>
-                        <!-- <img src="/lib/img/天平.png" class="bs" />
-                        <i class="fa-solid fa-fire" style="color: #ff0000"></i>
-                        <i
-                          class="fa-solid fa-snowflake"
-                          style="color: rgb(142, 169, 215)"
-                        ></i> -->
+
                         <strong class="over"></strong>
                         <button type="button" class="btn-close bcl"></button>
                       </div>
@@ -257,6 +269,22 @@
                       <div
                         class="mo-foot d-flex justify-content-end align-items-center"
                       >
+                        <span>圖標:</span>
+                        <span><img src="/img/天平.png" class="bas" />平性</span>
+                        <span>
+                          <i
+                            class="fa-solid fa-fire dd"
+                            style="color: #ff0000"
+                          ></i>
+                          熱性</span
+                        >
+                        <span
+                          ><i
+                            class="fa-solid fa-snowflake dd"
+                            style="color: rgb(142, 169, 215)"
+                          ></i
+                          >寒性</span
+                        >
                         <button class="btn btn-vg goSure">確認</button>
                       </div>
                     </div>
@@ -278,9 +306,7 @@
                     <strong class="buyfv"></strong>
                   </div>
                   <button class="btn btn-vg chage m-0">選擇蔬果</button>
-                  <button class="btn btn-vg w-50 m-0 addCard">
-                    加入購物車
-                  </button>
+                  <button class="btn btn-vg m-0 addCard">加入購物車</button>
                 </div>
                 <% } else { %>
                 <div class="middle_Con">
@@ -342,9 +368,7 @@
                     class="fa-solid fa-minus btn price3"
                     style="font-size: 10px"
                   ></span>
-                  <button class="addCard btn btn-vg w-50 m-0">
-                    加入購物車
-                  </button>
+                  <button class="addCard btn btn-vg m-0">加入購物車</button>
                 </div>
                 <div class="middle_Con">
                   <h5 class="vg-h5">運送頻率:</h5>
@@ -399,9 +423,7 @@
                     class="fa-solid fa-minus btn price3"
                     style="font-size: 10px"
                   ></span>
-                  <button class="addCard btn btn-vg w-50 m-0">
-                    加入購物車
-                  </button>
+                  <button class="addCard btn btn-vg m-0">加入購物車</button>
                 </div>
                 <% } %>
 

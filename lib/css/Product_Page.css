@@ -62,6 +62,7 @@ header main#product_main section.main-box aside.asideNav {
     justify-content: center;
     align-items: center;
     width: 100%;
+    margin: 0;
   }
 }
 
@@ -285,12 +286,9 @@ header
   div.middle_all {
   display: flex;
   position: relative;
-}
-
-.addCard,
-.chage {
-  position: relative;
-  z-index: 1;
+  -webkit-box-shadow: 6px 7px 8px 3px rgba(0, 0, 0, 0.28);
+  box-shadow: 6px 7px 8px 3px rgba(0, 0, 0, 0.28);
+  margin-bottom: 20px;
 }
 
 @media screen and (max-width: 1100px) {
@@ -314,9 +312,8 @@ header
   div.middle_Con {
   background-color: white;
   padding: 10px;
-  margin-bottom: 20px;
   color: rgb(0, 0, 0);
-  width: 50%;
+  width: 100%;
   height: 700px;
 }
 @media screen and (max-width: 1100px) {
@@ -330,31 +327,7 @@ header
     width: 100%;
   }
 }
-/* header
-  main#product_main
-  section.main-box
-  section.middleContent
-  section.middle_box1
-  div.middle_all
-  div.middle_Con
-  div {
-  flex-wrap: wrap;
-} */
 
-/* header
-  main#product_main
-  section.main-box
-  section.middleContent
-  section.middle_box1
-  div.middle_all
-  div.middle_Con
-  div
-  span {
-  cursor: pointer;
-  margin: 5px;
-  padding: 5px;
-  border: 0.3px solid black;
-} */
 header
   main#product_main
   section.main-box
@@ -363,10 +336,13 @@ header
   div.middle_all
   div.middle_img {
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 10px;
-  margin-bottom: 20px;
   color: rgb(0, 0, 0);
-  width: 40%;
+  width: 100%;
   height: 700px;
 }
 
@@ -450,14 +426,15 @@ header
 } */
 
 /* 图片点击效果 */
-img.mainImg:hover,img.ch:hover {
+img.mainImg:hover,
+img.ch:hover {
   cursor: pointer;
   transform: scale(
     1.1
   ); /* 或者其他比例，1 表示不变，大于 1 放大，小于 1 缩小 */
   border: 1px solid var(--primary-2);
   margin: 3px;
-} 
+}
 
 .black {
   width: 100vw;
@@ -505,12 +482,10 @@ h5.hoh5 {
 .f_1 {
   margin: 3px;
   position: relative;
-
 }
 .cons {
   height: 300px;
   overflow: auto;
-
 }
 .body-no-scroll {
   overflow: hidden;
@@ -595,25 +570,63 @@ h5 {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
 }
 
+@media screen and (max-width: 800px) {
+  header {
+    .smtext {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 300px;
+      height: 200px;
+      border-radius: 14px;
+      padding-left: 20px;
+      background: #fbf9ed;
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    }
+  }
+}
+
 .fa-thumbtack {
   position: absolute;
   right: 0;
   top: 0;
 }
 
-.fa-fire{
+.fa-fire {
   position: absolute;
   top: -5px;
   left: -5px;
 }
-.fa-snowflake{
+.fa-snowflake {
   position: absolute;
   top: -5px;
   left: -5px;
 }
-.bs{
+.bs {
   width: 35px;
   position: absolute;
   top: -10px;
   left: -15px;
+}
+.dd {
+  position: static;
+  margin-left: 10px;
+}
+.bas {
+  width: 35px;
+}
+
+.addCard {
+  position: absolute;
+  z-index: 1;
+  bottom: 20px;
+  right: 20px;
+  width: 150px;
+}
+.chage {
+  position: absolute;
+  bottom: 20px;
+  right: 190px;
+  width: 150px;
 }
