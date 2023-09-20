@@ -204,7 +204,7 @@
                             shippingfee += fee;
                             total += item.price;
 
-                            if ( item.c_option.includes(',') ) {
+                            if ( item.c_option != null && item.c_option.includes(',') ) {
                             item.c_option = item.c_option.split(',').slice(1,7);
                             // console.log(item.c_option);
                             $(`#${item.product}`).append(`<br/><i class="vg-ps">${item.c_option}</i><br/>`)
