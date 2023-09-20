@@ -253,21 +253,14 @@
                             console.log(e)
                             if (typeof (e) == 'string') {
                                 items = JSON.parse(e);
-                            } else if (e == '') {
-                                Swal.fire({
-                                    title: '購物車是空的，請先進行選購',
-                                    icon: 'warning',
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                });
-                                setTimeout(()=>{document.location.href = "/product";},1500)
                             } else {
                                 items = e;
                             }
 
                             $("#cartitems").empty();
                             $.each(items, function (index, item) {
-                                item.c_option ? item.c_option = item.c_option : item.c_option = '';
+                                // 修正內容備註
+                                item.c_option ? item.c_option = item.c_option.split(',').slice(1,8) : item.c_option = '';
                                 item.pname.includes("自選") ? item.pinfo = '' : item.pinfo = item.pinfo;
                                 if (item.size == 's' && item.freq == 'once') {
                                     var trHtml = `
@@ -572,9 +565,20 @@
 
                         // 讀取願望清單物件
                         $.get(`/cart/wishlist/${uid}`, function (e) {
+                            console.log( 'bb',e ) // []
+                            console.log( 'aa', $('tr[class*="aa"]').length ) // 0
                             if (typeof (e) == 'string') {
                                 items = JSON.parse(e);
-                            } else {
+                            } else if ( e == '' && $('tr[class*="aa"]').length == 0 ){
+                                // 購物車與願望清單為空，跳轉回產品頁面
+                                Swal.fire({
+                                    title: '購物車是空的，請先進行選購',
+                                    icon: 'warning',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                setTimeout(()=>{document.location.href = "/product";},1500)
+                            }else {
                                 items = e;
                             }
                             // $("#wishlistitems").empty();
