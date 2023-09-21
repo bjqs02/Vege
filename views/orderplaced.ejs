@@ -66,8 +66,8 @@
                                 <div>
                                     <h5>產品清單</h5>
                                     <hr>
-                                    <table id="myOitems" class="w-100">
-                                        <tr>
+                                    <table class="w-100">
+                                        <tr id="myOitem">
                                             <th>名稱</th>
                                             <th>內容</th>
                                             <th>規格</th>
@@ -154,7 +154,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <!-- <button type="button" class="btn btn-warning" data-dismiss="modal" id="rateOrder">評價訂單</button> -->
+                                <button type="button" class="btn btn-warning" data-dismiss="modal"
+                                    id="rateOrder">評價訂單</button>
                                 <button type="button" class="btn btn-success" id="ordermodalok">確定</button>
                             </div>
                         </div>
@@ -210,8 +211,8 @@
                         orderNumber.innerText = res[0].oid;
                         memberMail.innerText = res[0].oMail;
                         email = res[0].oMail;
-                        oid = res[0].oid
-                        name = res[0].oName
+                        oid = res[0].oid;
+                        name = res[0].oName;
                         o_createtime = res[0].o_ceatetime.split('T')[0]
 
                         // 寄發通知信
@@ -232,17 +233,19 @@
                     //點選查看訂單的動作
                     checkOrder = () => {
                         $('#orderModal').modal('show');
+
+                        // $.get(`/getorderstatus/${oid}`, function (res) {
                         $.get(`/getorderstatus/${oid}`, function (res) {
                             // 讀取訂單基本資訊
-                            console.log(res[0]);
+                            // console.log(res[0]);
                             myOid.innerText = res[0].oid;
                             myDate.innerText = res[0].o_ceatetime.split('T')[0];
                             res[0].payment ? myPay.innerText = "LinePay" : "";
                             res[0].creditNum ? myPay.innerText = "信用卡" : "";
                             res[0].transNum ? myPay.innerText = "匯款轉帳" : "";
                             myStatus.innerText = res[0].o_status;
-                            myCoupon.innerText = res[0].useCoupon;
-                            myBonus.innerText = res[0].useBonus;
+                            res[0].useCoupon ? myCoupon.innerText = res[0].useCoupon : myCoupon.innerText = 0;
+                            res[0].useBonus ? myBonus.innerText = -res[0].useBonus : myBonus.innerText = 0;
                             myoName.innerText = res[0].oName;
                             myoTel.innerText = res[0].oTel;
                             myoMail.innerText = res[0].oMail;
@@ -251,12 +254,20 @@
                             res[0].convStore == '尚未選擇' ? myrAddr.innerText = res[0].rAddr : myrAddr.innerText = res[0].convStore;
                             res[0].o_note ? myoNote.innerText = res[0].o_note : myoNote.innerText = '無備註';
 
-
-                            //讀取產品清單、運費、總金額等資訊
+                            //讀取產品清單、運費、總金額、配送日期等資訊
                             var total = 0;
                             var shippingfee = 0;
+                            var bonus = parseInt(myBonus.innerText);
+                            var coupon = parseInt(myCoupon.innerText);
+                            $('.trHtml').remove();
                             res.map((item) => {
-                                console.log(item)
+                                var shippingDateArr = [];
+                                // 計算預計開始配送日期(七天後)
+                                // console.log(item.c_createtime.split('T')[0])
+                                var date = new Date(item.c_createtime.split('T')[0]);
+                                date.setDate(date.getDate() + 7)
+                                // console.log(date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate());
+                                var myshippingDate = (date.getMonth() + 1) + '/' + date.getDate();
                                 // 購買品項
                                 item.size == 's' ? fee = 160 : fee = 290; // 運費 (S-160 L-290)
                                 item.size == 's' ? item.size = '雙人箱(1~2人)' : item.size = '家庭箱(3~4人)';
@@ -264,11 +275,25 @@
                                 item.product.includes("自選") ? item.content = item.c_option : item.content = item.content;
 
                                 if (item.freq == 'once') {
-                                    item.freq = '單次購買'
+                                    item.freq = '單次購買';
+                                    shippingDateArr.push(myshippingDate)
                                 } else if (item.freq == '30d') {
-                                    item.freq = '每周一次'
+                                    item.freq = '每周一次';
+                                    for (var i = 0; i <= 21; i += 7) {
+                                        var date2 = new Date(myshippingDate);
+                                        date2.setDate(date2.getDate() + i);
+                                        var myshippingDate2 = (date2.getMonth() + 1) + '/' + date2.getDate();
+                                        shippingDateArr.push(myshippingDate2);
+                                    }
                                 } else {
-                                    item.freq = '雙周一次'
+                                    item.freq = '雙周一次';
+                                    for (var i = 0; i <= 56; i += 14) {
+                                        var date2 = new Date(myshippingDate);
+                                        date2.setDate(date2.getDate() + i);
+                                        var myshippingDate2 = (date2.getMonth() + 1) + '/' + date2.getDate();
+                                        shippingDateArr.push(myshippingDate2);
+                                    }
+
                                 }
                                 item.c_note == null ? item.c_note = '無備註' : item.c_note;
                                 if (item.size == '雙人箱(1~2人)' && item.freq == '單次購買') {
@@ -286,7 +311,7 @@
                                 }
 
                                 var trHtml = `
-                                <tr>
+                                <tr class="trHtml">
                                     <td>${item.product}</td>
                                     <td>${item.content}</td>
                                     <td>${item.size} ${item.freq}</td>
@@ -294,23 +319,28 @@
                                     <td>${item.quantity}</td>
                                     <td>${item.price}</td>
                                 </tr>
-                                <tr style="color: blue;">
-                                    <td colspan="6" class="vg-ps my-2 text-end">>>預計配送日期<span>2023/10/1</span></td>
+                                <tr class="trHtml" style="color: blue;">
+                                    <td colspan="6" class="vg-ps my-2 text-end">>>預計配送日期<span>${shippingDateArr}</span></td>
                                 </tr>
                             `;
-                                $('#myOitems').append(trHtml)
+                                $('#myOitem').after(trHtml);
                                 shippingfee += fee;
                                 total += item.price;
                             })
                             // 運費計算
                             myDelivery.innerText = shippingfee;
                             // 總金額計算 (未含折扣碼與購物金)
-                            $('#myTotal').text(shippingfee + total)
+                            $('#myTotal').text(shippingfee + total - bonus + coupon)
                         })
 
                         // 確認 => 關閉modal
                         $('#ordermodalok').on('click', () => {
                             $('#orderModal').modal('hide')
+                        })
+
+                        $('#rateOrder').on('click', () => {
+                            localStorage.setItem('oid', oid)
+                            location.href = '/rateorder';
                         })
                     }
 
