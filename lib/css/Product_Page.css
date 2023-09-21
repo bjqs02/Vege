@@ -50,11 +50,11 @@ header main#product_main section.main-box {
   }
 }
 header main#product_main section.main-box aside.asideNav {
-  width: 30%;
+  width: 20%;
   display: flex;
   text-align: center;
   flex-direction: column;
-  margin-top: 95px;
+  margin-top: 75px;
 }
 
 @media screen and (max-width: 800px) {
@@ -302,7 +302,6 @@ header
   background-color: white;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   padding: 10px;
   color: rgb(0, 0, 0);
@@ -390,7 +389,7 @@ img.ch:hover {
   position: fixed;
   display: none;
   z-index: 1056;
-  width: 40vw;
+  width: 60vw;
   height: auto;
   background-color: white;
   top: 50%;
@@ -461,6 +460,9 @@ strong.over {
 }
 
 .fu_nav:hover {
+  background-color: var(--primary-1);
+}
+.tab:hover {
   background-color: var(--primary-1);
 }
 

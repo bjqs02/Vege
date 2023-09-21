@@ -24,7 +24,7 @@
                 <% for (let i = 0; i < data.names.length; i++) { %>
                 <li class="vg-bd-5">
                   <button
-                    class="btn tab btn-vg mt-1"
+                    class="tab btn mt-4 vg-p act"
                     onclick="openCity(event, 'fu_tab<%= i+1 %>')"
                   >
                     <%= data.names[i].product %>
@@ -499,7 +499,9 @@
 
                   <h5 class="vg-h5">活動時間</h5>
                   <h6>
-                    <a href="http://127.0.0.1:2407/activityboard/inside/2"
+                    <a
+                      class="vg-p"
+                      href="http://127.0.0.1:2407/activityboard/inside/2"
                       >點我看詳細活動</a
                     >
                   </h6>
