@@ -445,7 +445,8 @@ cart_order.post('/payments/linepay/', async function (req, res, next) {
 cart_order.get("/getorderstatus/:oid", function (req, res) {
   // var sql23 = "SELECT * FROM vgorder, cart, temp_product where vgorder.oid = cart.oid and cart.pid = temp_product.pid and vgorder.oid = ? ";
   var sql23 =
-    "SELECT * FROM vgorder, cart, product where vgorder.oid = cart.oid and cart.pid = product.pid and vgorder.oid = ? ";
+    // "SELECT * FROM vgorder, cart, product where vgorder.oid = cart.oid and cart.pid = product.pid and vgorder.oid = ? ";
+    "SELECT * FROM vgorder, cart, product, product_content where vgorder.oid = cart.oid and cart.pid = product.pid and product_content.product = product.product and vgorder.oid = ?";
   db.query(sql23, [req.params.oid], function (err, rows) {
     res.send(rows);
   });
@@ -492,5 +493,8 @@ cart_order.get("/getrateorderstatus/:oid", function (req, res) {
     res.send(rows);
   });
 });
+
+
+
 
 module.exports = cart_order;

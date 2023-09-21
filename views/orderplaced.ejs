@@ -32,7 +32,136 @@
             <div id="orderplaced" class="container">
                 <img src="img/fruitbox.png" class="w-25" alt="">
                 <h3 class="vg-h3">您已完成訂購！</h3>
-                <p class="vg-p">訂單編號：<a href="/rateorder" id="orderNumber" class="vg-href"> MP23301004</a></p>
+                <p class="vg-p">訂單編號：<a id="orderNumber" class="vg-href"> MP23301004</a> <a
+                        class="btn btn-vg-reg btn-vg-brown m-2 shadow-sm" onclick="checkOrder()">查看訂單</a> </p>
+
+                <!-- 查看訂單modal -->
+                <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="orderModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content" style="width: 130%;">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="orderModalLabel">Vege</h5>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <h5>訂單內容</h5>
+                                    <hr>
+                                    <table class="w-100">
+                                        <tr>
+                                            <th>訂單號碼</th>
+                                            <th>訂單日期</th>
+                                            <th>付款方式</th>
+                                            <th>訂單狀態</th>
+                                        </tr>
+                                        <tr>
+                                            <td id="myOid">測試資料</td>
+                                            <td id="myDate">測試資料</td>
+                                            <td id="myPay">測試資料</td>
+                                            <td id="myStatus">測試資料</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <hr>
+                                <div>
+                                    <h5>產品清單</h5>
+                                    <hr>
+                                    <table id="myOitems" class="w-100">
+                                        <tr>
+                                            <th>名稱</th>
+                                            <th>內容</th>
+                                            <th>規格</th>
+                                            <th>備註</th>
+                                            <th>#</th>
+                                            <th class="w-25">價格</th>
+                                        </tr>
+                                        <!-- <tr>
+                                            <td>蔬果健康箱</td>
+                                            <td>3樣蔬菜、5樣水果</td>
+                                            <td>家庭箱(3~4人) 單次配送</td>
+                                            <td>家有小孩、辛香料</td>
+                                            <td>1</td>
+                                            <td>650</td>
+                                        </tr>
+                                        <tr style="color: blue;">
+                                            <td colspan="3" class="vg-ps">>>預計配送日期</td>
+                                            <td colspan="3" class="vg-ps">2023/10/1</td>
+                                        </tr> -->
+                                    </table>
+                                </div>
+                                <hr>
+                                <div>
+                                    <h5>訂單金額</h5>
+                                    <hr>
+                                    <table class="w-100">
+                                        <tr>
+                                            <th>折扣碼</th>
+                                            <th>購物金</th>
+                                            <th>運費</th>
+                                            <th>總金額</th>
+                                        </tr>
+                                        <tr>
+                                            <td id="myCoupon">-99</td>
+                                            <td id="myBonus">-99</td>
+                                            <td id="myDelivery">999</td>
+                                            <td id="myTotal">9999</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <hr>
+                                <div>
+                                    <h5>訂購人資訊</h5>
+                                    <hr>
+                                    <table class="w-100">
+                                        <tr>
+                                            <th>姓名</th>
+                                            <th>電話</th>
+                                            <th>Email</th>
+                                        </tr>
+                                        <tr>
+                                            <td id="myoName">測試資料</td>
+                                            <td id="myoTel">測試資料</td>
+                                            <td id="myoMail">測試資料</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <hr>
+                                <div>
+                                    <h5>收件人資訊</h5>
+                                    <hr>
+                                    <table class="w-100">
+                                        <tr>
+                                            <th>姓名</th>
+                                            <th>電話</th>
+                                            <th>地址</th>
+                                        </tr>
+                                        <tr>
+                                            <td id="myrName">測試資料</td>
+                                            <td id="myrTel">測試資料</td>
+                                            <td id="myrAddr">測試資料</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <hr>
+                                <div>
+                                    <h5>訂單備註</h5>
+                                    <hr>
+                                    <table class="w-100">
+                                        <tr>
+                                            <td id="myoNote">測試資料</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <!-- <button type="button" class="btn btn-warning" data-dismiss="modal" id="rateOrder">評價訂單</button> -->
+                                <button type="button" class="btn btn-success" id="ordermodalok">確定</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
                 <p class="vg-p">系統已將訂單寄送至信箱：<span id="memberMail" class="vg-p"> tom22013@gmail.com</span></p>
                 <div class="m-3 p-3 text-center" id="orderplacedbtn">
                     <a href="/member" class="btn btn-vg-lg mx-2">會員中心</a>
@@ -99,6 +228,92 @@
                             })
                         })
                     })
+
+                    //點選查看訂單的動作
+                    checkOrder = () => {
+                        $('#orderModal').modal('show');
+                        $.get(`/getorderstatus/${oid}`, function (res) {
+                            // 讀取訂單基本資訊
+                            console.log(res[0]);
+                            myOid.innerText = res[0].oid;
+                            myDate.innerText = res[0].o_ceatetime.split('T')[0];
+                            res[0].payment ? myPay.innerText = "LinePay" : "";
+                            res[0].creditNum ? myPay.innerText = "信用卡" : "";
+                            res[0].transNum ? myPay.innerText = "匯款轉帳" : "";
+                            myStatus.innerText = res[0].o_status;
+                            myCoupon.innerText = res[0].useCoupon;
+                            myBonus.innerText = res[0].useBonus;
+                            myoName.innerText = res[0].oName;
+                            myoTel.innerText = res[0].oTel;
+                            myoMail.innerText = res[0].oMail;
+                            myrName.innerText = res[0].rName + res[0].convName;
+                            myrTel.innerText = res[0].rTel + res[0].convTel;
+                            res[0].convStore == '尚未選擇' ? myrAddr.innerText = res[0].rAddr : myrAddr.innerText = res[0].convStore;
+                            res[0].o_note ? myoNote.innerText = res[0].o_note : myoNote.innerText = '無備註';
+
+
+                            //讀取產品清單、運費、總金額等資訊
+                            var total = 0;
+                            var shippingfee = 0;
+                            res.map((item) => {
+                                console.log(item)
+                                // 購買品項
+                                item.size == 's' ? fee = 160 : fee = 290; // 運費 (S-160 L-290)
+                                item.size == 's' ? item.size = '雙人箱(1~2人)' : item.size = '家庭箱(3~4人)';
+                                item.c_option ? item.c_option = item.c_option.split(',').slice(1,) : item.c_option = '';
+                                item.product.includes("自選") ? item.content = item.c_option : item.content = item.content;
+
+                                if (item.freq == 'once') {
+                                    item.freq = '單次購買'
+                                } else if (item.freq == '30d') {
+                                    item.freq = '每周一次'
+                                } else {
+                                    item.freq = '雙周一次'
+                                }
+                                item.c_note == null ? item.c_note = '無備註' : item.c_note;
+                                if (item.size == '雙人箱(1~2人)' && item.freq == '單次購買') {
+                                    item.price = parseInt(item.price) * item.quantity
+                                } else if (item.size == '家庭箱(3~4人)' && item.freq == '單次購買') {
+                                    item.price = (parseInt(item.price) + 200) * item.quantity
+                                } else if (item.size == '雙人箱(1~2人)' && item.freq == '每周一次') {
+                                    item.price = (parseInt(item.price) * 4) * item.quantity
+                                } else if (item.size == '家庭箱(3~4人)' && item.freq == '每周一次') {
+                                    item.price = ((parseInt(item.price) + 200) * 4) * item.quantity
+                                } else if (item.size == '雙人箱(1~2人)' && item.freq == '雙周一次') {
+                                    item.price = (parseInt(item.price) * 4) * item.quantity
+                                } else {
+                                    item.price = ((parseInt(item.price) + 200) * 4) * item.quantity
+                                }
+
+                                var trHtml = `
+                                <tr>
+                                    <td>${item.product}</td>
+                                    <td>${item.content}</td>
+                                    <td>${item.size} ${item.freq}</td>
+                                    <td>${item.c_note}</td>
+                                    <td>${item.quantity}</td>
+                                    <td>${item.price}</td>
+                                </tr>
+                                <tr style="color: blue;">
+                                    <td colspan="6" class="vg-ps my-2 text-end">>>預計配送日期<span>2023/10/1</span></td>
+                                </tr>
+                            `;
+                                $('#myOitems').append(trHtml)
+                                shippingfee += fee;
+                                total += item.price;
+                            })
+                            // 運費計算
+                            myDelivery.innerText = shippingfee;
+                            // 總金額計算 (未含折扣碼與購物金)
+                            $('#myTotal').text(shippingfee + total)
+                        })
+
+                        // 確認 => 關閉modal
+                        $('#ordermodalok').on('click', () => {
+                            $('#orderModal').modal('hide')
+                        })
+                    }
+
                 </script>
 
 </html>
