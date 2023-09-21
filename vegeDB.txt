@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.1.2
 -- https://www.phpmyadmin.net/
 --
--- 主機： 127.0.0.1
--- 產生時間： 2023-09-19 10:29:58
--- 伺服器版本： 10.4.28-MariaDB
--- PHP 版本： 8.2.4
+-- Host: localhost:3306
+-- Generation Time: Sep 21, 2023 at 06:04 PM
+-- Server version: 5.7.24
+-- PHP Version: 8.0.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 資料庫： `vege`
+-- Database: `vege`
 --
 CREATE DATABASE IF NOT EXISTS `vege` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `vege`;
@@ -26,7 +26,7 @@ USE `vege`;
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `activity`
+-- Table structure for table `activity`
 --
 
 CREATE TABLE `activity` (
@@ -40,10 +40,10 @@ CREATE TABLE `activity` (
   `act_content5` varchar(100) DEFAULT NULL,
   `act_content6` varchar(100) DEFAULT NULL,
   `act_time` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 傾印資料表的資料 `activity`
+-- Dumping data for table `activity`
 --
 
 INSERT INTO `activity` (`product`, `off_price`, `off_act`, `act_content`, `act_content2`, `act_content3`, `act_content4`, `act_content5`, `act_content6`, `act_time`) VALUES
@@ -58,20 +58,20 @@ INSERT INTO `activity` (`product`, `off_price`, `off_act`, `act_content`, `act_c
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `activityboard`
+-- Table structure for table `activityboard`
 --
 
 CREATE TABLE `activityboard` (
   `actid` int(11) NOT NULL,
-  `actTitle` varchar(50) NOT NULL,
-  `actImg` varchar(500) NOT NULL,
-  `acttime` timestamp NOT NULL DEFAULT current_timestamp(),
-  `actText` varchar(5000) DEFAULT NULL,
+  `actTitle` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `actImg` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `acttime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `actText` varchar(5000) COLLATE utf8_unicode_ci DEFAULT NULL,
   `actCat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 傾印資料表的資料 `activityboard`
+-- Dumping data for table `activityboard`
 --
 
 INSERT INTO `activityboard` (`actid`, `actTitle`, `actImg`, `acttime`, `actText`, `actCat`) VALUES
@@ -84,44 +84,45 @@ INSERT INTO `activityboard` (`actid`, `actTitle`, `actImg`, `acttime`, `actText`
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `activitylotto`
+-- Table structure for table `activitylotto`
 --
 
 CREATE TABLE `activitylotto` (
   `lottoid` int(11) NOT NULL,
   `uid` int(11) NOT NULL,
-  `lottotime` timestamp NOT NULL DEFAULT current_timestamp(),
+  `lottotime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `lottobonus` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 傾印資料表的資料 `activitylotto`
+-- Dumping data for table `activitylotto`
 --
 
 INSERT INTO `activitylotto` (`lottoid`, `uid`, `lottotime`, `lottobonus`) VALUES
 (1, 1001, '2023-09-13 10:18:52', 50),
 (11, 1004, '2023-09-14 11:19:52', 50),
-(25, 1004, '2023-09-17 19:13:55', 15);
+(25, 1004, '2023-09-17 19:13:55', 15),
+(26, 1004, '2023-09-20 12:52:42', 30);
 
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `article`
+-- Table structure for table `article`
 --
 
 CREATE TABLE `article` (
   `atcid` int(11) NOT NULL,
-  `atcTitle` varchar(50) NOT NULL,
-  `atcimg` varchar(600) NOT NULL,
-  `atcText` varchar(5000) NOT NULL,
-  `atcTime` timestamp NOT NULL DEFAULT current_timestamp(),
+  `atcTitle` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `atcimg` varchar(600) COLLATE utf8_unicode_ci NOT NULL,
+  `atcText` varchar(5000) COLLATE utf8_unicode_ci NOT NULL,
+  `atcTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `atcCat` int(11) NOT NULL,
-  `atTag` varchar(50) NOT NULL,
+  `atTag` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `actlike` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 傾印資料表的資料 `article`
+-- Dumping data for table `article`
 --
 
 INSERT INTO `article` (`atcid`, `atcTitle`, `atcimg`, `atcText`, `atcTime`, `atcCat`, `atTag`, `actlike`) VALUES
@@ -156,7 +157,7 @@ INSERT INTO `article` (`atcid`, `atcTitle`, `atcimg`, `atcText`, `atcTime`, `atc
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `atckeep`
+-- Table structure for table `atckeep`
 --
 
 CREATE TABLE `atckeep` (
@@ -165,7 +166,7 @@ CREATE TABLE `atckeep` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 傾印資料表的資料 `atckeep`
+-- Dumping data for table `atckeep`
 --
 
 INSERT INTO `atckeep` (`uid`, `atcid`) VALUES
@@ -178,7 +179,7 @@ INSERT INTO `atckeep` (`uid`, `atcid`) VALUES
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `atclike`
+-- Table structure for table `atclike`
 --
 
 CREATE TABLE `atclike` (
@@ -187,7 +188,7 @@ CREATE TABLE `atclike` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 傾印資料表的資料 `atclike`
+-- Dumping data for table `atclike`
 --
 
 INSERT INTO `atclike` (`uid`, `atcid`) VALUES
@@ -200,7 +201,7 @@ INSERT INTO `atclike` (`uid`, `atcid`) VALUES
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `atcxtag`
+-- Table structure for table `atcxtag`
 --
 
 CREATE TABLE `atcxtag` (
@@ -209,7 +210,7 @@ CREATE TABLE `atcxtag` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 傾印資料表的資料 `atcxtag`
+-- Dumping data for table `atcxtag`
 --
 
 INSERT INTO `atcxtag` (`atcid`, `tagid`) VALUES
@@ -257,17 +258,17 @@ INSERT INTO `atcxtag` (`atcid`, `tagid`) VALUES
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `cardtype`
+-- Table structure for table `cardtype`
 --
 
 CREATE TABLE `cardtype` (
   `ctId` int(2) NOT NULL,
   `cardname` varchar(16) NOT NULL,
   `cardimg` varchar(256) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 傾印資料表的資料 `cardtype`
+-- Dumping data for table `cardtype`
 --
 
 INSERT INTO `cardtype` (`ctId`, `cardname`, `cardimg`) VALUES
@@ -278,53 +279,40 @@ INSERT INTO `cardtype` (`ctId`, `cardname`, `cardimg`) VALUES
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `cart`
+-- Table structure for table `cart`
 --
 
 CREATE TABLE `cart` (
   `cid` smallint(6) NOT NULL,
   `uid` varchar(50) NOT NULL,
-  `c_createtime` timestamp NOT NULL DEFAULT current_timestamp(),
+  `c_createtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `pid` varchar(50) NOT NULL,
-  `quantity` tinyint(4) NOT NULL DEFAULT 1,
+  `quantity` tinyint(4) NOT NULL DEFAULT '1',
   `c_option` varchar(50) DEFAULT NULL,
   `c_note` varchar(50) DEFAULT NULL,
   `oid` varchar(50) DEFAULT NULL,
   `c_status` varchar(10) NOT NULL DEFAULT 'active',
+  `money` varchar(10) NOT NULL,
+  `day` varchar(10) DEFAULT NULL,
   `fid` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- 傾印資料表的資料 `cart`
---
-
-INSERT INTO `cart` (`cid`, `uid`, `c_createtime`, `pid`, `quantity`, `c_option`, `c_note`, `oid`, `c_status`, `fid`) VALUES
-(1, '1001', '2023-09-02 18:15:53', '94', 1, NULL, NULL, '9014842', 'inactive', ''),
-(2, '1001', '2023-09-02 18:16:28', '84', 1, NULL, NULL, '9014842', 'inactive', ''),
-(3, '1004', '2023-09-02 18:16:57', '71', 1, NULL, NULL, '8430352', 'inactive', ''),
-(8, '1002', '2023-09-04 10:41:40', '81', 1, NULL, NULL, '8472034', 'inactive', ''),
-(11, '1002', '2023-09-04 20:02:56', '79', 1, NULL, NULL, '4140847', 'inactive', ''),
-(36, '1004', '2023-09-10 07:03:36', '109', 1, '香蕉、蘋果、草莓、荔枝', '辛香料', '503835', 'inactive', ''),
-(38, '1004', '2023-09-14 16:53:53', '99', 2, NULL, '家有兒童', '503835', 'inactive', ''),
-(42, '1004', '2023-09-14 19:47:17', '71', 1, NULL, '家有兒童', '503835', 'inactive', ''),
-(47, '1004', '2023-09-17 20:00:44', '105', 1, '雙人箱(1~2人),萵苣,小白菜,柳橙,奇異果,水梨,柚子,', NULL, '3490516', 'inactive', 'Newprod1');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `comment`
+-- Table structure for table `comment`
 --
 
 CREATE TABLE `comment` (
   `cmtid` int(11) NOT NULL,
   `uid` int(11) NOT NULL,
   `atcid` int(11) NOT NULL,
-  `cmtText` varchar(300) NOT NULL,
-  `cmtTime` timestamp NOT NULL DEFAULT current_timestamp()
+  `cmtText` varchar(300) COLLATE utf8_unicode_ci NOT NULL,
+  `cmtTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 傾印資料表的資料 `comment`
+-- Dumping data for table `comment`
 --
 
 INSERT INTO `comment` (`cmtid`, `uid`, `atcid`, `cmtText`, `cmtTime`) VALUES
@@ -335,20 +323,20 @@ INSERT INTO `comment` (`cmtid`, `uid`, `atcid`, `cmtText`, `cmtTime`) VALUES
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `contactform`
+-- Table structure for table `contactform`
 --
 
 CREATE TABLE `contactform` (
   `cId` int(11) NOT NULL,
-  `Name` varchar(20) NOT NULL,
-  `Tel` varchar(20) NOT NULL,
-  `Email` varchar(50) NOT NULL,
-  `Subject` varchar(100) NOT NULL,
-  `Msg` varchar(1000) NOT NULL
+  `Name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `Tel` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `Email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `Subject` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `Msg` varchar(1000) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 傾印資料表的資料 `contactform`
+-- Dumping data for table `contactform`
 --
 
 INSERT INTO `contactform` (`cId`, `Name`, `Tel`, `Email`, `Subject`, `Msg`) VALUES
@@ -362,7 +350,7 @@ INSERT INTO `contactform` (`cId`, `Name`, `Tel`, `Email`, `Subject`, `Msg`) VALU
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `evaluation`
+-- Table structure for table `evaluation`
 --
 
 CREATE TABLE `evaluation` (
@@ -372,10 +360,10 @@ CREATE TABLE `evaluation` (
   `Temp` varchar(30) NOT NULL,
   `Protein` varchar(30) NOT NULL,
   `Calories` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 傾印資料表的資料 `evaluation`
+-- Dumping data for table `evaluation`
 --
 
 INSERT INTO `evaluation` (`vgId`, `vgname`, `Type`, `Temp`, `Protein`, `Calories`) VALUES
@@ -389,19 +377,19 @@ INSERT INTO `evaluation` (`vgId`, `vgname`, `Type`, `Temp`, `Protein`, `Calories
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `farmer`
+-- Table structure for table `farmer`
 --
 
 CREATE TABLE `farmer` (
   `fId` int(11) NOT NULL,
-  `fName` varchar(20) NOT NULL,
-  `fArea` varchar(10) NOT NULL,
-  `fImg` varchar(256) NOT NULL,
-  `vegeType` varchar(100) NOT NULL
+  `fName` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `fArea` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `fImg` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `vegeType` varchar(100) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 傾印資料表的資料 `farmer`
+-- Dumping data for table `farmer`
 --
 
 INSERT INTO `farmer` (`fId`, `fName`, `fArea`, `fImg`, `vegeType`) VALUES
@@ -424,7 +412,7 @@ INSERT INTO `farmer` (`fId`, `fName`, `fArea`, `fImg`, `vegeType`) VALUES
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `firm_info`
+-- Table structure for table `firm_info`
 --
 
 CREATE TABLE `firm_info` (
@@ -432,10 +420,10 @@ CREATE TABLE `firm_info` (
   `cost` varchar(20) DEFAULT NULL,
   `ship_address` varchar(100) NOT NULL,
   `firm_address` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 傾印資料表的資料 `firm_info`
+-- Dumping data for table `firm_info`
 --
 
 INSERT INTO `firm_info` (`firm`, `cost`, `ship_address`, `firm_address`) VALUES
@@ -445,7 +433,7 @@ INSERT INTO `firm_info` (`firm`, `cost`, `ship_address`, `firm_address`) VALUES
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `info`
+-- Table structure for table `info`
 --
 
 CREATE TABLE `info` (
@@ -455,10 +443,10 @@ CREATE TABLE `info` (
   `send` varchar(20) NOT NULL,
   `save` varchar(100) NOT NULL,
   `note` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 傾印資料表的資料 `info`
+-- Dumping data for table `info`
 --
 
 INSERT INTO `info` (`product`, `season`, `weight`, `send`, `save`, `note`) VALUES
@@ -534,7 +522,7 @@ INSERT INTO `info` (`product`, `season`, `weight`, `send`, `save`, `note`) VALUE
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `product`
+-- Table structure for table `product`
 --
 
 CREATE TABLE `product` (
@@ -547,10 +535,10 @@ CREATE TABLE `product` (
   `Calories` varchar(10) DEFAULT NULL,
   `freq` varchar(10) DEFAULT NULL,
   `size` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 傾印資料表的資料 `product`
+-- Dumping data for table `product`
 --
 
 INSERT INTO `product` (`pid`, `product`, `category`, `firm`, `Temp`, `Protein`, `Calories`, `freq`, `size`) VALUES
@@ -668,7 +656,7 @@ INSERT INTO `product` (`pid`, `product`, `category`, `firm`, `Temp`, `Protein`, 
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `product_content`
+-- Table structure for table `product_content`
 --
 
 CREATE TABLE `product_content` (
@@ -678,10 +666,10 @@ CREATE TABLE `product_content` (
   `content` varchar(300) DEFAULT NULL,
   `feature` varchar(300) DEFAULT NULL,
   `image` varchar(300) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 傾印資料表的資料 `product_content`
+-- Dumping data for table `product_content`
 --
 
 INSERT INTO `product_content` (`product`, `price`, `stock`, `content`, `feature`, `image`) VALUES
@@ -764,18 +752,18 @@ INSERT INTO `product_content` (`product`, `price`, `stock`, `content`, `feature`
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `qa`
+-- Table structure for table `qa`
 --
 
 CREATE TABLE `qa` (
   `qId` int(11) NOT NULL,
-  `qType` varchar(5) NOT NULL,
-  `question` varchar(100) NOT NULL,
-  `answer` varchar(500) NOT NULL
+  `qType` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
+  `question` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `answer` varchar(500) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 傾印資料表的資料 `qa`
+-- Dumping data for table `qa`
 --
 
 INSERT INTO `qa` (`qId`, `qType`, `question`, `answer`) VALUES
@@ -828,22 +816,22 @@ INSERT INTO `qa` (`qId`, `qType`, `question`, `answer`) VALUES
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `rateorder`
+-- Table structure for table `rateorder`
 --
 
 CREATE TABLE `rateorder` (
   `rid` smallint(6) NOT NULL,
   `oid` varchar(50) NOT NULL,
-  `r_createtime` timestamp NOT NULL DEFAULT current_timestamp(),
+  `r_createtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `speed` tinyint(4) NOT NULL,
   `quality` tinyint(4) NOT NULL,
   `service` tinyint(4) NOT NULL,
   `comment` varchar(200) DEFAULT NULL,
   `r_status` varchar(10) NOT NULL DEFAULT 'active'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 傾印資料表的資料 `rateorder`
+-- Dumping data for table `rateorder`
 --
 
 INSERT INTO `rateorder` (`rid`, `oid`, `r_createtime`, `speed`, `quality`, `service`, `comment`, `r_status`) VALUES
@@ -860,19 +848,19 @@ INSERT INTO `rateorder` (`rid`, `oid`, `r_createtime`, `speed`, `quality`, `serv
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `sgs`
+-- Table structure for table `sgs`
 --
 
 CREATE TABLE `sgs` (
   `sgsId` int(11) NOT NULL,
   `sgsDate` datetime NOT NULL,
-  `origin` varchar(50) NOT NULL,
-  `item` varchar(20) NOT NULL,
-  `result` varchar(30) NOT NULL
+  `origin` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `item` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `result` varchar(30) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 傾印資料表的資料 `sgs`
+-- Dumping data for table `sgs`
 --
 
 INSERT INTO `sgs` (`sgsId`, `sgsDate`, `origin`, `item`, `result`) VALUES
@@ -1081,28 +1069,28 @@ INSERT INTO `sgs` (`sgsId`, `sgsDate`, `origin`, `item`, `result`) VALUES
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `spice`
+-- Table structure for table `spice`
 --
 
 CREATE TABLE `spice` (
   `category` varchar(20) NOT NULL,
   `spice` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `supportmsg`
+-- Table structure for table `supportmsg`
 --
 
 CREATE TABLE `supportmsg` (
   `replyId` int(11) NOT NULL,
-  `Msg` varchar(500) NOT NULL,
-  `Time` datetime NOT NULL DEFAULT current_timestamp()
+  `Msg` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `Time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 傾印資料表的資料 `supportmsg`
+-- Dumping data for table `supportmsg`
 --
 
 INSERT INTO `supportmsg` (`replyId`, `Msg`, `Time`) VALUES
@@ -1113,16 +1101,16 @@ INSERT INTO `supportmsg` (`replyId`, `Msg`, `Time`) VALUES
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `tag`
+-- Table structure for table `tag`
 --
 
 CREATE TABLE `tag` (
   `tagid` int(11) NOT NULL,
-  `tagname` varchar(20) NOT NULL
+  `tagname` varchar(20) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 傾印資料表的資料 `tag`
+-- Dumping data for table `tag`
 --
 
 INSERT INTO `tag` (`tagid`, `tagname`) VALUES
@@ -1158,16 +1146,16 @@ INSERT INTO `tag` (`tagid`, `tagname`) VALUES
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `temp_coupon`
+-- Table structure for table `temp_coupon`
 --
 
 CREATE TABLE `temp_coupon` (
   `coupon` varchar(50) NOT NULL,
   `discount` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 傾印資料表的資料 `temp_coupon`
+-- Dumping data for table `temp_coupon`
 --
 
 INSERT INTO `temp_coupon` (`coupon`, `discount`) VALUES
@@ -1177,18 +1165,18 @@ INSERT INTO `temp_coupon` (`coupon`, `discount`) VALUES
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `useraddress`
+-- Table structure for table `useraddress`
 --
 
 CREATE TABLE `useraddress` (
   `uId` int(11) NOT NULL,
-  `Name` varchar(16) NOT NULL,
-  `Phone` varchar(16) NOT NULL,
-  `address` varchar(256) DEFAULT NULL
+  `Name` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
+  `Phone` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
+  `address` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 傾印資料表的資料 `useraddress`
+-- Dumping data for table `useraddress`
 --
 
 INSERT INTO `useraddress` (`uId`, `Name`, `Phone`, `address`) VALUES
@@ -1202,17 +1190,17 @@ INSERT INTO `useraddress` (`uId`, `Name`, `Phone`, `address`) VALUES
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `userbonus`
+-- Table structure for table `userbonus`
 --
 
 CREATE TABLE `userbonus` (
   `uId` int(11) NOT NULL,
-  `Time` datetime NOT NULL DEFAULT current_timestamp(),
+  `Time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `bonus` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 傾印資料表的資料 `userbonus`
+-- Dumping data for table `userbonus`
 --
 
 INSERT INTO `userbonus` (`uId`, `Time`, `bonus`) VALUES
@@ -1225,19 +1213,19 @@ INSERT INTO `userbonus` (`uId`, `Time`, `bonus`) VALUES
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `usercard`
+-- Table structure for table `usercard`
 --
 
 CREATE TABLE `usercard` (
   `cindex` int(11) NOT NULL,
   `uId` int(11) NOT NULL,
-  `card` varchar(16) NOT NULL,
-  `bank` varchar(16) NOT NULL,
+  `card` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
+  `bank` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
   `default` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 傾印資料表的資料 `usercard`
+-- Dumping data for table `usercard`
 --
 
 INSERT INTO `usercard` (`cindex`, `uId`, `card`, `bank`, `default`) VALUES
@@ -1249,23 +1237,23 @@ INSERT INTO `usercard` (`cindex`, `uId`, `card`, `bank`, `default`) VALUES
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `userinfo`
+-- Table structure for table `userinfo`
 --
 
 CREATE TABLE `userinfo` (
   `uId` int(11) NOT NULL,
-  `Email` varchar(50) DEFAULT NULL,
-  `Name` varchar(16) DEFAULT NULL,
-  `Phone` varchar(16) DEFAULT NULL,
-  `Img` varchar(100) DEFAULT NULL,
+  `Email` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Name` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Phone` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Img` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Birthday` datetime DEFAULT NULL,
-  `Gender` varchar(3) DEFAULT NULL,
-  `carrier` varchar(20) DEFAULT NULL,
+  `Gender` varchar(3) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `carrier` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `bonus` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 傾印資料表的資料 `userinfo`
+-- Dumping data for table `userinfo`
 --
 
 INSERT INTO `userinfo` (`uId`, `Email`, `Name`, `Phone`, `Img`, `Birthday`, `Gender`, `carrier`, `bonus`) VALUES
@@ -1277,45 +1265,45 @@ INSERT INTO `userinfo` (`uId`, `Email`, `Name`, `Phone`, `Img`, `Birthday`, `Gen
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `userlogin`
+-- Table structure for table `userlogin`
 --
 
 CREATE TABLE `userlogin` (
   `uID` int(11) NOT NULL,
-  `Email` varchar(50) NOT NULL,
-  `password` varchar(200) NOT NULL,
-  `token` varchar(200) DEFAULT NULL,
-  `createTime` datetime NOT NULL DEFAULT current_timestamp(),
-  `updateTime` datetime DEFAULT current_timestamp()
+  `Email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `token` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `createTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updateTime` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 傾印資料表的資料 `userlogin`
+-- Dumping data for table `userlogin`
 --
 
 INSERT INTO `userlogin` (`uID`, `Email`, `password`, `token`, `createTime`, `updateTime`) VALUES
 (1001, 'apple_pie@gmail.com', '$2a$10$W2CeC8wta6TiR456Wwod7uosw7dTI3zqsqhRQRAOUkMMr7dTCdGoK', NULL, '2022-10-15 18:12:10', '2023-09-12 11:06:54'),
 (1002, 'blueberry_muffin@gmail.com', '$2a$10$xHwXIgtyIxDwhsA9rpv1fuIGFG320MaBYaI/tnob4ERMjTNV1IIJO', NULL, '2020-08-17 15:00:59', '2023-09-12 11:06:54'),
 (1003, 'cranberry@gmail.com', '$2a$10$M42KUO0OoC5fB4ftb3/I9Ovg6uwEj7W8I6SvDqEQ3UFE95huqSSx6', NULL, '2021-03-08 01:15:13', '2023-09-12 11:06:54'),
-(1004, 'happy@gmail.com', '$2a$10$wAcGWSRo3k.zwajKO/1aouqcxPWjCSQzeNc/fMIYgzorbaGocmooG', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTUxMDI1ODMsImV4cCI6MTY5NTE4ODk4M30.BO3xdWKSv0RmBQWC-IxZTB10E45U9ph7-MKmwUwDeKk', '2021-09-05 03:15:13', '2023-09-12 11:06:54');
+(1004, 'happy@gmail.com', '$2a$10$wAcGWSRo3k.zwajKO/1aouqcxPWjCSQzeNc/fMIYgzorbaGocmooG', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTUzMDYxMzgsImV4cCI6MTY5NTM5MjUzOH0.xSm9uIW6RZhyCWyHra48jTubkMwifAMTzo22rxwBWAA', '2021-09-05 03:15:13', '2023-09-12 11:06:54');
 
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `usermsg`
+-- Table structure for table `usermsg`
 --
 
 CREATE TABLE `usermsg` (
   `uId` int(11) NOT NULL,
-  `msgType` varchar(10) NOT NULL,
-  `Msg` varchar(500) NOT NULL,
-  `Img` varchar(500) DEFAULT NULL,
-  `Time` datetime NOT NULL DEFAULT current_timestamp(),
+  `msgType` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `Msg` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `Img` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `replyId` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 傾印資料表的資料 `usermsg`
+-- Dumping data for table `usermsg`
 --
 
 INSERT INTO `usermsg` (`uId`, `msgType`, `Msg`, `Img`, `Time`, `replyId`) VALUES
@@ -1326,7 +1314,7 @@ INSERT INTO `usermsg` (`uId`, `msgType`, `Msg`, `Img`, `Time`, `replyId`) VALUES
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `ushopaddress`
+-- Table structure for table `ushopaddress`
 --
 
 CREATE TABLE `ushopaddress` (
@@ -1336,10 +1324,10 @@ CREATE TABLE `ushopaddress` (
   `Name` varchar(16) NOT NULL,
   `Phone` varchar(16) NOT NULL,
   `address` varchar(256) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 傾印資料表的資料 `ushopaddress`
+-- Dumping data for table `ushopaddress`
 --
 
 INSERT INTO `ushopaddress` (`uId`, `sId`, `shopName`, `Name`, `Phone`, `address`) VALUES
@@ -1348,13 +1336,13 @@ INSERT INTO `ushopaddress` (`uId`, `sId`, `shopName`, `Name`, `Phone`, `address`
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `vgorder`
+-- Table structure for table `vgorder`
 --
 
 CREATE TABLE `vgorder` (
   `oid` varchar(50) NOT NULL,
   `uid` varchar(50) NOT NULL,
-  `o_ceatetime` timestamp NOT NULL DEFAULT current_timestamp(),
+  `o_ceatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `useCoupon` varchar(10) DEFAULT NULL,
   `useBonus` smallint(6) DEFAULT NULL,
   `paid` varchar(10) NOT NULL DEFAULT 'unpaid',
@@ -1385,10 +1373,10 @@ CREATE TABLE `vgorder` (
   `o_status` varchar(50) DEFAULT 'active',
   `o_updatetime` varchar(30) DEFAULT NULL,
   `o_cancel_time` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 傾印資料表的資料 `vgorder`
+-- Dumping data for table `vgorder`
 --
 
 INSERT INTO `vgorder` (`oid`, `uid`, `o_ceatetime`, `useCoupon`, `useBonus`, `paid`, `oName`, `oTel`, `oMail`, `rName`, `rTel`, `rAddr`, `convName`, `convTel`, `convStore`, `payment`, `transName`, `transNum`, `transDate`, `creditName`, `creditNum`, `creditMM`, `creditYY`, `creditCSV`, `billDonate`, `billPersonal`, `billCompName`, `billCompNum`, `billCompAddr`, `o_note`, `o_status`, `o_updatetime`, `o_cancel_time`) VALUES
@@ -1402,17 +1390,17 @@ INSERT INTO `vgorder` (`oid`, `uid`, `o_ceatetime`, `useCoupon`, `useBonus`, `pa
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `wishlist`
+-- Table structure for table `wishlist`
 --
 
 CREATE TABLE `wishlist` (
   `wid` tinyint(4) NOT NULL,
   `uid` varchar(50) NOT NULL,
   `pid` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 傾印資料表的資料 `wishlist`
+-- Dumping data for table `wishlist`
 --
 
 INSERT INTO `wishlist` (`wid`, `uid`, `pid`) VALUES
@@ -1424,268 +1412,268 @@ INSERT INTO `wishlist` (`wid`, `uid`, `pid`) VALUES
 (7, '1004', '109');
 
 --
--- 已傾印資料表的索引
+-- Indexes for dumped tables
 --
 
 --
--- 資料表索引 `activity`
+-- Indexes for table `activity`
 --
 ALTER TABLE `activity`
   ADD PRIMARY KEY (`product`);
 
 --
--- 資料表索引 `activityboard`
+-- Indexes for table `activityboard`
 --
 ALTER TABLE `activityboard`
   ADD PRIMARY KEY (`actid`);
 
 --
--- 資料表索引 `activitylotto`
+-- Indexes for table `activitylotto`
 --
 ALTER TABLE `activitylotto`
   ADD PRIMARY KEY (`lottoid`);
 
 --
--- 資料表索引 `article`
+-- Indexes for table `article`
 --
 ALTER TABLE `article`
   ADD PRIMARY KEY (`atcid`);
 
 --
--- 資料表索引 `cart`
+-- Indexes for table `cart`
 --
 ALTER TABLE `cart`
   ADD UNIQUE KEY `cid` (`cid`);
 
 --
--- 資料表索引 `comment`
+-- Indexes for table `comment`
 --
 ALTER TABLE `comment`
   ADD PRIMARY KEY (`cmtid`);
 
 --
--- 資料表索引 `contactform`
+-- Indexes for table `contactform`
 --
 ALTER TABLE `contactform`
   ADD PRIMARY KEY (`cId`);
 
 --
--- 資料表索引 `evaluation`
+-- Indexes for table `evaluation`
 --
 ALTER TABLE `evaluation`
   ADD PRIMARY KEY (`vgId`);
 
 --
--- 資料表索引 `farmer`
+-- Indexes for table `farmer`
 --
 ALTER TABLE `farmer`
   ADD PRIMARY KEY (`fId`);
 
 --
--- 資料表索引 `firm_info`
+-- Indexes for table `firm_info`
 --
 ALTER TABLE `firm_info`
   ADD PRIMARY KEY (`firm`);
 
 --
--- 資料表索引 `info`
+-- Indexes for table `info`
 --
 ALTER TABLE `info`
   ADD PRIMARY KEY (`product`);
 
 --
--- 資料表索引 `product`
+-- Indexes for table `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`pid`);
 
 --
--- 資料表索引 `product_content`
+-- Indexes for table `product_content`
 --
 ALTER TABLE `product_content`
   ADD PRIMARY KEY (`product`);
 
 --
--- 資料表索引 `qa`
+-- Indexes for table `qa`
 --
 ALTER TABLE `qa`
   ADD PRIMARY KEY (`qId`);
 
 --
--- 資料表索引 `rateorder`
+-- Indexes for table `rateorder`
 --
 ALTER TABLE `rateorder`
   ADD PRIMARY KEY (`rid`);
 
 --
--- 資料表索引 `sgs`
+-- Indexes for table `sgs`
 --
 ALTER TABLE `sgs`
   ADD PRIMARY KEY (`sgsId`);
 
 --
--- 資料表索引 `spice`
+-- Indexes for table `spice`
 --
 ALTER TABLE `spice`
   ADD PRIMARY KEY (`category`);
 
 --
--- 資料表索引 `supportmsg`
+-- Indexes for table `supportmsg`
 --
 ALTER TABLE `supportmsg`
   ADD PRIMARY KEY (`replyId`);
 
 --
--- 資料表索引 `tag`
+-- Indexes for table `tag`
 --
 ALTER TABLE `tag`
   ADD PRIMARY KEY (`tagid`);
 
 --
--- 資料表索引 `temp_coupon`
+-- Indexes for table `temp_coupon`
 --
 ALTER TABLE `temp_coupon`
   ADD PRIMARY KEY (`coupon`);
 
 --
--- 資料表索引 `userbonus`
+-- Indexes for table `userbonus`
 --
 ALTER TABLE `userbonus`
   ADD PRIMARY KEY (`Time`);
 
 --
--- 資料表索引 `usercard`
+-- Indexes for table `usercard`
 --
 ALTER TABLE `usercard`
   ADD PRIMARY KEY (`cindex`);
 
 --
--- 資料表索引 `userinfo`
+-- Indexes for table `userinfo`
 --
 ALTER TABLE `userinfo`
   ADD PRIMARY KEY (`uId`);
 
 --
--- 資料表索引 `userlogin`
+-- Indexes for table `userlogin`
 --
 ALTER TABLE `userlogin`
   ADD PRIMARY KEY (`uID`),
   ADD UNIQUE KEY `Email` (`Email`);
 
 --
--- 資料表索引 `vgorder`
+-- Indexes for table `vgorder`
 --
 ALTER TABLE `vgorder`
   ADD PRIMARY KEY (`oid`);
 
 --
--- 資料表索引 `wishlist`
+-- Indexes for table `wishlist`
 --
 ALTER TABLE `wishlist`
   ADD PRIMARY KEY (`wid`);
 
 --
--- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `activityboard`
+-- AUTO_INCREMENT for table `activityboard`
 --
 ALTER TABLE `activityboard`
   MODIFY `actid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `activitylotto`
+-- AUTO_INCREMENT for table `activitylotto`
 --
 ALTER TABLE `activitylotto`
-  MODIFY `lottoid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `lottoid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `article`
+-- AUTO_INCREMENT for table `article`
 --
 ALTER TABLE `article`
   MODIFY `atcid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `cart`
+-- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cid` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `cid` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `comment`
+-- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `cmtid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `cmtid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `contactform`
+-- AUTO_INCREMENT for table `contactform`
 --
 ALTER TABLE `contactform`
-  MODIFY `cId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `cId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `evaluation`
+-- AUTO_INCREMENT for table `evaluation`
 --
 ALTER TABLE `evaluation`
   MODIFY `vgId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `farmer`
+-- AUTO_INCREMENT for table `farmer`
 --
 ALTER TABLE `farmer`
   MODIFY `fId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `product`
+-- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
   MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `qa`
+-- AUTO_INCREMENT for table `qa`
 --
 ALTER TABLE `qa`
   MODIFY `qId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `rateorder`
+-- AUTO_INCREMENT for table `rateorder`
 --
 ALTER TABLE `rateorder`
   MODIFY `rid` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `sgs`
+-- AUTO_INCREMENT for table `sgs`
 --
 ALTER TABLE `sgs`
   MODIFY `sgsId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=202;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `supportmsg`
+-- AUTO_INCREMENT for table `supportmsg`
 --
 ALTER TABLE `supportmsg`
   MODIFY `replyId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `tag`
+-- AUTO_INCREMENT for table `tag`
 --
 ALTER TABLE `tag`
   MODIFY `tagid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `usercard`
+-- AUTO_INCREMENT for table `usercard`
 --
 ALTER TABLE `usercard`
   MODIFY `cindex` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `userlogin`
+-- AUTO_INCREMENT for table `userlogin`
 --
 ALTER TABLE `userlogin`
-  MODIFY `uID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1007;
+  MODIFY `uID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1005;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `wishlist`
+-- AUTO_INCREMENT for table `wishlist`
 --
 ALTER TABLE `wishlist`
   MODIFY `wid` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;

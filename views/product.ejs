@@ -43,9 +43,9 @@
                   <div class="box">
                     <button class="btn fu_nav vg-p">菜單特色</button>
                   </div>
-                  <div class="box">
+                  <!-- <div class="box">
                     <button class="btn fu_nav vg-p">週週訂閱</button>
-                  </div>
+                  </div> -->
                   <div class="box">
                     <button class="btn fu_nav vg-p">購買須知</button>
                   </div>
@@ -82,32 +82,49 @@
                 <div class="middle_Con">
                   <h5 class="vg-h5">菜單特色:</h5>
                   <p class="vg-p"><%= data.con[t].feature %></p>
+
                   <h5 class="vg-h5">蔬果內容:</h5>
                   <div class="div_2">
                     <p class="vg-p p-0 m-0">每箱 <%= data.con[t].content %></p>
                   </div>
+                  <h5 class="vg-h5">運送頻率:</h5>
                   <p class="vg-p">
-                    (內容以當季蔬菜組裝出貨) <br />運費根據黑貓低溫配送基本價
+                    基本每周一次 ➞ 一期四箱
                     <br />
-                    宅配/超商取貨為同樣價格
+                    訂購期 30 天 <br />(需於45天內配送完畢&含延後2次)
                   </p>
+                  <p class="vg-p">
+                    訂購期 60 天 <br />(需於90天內配送完畢 &含延後2次)
+                  </p>
+                  <p class="vg-p">購買單箱1~5個工作天配送完畢</p>
                   <h5 class="vg-h5">商品價格:</h5>
                   <p class="vg-p">
-                    最低金額:<span class="price1">
-                      <%= data.con[t].price %></span
-                    >元
+                    <span>單箱最低金額:</span
+                    ><span class="price1"> <%= data.con[t].price %></span>元
                   </p>
                   <p class="vg-p">
-                    最高金額:
+                    <span>單箱最高金額:</span>
                     <span class="price3"
                       ><%= parseInt(data.con[t].price)+200 %></span
                     >元
                   </p>
-                  <h5 class="vg-h5">選擇商品規格:</h5>
+                  <p class="vg-p">
+                    雙人箱:<span class="sp2">一期運費160元</span>
+                  </p>
+                  <p class="vg-p">
+                    家庭箱:<span class="sp2">一期運費290元</span>
+                  </p>
+                  <h5 class="vg-h5">
+                    選擇商品規格:
+                    <br />
+                    <span class="text-danger vg-p">
+                      訂閱一期享有運費優惠！
+                    </span>
+                  </h5>
                   <div class="fv_all">
                     <div class="fv_con">
                       <label for="commodity" class="vg-p">選擇商品:</label>
-                      <select class="commodity" class="vg-p">
+                      <select class="commodity vg-p">
                         <option></option>
                         <option value="once" data-size="s">
                           雙人箱(1~2人)
@@ -115,11 +132,33 @@
                         <option value="once" data-size="l">
                           家庭箱(3~4人)
                         </option>
+                        <option value="30d" data-size="s">雙人箱(30day)</option>
+                        <option value="60d" data-size="l">雙人箱(60day)</option>
+                        <option value="30d" data-size="s">家庭箱(30day)</option>
+                        <option value="60d" data-size="l">家庭箱(60day)</option>
                       </select>
+                      <span class="p-0 m-0 vg-p">
+                        總金額: <span class="toal price4">0</span>
+                      </span>
                       <br />
-                      <p class="p-0 m-0 vg-p">
-                        總金額: <span class="toal price4">0</span>元
-                      </p>
+                      <div class="day">
+                        <label for="commodity" class="vg-p">配送日:</label>
+                        <select class="commodity vg-p">
+                          <option></option>
+                          <option value="Monday">星期一</option>
+                          <option value="Wednesday">星期三</option>
+                        </select>
+                      </div>
+                      <span class="d-inline vg-p">數量:</span>
+                      <span
+                        class="fa-solid fa-plus btn price1"
+                        style="font-size: 5px"
+                      ></span>
+                      <span class="sum">1</span>
+                      <span
+                        class="fa-solid fa-minus btn price3"
+                        style="font-size: 5px"
+                      ></span>
                       <div class="fv_box vg-bd-5">
                         <div class="vg-bd-5 mo_con">
                           <div
@@ -171,146 +210,13 @@
                           </div>
                         </div>
                       </div>
-                      <span class="d-inline vg-p">數量:</span>
-                      <span
-                        class="fa-solid fa-plus btn price1"
-                        style="font-size: 10px"
-                      ></span>
-                      <span class="sum">1</span>
-                      <span
-                        class="fa-solid fa-minus btn price3"
-                        style="font-size: 10px"
-                      ></span
-                      ><br />
-
+                      <br />
                       <p class="d-inline vg-p">內容:</p>
                       <strong class="buyfv buyfv2 vg-p"></strong>
                     </div>
                     <button class="btn btn-vg chage ms-1 mt-3">選擇蔬果</button>
-                    <button
-                      class="addCard btn btn-vg mt-3"
-                      style="width: 150px"
-                    >
-                      加入購物車
-                    </button>
+                    <button class="addCard btn btn-vg mt-3">加入購物車</button>
                   </div>
-                </div>
-                <div class="middle_Con">
-                  <h5 class="vg-h5">運送頻率:</h5>
-                  <p class="vg-p">
-                    每周一次 ➞ 一期四箱 ➞
-                    <br />
-                    訂購期 30 天 (需於45天內配送完畢&含延後2次)
-                  </p>
-                  <p class="vg-p">
-                    雙周一次 ➞ 一期四箱 ➞
-                    <br />
-                    訂購期 60 天 (需於90天內配送完畢 &含延後2次)
-                  </p>
-                  <h5 class="vg-h5">
-                    訂閱優惠
-                    <span class="text-danger vg-p sp2">
-                      選每周一次或雙周一次享有運費優惠！！
-                    </span>
-                  </h5>
-
-                  <p class="vg-p">
-                    30day一期運費160元 <br />60day 一期運費290元
-                  </p>
-
-                  <h5 class="vg-h5">價格:</h5>
-                  <p class="vg-p">
-                    <span>
-                      單箱最低金額:<span class="price1">
-                        <%= data.con[t].price %></span
-                      >元</span
-                    ><br />
-                    <span>
-                      單箱最高金額:
-                      <span class="price3"
-                        ><%= parseInt(data.con[t].price)+200 %></span
-                      >元
-                    </span>
-                  </p>
-                  <h5 class="vg-h5">選擇商品規格:</h5>
-                  <label for="commodity" class="vg-h5">商品規格</label>
-                  <select class="commodity vg-p">
-                    <option value="30d" data-size="s">雙人箱(30day)</option>
-                    <option value="60d" data-size="l">雙人箱(60day)</option>
-                    <option value="30d" data-size="s">家庭箱(30day)</option>
-                    <option value="60d" data-size="l">家庭箱(60day)</option>
-                  </select>
-                  <br />
-
-                  <p class="vg-p">單箱價格: <span class="toal">0</span>元</p>
-                  <p class="vg-p">
-                    總金額: <span class="toal2 price4">0</span>元
-                  </p>
-                  <div class="fv_box vg-bd-5">
-                    <div class="vg-bd-5 mo_con">
-                      <div
-                        class="mo_header vg-bd-5 d-flex justify-content-between align-items-center"
-                      >
-                        <h4 class="vg-h4 mb-0">請選擇您喜歡的蔬果</h4>
-
-                        <strong class="over vg-p"></strong>
-                        <button type="button" class="btn-close bcl"></button>
-                      </div>
-                      <div class="cons">
-                        <h5 class="vg-h5"><strong>蔬菜</strong></h5>
-                        <% for(let f = 0 ;f < data.veg.length ;f++ ){ %>
-                        <button class="btn f_1 vg-p" data-pay="100">
-                          <%= data.veg[f].product %>
-                        </button>
-                        <% } %>
-                        <h5 class="vg-h5 hoh5"><strong>水果</strong></h5>
-                        <% for(let f = 0 ;f < data.fruit.length ;f++ ){ %>
-                        <button class="btn f_1 vg-p" data-pay="50">
-                          <%= data.fruit[f].product %>
-                        </button>
-                        <% } %>
-                      </div>
-                      <div
-                        class="mo-foot d-flex justify-content-end align-items-center vg-p"
-                      >
-                        <span>圖標:</span>
-                        <span><img src="/img/天平.png" class="bas" />平性</span>
-                        <span>
-                          <i
-                            class="fa-solid fa-fire dd"
-                            style="color: #ff0000"
-                          ></i>
-                          熱性</span
-                        >
-                        <span
-                          ><i
-                            class="fa-solid fa-snowflake dd"
-                            style="color: rgb(142, 169, 215)"
-                          ></i
-                          >寒性</span
-                        >
-                        <button class="btn btn-vg goSure">確認</button>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="d-inline vg-p">數量:</p>
-                  <span
-                    class="fa-solid fa-plus btn price1"
-                    style="font-size: 10px"
-                  ></span>
-                  <span class="sum">1</span>
-                  <span
-                    class="fa-solid fa-minus btn price3"
-                    style="font-size: 10px"
-                  ></span
-                  ><br />
-                  <div class="fv_con vg-p">
-                    <p class="d-inline">內容:</p>
-                    <br />
-                    <strong class="buyfv"></strong>
-                  </div>
-                  <button class="btn btn-vg chage m-0">選擇蔬果</button>
-                  <button class="btn btn-vg m-0 addCard">加入購物車</button>
                 </div>
                 <% } else { %>
                 <div class="middle_Con">
@@ -319,12 +225,11 @@
                   <h5 class="vg-h5">蔬果內容:</h5>
                   <div class="div_2 vg-p">
                     <p class="m-0">
-                      <span class="sp1">雙人箱</span>
+                      <span class="sp1">雙人箱:</span>
                       <span class="concon"><%= data.con[t].content %></span>
-                      <span class="sp2">適合1~2人</span>
                     </p>
                     <p class="m-0">
-                      <span class="sp1">家庭箱</span>
+                      <span class="sp1">家庭箱:</span>
                       <% if(data.con[t].product === data.con[2].product){ %>
                       <span class="concon2">八樣水果</span>
                       <% }else if(data.con[t].product === data.con[3].product){
@@ -333,15 +238,21 @@
                       <% }else{ %>
                       <span class="concon2">五樣水果、五樣蔬菜</span>
                       <% }%>
-
-                      <span class="sp2">適合3~4人</span>
                     </p>
+                    <span class="vg-p">(內容以當季蔬菜組裝出貨)</span>
                   </div>
-                  <span class="vg-p">(內容以當季蔬菜組裝出貨)</span>
+                  <h5 class="vg-h5">運送頻率:</h5>
                   <p class="vg-p">
-                    運費根據黑貓低溫配送基本價 <br />
-                    宅配/超商取貨為同樣價格
+                    每周一次 ➞ 一期四箱
+                    <br />
+                    訂購期 30 天 <br />
+                    (需於45天內配送完畢&含延後2次)
                   </p>
+                  <p class="vg-p">
+                    訂購期 60 天<br />
+                    (需於90天內配送完畢 &含延後2次)
+                  </p>
+                  <p class="vg-p">購買單箱1~5個工作天配送完畢</p>
                   <h5 class="vg-h5">商品價格:</h5>
 
                   <p class="vg-p">
@@ -354,72 +265,37 @@
                       ><%= parseInt(data.con[t].price)+200 %></span
                     >元
                   </p>
-                  <h5 class="vg-h5">選擇商品規格:</h5>
+                  <p class="vg-p">
+                    運費根據黑貓低溫配送基本價 <br />
+                    宅配/超商取貨為同樣價格
+                  </p>
+                  <h5 class="vg-h5">
+                    選擇商品規格:
+                    <br />
+                    <span class="text-danger vg-p">
+                      訂閱一期享有運費優惠！
+                    </span>
+                  </h5>
+
                   <label for="commodity" class="mt-2 vg-p">選擇商品:</label>
                   <select class="commodity vg-p">
                     <option></option>
                     <option value="once" data-size="s">雙人箱(1~2人)</option>
                     <option value="once" data-size="l">家庭箱(3~4人)</option>
-                  </select>
-                  <br />
-                  <span class="d-inline vg-p">數量:</span>
-                  <span
-                    class="fa-solid fa-plus btn price1"
-                    style="font-size: 10px"
-                  ></span>
-                  <span class="sum">1</span>
-                  <span
-                    class="fa-solid fa-minus btn price3"
-                    style="font-size: 10px"
-                  ></span>
-                  <button class="addCard btn btn-vg m-0">加入購物車</button>
-                </div>
-                <div class="middle_Con">
-                  <h5 class="vg-h5">運送頻率:</h5>
-                  <p class="vg-p">
-                    每周一次 ➞ 一期四箱 ➞
-                    <br />
-                    訂購期 30 天 (需於45天內配送完畢&含延後2次)
-                  </p>
-                  <p class="vg-p">
-                    雙周一次 ➞ 一期四箱 ➞
-                    <br />
-                    訂購期 60 天 (需於90天內配送完畢 &含延後2次)
-                  </p>
-                  <h5 class="vg-h5">
-                    訂閱優惠:
-                    <span class="text-danger vg-p sp2">
-                      訂閱一期享有運費優惠！
-                    </span>
-                  </h5>
-                  <p class="vg-p">
-                    雙人箱(1~2人) <span class="sp2">一期運費160元</span>
-                  </p>
-                  <p class="vg-p">
-                    家庭箱(3~4人) <span class="sp2">一期運費290元</span>
-                  </p>
-                  <h5 class="vg-h5">價格:</h5>
-                  <p class="vg-p">
-                    雙人箱(1~2人):
-                    <span class="price1"
-                      ><%= parseInt(data.con[0].price)* 4 %></span
-                    >元
-                  </p>
-                  <p class="vg-p">
-                    家庭箱(3~4人):
-                    <span class="price3">
-                      <%= (parseInt(data.con[t].price) + 200) * 4 %></span
-                    >元
-                  </p>
-                  <h5 class="vg-h5">選擇商品規格:</h5>
-                  <label for="commodity vg-p">選擇商品:</label>
-                  <select class="commodity vg-p">
-                    <option></option>
                     <option value="30d" data-size="s">雙人箱(30day)</option>
                     <option value="60d" data-size="l">雙人箱(60day)</option>
                     <option value="30d" data-size="s">家庭箱(30day)</option>
                     <option value="60d" data-size="l">家庭箱(60day)</option>
                   </select>
+                  <br />
+                  <div class="day">
+                    <label for="commodity" class="vg-p">配送日:</label>
+                    <select class="commodity vg-p">
+                      <option></option>
+                      <option value="Monday">星期一</option>
+                      <option value="Wednesday">星期三</option>
+                    </select>
+                  </div>
                   <br />
                   <span class="d-inline vg-p">數量:</span>
                   <span
@@ -434,11 +310,10 @@
                   <button class="addCard btn btn-vg m-0">加入購物車</button>
                 </div>
                 <% } %>
-
                 <div class="middle_Con">
                   <h5 class="vg-h5">
-                    購買流程:
-                    <span class="text-danger vg-p sp2"
+                    購買流程: <br />
+                    <span class="text-danger vg-p"
                       >每周一固定配送 (假日無物流)</span
                     >
                   </h5>
@@ -452,7 +327,8 @@
                   </ol>
 
                   <h5 class="vg-h5">
-                    售後服務:<span class="text-danger vg-p sp2"
+                    售後服務: <br />
+                    <span class="text-danger vg-p"
                       >每筆訂單提供兩次延後配送的服務</span
                     >
                   </h5>

@@ -102,7 +102,8 @@ product.get("/", function (req, res) {
     try {
       let dataArray = Object.values(cardDataArr);
       for (let cardData of dataArray) {
-        let { uid, quantity, c_option, product, size, freq, fid } = cardData;
+        let { uid, quantity, c_option, product, size, freq, fid, money, day } =
+          cardData;
         let sql8 =
           "SELECT pid FROM product WHERE product = ? and size = ? and freq = ?";
         let getpid = [product, size, freq];
@@ -120,8 +121,8 @@ product.get("/", function (req, res) {
         console.log("取得產品id:", pid);
 
         let addcart =
-          "INSERT INTO cart (uid, pid, quantity, c_option, fid) VALUES (?, ?, ?, ?, ?)";
-        let addcartValues = [uid, pid, quantity, c_option, fid];
+          "INSERT INTO cart (uid, pid, quantity, c_option, fid, money, day) VALUES (?, ?, ?, ?, ?,?,?)";
+        let addcartValues = [uid, pid, quantity, c_option, fid, money, day];
 
         await queryAsync(addcart, addcartValues);
       }
