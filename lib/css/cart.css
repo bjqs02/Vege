@@ -175,6 +175,7 @@
 
 #sendorder:hover {
     background-color: #8a061d !important;
+    color: white;
 }
 
 
@@ -294,9 +295,8 @@ td {
 
 /* 願望清單樣式 */
 #wishlist {
-    /* background-color: blanchedalmond; */
-    height: 110px;
-
+    /* height: 110px; */
+    overflow: hidden;
 }
 
 #wishlist>h5 {
@@ -315,8 +315,8 @@ td {
 }
 
 #wishlist img {
-    width: 80px;
-    border-radius: 5px;
+    width: 30%;
+    /* border-radius: 5px; */
 }
 
 
@@ -428,7 +428,7 @@ td {
 
 #progressbar li {
     list-style-type: none;
-    font-size: 8px;
+    font-size: 14px;
     width: 25%;
     float: left;
     position: relative;

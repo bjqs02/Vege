@@ -82,7 +82,7 @@
                                 <input type="text" class="form-control w-25 m-auto d-inline" name="" id="myuseBonus"
                                     placeholder="請輸入欲折抵的購物金" oninput="bonusval(this)">
                                 <button class="btn btn-vg-xs" value="" onclick="useBonus()">送出</button>
-                                <p class="vg-ps mt-1">您擁有的購物金:
+                                <p class="vg-p my-3">您擁有的購物金:
                                     <span class="text-primary" id="userBonus"></span>&nbsp;&nbsp;&nbsp;
                                     <!-- <input type="radio" name="" id="useall"> <label for="useall">全部使用</label> -->
                                 </p>
@@ -99,8 +99,8 @@
                             <thead>
                                 <tr>
                                     <th>品項</th>
-                                    <th>數量</th>
-                                    <th>金額</th>
+                                    <th>#</th>
+                                    <th class="w-25">價格</th>
                                 </tr>
                             </thead>
                             <tbody id="summary_items">
@@ -237,7 +237,7 @@
                                     <label for="kids${item.pid}">家有兒童</label><br />
                                     <input type="checkbox" value="辛香料" id="spice${item.pid}" onclick="addtocnote(this)">
                                     <label for="spice${item.pid}">辛香料</label><br />
-                                    <button class="btn btn-vg-xs m-2 shadow-sm w-75 towishbtn" onClick="towishbtn(this)">下次再買</button>
+                                    <button class="btn btn-vg-xs m-2 shadow-sm w-100 towishbtn" onClick="towishbtn(this)">下次再買</button>
                                 </td>
                              </tr>         
                             `;
@@ -269,7 +269,7 @@
                                     <label for="kids${item.pid}">家有兒童</label><br />
                                     <input type="checkbox" value="辛香料" id="spice${item.pid}" onclick="addtocnote(this)">
                                     <label for="spice${item.pid}">辛香料</label><br />
-                                    <button class="btn btn-vg-xs m-2 shadow-sm w-75 towishbtn" onClick="towishbtn(this)">下次再買</button>
+                                    <button class="btn btn-vg-xs m-2 shadow-sm w-100 towishbtn" onClick="towishbtn(this)">下次再買</button>
                                 </td>
                              </tr>         
                             `;
@@ -301,7 +301,7 @@
                                     <label for="kids${item.pid}">家有兒童</label><br />
                                     <input type="checkbox" value="辛香料" id="spice${item.pid}" onclick="addtocnote(this)">
                                     <label for="spice${item.pid}">辛香料</label><br />
-                                    <button class="btn btn-vg-xs m-2 shadow-sm w-75 towishbtn" onClick="towishbtn(this)">下次再買</button>
+                                    <button class="btn btn-vg-xs m-2 shadow-sm w-100 towishbtn" onClick="towishbtn(this)">下次再買</button>
                                 </td>
                              </tr>         
                             `;
@@ -333,7 +333,7 @@
                                     <label for="kids${item.pid}">家有兒童</label><br />
                                     <input type="checkbox" value="辛香料" id="spice${item.pid}" onclick="addtocnote(this)">
                                     <label for="spice${item.pid}">辛香料</label><br />
-                                    <button class="btn btn-vg-xs m-2 shadow-sm w-75 towishbtn" onClick="towishbtn(this)">下次再買</button>
+                                    <button class="btn btn-vg-xs m-2 shadow-sm w-100 towishbtn" onClick="towishbtn(this)">下次再買</button>
                                 </td>
                              </tr>         
                             `;
@@ -365,7 +365,7 @@
                                     <label for="kids${item.pid}">家有兒童</label><br />
                                     <input type="checkbox" value="辛香料" id="spice${item.pid}" onclick="addtocnote(this)">
                                     <label for="spice${item.pid}">辛香料</label><br />
-                                    <button class="btn btn-vg-xs m-2 shadow-sm w-75 towishbtn" onClick="towishbtn(this)">下次再買</button>
+                                    <button class="btn btn-vg-xs m-2 shadow-sm w-100 towishbtn" onClick="towishbtn(this)">下次再買</button>
                                 </td>
                              </tr>         
                             `;
@@ -397,7 +397,7 @@
                                     <label for="kids${item.pid}">家有兒童</label><br />
                                     <input type="checkbox" value="辛香料" id="spice${item.pid}" onclick="addtocnote(this)">
                                     <label for="spice${item.pid}">辛香料</label><br />
-                                    <button class="btn btn-vg-xs m-2 shadow-sm w-75 towishbtn" onClick="towishbtn(this)">下次再買</button>
+                                    <button class="btn btn-vg-xs m-2 shadow-sm w-100 towishbtn" onClick="towishbtn(this)">下次再買</button>
                                 </td>
                              </tr>         
                             `;
@@ -625,12 +625,12 @@
                             $.each(items, function (index, item) {
                                 var divHtml = `
                             <div class="myItem d-flex position-relative">
-                                <img src="/img/fruitbox.png" alt="">
+                                <img src="/img/fruitbox_s.png" style="object-fit:contain">
                                 <div class="align-self-center text-center px-2" id="aa${item.pid}">
                                     <button class="btn btn-outline-dark btn-sm close-btn" onClick="deleteFromWishlist(this)">x</button>
-                                    <p class="vg-p m-0 p-0 ">${item.product}</p>
+                                    <p class="vg-ps m-0 p-0 ">${item.product}</p>
                                     <p class="vg-ps m-0 p-0">${item.price}</p>
-                                    <button class="btn btn-vg-xs m-2 shadow-sm" onClick="buynow(this)">立刻買</button>
+                                    <button class="btn btn-vg-xs w-100 shadow-sm" onClick="buynow(this)">立刻買</button>
                                 </div>
                             </div>         
                             `;
