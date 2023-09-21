@@ -407,7 +407,7 @@
                             // 修正自選箱價格
                             var optionPrice = 0;
                             var fetchPromises = [];
-                            if (item.pname.includes('自選')) {
+                            if (item.pname.includes('自選') && item.c_option != '') {
                                 item.c_option.map((product) => {
                                     var fetchPromise = fetch('/getitemprice', {
                                         method: 'POST',
@@ -428,8 +428,6 @@
                                         } else if (e && e[0] && e[0].category == '水果') {
                                             optionPrice = optionPrice + 50;
                                         }
-                                        item.price = optionPrice; // 設定到內層，非外層(!?!?)
-                                        localStorage.setItem('optionPrice', optionPrice);
                                     })
                                     fetchPromises.push(fetchPromise);
                                 })
@@ -438,7 +436,7 @@
                                     localStorage.setItem('optionPrice', optionPrice);
                                 });
                             }
-                            
+
                         })
                         // console.log(items)
                         countTotal(items)
@@ -453,12 +451,12 @@
                             // 購買品項
                             item.size == 's' ? fee = 160 : fee = 290; // 運費 (S-160 L-290)
                             item.size == 's' ? item.size = '雙人箱(1~2人)' : item.size = '家庭箱(3~4人)';
-                            
+
                             // 未竟之戰 (自選箱價格需重新整理才會正確顯示)
-                            if (localStorage.getItem('optionPrice') ){
-                                item.pname == '自選蔬果箱'? item.price = localStorage.getItem('optionPrice') : item.price = item.price;
+                            if (localStorage.getItem('optionPrice')) {
+                                item.pname == '自選蔬果箱' ? item.price = localStorage.getItem('optionPrice') : item.price = item.price;
                             }
-                            
+
                             if (item.freq == 'once') {
                                 item.freq = '單次購買'
                             } else if (item.freq == '30d') {
@@ -926,8 +924,11 @@
 
 
                     // 點選下次再買按鈕 => 更新至wishlist資料表 => 刪除cart資料表中該項產品
+                    // 可加強: 若是自選箱直接刪掉品項
                     towishbtn = (e) => {
                         // console.log(e.closest('tr[class*="aa"]').className)
+                        // var parentOption = e.closest('tr[class*="aa"]');
+                        // var pid = parentOption.className;
                         var pid = e.closest('tr[class*="aa"]').className;
                         fetch('/addtowishlist/', {
                             method: 'post',
