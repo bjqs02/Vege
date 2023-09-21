@@ -192,10 +192,17 @@ cart_order.delete("/cart/deleteitem/", function (req, res) {
 
 // 更新願望清單 (新增至購物車)
 cart_order.post("/cart/additem/", function (req, res) {
-  var sql11 = "INSERT INTO cart (uid, pid) VALUES (? , ?)";
-  db.query(sql11, [req.body.uid, req.body.pid], function (err, rows) {
-    res.send(JSON.stringify(req.body));
-  });
+  var countCart;
+  var sql11_1 = 'SELECT COUNT(*) as count FROM cart where uid = ? and c_status = "active"';
+  db.query(sql11_1, [req.body.uid], function (err, rows) {
+    var temp = Object.values(JSON.parse(JSON.stringify(rows)))
+    countCart = temp[0].count;
+    // console.log('aa', countCart)
+    var sql11_2 = `INSERT INTO cart (uid, pid, fid) VALUES (? , ?, 'Newprod${countCart}')`;
+    db.query(sql11_2, [req.body.uid, req.body.pid], function (err, rows) {
+      res.send(JSON.stringify(req.body));
+    });
+  })
 });
 
 // 更新願望清單 (從願望清單移除)
@@ -239,6 +246,19 @@ cart_order.get("/getcoupon/:coupon", function (req, res) {
   var sql15 = "SELECT discount FROM temp_coupon WHERE coupon = ?";
   db.query(sql15, [req.params.coupon], function (err, rows) {
     res.send(rows);
+  });
+});
+
+// 讀取自選箱個別蔬果價格
+cart_order.post("/getitemprice", function (req, res) {
+  // 當價格以資料庫數據為主時
+  // var sql15_2 = "SELECT price FROM product_content WHERE product = ?;"
+  // 當價格在product.ejs寫死 蔬菜100+水果50時
+  var sql15_2 = "SELECT category FROM product WHERE product = ?;"
+  db.query(sql15_2, [req.body.product], function (err, rows) {
+    // console.log((JSON.stringify(rows)))
+    console.log(Object.values(JSON.parse(JSON.stringify(rows))))
+    res.send(Object.values(JSON.parse(JSON.stringify(rows))))
   });
 });
 
@@ -396,15 +416,15 @@ cart_order.post('/payments/linepay/', async function (req, res, next) {
         'X-LINE-ChannelId': process.env.LINE_PAY_CHANNELID,
         'X-LINE-ChannelSecret': process.env.LINE_PAY_SECRET
       },
-      body:{
+      body: {
         // 需用body 攜帶 amount和 twd資料進行付款驗證
-        "amount" : amount,
-        "currency" : "TWD"
+        "amount": amount,
+        "currency": "TWD"
       }
     });
     console.log(payments)
     // res.send( payments )
-    if( payments.returnMessage == "Success."){
+    if (payments.returnMessage == "Success.") {
       // res.json({ success: true });
       setTimeout(() => { res.redirect("http://127.0.0.1:2407/orderprocessing") }, 5000)
     } else {

@@ -16,6 +16,7 @@ a:hover {
 body {
   min-width: 400px;
   overflow: auto;
+  color: var(--text-color);
 }
 
 header {
@@ -29,19 +30,18 @@ header {
   }
 }
 header main#product_main {
-  display: flex;
-  flex-direction: column;
+  background-color: var(--primary-L);
 }
 @media screen and (max-width: 1100px) {
   header main#product_main {
     width: 100%;
     height: 100%;
+    background-color: var(--primary-L);
   }
 }
 header main#product_main section.main-box {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
 }
 @media screen and (max-width: 1100px) {
   header main#product_main section.main-box {
@@ -49,11 +49,11 @@ header main#product_main section.main-box {
   }
 }
 header main#product_main section.main-box aside.asideNav {
-  width: 40%;
+  width: 30%;
   display: flex;
-  justify-content: center;
-  align-items: center;
   text-align: center;
+  flex-direction: column;
+  margin-top: 90px;
 }
 
 @media screen and (max-width: 1100px) {
@@ -62,23 +62,16 @@ header main#product_main section.main-box aside.asideNav {
     justify-content: center;
     align-items: center;
     width: 100%;
+    margin: 0;
   }
 }
+
 header main#product_main section.main-box aside.asideNav ul.asideNav-ul {
-  display: flex;
   padding: 0;
   list-style-type: none;
-  flex-direction: column;
   width: 100%;
 }
-@media screen and (max-width: 1100px) {
-  header main#product_main section.main-box aside.asideNav ul.asideNav-ul {
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-top: 20px;
-  }
-}
+
 header main#product_main section.main-box aside.asideNav ul.asideNav-ul li {
   width: 100%;
 }
@@ -170,6 +163,19 @@ header
 div.middle_box {
   background-color: var(--primary-L);
   display: flex;
+  width: 100%;
+}
+
+header
+  main#product_main
+  section.main-box
+  section.middleContent
+  section.middle_box1
+  div.middle_box
+  div.vg-h3-div
+  h3 {
+  padding: 0;
+  margin-left: 10px;
 }
 
 @media screen and (max-width: 1100px) {
@@ -200,6 +206,7 @@ div.middle_box {
     section.middleContent
     section.middle_box1
     div.middle_box
+    div.vg-h3-div
     h3 {
     padding: 0;
     margin: 0;
@@ -213,8 +220,8 @@ header
   div.middle_box
   .vg-h3-div {
   display: flex;
-  align-items: center; /* 可选，将按钮垂直居中对齐 */
-  width: 50%; /* 左侧占50%宽度 */
+  align-items: center;
+  width: 50%;
 }
 header
   main#product_main
@@ -224,6 +231,7 @@ header
   div.middle_box
   .vg-h3-div2 {
   display: flex;
+  width: 100%;
   margin: 10px;
 }
 header
@@ -235,7 +243,7 @@ header
   .vg-h3-div2
   div.box {
   color: white;
-  /* margin: 10px; */
+  margin: 10px;
   /* width: 4rem; */
   /* background-color: var(--bg-2); */
   /* -webkit-clip-path: polygon(
@@ -277,16 +285,10 @@ header
   section.middle_box1
   div.middle_all {
   display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
+  -webkit-box-shadow: 6px 7px 8px 3px rgba(0, 0, 0, 0.28);
+  box-shadow: 6px 7px 8px 3px rgba(0, 0, 0, 0.28);
   margin-bottom: 20px;
-}
-
-.addCard,
-.chage {
-  position: relative;
-  z-index: 1;
 }
 
 @media screen and (max-width: 1100px) {
@@ -308,11 +310,11 @@ header
   section.middle_box1
   div.middle_all
   div.middle_Con {
+  background-color: white;
   padding: 10px;
-  margin-bottom: 20px;
   color: rgb(0, 0, 0);
-  width: 400px;
-  height: 600px;
+  width: 100%;
+  height: 700px;
 }
 @media screen and (max-width: 1100px) {
   header
@@ -325,16 +327,6 @@ header
     width: 100%;
   }
 }
-header
-  main#product_main
-  section.main-box
-  section.middleContent
-  section.middle_box1
-  div.middle_all
-  div.middle_Con
-  div {
-  flex-wrap: wrap;
-}
 
 header
   main#product_main
@@ -342,53 +334,31 @@ header
   section.middleContent
   section.middle_box1
   div.middle_all
-  div.middle_Con
-  div
-  span {
-  cursor: pointer;
-  margin: 5px;
-  padding: 5px;
-  border: 0.3px solid black;
-}
-header
-  main#product_main
-  section.main-box
-  section.middleContent
-  section.middle_box1
-  div.middle_all
   div.middle_img {
+  background-color: white;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 400px;
-  height: 420px;
-  flex-wrap: wrap;
-}
-header
-  main#product_main
-  section.main-box
-  section.middleContent
-  section.middle_box1
-  div.middle_all
-  div.middle_img
-  button.vg_fru {
-  flex-wrap: wrap;
   flex-direction: column;
-  width: 50px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  color: rgb(0, 0, 0);
+  width: 100%;
+  height: 700px;
 }
-header
-  main#product_main
-  section.main-box
-  section.middleContent
-  section.middle_box1
-  div.middle_all
-  div.middle_img
-  img {
-  width: 22rem;
+
+div.middle_img img {
+  width: 20rem;
   height: 23rem;
   background-size: contain;
 }
-header
+
+div.middle_all .middle_imgs img {
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  margin-left: 5px;
+}
+/* header
   main#product_main
   section.main-box
   section.middleContent
@@ -398,7 +368,7 @@ header
   button {
   margin: 0;
   padding: 0;
-}
+} */
 header
   main#product_main
   section.main-box
@@ -409,7 +379,7 @@ header
   div.middle_imgs {
   background-size: contain;
 }
-@media screen and (max-width: 1100px) {
+/* @media screen and (max-width: 1100px) {
   header
     main#product_main
     section.main-box
@@ -421,20 +391,8 @@ header
     display: flex;
     background-size: contain;
   }
-}
-header
-  main#product_main
-  section.main-box
-  section.middleContent
-  section.middle_box1
-  div.middle_all
-  div.middle_img
-  div.middle_imgs
-  img {
-  width: 50px;
-  height: 50px;
-  background-size: contain;
-}
+} */
+
 @media screen and (max-width: 1100px) {
   header
     main#product_main
@@ -445,17 +403,38 @@ header
     div.middle_img
     div.middle_imgs
     img {
-    margin-left: 10px;
+    margin-left: 5px;
+  }
+
+  header
+    main#product_main
+    section.main-box
+    section.middleContent
+    section.middle_box1
+    div.middle_all
+    div.middle_img {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
-#show {
+/* #show {
   display: line;
-}
+} */
 
 /* 图片点击效果 */
-img:hover {
+img.mainImg:hover,
+img.ch:hover {
   cursor: pointer;
-} /*# sourceMappingURL=Product_Page.css.map */
+  transform: scale(
+    1.1
+  ); /* 或者其他比例，1 表示不变，大于 1 放大，小于 1 缩小 */
+  border: 1px solid var(--primary-2);
+  margin: 3px;
+}
 
 .black {
   width: 100vw;
@@ -502,6 +481,7 @@ h5.hoh5 {
 
 .f_1 {
   margin: 3px;
+  position: relative;
 }
 .cons {
   height: 300px;
@@ -540,4 +520,113 @@ strong.over {
 
 .fu_nav:hover {
   background-color: var(--primary-2);
+}
+
+h5 {
+  border-bottom: 2px var(--primary-2) solid;
+  padding-bottom: 5px;
+}
+
+.div_2 {
+  border: 0.3px solid var(--primary-1);
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.sp1 {
+  margin-right: 30px;
+}
+.sp2 {
+  margin-left: 30px;
+}
+
+.commodity {
+  border-radius: 10px;
+  border: #0d5946 1px solid;
+  margin-bottom: 10px;
+  padding: 1px;
+}
+.fa-minus {
+  margin-right: 55px;
+}
+
+/* .brod{
+  border: 0.3px solid black;
+  padding: 2px;
+} */
+
+.smtext {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 400px;
+  height: 200px;
+  border-radius: 14px;
+  padding-left: 20px;
+  background: #fbf9ed;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+@media screen and (max-width: 800px) {
+  header {
+    .smtext {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 300px;
+      height: 200px;
+      border-radius: 14px;
+      padding-left: 20px;
+      background: #fbf9ed;
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    }
+  }
+}
+
+.fa-thumbtack {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.fa-fire {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+}
+.fa-snowflake {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+}
+.bs {
+  width: 35px;
+  position: absolute;
+  top: -10px;
+  left: -15px;
+}
+.dd {
+  position: static;
+  margin-left: 10px;
+}
+.bas {
+  width: 35px;
+}
+
+.addCard {
+  position: absolute;
+  z-index: 1;
+  bottom: 20px;
+  right: 20px;
+  width: 150px;
+}
+.chage {
+  position: absolute;
+  bottom: 20px;
+  right: 190px;
+  width: 150px;
 }

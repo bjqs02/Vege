@@ -53,7 +53,7 @@ contact.post('/', jp, function(req, res){
                   res.send("Email sent");
                 }
               });
-            res.send('ok');
+            res.json(fields);
         }
     })
 })

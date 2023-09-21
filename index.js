@@ -85,8 +85,8 @@ app.use("/", product);
 // 結帳去(購買資訊輸入)
 app.use("/order", express.static("lib"));
 app.get("/order", login_render, function (req, res) {
-  var body = { storeid : '尚未', storename : '選擇'};
-  res.render("order", {body});
+  var body = { storeid: "尚未", storename: "選擇" };
+  res.render("order", { body });
 });
 
 // 確認訂單
@@ -113,23 +113,23 @@ app.get("/rateorder", login_render, function (req, res) {
 });
 
 //blog
-let blog = require('./router/blog');
-let activityboard = require('./router/activityboard');
-app.use('/blog',express.static('lib'));
-app.use('/blog/page',express.static('lib'));
-app.use('/blog/inside',express.static('lib'));
-app.use('/blog/tag',express.static('lib'));
-app.use('/blog/category',express.static('lib'));
-app.use('/blog/search',express.static('lib'));
-app.use('/blog/search1',express.static('lib'));
-app.use('/activityboard',express.static('lib'));
-app.use('/activityboard/category',express.static('lib'));
-app.use('/activityboard/inside',express.static('lib'));
-app.use('/blog', blog);
-app.use('/activityboard', activityboard);
+let blog = require("./router/blog");
+let activityboard = require("./router/activityboard");
+app.use("/blog", express.static("lib"));
+app.use("/blog/page", express.static("lib"));
+app.use("/blog/inside", express.static("lib"));
+app.use("/blog/tag", express.static("lib"));
+app.use("/blog/category", express.static("lib"));
+app.use("/blog/search", express.static("lib"));
+app.use("/blog/search1", express.static("lib"));
+app.use("/activityboard", express.static("lib"));
+app.use("/activityboard/category", express.static("lib"));
+app.use("/activityboard/inside", express.static("lib"));
+app.use("/blog", blog);
+app.use("/activityboard", activityboard);
 
 // 會員專區
-app.use('/member', express.static('lib'));
+app.use("/member", express.static("lib"));
 var member = require("./router/member");
 app.use("/member", member);
 app.get("/member", login_render, function (req, res) {

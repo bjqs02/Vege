@@ -12,13 +12,17 @@ product.get("/", function (req, res) {
     "SELECT product.product, product.category, product.firm, info.season FROM product INNER JOIN info ON product.product = info.product WHERE (product.category = '蔬菜' ) AND (info.season = '9,10,11' OR info.season = '全年' or info.season = '12,1,2'or info.season = '3,4,5');";
   let sql4 =
     "SELECT product.product, product.category, product.firm, info.season FROM product INNER JOIN info ON product.product = info.product WHERE (product.category = '水果' ) AND (info.season = '9,10,11' OR info.season = '全年' or info.season = '12,1,2'or info.season = '3,4,5');";
+  let sql5 =
+    "SELECT info.product,info.save,info.note FROM info WHERE info.season ORDER BY RAND() LIMIT 1;";
 
+  let sql6 = "SELECT product, Temp FROM product WHERE Temp IS NOT NULL;";
   let data = {
     names: [],
     images: [],
     con: [],
     veg: [],
     fruit: [],
+    temp: [],
   };
 
   mysql.query(sql, function (err, rows) {
@@ -65,9 +69,18 @@ product.get("/", function (req, res) {
             }
 
             data.fruit = rows;
+            mysql.query(sql6, function (err, rows) {
+              if (err) {
+                console.log("temp取得失敗");
+                console.log(err);
+                res.status(500).send("資料庫错误");
+                return;
+              }
 
-            res.render("product", {
-              data: data,
+              data.temp = rows;
+              res.render("product", {
+                data: data,
+              });
             });
           });
         });
@@ -77,57 +90,46 @@ product.get("/", function (req, res) {
 
   product.use(express.json());
 
+  let { promisify } = require("util");
+
+  let queryAsync = promisify(mysql.query).bind(mysql);
+
   product.post("/cardData", async (req, res) => {
-    const cardDataArr = req.body;
+    let cardDataArr = req.body;
 
     try {
-      const dataArray = Object.values(cardDataArr); // 将对象的值转换为数组
-      for (const cardData of dataArray) {
-        const { uid, quantity, c_option, product, size, freq, fid } = cardData;
-        const sql8 =
-          "SELECT pid FROM product WHERE product = ? and size = ? and freq = ?;";
-        const getpid = [product, size, freq];
+      let dataArray = Object.values(cardDataArr);
+      for (let cardData of dataArray) {
+        let { uid, quantity, c_option, product, size, freq, fid } = cardData;
+        let sql8 =
+          "SELECT pid FROM product WHERE product = ? and size = ? and freq = ?";
+        let getpid = [product, size, freq];
 
-        mysql.query(sql8, getpid, (err, results) => {
-          if (err) {
-            console.error("取得產品id失敗:", err);
-            res.status(500).send("取得產品id失敗"); // Send an error response
-            return;
-          }
-          console.log("查詢product结果:", product);
-          console.log("查詢size结果:", size);
-          console.log("查詢freq结果:", freq);
-          console.log("查詢id结果:", results);
+        let results = await queryAsync(sql8, getpid);
 
-          if (results.length === 0) {
-            console.error("找不到產品id");
-            res.status(404).send("找不到產品id");
-            return;
-          }
+        if (results.length === 0) {
+          console.error("找不到產品id");
+          return res.status(404).send("找不到產品id");
+        }
+        console.log("product = " + product);
+        console.log("size = " + size);
+        console.log("freq = " + freq);
+        let pid = results[0].pid;
+        console.log("取得產品id:", pid);
 
-          const pid = results[0].pid;
-          console.log("取得產品id:", pid);
+        let addcart =
+          "INSERT INTO cart (uid, pid, quantity, c_option, fid) VALUES (?, ?, ?, ?, ?)";
+        let addcartValues = [uid, pid, quantity, c_option, fid];
 
-          const addcart =
-            "INSERT INTO cart (uid, pid, quantity, c_option, fid) VALUES (?, ?, ?, ?, ?)";
-          const addcartValues = [uid, pid, quantity, c_option, fid];
-
-          mysql.query(addcart, addcartValues, (err, results) => {
-            if (err) {
-              console.error("產品添加失敗:", err);
-              res.status(500).send("產品添加失敗");
-            } else {
-              res.send(results);
-            }
-          });
-        });
+        await queryAsync(addcart, addcartValues);
       }
+
+      res.send({ success: true, message: "卡片添加成功" });
     } catch (err) {
       console.error("发生错误:", err);
       res.status(500).send("发生错误"); // Send an error response
     }
   });
-
   product.post("/delcartData", async (req, res) => {
     const delDataArr = req.body;
     try {
@@ -170,15 +172,31 @@ product.get("/", function (req, res) {
     }
   });
 
-  // 讀取每個會員
-  // product.get("/cart/item/:id", function (req, res) {
-  //   // var sql1 = "SELECT * FROM temp_product join cart WHERE cart.pid = temp_product.pid and  cart.uid = ? and cart.c_status = 'active'";
-  //   var sql99 =
-  //     "SELECT product.pid, product.product as pname, product_content.image as img, product_content.content as pinfo , product_content.price as price, product.size, product.freq, cart.quantity, cart.c_option, cart.c_note, cart.fid FROM product_content INNER JOIN product join cart WHERE product_content.product = product.product and cart.pid = product.pid and cart.uid = ? and cart.c_status = 'active';";
-  //   mysql.query(sql99, [req.params.id], function (err, rows) {
-  //     res.send(rows);
-  //   });
-  // });
+  product.get("/getinfo", (req, res) => {
+    // 执行数据库查询，将结果转为JSON并返回
+    mysql.query(sql5, function (err, rows) {
+      if (err) {
+        console.log("提醒取得失敗");
+        console.log(err);
+        res.status(500).json({ error: "資料庫錯誤" });
+        return;
+      }
+      res.json(rows); // Assuming rows is an array of objects
+    });
+  });
+
+  product.get("/gettemp", (req, res) => {
+    // 执行数据库查询，将结果转为JSON并返回
+    mysql.query(sql6, function (err, rows) {
+      if (err) {
+        console.log("temp取得失敗");
+        console.log(err);
+        res.status(500).json({ error: "資料庫錯誤" });
+        return;
+      }
+      res.json(rows); // Assuming rows is an array of objects
+    });
+  });
 });
 
 module.exports = product;

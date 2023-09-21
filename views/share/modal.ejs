@@ -3,6 +3,7 @@
 <button
   type="button"
   id="modalOnPage"
+  style="z-index: 20; background-color: var(--primary-2); color: #ccdcac"
   onclick="hideButton()"
   class="btn btn-vg-rnd"
   data-bs-toggle="modal"
@@ -540,7 +541,7 @@
         >
           重新診斷
         </button>
-        <a class="btn btn-vg-reg go_shop" href="#">前往商品頁</a>
+        <a class="btn btn-vg-reg go_shop">前往商品頁</a>
       </div>
     </div>
   </div>
@@ -548,7 +549,6 @@
 
 <!-- 測試中：是否診斷Modal這裡結束 -->
 <script>
-  $(document).ready(function () {});
   function callModal() {
     $("#dxIntro").modal("show");
   }
@@ -566,10 +566,10 @@
 
   var data = {};
   dxQ1_vege.onclick = function () {
-    return (data.product = "fruit");
+    return (data.product = "水果");
   };
   dxQ1_fruit.onclick = function () {
-    return (data.product = "vege");
+    return (data.product = "蔬菜");
   };
   dxQ1_mix.onclick = function () {
     return (data.product = "");
@@ -600,7 +600,6 @@
     return (data.hot = "");
   };
   dxQ6_hot.onclick = function () {
-    $(".buyfv").empty();
     return (data.hot = "hot");
   };
 
@@ -664,10 +663,18 @@
 
   function timeoutNext() {
     $("#dxING").modal("show");
-    console.log(data);
     setTimeout(function () {
       $("#dxING").modal("hide");
       $("#dxResult").modal("show");
     }, 4000);
   }
+  $(".go_shop").on("click", function () {
+    openCity(event, "fu_tab7");
+    $("#dxING").modal("hide");
+    $(".modal").hide();
+    $(".modal-dialog").hide();
+    $(".fv_box, .black").show();
+    $("body").addClass("body-no-scroll");
+    let selectedSize = $(".commodity option:selected").data("size");
+  });
 </script>

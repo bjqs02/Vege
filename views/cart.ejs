@@ -158,7 +158,7 @@
                     <!-- order -->
                     <div id="placeorder" class="text-center mt-5">
                         <a class="btn btn-vg-lg mt-2 mb-3 p-3" onclick="placeOrder()">結帳去</a><br />
-                        <a href="/product" class="vg-href">繼續購物</a>
+                        <a href="/product" class="vg-href" onclick="backtoProduct()">繼續購物</a>
                     </div>
                 </section>
             </div>
@@ -170,107 +170,48 @@
             <%- include('share/vg-main.ejs') %>
                 <script src="js/cart.js"></script>
                 <script>
-                    $(function () {
-                        var userData = localStorage.getItem('token');
-                        var userToken = userData ? JSON.parse(userData) : false;
-                        var uid = userToken.id;
-                        // var userData = localStorage.getItem('token');
-                        // // console.log(userData)
-                        // if (userData !== null) {
-                        //     var userToken = userData ? JSON.parse(userData) : false;
-                        //     // 設定目前使用者id
-                        //     var uid = userToken.id;
-                        // } else {
-                        //     Swal.fire({
-                        //         title: '請先登入會員',
-                        //         icon: 'warning',
-                        //         showConfirmButton: false,
-                        //         timer: 1500
-                        //     }).then(
-                        //         setTimeout(() => {
-                        //             document.location.href = "/login/userlogin"
-                        //         }, 2000)
-                        //     )
-                        // }
 
-                        function countTotal(items, callback) {
-                            // console.log(res)
-                            // 金額試算表格
-                            var total = 0;
-                            var shippingfee = 0;
-                            items.map((item) => {
-                                // 購買品項
-                                item.size == 's' ? fee = 160 : fee = 290; // 運費 (S-160 L-290)
-                                item.size == 's' ? item.size = '雙人箱(1~2人)' : item.size = '家庭箱(3~4人)';
-                                if (item.freq == 'once') {
-                                    item.freq = '單次購買'
-                                } else if (item.freq == '30d') {
-                                    item.freq = '每周一次'
-                                } else {
-                                    item.freq = '雙周一次'
-                                }
-                                item.c_note == null ? item.c_note = '無備註' : item.c_note
-                                if (item.size == '雙人箱(1~2人)' && item.freq == '單次購買') {
-                                    item.price = parseInt(item.price) * item.quantity
-                                } else if (item.size == '家庭箱(3~4人)' && item.freq == '單次購買') {
-                                    item.price = (parseInt(item.price) + 200) * item.quantity
-                                } else if (item.size == '雙人箱(1~2人)' && item.freq == '每周一次') {
-                                    item.price = (parseInt(item.price) * 4) * item.quantity
-                                } else if (item.size == '家庭箱(3~4人)' && item.freq == '每周一次') {
-                                    item.price = ((parseInt(item.price) + 200) * 4) * item.quantity
-                                } else if (item.size == '雙人箱(1~2人)' && item.freq == '雙周一次') {
-                                    item.price = (parseInt(item.price) * 4) * item.quantity
-                                } else {
-                                    item.price = ((parseInt(item.price) + 200) * 4) * item.quantity
-                                }
+                    var userData = localStorage.getItem('token');
+                    var userToken = userData ? JSON.parse(userData) : false;
+                    var uid = userToken.id;
+                    // var userData = localStorage.getItem('token');
+                    // // console.log(userData)
+                    // if (userData !== null) {
+                    //     var userToken = userData ? JSON.parse(userData) : false;
+                    //     // 設定目前使用者id
+                    //     var uid = userToken.id;
+                    // } else {
+                    //     Swal.fire({
+                    //         title: '請先登入會員',
+                    //         icon: 'warning',
+                    //         showConfirmButton: false,
+                    //         timer: 1500
+                    //     }).then(
+                    //         setTimeout(() => {
+                    //             document.location.href = "/login/userlogin"
+                    //         }, 2000)
+                    //     )
+                    // }
 
-                                var divHtml = `
-                            <tr>
-                                <td>
-                                    <p class="vg-p">${item.pname}</p>
-                                    <p class="vg-ps">${item.size} ${item.freq} <span class="aa${item.pid}">${item.c_note}</span></p>
-                                    
-                                </td>
-                                <td>${item.quantity}</td>
-                                <td>${item.price}</td>
-                            </tr>
-                            `;
-                                $('#summary_items').append(divHtml)
-                                shippingfee += fee;
-                                total += item.price;
-                            })
-                            // 運費計算
-                            var tdHtml = `    
-                        <td>${shippingfee}</td>
-                        `;
-                            $('#shippingfee').after(tdHtml)
-                            // 總金額計算 (未含折扣碼與購物金)
-                            $('#total').text(shippingfee + total)
+                    // 讀取購物車物件
+                    $.get(`/cart/item/${uid}`, function (e) {
+                        // 購物車item一覽
+                        // console.log(e)
+                        if (typeof (e) == 'string') {
+                            items = JSON.parse(e);
+                        } else {
+                            items = e;
                         }
 
-                        // 讀取購物車物件
-                        $.get(`/cart/item/${uid}`, function (e) {
-                            console.log(e)
-                            if (typeof (e) == 'string') {
-                                items = JSON.parse(e);
-                            } else if (e == '') {
-                                Swal.fire({
-                                    title: '購物車是空的，請先進行選購',
-                                    icon: 'warning',
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                });
-                                setTimeout(()=>{document.location.href = "/product";},1500)
-                            } else {
-                                items = e;
-                            }
+                        $("#cartitems").empty();
+                        $.each(items, function (index, item) {
+                            // 修正內容備註
+                            item.c_option ? item.c_option = item.c_option.split(',').slice(1,) : item.c_option = '';
+                            // console.log( item.c_option )
+                            item.pname.includes("自選") ? item.pinfo = '' : item.pinfo = item.pinfo;
 
-                            $("#cartitems").empty();
-                            $.each(items, function (index, item) {
-                                item.c_option ? item.c_option = item.c_option : item.c_option = '';
-                                item.pname.includes("自選") ? item.pinfo = '' : item.pinfo = item.pinfo;
-                                if (item.size == 's' && item.freq == 'once') {
-                                    var trHtml = `
+                            if (item.size == 's' && item.freq == 'once') {
+                                var trHtml = `
                             <tr class="aa${item.pid}">
                                 <td class="aa${item.pid}">${item.pname}</span></td>
                                 <td class="text-start">
@@ -300,9 +241,9 @@
                                 </td>
                              </tr>         
                             `;
-                                    $("#cartitems").append(trHtml);
-                                } else if (item.size == 'l' && item.freq == 'once') {
-                                    var trHtml = `
+                                $("#cartitems").append(trHtml);
+                            } else if (item.size == 'l' && item.freq == 'once') {
+                                var trHtml = `
                             <tr class="aa${item.pid}">
                                 <td class="aa${item.pid}">${item.pname}</td>
                                 <td class="text-start">
@@ -332,9 +273,9 @@
                                 </td>
                              </tr>         
                             `;
-                                    $("#cartitems").append(trHtml);
-                                } else if (item.size == 's' && item.freq == '30d') {
-                                    var trHtml = `
+                                $("#cartitems").append(trHtml);
+                            } else if (item.size == 's' && item.freq == '30d') {
+                                var trHtml = `
                             <tr class="aa${item.pid}">
                                 <td class="aa${item.pid}">${item.pname}</td>
                                 <td class="text-start">
@@ -364,9 +305,9 @@
                                 </td>
                              </tr>         
                             `;
-                                    $("#cartitems").append(trHtml);
-                                } else if (item.size == 'l' && item.freq == '30d') {
-                                    var trHtml = `
+                                $("#cartitems").append(trHtml);
+                            } else if (item.size == 'l' && item.freq == '30d') {
+                                var trHtml = `
                             <tr class="aa${item.pid}">
                                 <td class="aa${item.pid}">${item.pname}</td>
                                 <td class="text-start">
@@ -396,9 +337,9 @@
                                 </td>
                              </tr>         
                             `;
-                                    $("#cartitems").append(trHtml);
-                                } else if (item.size == 's' && item.freq == '60d') {
-                                    var trHtml = `
+                                $("#cartitems").append(trHtml);
+                            } else if (item.size == 's' && item.freq == '60d') {
+                                var trHtml = `
                             <tr class="aa${item.pid}">
                                 <td class="aa${item.pid}">${item.pname}</td>
                                 <td class="text-start">
@@ -428,9 +369,9 @@
                                 </td>
                              </tr>         
                             `;
-                                    $("#cartitems").append(trHtml);
-                                } else {
-                                    var trHtml = `
+                                $("#cartitems").append(trHtml);
+                            } else {
+                                var trHtml = `
                             <tr class="aa${item.pid}">
                                 <td class="aa${item.pid}">${item.pname}</td>
                                 <td class="text-start">
@@ -460,120 +401,225 @@
                                 </td>
                              </tr>         
                             `;
-                                    $("#cartitems").append(trHtml);
-                                }
-                            })
-                            countTotal(items);
-                        })
-
-                        // 讀取購物金
-                        var bonus = 0; // 不動
-                        var usemyBonus = 0;
-                        $.get(`/user/bonus/${uid}`, function (e) {
-                            // console.log(e[0].bonus)
-                            bonus = e[0].bonus ? e[0].bonus : 0;
-                            $('#userBonus').text(bonus)
-                        }).then(function () {
-                            // 使用購物金
-                            // console.log(parseInt(userBonus.innerText))
-                            bonusval = (e) => {
-                                // console.log(e.value)
-                                // 小於使用者擁有購物金，依照使用者輸入的值進行使用
-                                if (e.value <= parseInt(userBonus.innerText)) {
-                                    usemyBonus = e.value;
-                                } else {
-                                    // 若超過使用者擁有購物金，跳出提醒並以擁有購物金為最高值
-                                    Swal.fire({
-                                        title: '超過折抵上限',
-                                        icon: 'warning',
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    });
-                                    // 欲折抵的購物金input欄位值 = 購物金餘額
-                                    myuseBonus.value = parseInt(userBonus.innerText);
-                                    //使用購物金
-                                    usemyBonus = parseInt(userBonus.innerText);
-                                }
-                                // console.log(usemyBonus)
+                                $("#cartitems").append(trHtml);
                             }
 
-                            useBonus = () => {
-                                // 如果 已套用購物金 小於使用者擁有購物金
-                                if (parseInt(bonusdiscount.innerText) > -bonus) {
-                                    Swal.fire({
-                                        title: '成功使用購物金',
-                                        icon: 'success',
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    });
-                                    //  金額試算更新使用購物金
-                                    //  購物金 => 目前數值 - usemyBonus => 掛負數
-                                    $('#bonusdiscount').text(parseInt(bonusdiscount.innerText) - usemyBonus);
-                                    // console.log( parseInt($('#total').text()) + usemyBonus )
-                                    var newTotal = parseInt($('#total').text()) - usemyBonus
-                                    $('#total').text(newTotal);
-                                    $('#userBonus').text(parseInt(userBonus.innerText) - usemyBonus)
-                                    $('#myuseBonus').val('')
-                                } else {
-                                    Swal.fire({
-                                        title: '購物金折抵已達上限',
-                                        icon: 'warning',
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    });
-                                }
+                            // 修正自選箱價格
+                            var optionPrice = 0;
+                            var fetchPromises = [];
+                            if (item.pname.includes('自選')) {
+                                item.c_option.map((product) => {
+                                    var fetchPromise = fetch('/getitemprice', {
+                                        method: 'POST',
+                                        headers: {
+                                            "Content-Type": "application/json ; charset=UTF-8"
+                                        },
+                                        body: JSON.stringify({
+                                            product: product
+                                        })
+                                    }).then((res) => {
+                                        return res.json();
+                                    }).then((e) => {
+                                        // if (e && e[0] && e[0].price) {
+                                        //     optionPrice = optionPrice + parseInt(e[0].price);
+                                        // }
+                                        if (e && e[0] && e[0].category == '蔬菜') {
+                                            optionPrice = optionPrice + 100;
+                                        } else if (e && e[0] && e[0].category == '水果') {
+                                            optionPrice = optionPrice + 50;
+                                        }
+                                        item.price = optionPrice; // 設定到內層，非外層(!?!?)
+                                        localStorage.setItem('optionPrice', optionPrice);
+                                    })
+                                    fetchPromises.push(fetchPromise);
+                                })
+                                Promise.all(fetchPromises).then(() => {
+                                    item.price = optionPrice;
+                                    localStorage.setItem('optionPrice', optionPrice);
+                                });
                             }
+                            
                         })
+                        // console.log(items)
+                        countTotal(items)
+                    })
 
+                    function countTotal(items) {
+                        // 金額試算表格
+                        var total = 0;
+                        var shippingfee = 0;
+                        items.map((item) => {
+                            console.log(item)
+                            // 購買品項
+                            item.size == 's' ? fee = 160 : fee = 290; // 運費 (S-160 L-290)
+                            item.size == 's' ? item.size = '雙人箱(1~2人)' : item.size = '家庭箱(3~4人)';
+                            
+                            // 未竟之戰 (自選箱價格需重新整理才會正確顯示)
+                            if (localStorage.getItem('optionPrice') ){
+                                item.pname == '自選蔬果箱'? item.price = localStorage.getItem('optionPrice') : item.price = item.price;
+                            }
+                            
+                            if (item.freq == 'once') {
+                                item.freq = '單次購買'
+                            } else if (item.freq == '30d') {
+                                item.freq = '每周一次'
+                            } else {
+                                item.freq = '雙周一次'
+                            }
+                            item.c_note == null ? item.c_note = '無備註' : item.c_note;
+                            if (item.size == '雙人箱(1~2人)' && item.freq == '單次購買') {
+                                item.price = parseInt(item.price) * item.quantity
+                            } else if (item.size == '家庭箱(3~4人)' && item.freq == '單次購買') {
+                                item.price = (parseInt(item.price) + 200) * item.quantity
+                            } else if (item.size == '雙人箱(1~2人)' && item.freq == '每周一次') {
+                                item.price = (parseInt(item.price) * 4) * item.quantity
+                            } else if (item.size == '家庭箱(3~4人)' && item.freq == '每周一次') {
+                                item.price = ((parseInt(item.price) + 200) * 4) * item.quantity
+                            } else if (item.size == '雙人箱(1~2人)' && item.freq == '雙周一次') {
+                                item.price = (parseInt(item.price) * 4) * item.quantity
+                            } else {
+                                item.price = ((parseInt(item.price) + 200) * 4) * item.quantity
+                            }
 
-                        // 使用折扣碼
-                        var usemycoupon; // coupon ID
-                        var useDiscount = 0; // coupon Discount
-                        couponval = (e) => {
+                            var divHtml = `
+                            <tr>
+                                <td>
+                                    <p class="vg-p">${item.pname}</p>
+                                    <p class="vg-ps">${item.size} ${item.freq} <span class="aa${item.pid}">${item.c_note}</span></p>
+                                    
+                                </td>
+                                <td>${item.quantity}</td>
+                                <td>${item.price}</td>
+                            </tr>
+                            `;
+                            $('#summary_items').append(divHtml)
+                            shippingfee += fee;
+                            total += item.price;
+                        })
+                        // 運費計算
+                        var tdHtml = `    
+                        <td>${shippingfee}</td>
+                        `;
+                        $('#shippingfee').after(tdHtml)
+                        // 總金額計算 (未含折扣碼與購物金)
+                        $('#total').text(shippingfee + total)
+                    }
+
+                    // 讀取購物金
+                    var bonus = 0; // 不動
+                    var usemyBonus = 0;
+                    $.get(`/user/bonus/${uid}`, function (e) {
+                        // console.log(e[0].bonus)
+                        bonus = e[0].bonus ? e[0].bonus : 0;
+                        $('#userBonus').text(bonus)
+                    }).then(function () {
+                        // 使用購物金
+                        // console.log(parseInt(userBonus.innerText))
+                        bonusval = (e) => {
                             // console.log(e.value)
-                            usemycoupon = e.value;
+                            // 小於使用者擁有購物金，依照使用者輸入的值進行使用
+                            if (e.value <= parseInt(userBonus.innerText)) {
+                                usemyBonus = e.value;
+                            } else {
+                                // 若超過使用者擁有購物金，跳出提醒並以擁有購物金為最高值
+                                Swal.fire({
+                                    title: '超過折抵上限',
+                                    icon: 'warning',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                // 欲折抵的購物金input欄位值 = 購物金餘額
+                                myuseBonus.value = parseInt(userBonus.innerText);
+                                //使用購物金
+                                usemyBonus = parseInt(userBonus.innerText);
+                            }
+                            // console.log(usemyBonus)
                         }
 
-                        useCoupon = () => {
-                            $.get(`/getcoupon/${usemycoupon}`, function (e) {
-                                // console.log(e)
-                                if (e == '') {
-                                    Swal.fire({
-                                        title: '折扣碼錯誤',
-                                        icon: 'error',
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    });
-                                } else if (e != '' && usecouponid.innerText == '') {
-                                    // console.log(e[0].discount)
-                                    Swal.fire({
-                                        title: '成功使用折扣碼',
-                                        icon: 'success',
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    });
-                                    useDiscount = e[0].discount
-                                    usecouponid.innerText = usemycoupon;
-                                    coupondiscount.innerText = useDiscount;
-                                    newTotal = parseInt($('#total').text()) + parseInt(useDiscount)
-                                    $('#total').text(newTotal);
-                                } else {
-                                    Swal.fire({
-                                        title: '本訂單已使用折扣碼',
-                                        icon: 'error',
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    });
-                                }
-                            })
+                        useBonus = () => {
+                            // 如果 已套用購物金 小於使用者擁有購物金
+                            if (parseInt(bonusdiscount.innerText) > -bonus) {
+                                Swal.fire({
+                                    title: '成功使用購物金',
+                                    icon: 'success',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                //  金額試算更新使用購物金
+                                //  購物金 => 目前數值 - usemyBonus => 掛負數
+                                $('#bonusdiscount').text(parseInt(bonusdiscount.innerText) - usemyBonus);
+                                // console.log( parseInt($('#total').text()) + usemyBonus )
+                                var newTotal = parseInt($('#total').text()) - usemyBonus
+                                $('#total').text(newTotal);
+                                $('#userBonus').text(parseInt(userBonus.innerText) - usemyBonus)
+                                $('#myuseBonus').val('')
+                            } else {
+                                Swal.fire({
+                                    title: '購物金折抵已達上限',
+                                    icon: 'warning',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                            }
                         }
+                    })
 
+                    // 使用折扣碼
+                    var usemycoupon; // coupon ID
+                    var useDiscount = 0; // coupon Discount
+                    couponval = (e) => {
+                        // console.log(e.value)
+                        usemycoupon = e.value;
+                    }
 
+                    useCoupon = () => {
+                        $.get(`/getcoupon/${usemycoupon}`, function (e) {
+                            // console.log(e)
+                            if (e == '') {
+                                Swal.fire({
+                                    title: '折扣碼錯誤',
+                                    icon: 'error',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                            } else if (e != '' && usecouponid.innerText == '') {
+                                // console.log(e[0].discount)
+                                Swal.fire({
+                                    title: '成功使用折扣碼',
+                                    icon: 'success',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                useDiscount = e[0].discount
+                                usecouponid.innerText = usemycoupon;
+                                coupondiscount.innerText = useDiscount;
+                                newTotal = parseInt($('#total').text()) + parseInt(useDiscount)
+                                $('#total').text(newTotal);
+                            } else {
+                                Swal.fire({
+                                    title: '本訂單已使用折扣碼',
+                                    icon: 'error',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                            }
+                        })
+                    }
 
+                    $(function () {
                         // 讀取願望清單物件
                         $.get(`/cart/wishlist/${uid}`, function (e) {
                             if (typeof (e) == 'string') {
                                 items = JSON.parse(e);
+                            } else if (e == '' && $('tr[class*="aa"]').length == 0) {
+                                // 購物車與願望清單為空，跳轉回產品頁面
+                                Swal.fire({
+                                    title: '購物車是空的，請先進行選購',
+                                    icon: 'warning',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                setTimeout(() => { document.location.href = "/product"; }, 1500)
                             } else {
                                 items = e;
                             }
@@ -800,90 +846,101 @@
                                 return tl;
                             }
                         })
+                    })
 
-                        // 選擇份量和頻率 更新購物車 cart 資料表
-                        handleitem = (e) => {
-                            var parent = e.closest('tr[class*="aa"]')
-                            // console.log($(parent).find('td')[0].innerText)
-                            var product = $(parent).find('td')[0].innerText;
-                            var originalPid = parent.className.substr(2);
-                            // console.log(originalPid)
-                            var quantity = $(parent).find('select[name="size"]').val();
-                            // console.log(quantity)
-                            var delivery = $(parent).find('select[name="freq"]').val();
-                            // console.log(delivery)
-                            fetch('/cart/handleitem/', {
-                                method: 'POST',
-                                headers: {
-                                    "Content-Type": "application/json ; charset=UTF-8"
-                                },
-                                body: JSON.stringify({
-                                    product: product,
-                                    freq: delivery,
-                                    size: quantity,
-                                    uid: uid,
-                                    o_pid: originalPid
-                                })
-                            }).then(
-                                location.reload()
-                            )
-                        }
-                        // 將 c_note 推進 cart 資料表
-                        var c_note = [];
-                        addtocnote = (e) => {
-                            // console.log(e.closest('td').className);
-                            var pid = e.closest('td').className;
-                            // console.log(pid)
-                            if (e.checked) {
-                                if (!c_note[pid]) {
-                                    c_note[pid] = [];
-                                }
-                                c_note[pid].push(e.value);
-                            } else {
-                                if (c_note[pid]) {
-                                    const index = c_note[pid].indexOf(e.value);
-                                    if (index !== -1) {
-                                        c_note[pid].splice(index, 1);
-                                        if (c_note[pid].length === 0) {
-                                            // delete c_note[pid];
-                                            c_note[pid].push('');
-                                        }
+                    // 選擇份量和頻率 更新購物車 cart 資料表
+                    handleitem = (e) => {
+                        var parent = e.closest('tr[class*="aa"]')
+                        // console.log($(parent).find('td')[0].innerText)
+                        var product = $(parent).find('td')[0].innerText;
+                        var originalPid = parent.className.substr(2);
+                        // console.log(originalPid)
+                        var quantity = $(parent).find('select[name="size"]').val();
+                        // console.log(quantity)
+                        var delivery = $(parent).find('select[name="freq"]').val();
+                        // console.log(delivery)
+                        fetch('/cart/handleitem/', {
+                            method: 'POST',
+                            headers: {
+                                "Content-Type": "application/json ; charset=UTF-8"
+                            },
+                            body: JSON.stringify({
+                                product: product,
+                                freq: delivery,
+                                size: quantity,
+                                uid: uid,
+                                o_pid: originalPid
+                            })
+                        }).then(
+                            location.reload()
+                        )
+                    }
+                    // 將 c_note 推進 cart 資料表
+                    var c_note = [];
+                    addtocnote = (e) => {
+                        // console.log(e.closest('td').className);
+                        var pid = e.closest('td').className;
+                        // console.log(pid)
+                        if (e.checked) {
+                            if (!c_note[pid]) {
+                                c_note[pid] = [];
+                            }
+                            c_note[pid].push(e.value);
+                        } else {
+                            if (c_note[pid]) {
+                                const index = c_note[pid].indexOf(e.value);
+                                if (index !== -1) {
+                                    c_note[pid].splice(index, 1);
+                                    if (c_note[pid].length === 0) {
+                                        // delete c_note[pid];
+                                        c_note[pid].push('');
                                     }
                                 }
                             }
-                            // console.log(c_note);
-                            Object.keys(c_note).map((pid) => {
-                                var cnotestr = c_note[pid].join(' ');
-                                // console.log(cnotestr);
-                                fetch('/editcart/c_note/', {
-                                    method: 'PATCH',
-                                    headers: {
-                                        "Content-Type": "application/json ; charset=UTF-8"
-                                    },
-                                    body: JSON.stringify({
-                                        c_note: cnotestr,
-                                        pid: pid.substr(2),
-                                        uid: uid
-                                    })
-                                }).then(function () {
-                                    // 若取消勾選所有備註項目，金額試算處同步調整內容
-                                    if (cnotestr != '') {
-                                        document.querySelector(`span[class="${pid}"]`).innerText = cnotestr
-                                    } else {
-                                        document.querySelector(`span[class="${pid}"]`).innerText = '無備註'
-                                    }
-                                })
-                            });
                         }
+                        // console.log(c_note);
+                        Object.keys(c_note).map((pid) => {
+                            var cnotestr = c_note[pid].join(' ');
+                            // console.log(cnotestr);
+                            fetch('/editcart/c_note/', {
+                                method: 'PATCH',
+                                headers: {
+                                    "Content-Type": "application/json ; charset=UTF-8"
+                                },
+                                body: JSON.stringify({
+                                    c_note: cnotestr,
+                                    pid: pid.substr(2),
+                                    uid: uid
+                                })
+                            }).then(function () {
+                                // 若取消勾選所有備註項目，金額試算處同步調整內容
+                                if (cnotestr != '') {
+                                    document.querySelector(`span[class="${pid}"]`).innerText = cnotestr
+                                } else {
+                                    document.querySelector(`span[class="${pid}"]`).innerText = '無備註'
+                                }
+                            })
+                        });
+                    }
 
 
 
-                        // 點選下次再買按鈕 => 更新至wishlist資料表 => 刪除cart資料表中該項產品
-                        towishbtn = (e) => {
-                            // console.log(e.closest('tr[class*="aa"]').className)
-                            var pid = e.closest('tr[class*="aa"]').className;
-                            fetch('/addtowishlist/', {
-                                method: 'post',
+                    // 點選下次再買按鈕 => 更新至wishlist資料表 => 刪除cart資料表中該項產品
+                    towishbtn = (e) => {
+                        // console.log(e.closest('tr[class*="aa"]').className)
+                        var pid = e.closest('tr[class*="aa"]').className;
+                        fetch('/addtowishlist/', {
+                            method: 'post',
+                            headers: {
+                                "Content-Type": "application/json ; charset=UTF-8"
+                            },
+                            body: JSON.stringify({
+                                uid: uid,
+                                pid: pid.substr(2)
+                            })
+                        }).then(
+                            fetch('/cart/deleteitem/', {
+                                method: 'DELETE',
                                 headers: {
                                     "Content-Type": "application/json ; charset=UTF-8"
                                 },
@@ -891,28 +948,28 @@
                                     uid: uid,
                                     pid: pid.substr(2)
                                 })
-                            }).then(
-                                fetch('/cart/deleteitem/', {
-                                    method: 'DELETE',
-                                    headers: {
-                                        "Content-Type": "application/json ; charset=UTF-8"
-                                    },
-                                    body: JSON.stringify({
-                                        uid: uid,
-                                        pid: pid.substr(2)
-                                    })
-                                })
-                            ).then(
-                                location.reload()
-                            )
-                        }
+                            })
+                        ).then(
+                            location.reload()
+                        )
+                    }
 
-                        // 點選 立即買按鈕 => 更新至 cart 資料表 => 刪除wishlist資料表中該項產品
-                        buynow = (e) => {
-                            // console.log(e.closest('div[id^=aa]').id)
-                            var pid = e.closest('div[id^=aa]').id;
-                            fetch('/cart/additem/', {
-                                method: 'post',
+                    // 點選 立即買按鈕 => 更新至 cart 資料表 => 刪除wishlist資料表中該項產品
+                    buynow = (e) => {
+                        // console.log(e.closest('div[id^=aa]').id)
+                        var pid = e.closest('div[id^=aa]').id;
+                        fetch('/cart/additem/', {
+                            method: 'post',
+                            headers: {
+                                "Content-Type": "application/json ; charset=UTF-8"
+                            },
+                            body: JSON.stringify({
+                                uid: uid,
+                                pid: pid.substr(2)
+                            })
+                        }).then(
+                            fetch('/delwishlist/', {
+                                method: 'DELETE',
                                 headers: {
                                     "Content-Type": "application/json ; charset=UTF-8"
                                 },
@@ -920,7 +977,25 @@
                                     uid: uid,
                                     pid: pid.substr(2)
                                 })
-                            }).then(
+                            })
+                        ).then(
+                            location.reload()
+                        )
+                    }
+
+                    // 從願望清單刪除
+                    deleteFromWishlist = (e) => {
+                        var pid = e.closest('div[id^=aa]').id;
+                        Swal.fire({
+                            title: '確定要移除本產品?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: '確定',
+                            cancelButtonText: '取消'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
                                 fetch('/delwishlist/', {
                                     method: 'DELETE',
                                     headers: {
@@ -930,95 +1005,69 @@
                                         uid: uid,
                                         pid: pid.substr(2)
                                     })
-                                })
-                            ).then(
-                                location.reload()
-                            )
-                        }
-
-                        // 從願望清單刪除
-                        deleteFromWishlist = (e) => {
-                            var pid = e.closest('div[id^=aa]').id;
-                            Swal.fire({
-                                title: '確定要移除本產品?',
-                                icon: 'warning',
-                                showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: '確定',
-                                cancelButtonText: '取消'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    fetch('/delwishlist/', {
-                                        method: 'DELETE',
-                                        headers: {
-                                            "Content-Type": "application/json ; charset=UTF-8"
-                                        },
-                                        body: JSON.stringify({
-                                            uid: uid,
-                                            pid: pid.substr(2)
-                                        })
-                                    }).then(
-                                        function (response) {
-                                            if (response.status === 200) {
-                                                e.closest('.myItem').remove();
-                                                // location.reload()
-                                            }
-                                        });
-                                }
-                            })
-                        }
-
-                        // 按下結帳去的動作
-                        placeOrder = () => {
-                            // 亂數產生一個 oid 並推進 cart 資料表 ( c_status = active的項目 )
-                            // console.log( $('#total').text() )
-                            if ($('#total').text() <= 0) {
-                                Swal.fire({
-                                    title: '您還沒有進行購物，請先到產品區逛逛喔！',
-                                    icon: 'warning',
-                                    showConfirmButton: false,
-                                    timer: 1500
                                 }).then(
-                                    setTimeout(() => {
-                                        document.location.href = "/"
-                                    }, 2000)
-                                )
-                            } else {
-                                var oid = parseInt((Math.random()) * 10000000)
-                                console.log(oid)
-                                // 每個item 的 c_status 由 active 轉為 inactive
-                                fetch('/editcart/status/', {
-                                    method: 'PATCH',
+                                    function (response) {
+                                        if (response.status === 200) {
+                                            e.closest('.myItem').remove();
+                                            // location.reload()
+                                        }
+                                    });
+                            }
+                        })
+                    }
+
+                    backtoProduct = () => {
+                        localStorage.removeItem('optionPrice')
+                    }
+
+                    // 按下結帳去的動作
+                    placeOrder = () => {
+                        // 亂數產生一個 oid 並推進 cart 資料表 ( c_status = active的項目 )
+                        // console.log( $('#total').text() )
+                        if ($('#total').text() <= 0) {
+                            Swal.fire({
+                                title: '您還沒有進行購物，請先到產品區逛逛喔！',
+                                icon: 'warning',
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(
+                                setTimeout(() => {
+                                    document.location.href = "/"
+                                }, 2000)
+                            )
+                        } else {
+                            var oid = parseInt((Math.random()) * 10000000)
+                            // 亂數產生的oid
+                            // console.log(oid)
+                            // 每個item 的 c_status 由 active 轉為 inactive
+                            fetch('/editcart/status/', {
+                                method: 'PATCH',
+                                headers: {
+                                    "Content-Type": "application/json ; charset=UTF-8"
+                                },
+                                body: JSON.stringify({
+                                    oid: oid,
+                                    uid: uid
+                                })
+                            }).then(
+                                // 建立訂單 oid || uid 
+                                fetch('/editcart/createorder/', {
+                                    method: 'post',
                                     headers: {
                                         "Content-Type": "application/json ; charset=UTF-8"
                                     },
                                     body: JSON.stringify({
                                         oid: oid,
-                                        uid: uid
+                                        uid: uid,
+                                        useBonus: usemyBonus,
+                                        useCoupon: useDiscount
                                     })
-                                }).then(
-                                    // 建立訂單 oid || uid 
-                                    fetch('/editcart/createorder/', {
-                                        method: 'post',
-                                        headers: {
-                                            "Content-Type": "application/json ; charset=UTF-8"
-                                        },
-                                        body: JSON.stringify({
-                                            oid: oid,
-                                            uid: uid,
-                                            useBonus: usemyBonus,
-                                            useCoupon: useDiscount
-                                        })
-                                    })
-                                ).then(
-                                    document.location.href = "/order/"
-                                )
-                            }
+                                })
+                            ).then(
+                                document.location.href = "/order/"
+                            )
                         }
-
-
-                    })
+                    }
                 </script>
 
 
