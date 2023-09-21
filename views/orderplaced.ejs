@@ -288,10 +288,10 @@
                                 } else {
                                     item.freq = '雙周一次';
                                     for (var i = 0; i <= 56; i += 14) {
-                                        var date2 = new Date(myshippingDate);
-                                        date2.setDate(date2.getDate() + i);
-                                        var myshippingDate2 = (date2.getMonth() + 1) + '/' + date2.getDate();
-                                        shippingDateArr.push(myshippingDate2);
+                                        var date3 = new Date(myshippingDate);
+                                        date3.setDate(date3.getDate() + i);
+                                        var myshippingDate3 = (date3.getMonth() + 1) + '/' + date3.getDate();
+                                        shippingDateArr.push(myshippingDate3);
                                     }
 
                                 }
@@ -329,7 +329,7 @@
                             })
                             // 運費計算
                             myDelivery.innerText = shippingfee;
-                            // 總金額計算 (未含折扣碼與購物金)
+                            // 總金額計算
                             $('#myTotal').text(shippingfee + total - bonus + coupon)
                         })
 
