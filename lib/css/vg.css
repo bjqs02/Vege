@@ -35,32 +35,37 @@
   }
   
   /* 文字樣式 */
-  .vg-h1 {
-    font-size: 3rem;
+  .vg-h1, h1 {
+    font-size: calc(3rem * 1.25);
+    font-weight: bold;
   }
   
-  .vg-h2 {
-    font-size: 2.5rem;
+  .vg-h2, h2 {
+    font-size: calc(2.5rem * 1.25);
+    font-weight: bold;
   }
   
-  .vg-h3 {
-    font-size: 2rem;
+  .vg-h3, h3 {
+    font-size: calc(2rem * 1.25);
+    font-weight: bold;
   }
   
-  .vg-h4 {
-    font-size: 1.5rem;
+  .vg-h4, h4 {
+    font-size: calc(1.5 * 1.25);
+    font-weight: bold;
   }
   
-  .vg-h5 {
-    font-size: 1.125rem;
+  .vg-h5, h5 {
+    font-size: calc(1.125rem * 1.25);
+    font-weight: bold;
   }
   
-  .vg-p {
-    font-size: 1rem;
+  .vg-p, p {
+    font-size: calc(1rem * 1.25);
   }
   
   .vg-ps {
-    font-size: 0.75rem;
+    font-size: calc(0.75rem * 1.25);
   }
   /* 文字樣式 */
   
@@ -160,7 +165,7 @@
     position: relative;
     border: 2px solid var(--primary-1);
     color: var(--text-color);
-    font-size: 0.9rem;
+    font-size: calc(0.9rem * 1.25);
     text-align: center;
     letter-spacing: 2px;
     overflow: hidden;
@@ -202,7 +207,7 @@
     overflow: hidden;
     margin: 5px 20px;
     min-width: 100px;
-    font-size: 0.9rem;
+    font-size: calc(0.9rem * 1.25);;
     color: var(--text-color);
     transition: all 0.5s;
   }
@@ -224,7 +229,7 @@
     position: relative;
     overflow: hidden;
     margin: 0 10px;
-    font-size: 0.75rem;
+    font-size: calc(0.75rem * 1.25);;
     width: 60px;
     color: var(--text-color);
   }
@@ -264,7 +269,7 @@
     position: relative;
     overflow: hidden;
     margin: 0 5px;
-    font-size: 0.75rem;
+    font-size: calc(0.75rem * 1.25);;
     width: 50px;
     color: var(--text-color);
   }
@@ -298,7 +303,7 @@
     position: relative;
     margin: 5px 0 0 0;
     overflow: hidden;
-    font-size: 1rem;
+    font-size: calc(1rem * 1.25);;
     line-height: 1rem;
     cursor: pointer;
     padding: 16px 18px 28.98px 18px;
@@ -368,7 +373,7 @@
     padding: 14px 25px;
     position: relative;
     color: var(--bg-1);
-    font-size: 1.125rem;
+    font-size: calc(1.125rem * 1.25);
     text-decoration: none;
     /* display: inline-block; */
     /* margin: 5px; */
@@ -521,7 +526,7 @@
     box-shadow: 0px 0px 18px 0px #7c63553a;
     position: fixed;
     top: 0px;
-    font-size: 16px;
+    font-size: calc(16px * 1.25);
     color: var(--text-color);
     transition: 0.3s;
     z-index: 100;
@@ -707,7 +712,7 @@
     height: 45px !important;
     margin-top: 9px !important;
     margin-bottom: 0 !important;
-    font-size: 20px !important;
+    font-size: calc(20px * 1.25) !important;
   }
 
   .fa-cart-shopping.change {
@@ -829,7 +834,7 @@
   #sidebar-cart h2 {
     color: var(--text-color);
     padding-bottom: 1rem;
-    font-size: 1.1rem;
+    font-size: calc(1.1rem * 1.25);
     font-weight: 600;
     letter-spacing: 5px;
     text-transform: uppercase;
@@ -849,7 +854,7 @@
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    font-size: 12px;
+    font-size: calc(12px * 1.25);
     letter-spacing: 0;
     display: flex;
     align-items: center;
@@ -923,7 +928,7 @@
   }
   #sidebar-cart ul.products li.product a.product-link span.product-details h3 {
     margin: 3px 25px 5px 0;
-    font-size: 1rem;
+    font-size: calc(1rem * 1.25);
     font-weight: 500;
     color: var(--text-color);
     transition: all 0.5s linear;
@@ -999,7 +1004,7 @@
     border: 1px solid #cdcdd1;
     background: var(--text-color);
     color: white;
-    font-size: 18px;
+    font-size: calc(18px * 1.25);
     text-align: center;
     vertical-align: middle;
     line-height: 20px;
@@ -1135,11 +1140,11 @@
     span.price {
     color: var(--text-color);
     font-weight: 500;
-    font-size: 13px;
+    font-size: calc(13px * 1.25);
     display: inline-flex;
   }
   #sidebar-cart ul.products li.product a.remove-button {
-    font-size: 1rem;
+    font-size: calc(16px * 1.25);
     margin: 10px 10px 0 0;
     text-decoration: none;
     position: absolute;
@@ -1173,7 +1178,7 @@
     color: var(--text-color);
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-size: 14px;
+    font-size: calc(14px * 1.25);
     font-weight: 400;
     display: flex;
     flex-direction: row;
@@ -1214,7 +1219,7 @@
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 5px;
-    font-size: 1rem;
+    font-size: calc(20px * 1.25);
     border-width: 1px;
     border-style: solid;
     border-radius: 4px;
@@ -1372,7 +1377,7 @@
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: calc(17px * 1.25);
   }
   
  
@@ -1417,7 +1422,7 @@
         text-align: center;
         padding: 14px 16px;
         text-decoration: none;
-        font-size: 17px;
+        font-size: calc(17px * 1.25);;
       }
 
     .vg-navbar-2 a:not(:first-child) {
@@ -1594,7 +1599,7 @@
     color: var(--text-color);
     cursor: pointer;
     display: none;
-    font-size: 0.75rem;
+    font-size: calc(0.75rem * 1.25);;
     margin: 0 10px;
     overflow: hidden;
     padding: 5px 10px;
