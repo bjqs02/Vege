@@ -16,6 +16,8 @@ product.get("/", function (req, res) {
     "SELECT info.product,info.save,info.note FROM info WHERE info.season ORDER BY RAND() LIMIT 1;";
 
   let sql6 = "SELECT product, Temp FROM product WHERE Temp IS NOT NULL;";
+  let sql7 =
+    "SELECT info.product, product_content.image FROM info JOIN product_content ON info.product = product_content.product WHERE info.season ;";
   let data = {
     names: [],
     images: [],
@@ -195,6 +197,20 @@ product.get("/", function (req, res) {
         return;
       }
       res.json(rows); // Assuming rows is an array of objects
+    });
+  });
+
+  product.get("/api/images", (req, res) => {
+    // 假設 rows 是您從資料庫獲得的資料，並且每個 row 都有一個 image_path 欄位
+    mysql.query(sql7, function (err, rows) {
+      if (err) {
+        console.log("圖片取得失敗");
+        console.log(err);
+        res.status(500).json({ error: "資料庫錯誤" });
+        return;
+      }
+      const imagePaths = rows.map((row) => row.image);
+      res.json(imagePaths);
     });
   });
 });

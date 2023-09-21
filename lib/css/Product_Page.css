@@ -1,6 +1,7 @@
 @charset "UTF-8";
 * {
   box-sizing: border-box;
+  color: var(--text-color);
 }
 
 a {
@@ -16,7 +17,7 @@ a:hover {
 body {
   min-width: 400px;
   overflow: auto;
-  color: var(--text-color);
+
 }
 
 header {
@@ -32,7 +33,7 @@ header {
 header main#product_main {
   background-color: var(--primary-L);
 }
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 800px) {
   header main#product_main {
     width: 100%;
     height: 100%;
@@ -43,7 +44,7 @@ header main#product_main section.main-box {
   display: flex;
   width: 100%;
 }
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 800px) {
   header main#product_main section.main-box {
     flex-direction: column;
   }
@@ -53,10 +54,10 @@ header main#product_main section.main-box aside.asideNav {
   display: flex;
   text-align: center;
   flex-direction: column;
-  margin-top: 90px;
+  margin-top: 95px;
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 800px) {
   header main#product_main section.main-box aside.asideNav {
     display: flex;
     justify-content: center;
@@ -75,7 +76,7 @@ header main#product_main section.main-box aside.asideNav ul.asideNav-ul {
 header main#product_main section.main-box aside.asideNav ul.asideNav-ul li {
   width: 100%;
 }
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 800px) {
   header main#product_main section.main-box aside.asideNav ul.asideNav-ul li {
     display: flex;
     justify-content: center;
@@ -92,7 +93,7 @@ header
   width: 50%;
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width:800px) {
   header
     main#product_main
     section.main-box
@@ -111,8 +112,7 @@ header
   ul.asideNav-ul
   li
   .action {
-  color: rgb(255, 255, 255);
-  background-color: var(--primary-2);
+  background-color: var(--primary-1);
 }
 /* header main#product_main section.main-box aside.asideNav {
   color: blanchedalmond;
@@ -124,41 +124,17 @@ header
 .btn-vg {
   z-index: 2;
 }
-/* header main#product_main section.main-box section.middleContent {
+header main#product_main section.main-box section.middleContent {
   display: flex;
-} */
-@media screen and (max-width: 1100px) {
+  width: 100%;
+}
+@media screen and (max-width: 800px) {
   header main#product_main section.main-box section.middleContent {
     width: 100%;
     flex-direction: column;
   }
 }
-/* header
-  main#product_main
-  section.main-box
-  section.middleContent
-  section.middle_box1 {
-  display: none;
-  margin: 0 auto;
-} */
-/* @media screen and (max-width: 1100px) {
-  header
-    main#product_main
-    section.main-box
-    section.middleContent
-    section.middle_box1 {
-    justify-content: center;
-    align-items: center;
-  }
-} */
-/* header
-  main#product_main
-  section.main-box
-  section.middleContent
-  section.middle_box1
-  div.middle_box {
-  display: flex;
-} */
+
 
 div.middle_box {
   background-color: var(--primary-L);
@@ -178,7 +154,7 @@ header
   margin-left: 10px;
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 800px) {
   header
     main#product_main
     section.main-box
@@ -242,19 +218,8 @@ header
   div.middle_box
   .vg-h3-div2
   div.box {
-  color: white;
   margin: 10px;
-  /* width: 4rem; */
-  /* background-color: var(--bg-2); */
-  /* -webkit-clip-path: polygon(
-    100% 0%,
-    75% 50%,
-    100% 100%,
-    25% 100%,
-    0% 50%,
-    25% 0%
-  ); */
-  /* clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 25% 100%, 0% 50%, 25% 0%); */
+  
 }
 header
   main#product_main
@@ -265,8 +230,7 @@ header
   .vg-h3-div2
   div.box
   button.act {
-  color: rgb(255, 255, 255);
-  background-color: var(--primary-2);
+  background-color: var(--primary-1);
 }
 header
   main#product_main
@@ -291,7 +255,7 @@ header
   margin-bottom: 20px;
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 800px) {
   header
     main#product_main
     section.main-box
@@ -314,9 +278,9 @@ header
   padding: 10px;
   color: rgb(0, 0, 0);
   width: 100%;
-  height: 700px;
+  height: 900px;
 }
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 800px) {
   header
     main#product_main
     section.main-box
@@ -343,7 +307,7 @@ header
   padding: 10px;
   color: rgb(0, 0, 0);
   width: 100%;
-  height: 700px;
+  height: 900px;
 }
 
 div.middle_img img {
@@ -358,17 +322,7 @@ div.middle_all .middle_imgs img {
   background-size: contain;
   margin-left: 5px;
 }
-/* header
-  main#product_main
-  section.main-box
-  section.middleContent
-  section.middle_box1
-  div.middle_all
-  div.middle_img
-  button {
-  margin: 0;
-  padding: 0;
-} */
+
 header
   main#product_main
   section.main-box
@@ -379,21 +333,9 @@ header
   div.middle_imgs {
   background-size: contain;
 }
-/* @media screen and (max-width: 1100px) {
-  header
-    main#product_main
-    section.main-box
-    section.middleContent
-    section.middle_box1
-    div.middle_all
-    div.middle_img
-    div.middle_imgs {
-    display: flex;
-    background-size: contain;
-  }
-} */
 
-@media screen and (max-width: 1100px) {
+
+@media screen and (max-width: 800px) {
   header
     main#product_main
     section.main-box
@@ -519,7 +461,7 @@ strong.over {
 }
 
 .fu_nav:hover {
-  background-color: var(--primary-2);
+  background-color: var(--primary-1);
 }
 
 h5 {
@@ -551,11 +493,6 @@ h5 {
 .fa-minus {
   margin-right: 55px;
 }
-
-/* .brod{
-  border: 0.3px solid black;
-  padding: 2px;
-} */
 
 .smtext {
   margin-top: 30px;
