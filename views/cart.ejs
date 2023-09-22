@@ -436,7 +436,6 @@
                                     localStorage.setItem('optionPrice', optionPrice);
                                 });
                             }
-
                         })
                         // console.log(items)
                         countTotal(items)
@@ -452,13 +451,15 @@
                             item.size == 's' ? fee = 160 : fee = 290; // 運費 (S-160 L-290)
                             item.size == 's' ? item.size = '雙人箱(1~2人)' : item.size = '家庭箱(3~4人)';
 
-                            // 未竟之戰 (自選箱價格需重新整理才會正確顯示)
-                            if (localStorage.getItem('optionPrice')) {
-                                item.pname == '自選蔬果箱' ? item.price = localStorage.getItem('optionPrice') : item.price = item.price;
-                            }
-
+                            // 修正自選箱價格
+                            // if (localStorage.getItem('optionPrice')) {
+                            //     item.pname == '自選蔬果箱' ? item.price = localStorage.getItem('optionPrice') : item.price = item.price;
+                            // }
+                            item.pname.includes('自選') ? item.price = parseInt(item.money) : item.price = parseInt(item.price);
+                            
                             if (item.freq == 'once') {
-                                item.freq = '單次購買'
+                                item.freq = '單次購買';
+                                item.day = ""
                             } else if (item.freq == '30d') {
                                 item.freq = '每周一次'
                             } else {
@@ -483,7 +484,7 @@
                             <tr>
                                 <td>
                                     <p class="vg-p">${item.pname}</p>
-                                    <p class="vg-ps">${item.size} ${item.freq} <span class="aa${item.pid}">${item.c_note}</span></p>
+                                    <p class="vg-ps">${item.size} ${item.freq} ${item.day} <span class="aa${item.pid}">${item.c_note}</span></p>
                                     
                                 </td>
                                 <td>${item.quantity}</td>
@@ -624,7 +625,7 @@
                             // $("#wishlistitems").empty();
                             $.each(items, function (index, item) {
                                 var divHtml = `
-                            <div class="myItem d-flex position-relative">
+                            <div class="myItem d-flex position-relative w-50 mt-3">
                                 <img src="/img/fruitbox_s.png" style="object-fit:contain">
                                 <div class="align-self-center text-center px-2" id="aa${item.pid}">
                                     <button class="btn btn-outline-dark btn-sm close-btn" onClick="deleteFromWishlist(this)">x</button>

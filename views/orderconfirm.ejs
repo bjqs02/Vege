@@ -158,6 +158,7 @@
                         var shippingfee = 0;
                         // $("#summary_items").empty();
                         $.each(items, function (index, item) {
+                            console.log(item)
                             item.useCoupon == null ? '0' : item.useCoupon;
                             item.c_note == null ? item.c_note = '無備註' : item.c_note;
                             // item.c_option ? item.c_option = item.c_option : item.c_option = ''; 
@@ -165,7 +166,8 @@
                             item.size == 's' ? fee = 160 : fee = 290; // 運費 (S-160 L-290)
                             item.size == 's' ? item.size = '雙人箱(1~2人)' : item.size = '家庭箱(3~4人)';
                             if (item.freq == 'once') {
-                                item.freq = '單次購買'
+                                item.freq = '單次購買';
+                                item.day = "";
                             } else if (item.freq == '30d') {
                                 item.freq = '每周一次'
                             } else {
@@ -173,7 +175,7 @@
                             }
 
                             // 設定自選箱價格
-                            if (item.product.includes('自選')) {
+                            if ( item.product.includes('自選')) {
                                 item.price = localStorage.getItem('optionPrice');
                             }
 
@@ -196,7 +198,7 @@
                             <tr>
                                 <td>
                                     <p class="m-0" id=${item.product}>${item.product}</p>
-                                    <p class="vg-ps">${item.size} ${item.freq} ${item.c_note} </p>
+                                    <p class="vg-ps">${item.size} ${item.freq} ${item.day} ${item.c_note} </p>
                                 </td>
                                 <td>${item.quantity}</td>
                                 <td>${item.price}</td>
@@ -210,7 +212,7 @@
                             shippingfee += fee;
                             total += item.price;
                             // console.log(item.c_option)
-                            if (item.c_option != '' && item.c_option.includes(',')) {
+                            if (item.c_option != null && item.c_option.includes(',')) {
                                 item.c_option = item.c_option.split(',').slice(1, 7);
                                 // console.log(item.c_option);
                                 $(`#${item.product}`).append(`<br/><i class="vg-ps">${item.c_option}</i><br/>`)

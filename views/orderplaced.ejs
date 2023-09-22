@@ -261,21 +261,81 @@
                             var coupon = parseInt(myCoupon.innerText);
                             $('.trHtml').remove();
                             res.map((item) => {
+
+                                // 計算預計配送日期(單次配訂單成立日期+3天後 / 周周配根據使用者輸入禮拜一或禮拜三，隔周開始配送)
                                 var shippingDateArr = [];
-                                // 計算預計開始配送日期(七天後)
                                 // console.log(item.c_createtime.split('T')[0])
                                 var date = new Date(item.c_createtime.split('T')[0]);
-                                date.setDate(date.getDate() + 7)
-                                // console.log(date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate());
+                                // console.log(date.getDay())
+                                if (item.freq == 'once') {
+                                    date.setDate(date.getDate() + 3)
+                                } else {
+                                    switch (date.getDay()) {
+                                        case 0: // 禮拜天
+                                            if (item.day == "星期一") {
+                                                date.setDate(date.getDate() + 8)
+                                            } else {
+                                                date.setDate(date.getDate() + 10)
+                                            }
+                                            break;
+                                        case 1:
+                                            if (item.day == "星期一") {
+                                                date.setDate(date.getDate() + 7)
+                                            } else {
+                                                date.setDate(date.getDate() + 9)
+                                            }
+                                            break;
+                                        case 2:
+                                            if (item.day == "星期一") {
+                                                date.setDate(date.getDate() + 6)
+                                            } else {
+                                                date.setDate(date.getDate() + 8)
+                                            }
+                                            break;
+                                        case 3:
+                                            if (item.day == "星期一") {
+                                                date.setDate(date.getDate() + 5)
+                                            } else {
+                                                date.setDate(date.getDate() + 7)
+                                            }
+                                            break;
+                                        case 4:
+                                            if (item.day == "星期一") {
+                                                date.setDate(date.getDate() + 4)
+                                            } else {
+                                                date.setDate(date.getDate() + 6)
+                                            }
+                                            break;
+                                        case 5:
+                                            if (item.day == "星期一") {
+                                                date.setDate(date.getDate() + 3)
+                                            } else {
+                                                date.setDate(date.getDate() + 5)
+                                            }
+                                            break;
+                                        case 6:
+                                            if (item.day == "星期一") {
+                                                date.setDate(date.getDate() + 9)
+                                            } else {
+                                                date.setDate(date.getDate() + 11)
+                                            }
+                                            break;
+                                    }
+                                }
                                 var myshippingDate = (date.getMonth() + 1) + '/' + date.getDate();
+
                                 // 購買品項
                                 item.size == 's' ? fee = 160 : fee = 290; // 運費 (S-160 L-290)
                                 item.size == 's' ? item.size = '雙人箱(1~2人)' : item.size = '家庭箱(3~4人)';
                                 item.c_option ? item.c_option = item.c_option.split(',').slice(1,) : item.c_option = '';
-                                item.product.includes("自選") ? item.content = item.c_option : item.content = item.content;
+                                if (item.product.includes('自選')) {
+                                    item.price = localStorage.getItem('optionPrice');
+                                    item.content = item.c_option
+                                }
 
                                 if (item.freq == 'once') {
                                     item.freq = '單次購買';
+                                    item.day = '';
                                     shippingDateArr.push(myshippingDate)
                                 } else if (item.freq == '30d') {
                                     item.freq = '每周一次';
@@ -314,13 +374,13 @@
                                 <tr class="trHtml">
                                     <td>${item.product}</td>
                                     <td>${item.content}</td>
-                                    <td>${item.size} ${item.freq}</td>
+                                    <td>${item.size} ${item.freq} ${item.day}</td>
                                     <td>${item.c_note}</td>
                                     <td>${item.quantity}</td>
                                     <td>${item.price}</td>
                                 </tr>
-                                <tr class="trHtml" style="color: blue;">
-                                    <td colspan="6" class="vg-ps my-2 text-end">>>預計配送日期<span>${shippingDateArr}</span></td>
+                                <tr class="trHtml border-bottom" style="color: #0d5946;">
+                                    <td colspan="6" class="vg-ps my-2 text-end"><i class="fa-solid fa-gift"></i>預計配送日期：<span>${shippingDateArr}</span></td>
                                 </tr>
                             `;
                                 $('#myOitem').after(trHtml);
@@ -330,7 +390,7 @@
                             // 運費計算
                             myDelivery.innerText = shippingfee;
                             // 總金額計算
-                            $('#myTotal').text(shippingfee + total - bonus + coupon)
+                            $('#myTotal').text(shippingfee + total + bonus + coupon)
                         })
 
                         // 確認 => 關閉modal
