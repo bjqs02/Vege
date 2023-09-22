@@ -667,15 +667,14 @@
       $("#dxResult").modal("show");
     }, 4000);
   }
+
   $(".go_shop").on("click", function () {
+    $("#dxResult").modal("hide");
     showModalOnPage();
     openCity(event, "fu_tab7");
     $(".tab").eq(6).addClass("action");
 
     // action
-    $("#dxING").modal("hide");
-    $(".modal").hide();
-    $(".modal-dialog").hide();
     $(".fv_box, .black").show();
     $("body").addClass("body-no-scroll");
     let selectedSize = $(".commodity option:selected").data("size");
