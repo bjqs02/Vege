@@ -368,7 +368,6 @@
 }
 
 .memb-coinRC li span {
-  float: right;
   padding-top: 5px;
   color: var(--primary-2);
   font-size: 18px;
@@ -402,9 +401,6 @@
   padding-left: 10px;
   margin-top: 10px;
   color: var(--text-color);
-}
-
-.article-card p {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
