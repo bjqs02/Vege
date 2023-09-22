@@ -243,7 +243,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 23px;
+    height: 35px;
     padding: 8px 15px;
     gap: 1rem;
     border-radius: 10px;
@@ -259,6 +259,10 @@ body {
     font: var(--fa-font-solid);
     font-size: 18px;
     content: "\f0f3";
+}
+
+.notiGroup p {
+    font-size: 1.125rem;
 }
 
 .notiGroup {

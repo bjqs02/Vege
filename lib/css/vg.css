@@ -628,9 +628,9 @@ p {
   z-index: 2;
 }
 
-.icon {
+/* .icon {
   top: 5px;
-}
+} */
 
 .icon.login {
   display: inline-block;

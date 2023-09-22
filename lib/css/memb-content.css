@@ -1,7 +1,7 @@
 /* 畫面尺寸太大請註解，搜尋 35rem */
 .memb-content .card,
 .memb-basicInfo {
-  width: 35rem;
+  width: 40rem;
 }
 
 .memb-credit p,
@@ -28,11 +28,12 @@
 }
 
 .memb-basicInfo .form-control {
+  height: 65px;
   border-radius: 0.3rem 0.3rem 0 0;
   border: none;
   border-bottom: 2px solid var(--primary-1);
   color: var(--text-color);
-  font-size: 16px !important;
+  font-size: 1.125rem !important;
 }
 
 .memb-basicInfo input:required+label:not(.form-check-label):before {
@@ -43,7 +44,7 @@
 .memb-basicInfo .form-floating>label {
   padding: 1rem 0;
   color: rgba(47, 27, 0, .65);
-  font-size: 16px !important;
+  font-size: 1.125rem !important;
 }
 
 .memb-basicInfo .form-floating>.form-control-plaintext~label,
@@ -88,12 +89,12 @@
 .memb-credit .list-group-item .col-9,
 .memb-credit .list-group-item .col-2 {
   padding-top: 20px;
-  padding-bottom: 10px;
+  padding-bottom: 17px;
 }
 
 .memb-credit .list-group-item .col-1 {
-  padding-top: 16px;
-  padding-bottom: 10px;
+  padding-top: 18px;
+  padding-bottom: 17px;
 }
 
 .creditCL {
@@ -107,6 +108,7 @@
 .cardDefault:after {
   padding-left: 10px;
   color: var(--sc-r-Dark);
+  font-size: 1rem;
   font-weight: 500;
   content: "[預設]";
 }
@@ -156,11 +158,11 @@
 }
 
 .memb-address li {
-  height: 100px;
+  height: 120px;
 }
 
 .memb-addShop li {
-  height: 150px;
+  height: 180px;
 }
 
 .memb-credit li:hover,
@@ -168,6 +170,16 @@
 .memb-addShop li:hover {
   background-color: var(--bs-gray-200);
   cursor: pointer;
+}
+
+.memb-address .mb-2,
+.memb-addShop .mb-2 {
+  font-size: 1.125rem;
+}
+
+.memb-address .vg-ps p,
+.memb-addShop .vg-ps p {
+  font-size: 1rem;
 }
 
 .address-sid {
@@ -191,7 +203,7 @@
   padding: 15px 0 15px 0;
   text-align: center;
   color: var(--bg-1);
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
 }
 
@@ -205,7 +217,7 @@
 
 /* 訂單總攬 */
 .memb-order .list-group-item:before {
-  width: 36rem;
+  width: 40rem;
   height: 5px;
   background-color: var(--primary-2);
   content: "";
@@ -213,7 +225,7 @@
 }
 
 .memb-order .list-group-item.row {
-  width: 36rem;
+  width: 40rem;
   --bs-gutter-x: 0;
 }
 
@@ -250,6 +262,11 @@
 
 .memb-order .list-group-item .col-4 {
   padding: 30px 0 15px 20px;
+}
+
+.memb-order .list-group-item .col-4 p, 
+.memb-order .list-group-item .col-2 p {
+  font-size: 1.125rem;
 }
 
 .memb-order .list-group-item .col-2 {
@@ -297,9 +314,9 @@
   color: var(--text-color);
 }
 
-/* ??點 */
+/* 購物金 */
 .memb-coinRC {
-  width: 35rem;
+  width: 40rem;
   position: relative;
   border: none;
 }
@@ -340,10 +357,10 @@
 
 
 .memb-coinRC li {
-  height: 70px;
-  padding-top: 15px;
+  height: 80px;
+  padding-top: 17px;
   padding-left: 75px;
-  gap: 70%;
+  gap: 65%;
   color: var(--text-color);
   font-size: 16px;
 }
@@ -353,8 +370,8 @@
   height: 40px;
   padding: 13px;
   position: absolute;
-  top: 15px;
-  left: 20px;
+  top: 20px;
+  left: 18px;
   background-color: var(--primary-1);
   border-radius: 50%;
   color: var(--sc-g-Dark);
@@ -368,7 +385,7 @@
 }
 
 .memb-coinRC li span {
-  padding-top: 5px;
+  padding-top: 7px;
   color: var(--primary-2);
   font-size: 18px;
   font-weight: 600;
@@ -382,6 +399,7 @@
 .article-card .card-body {
   max-height: 200px;
   padding-top: 20px;
+  overflow: hidden;
 }
 
 .article-card:hover {
@@ -401,11 +419,20 @@
   padding-left: 10px;
   margin-top: 10px;
   color: var(--text-color);
+  /* 控制顯示的內容量 */
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+}
+
+.article-card h5 {
+  font-size: 1.125rem;
+}
+
+.article-card p {
+  font-size: 1rem;
 }
 
 .article-card .card-text {
