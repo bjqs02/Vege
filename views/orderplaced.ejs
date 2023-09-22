@@ -215,6 +215,9 @@
                         name = res[0].oName;
                         o_createtime = res[0].o_ceatetime.split('T')[0]
 
+                        // 測試用oid，可根據 vgorder的oid進行訂單查詢
+                        // oid = 503835
+
                         // 寄發通知信
                         fetch('/server/send/', {
                             method: 'POST',
@@ -261,11 +264,11 @@
                             var coupon = parseInt(myCoupon.innerText);
                             $('.trHtml').remove();
                             res.map((item) => {
-
+                                console.log(item)
                                 // 計算預計配送日期(單次配訂單成立日期+3天後 / 周周配根據使用者輸入禮拜一或禮拜三，隔周開始配送)
                                 var shippingDateArr = [];
-                                // console.log(item.c_createtime.split('T')[0])
-                                var date = new Date(item.c_createtime.split('T')[0]);
+                                // console.log(item.o_ceatetime.split('T')[0])
+                                var date = new Date(item.o_ceatetime.split('T')[0]);
                                 // console.log(date.getDay())
                                 if (item.freq == 'once') {
                                     date.setDate(date.getDate() + 3)

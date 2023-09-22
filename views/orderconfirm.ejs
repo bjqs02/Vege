@@ -179,7 +179,6 @@
                                 item.price = localStorage.getItem('optionPrice');
                             }
 
-                            item.c_note == null ? item.c_note = '無備註' : item.c_note
                             if (item.size == '雙人箱(1~2人)' && item.freq == '單次購買') {
                                 item.price = parseInt(item.price) * item.quantity
                             } else if (item.size == '家庭箱(3~4人)' && item.freq == '單次購買') {
@@ -197,7 +196,7 @@
                             var trHtml = `
                             <tr>
                                 <td>
-                                    <p class="m-0" id=${item.product}>${item.product}</p>
+                                    <p class="m-0" id=aa${item.cid}>${item.product}</p>
                                     <p class="vg-ps">${item.size} ${item.freq} ${item.day} ${item.c_note} </p>
                                 </td>
                                 <td>${item.quantity}</td>
@@ -213,9 +212,9 @@
                             total += item.price;
                             // console.log(item.c_option)
                             if (item.c_option != null && item.c_option.includes(',')) {
-                                item.c_option = item.c_option.split(',').slice(1, 7);
+                                item.c_option = item.c_option.split(',').slice(1,);
                                 // console.log(item.c_option);
-                                $(`#${item.product}`).append(`<br/><i class="vg-ps">${item.c_option}</i><br/>`)
+                                $(`#aa${item.cid}`).append(`<br/><i class="vg-ps">${item.c_option}</i><br/>`)
                             }
                         })
                         // 運費計算
