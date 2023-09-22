@@ -523,7 +523,7 @@
                     var shippingfee = 0;
                     // $("#summary_items").empty();
                     $.each(items, function (index, item) {
-                        console.log(item)
+                        // console.log(item)
                         item.useCoupon == null ? '0' : item.useCoupon;
                         item.c_note == null ? item.c_note = '無備註' : item.c_note;
                         // item.c_option ? item.c_option = item.c_option : item.c_option = ''; 
@@ -541,7 +541,7 @@
 
                          // 設定自選箱價格
                          if (item.product.includes('自選')) {
-                                    item.price = localStorage.getItem('optionPrice');
+                                    item.price = localStorage.getItem(`optionPrice${item.cid}`);
                                 }
 
                         if (item.size == '雙人箱(1~2人)' && item.freq == '單次購買') {

@@ -433,7 +433,7 @@
                                 })
                                 Promise.all(fetchPromises).then(() => {
                                     item.price = optionPrice;
-                                    localStorage.setItem('optionPrice', optionPrice);
+                                    localStorage.setItem(`optionPrice${item.cid}`, optionPrice);
                                 });
                             }
                         })
@@ -455,7 +455,6 @@
                             // if (localStorage.getItem('optionPrice')) {
                             //     item.pname == '自選蔬果箱' ? item.price = localStorage.getItem('optionPrice') : item.price = item.price;
                             // }
-                            item.pname.includes('自選') ? item.price = parseInt(item.money) : item.price = parseInt(item.price);
                             
                             if (item.freq == 'once') {
                                 item.freq = '單次購買';
@@ -479,6 +478,8 @@
                             } else {
                                 item.price = ((parseInt(item.price) + 200) * 4) * item.quantity
                             }
+                            
+                            item.pname.includes('自選') ? item.price = parseInt(item.money) : item.price = parseInt(item.price);
 
                             var divHtml = `
                             <tr>
@@ -921,8 +922,6 @@
                             })
                         });
                     }
-
-
 
                     // 點選下次再買按鈕 => 更新至wishlist資料表 => 刪除cart資料表中該項產品
                     // 可加強: 若是自選箱直接刪掉品項

@@ -176,7 +176,7 @@
 
                             // 設定自選箱價格
                             if ( item.product.includes('自選')) {
-                                item.price = localStorage.getItem('optionPrice');
+                                item.price = localStorage.getItem(`optionPrice${item.cid}`);
                             }
 
                             if (item.size == '雙人箱(1~2人)' && item.freq == '單次購買') {
