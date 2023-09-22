@@ -64,13 +64,13 @@
                     <% } %>
                   </div>
                   <div class="smtext">
-                    <h5 class="vg-h4">小叮嚀</h5>
+                    <h5 class="vg-h4">貼心小叮嚀</h5>
 
                     <p class="vg-h5">
                       蔬果:<span class="vg-p ms-2 productInfo"></span>
                     </p>
                     <p class="vg-h5">
-                      產地:<span class="vg-p ms-2 saveOrigin"></span>
+                      產地:<span class="vg-p ms-2 productOrigin"></span>
                     </p>
                     <p class="vg-h5">
                       保存方法:<span class="vg-p ms-2 saveInfo"></span>
@@ -140,14 +140,17 @@
                         <option value="30d" data-size="s">家庭箱(30day)</option>
                         <option value="60d" data-size="l">家庭箱(60day)</option>
                       </select>
-                      <span class="p-0 m-0 vg-p">
-                        總金額: <span class="toal price4">0</span>元
-                      </span>
+                      <p class="p-0 m-0 vg-p dis">
+                        單箱金額: <span class="toal price4">0</span>元
+                      </p>
                       <br />
                       <div class="day">
+                        <p class="p-0 m-0 vg-p">
+                          總金額: <span class="price5">0</span>元
+                        </p>
                         <label for="commodity" class="vg-p">配送日:</label>
                         <select class="commodity vg-p">
-                          <option></option>
+                          <option value="" selected></option>
                           <option value="Monday">星期一</option>
                           <option value="Wednesday">星期三</option>
                         </select>
@@ -294,7 +297,7 @@
                   <div class="day">
                     <label for="commodity" class="vg-p">配送日:</label>
                     <select class="commodity vg-p">
-                      <option></option>
+                      <option selected></option>
                       <option value="Monday">星期一</option>
                       <option value="Wednesday">星期三</option>
                     </select>
@@ -360,6 +363,8 @@
                       >為您服務
                     </li>
                   </ul>
+
+                  <p class="vg-p">蔬菜內容以當季蔬菜組裝出貨！</p>
                 </div>
                 <div class="middle_Con">
                   <h5 class="vg-h5">最新活動</h5>

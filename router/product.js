@@ -13,7 +13,7 @@ product.get("/", function (req, res) {
   let sql4 =
     "SELECT product.product, product.category, product.firm, info.season FROM product INNER JOIN info ON product.product = info.product WHERE (product.category = '水果' ) AND (info.season = '9,10,11' OR info.season = '全年' or info.season = '12,1,2'or info.season = '3,4,5');";
   let sql5 =
-    "SELECT info.product,info.save,info.note,product.Origin FROM info,product WHERE info.season ORDER BY RAND() LIMIT 1;";
+    "SELECT info.product, product.Origin,info.save,info.note FROM info,product WHERE info.season ORDER BY RAND() LIMIT 1;";
 
   let sql6 = "SELECT product, Temp FROM product WHERE Temp IS NOT NULL;";
   let sql7 =
