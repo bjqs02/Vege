@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 23, 2023 at 02:37 PM
+-- Generation Time: Sep 23, 2023 at 02:51 PM
 -- Server version: 5.7.24
 -- PHP Version: 8.0.1
 
@@ -289,7 +289,7 @@ CREATE TABLE `cart` (
   `pid` varchar(50) NOT NULL,
   `quantity` tinyint(4) NOT NULL DEFAULT '1',
   `c_option` varchar(50) DEFAULT NULL,
-  `con` varchar(100) NOT NULL,
+  `con` varchar(50) NOT NULL,
   `c_note` varchar(50) DEFAULT NULL,
   `oid` varchar(50) DEFAULT NULL,
   `c_status` varchar(10) NOT NULL DEFAULT 'active',
@@ -1174,6 +1174,8 @@ CREATE TABLE `useraddress` (
   `uId` int(11) NOT NULL,
   `Name` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
   `Phone` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
+  `zipcode` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `country` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `address` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -1181,13 +1183,13 @@ CREATE TABLE `useraddress` (
 -- Dumping data for table `useraddress`
 --
 
-INSERT INTO `useraddress` (`uId`, `Name`, `Phone`, `address`) VALUES
-(1001, '王大同', '0912345678', '台中市南區建國南路1段255號'),
-(1001, '王美麗', '0912345679', '台中市南區建國南路1段255號'),
-(1002, '李曉潔', '0933396969', '台北市大安區忠孝東路四段200號'),
-(1003, '郭靜香', '0911122345', '高雄市左營區博愛二路757號'),
-(1003, '陳樂', '0912123123', '台南市中西區忠義路二段1號'),
-(1004, '陳樂', '0912123123', '臺南市中西區忠義路二段1號');
+INSERT INTO `useraddress` (`uId`, `Name`, `Phone`, `zipcode`, `country`, `address`) VALUES
+(1001, '王大同', '0912367845', '402', '台中市南區', '建國南路1段255號'),
+(1001, '王美麗', '0912345679', '402', '台中市南區', '建國南路1段255號'),
+(1002, '李曉潔', '0933396969', '106', '台北市大安區', '忠孝東路四段200號'),
+(1003, '郭靜香', '0911122345', '813', '高雄市左營區', '博愛二路757號'),
+(1003, '林小花', '0912123123', '700', '台南市中西區', '忠義路二段1號'),
+(1004, '陳樂', '0912334597', '700', '臺南市中西區', '忠義路二段1號');
 
 -- --------------------------------------------------------
 
@@ -1231,10 +1233,10 @@ CREATE TABLE `usercard` (
 --
 
 INSERT INTO `usercard` (`cindex`, `uId`, `card`, `bank`, `default`) VALUES
-(1, 1004, '0000111122223333', '玉山銀行', 1),
+(1, 1004, '3000111122223333', '玉山銀行', 1),
 (2, 1001, '4444555566667777', '台新銀行', 0),
-(3, 1002, '8888999900001111', '國泰世華銀行', 1),
-(4, 1003, '2222333344445555', '華南銀行', 1);
+(3, 1002, '5888999900001111', '國泰世華銀行', 1),
+(4, 1003, '4222333344445555', '華南銀行', 1);
 
 -- --------------------------------------------------------
 
@@ -1287,7 +1289,7 @@ INSERT INTO `userlogin` (`uID`, `Email`, `password`, `token`, `createTime`, `upd
 (1001, 'apple_pie@gmail.com', '$2a$10$W2CeC8wta6TiR456Wwod7uosw7dTI3zqsqhRQRAOUkMMr7dTCdGoK', NULL, '2022-10-15 18:12:10', '2023-09-12 11:06:54'),
 (1002, 'blueberry_muffin@gmail.com', '$2a$10$xHwXIgtyIxDwhsA9rpv1fuIGFG320MaBYaI/tnob4ERMjTNV1IIJO', NULL, '2020-08-17 15:00:59', '2023-09-12 11:06:54'),
 (1003, 'cranberry@gmail.com', '$2a$10$M42KUO0OoC5fB4ftb3/I9Ovg6uwEj7W8I6SvDqEQ3UFE95huqSSx6', NULL, '2021-03-08 01:15:13', '2023-09-12 11:06:54'),
-(1004, 'happy@gmail.com', '$2a$10$wAcGWSRo3k.zwajKO/1aouqcxPWjCSQzeNc/fMIYgzorbaGocmooG', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTU0NjQ1NzQsImV4cCI6MTY5NTU1MDk3NH0.TMHNx-llsuxK5FOwOT79fsr0kluUWu3hZ4j9PaNXlKs', '2021-09-05 03:15:13', '2023-09-12 11:06:54');
+(1004, 'happy@gmail.com', '$2a$10$wAcGWSRo3k.zwajKO/1aouqcxPWjCSQzeNc/fMIYgzorbaGocmooG', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTU0NjIwOTksImV4cCI6MTY5NTU0ODQ5OX0.tLXR_PIewExdzbry3NumlQBq4cMsCxWT8mq0PeLS5a4', '2021-09-05 03:15:13', '2023-09-12 11:06:54');
 
 -- --------------------------------------------------------
 
@@ -1333,7 +1335,8 @@ CREATE TABLE `ushopaddress` (
 --
 
 INSERT INTO `ushopaddress` (`uId`, `sId`, `shopName`, `Name`, `Phone`, `address`) VALUES
-(1001, 134523, '台中黎明店', '王媽媽', '0923515377', '台中市南屯區三厝里黎明路二段406號');
+(1001, 134523, '台中黎明店', '王媽媽', '0923515377', '台中市南屯區三厝里黎明路二段406號'),
+(1004, 452378, '台南民生店', '王平安', '0923786114', '台南市中西區民生路二段28號');
 
 -- --------------------------------------------------------
 
@@ -1600,7 +1603,7 @@ ALTER TABLE `article`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cid` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=364;
+  MODIFY `cid` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT for table `comment`
