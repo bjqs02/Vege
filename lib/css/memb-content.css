@@ -337,7 +337,7 @@
   font-size: 32px;
 }
 
-.memb-coinRC .card-header .text-muted:after {
+.memb-coinRC p.exp:after {
   margin-left: 5px;
   font: var(--fa-font-solid);
   color: var(--text-sub-color-2);
