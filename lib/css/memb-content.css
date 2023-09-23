@@ -1,7 +1,7 @@
-/* 畫面尺寸太大請註解，搜尋 35rem */
+/* 畫面尺寸太大請註解，搜尋 rem */
 .memb-content .card,
 .memb-basicInfo {
-  width: 40rem;
+  width: 32rem;
 }
 
 .memb-credit p,
@@ -217,7 +217,7 @@
 
 /* 訂單總攬 */
 .memb-order .list-group-item:before {
-  width: 40rem;
+  width: 32rem;
   height: 5px;
   background-color: var(--primary-2);
   content: "";
@@ -225,7 +225,7 @@
 }
 
 .memb-order .list-group-item.row {
-  width: 40rem;
+  width: 32rem;
   --bs-gutter-x: 0;
 }
 
@@ -316,7 +316,7 @@
 
 /* 購物金 */
 .memb-coinRC {
-  width: 40rem;
+  width: 32rem;
   position: relative;
   border: none;
 }
@@ -360,7 +360,7 @@
   height: 80px;
   padding-top: 17px;
   padding-left: 75px;
-  gap: 65%;
+  gap: 62%;
   color: var(--text-color);
   font-size: 16px;
 }

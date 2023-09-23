@@ -615,7 +615,7 @@ p {
 .icon {
   height: 35px;
   width: 35px;
-  margin: 5px 0;
+  margin: 6px 0 0 0;
   padding-top: 6px;
   padding-bottom: 10px;
   position: fixed;
@@ -702,13 +702,15 @@ p {
 }
 
 #userName.change {
-  top: 40px;
+  top: 43px;
   right: 135px;
+  font-size: 0.8rem;
 }
 
 #userName.green {
-  top: 40px;
+  top: 43px;
   right: 135px;
+  font-size: 0.8rem;
 }
 
 /* 購物車圖示 */
@@ -1321,6 +1323,7 @@ body.show-sidebar-cart #sidebar-cart {
   #userName {
     top: 40px;
     right: 172px;
+    font-size: 0.8rem;
   }
 
   #navCart,
