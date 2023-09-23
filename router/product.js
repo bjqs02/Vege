@@ -102,8 +102,18 @@ product.get("/", function (req, res) {
     try {
       let dataArray = Object.values(cardDataArr);
       for (let cardData of dataArray) {
-        let { uid, quantity, c_option, product, size, freq, fid, money, day } =
-          cardData;
+        let {
+          uid,
+          quantity,
+          c_option,
+          con,
+          product,
+          size,
+          freq,
+          fid,
+          money,
+          day,
+        } = cardData;
         let sql8 =
           "SELECT pid FROM product WHERE product = ? and size = ? and freq = ?";
         let getpid = [product, size, freq];
@@ -117,20 +127,31 @@ product.get("/", function (req, res) {
         console.log("product = " + product);
         console.log("size = " + size);
         console.log("freq = " + freq);
+        console.log("con:", con);
+
         let pid = results[0].pid;
         console.log("取得產品id:", pid);
 
         let addcart =
-          "INSERT INTO cart (uid, pid, quantity, c_option, fid, money, day) VALUES (?, ?, ?, ?, ?,?,?)";
-        let addcartValues = [uid, pid, quantity, c_option, fid, money, day];
+          "INSERT INTO cart (uid, pid, quantity, c_option,con, fid, money, day) VALUES (?,?, ?, ?, ?, ?,?,?)";
+        let addcartValues = [
+          uid,
+          pid,
+          quantity,
+          c_option,
+          con,
+          fid,
+          money,
+          day,
+        ];
 
         await queryAsync(addcart, addcartValues);
       }
 
       res.send({ success: true, message: "卡片添加成功" });
     } catch (err) {
-      console.error("发生错误:", err);
-      res.status(500).send("发生错误"); // Send an error response
+      console.error("錯誤:", err);
+      res.status(500).send("錯誤"); // Send an error response
     }
   });
   product.post("/delcartData", async (req, res) => {
