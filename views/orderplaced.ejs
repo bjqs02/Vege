@@ -217,7 +217,8 @@
 
                         // 測試用oid，可根據 vgorder的oid進行訂單查詢
                         // oid = 503835
-
+                        // oid = 3490516
+                        
                         // 寄發通知信
                         fetch('/server/send/', {
                             method: 'POST',
@@ -252,9 +253,9 @@
                             myoName.innerText = res[0].oName;
                             myoTel.innerText = res[0].oTel;
                             myoMail.innerText = res[0].oMail;
-                            myrName.innerText = res[0].rName + res[0].convName;
-                            myrTel.innerText = res[0].rTel + res[0].convTel;
-                            res[0].convStore == '尚未選擇' ? myrAddr.innerText = res[0].rAddr : myrAddr.innerText = res[0].convStore;
+                            res[0].rName? myrName.innerText = res[0].rName : myrName.innerText = res[0].convName;
+                            res[0].rTel? myrTel.innerText = res[0].rTel : myrTel.innerText = res[0].rTel = res[0].convTel;
+                            res[0].convStore == '尚未選擇' || res[0].convStore == null ? myrAddr.innerText = res[0].rAddr : myrAddr.innerText = res[0].convStore;
                             res[0].o_note ? myoNote.innerText = res[0].o_note : myoNote.innerText = '無備註';
 
                             //讀取產品清單、運費、總金額、配送日期等資訊
@@ -330,13 +331,14 @@
                                 // 購買品項
                                 item.size == 's' ? fee = 160 : fee = 290; // 運費 (S-160 L-290)
                                 item.size == 's' ? item.size = '雙人箱(1~2人)' : item.size = '家庭箱(3~4人)';
-                                item.c_option ? item.c_option = item.c_option.split(',').slice(1,) : item.c_option = '';
+                                // item.c_option ? item.c_option = item.c_option.split(',').slice(1,) : item.c_option = '';
+                                item.con ? item.con = item.con : item.con = '';
 
-                                // 設定自選箱價格
-                                if (item.product.includes('自選')) {
-                                    item.price = localStorage.getItem(`optionPrice${item.cid}`);
-                                    item.content = item.c_option
-                                }
+                                // 設定自選箱價格(根據localStorage)
+                                // if (item.product.includes('自選')) {
+                                //     item.price = localStorage.getItem(`optionPrice${item.cid}`);
+                                //     item.content = item.con
+                                // }
 
                                 if (item.freq == 'once') {
                                     item.freq = '單次購買';
@@ -373,6 +375,12 @@
                                     item.price = (parseInt(item.price) * 4) * item.quantity
                                 } else {
                                     item.price = ((parseInt(item.price) + 200) * 4) * item.quantity
+                                }
+
+                                // 設定自選箱價格(根據cart資料表)
+                                if (item.product.includes('自選')) {
+                                    item.price = parseInt(item.money);
+                                    item.content = item.con
                                 }
 
                                 var trHtml = `

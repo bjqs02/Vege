@@ -304,10 +304,10 @@ cart_order.get("/getuserinfo/addr/:uid", function (req, res) {
 // 更新到常用地址
 cart_order.post("/updateuserinfo/addr/", function (req, res) {
   var sql20 =
-    "INSERT INTO useraddress (uId, Name, Phone, address) VALUES (?, ?, ?, ?)";
+    "INSERT INTO useraddress (uId, Name, Phone, zipcode, country , address) VALUES (?, ?, ?, ?, ?, ?)";
   db.query(
     sql20,
-    [req.body.uid, req.body.name, req.body.phone, req.body.address],
+    [req.body.uid, req.body.name, req.body.phone, req.body.zipcode, req.body.country, req.body.address],
     function (err, rows) {
       res.send(JSON.stringify(req.body));
     }

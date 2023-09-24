@@ -206,7 +206,8 @@
                         $("#cartitems").empty();
                         $.each(items, function (index, item) {
                             // 修正內容備註
-                            item.c_option ? item.c_option = item.c_option.split(',').slice(1,) : item.c_option = '';
+                            // item.c_option ? item.c_option = item.c_option.split(',').slice(1,) : item.c_option = '';
+                            item.con ? item.con = item.con : item.con = '';
                             // console.log( item.c_option )
                             item.pname.includes("自選") ? item.pinfo = '' : item.pinfo = item.pinfo;
 
@@ -229,7 +230,7 @@
                                                 <option value="60d">雙周一次</option> 
                                             </select>
                                         </label>
-                                        <p class="vg-ps">內容：${item.pinfo} ${item.c_option}</p>
+                                        <p class="vg-ps">內容：${item.pinfo} ${item.con}</p>
                                     </div>
                                 </td>
                                 <td class="aa${item.pid}">
@@ -261,7 +262,7 @@
                                                 <option value="60d">雙周一次</option> 
                                             </select>
                                         </label>
-                                        <p class="vg-ps">內容：${item.pinfo}  ${item.c_option}</p>
+                                        <p class="vg-ps">內容：${item.pinfo}  ${item.con}</p>
                                     </div>
                                 </td>
                                 <td class="aa${item.pid}">
@@ -293,7 +294,7 @@
                                                 <option value="60d">雙周一次</option> 
                                             </select>
                                         </label>
-                                        <p class="vg-ps">內容：${item.pinfo}  ${item.c_option}</p>
+                                        <p class="vg-ps">內容：${item.pinfo}  ${item.con}</p>
                                     </div>
                                 </td>
                                 <td class="aa${item.pid}">
@@ -325,7 +326,7 @@
                                                 <option value="60d">雙周一次</option> 
                                             </select>
                                         </label>
-                                        <p class="vg-ps">內容：${item.pinfo} ${item.c_option} </p>
+                                        <p class="vg-ps">內容：${item.pinfo} ${item.con} </p>
                                     </div>
                                 </td>
                                 <td class="aa${item.pid}">
@@ -357,7 +358,7 @@
                                                 <option value="60d" selected>雙周一次</option> 
                                             </select>
                                         </label>
-                                        <p class="vg-ps">內容：${item.pinfo}  ${item.c_option}</p>
+                                        <p class="vg-ps">內容：${item.pinfo}  ${item.con}</p>
                                     </div>
                                 </td>
                                 <td class="aa${item.pid}">
@@ -389,7 +390,7 @@
                                                 <option value="60d" selected>雙周一次</option> 
                                             </select>
                                         </label>
-                                        <p class="vg-ps">內容：${item.pinfo}  ${item.c_option}</p>
+                                        <p class="vg-ps">內容：${item.pinfo}  ${item.con}</p>
                                     </div>
                                 </td>
                                 <td class="aa${item.pid}">
@@ -405,37 +406,37 @@
                             }
 
                             // 修正自選箱價格
-                            var optionPrice = 0;
-                            var fetchPromises = [];
-                            if (item.pname.includes('自選') && item.c_option != '') {
-                                item.c_option.map((product) => {
-                                    var fetchPromise = fetch('/getitemprice', {
-                                        method: 'POST',
-                                        headers: {
-                                            "Content-Type": "application/json ; charset=UTF-8"
-                                        },
-                                        body: JSON.stringify({
-                                            product: product
-                                        })
-                                    }).then((res) => {
-                                        return res.json();
-                                    }).then((e) => {
-                                        // if (e && e[0] && e[0].price) {
-                                        //     optionPrice = optionPrice + parseInt(e[0].price);
-                                        // }
-                                        if (e && e[0] && e[0].category == '蔬菜') {
-                                            optionPrice = optionPrice + 100;
-                                        } else if (e && e[0] && e[0].category == '水果') {
-                                            optionPrice = optionPrice + 50;
-                                        }
-                                    })
-                                    fetchPromises.push(fetchPromise);
-                                })
-                                Promise.all(fetchPromises).then(() => {
-                                    item.price = optionPrice;
-                                    localStorage.setItem(`optionPrice${item.cid}`, optionPrice);
-                                });
-                            }
+                            // var optionPrice = 0;
+                            // var fetchPromises = [];
+                            // if (item.pname.includes('自選') && item.con != '') {
+                            //     item.con.split(',').map((product) => {
+                            //         var fetchPromise = fetch('/getitemprice', {
+                            //             method: 'POST',
+                            //             headers: {
+                            //                 "Content-Type": "application/json ; charset=UTF-8"
+                            //             },
+                            //             body: JSON.stringify({
+                            //                 product: product
+                            //             })
+                            //         }).then((res) => {
+                            //             return res.json();
+                            //         }).then((e) => {
+                            //             // if (e && e[0] && e[0].price) {
+                            //             //     optionPrice = optionPrice + parseInt(e[0].price);
+                            //             // }
+                            //             if (e && e[0] && e[0].category == '蔬菜') {
+                            //                 optionPrice = optionPrice + 100;
+                            //             } else if (e && e[0] && e[0].category == '水果') {
+                            //                 optionPrice = optionPrice + 50;
+                            //             }
+                            //         })
+                            //         fetchPromises.push(fetchPromise);
+                            //     })
+                            //     Promise.all(fetchPromises).then(() => {
+                            //         item.price = optionPrice;
+                            //         localStorage.setItem(`optionPrice${item.cid}`, optionPrice);
+                            //     });
+                            // }
                         })
                         // console.log(items)
                         countTotal(items)
@@ -479,6 +480,7 @@
                                 item.price = ((parseInt(item.price) + 200) * 4) * item.quantity
                             }
                             
+                            // 設定自選箱價格(根據cart資料表)
                             item.pname.includes('自選') ? item.price = parseInt(item.money) : item.price = parseInt(item.price);
 
                             var divHtml = `
@@ -848,7 +850,7 @@
                         })
                     })
 
-                    // 選擇份量和頻率 更新購物車 cart 資料表
+                    // 選擇份量和頻率 更新購物車 cart 資料表 // 待解決:自選箱調整規格會連動所有自選箱品項
                     handleitem = (e) => {
                         var parent = e.closest('tr[class*="aa"]')
                         // console.log($(parent).find('td')[0].innerText)
@@ -1017,9 +1019,9 @@
                         })
                     }
 
-                    backtoProduct = () => {
-                        localStorage.removeItem('optionPrice')
-                    }
+                    // backtoProduct = () => {
+                    //     localStorage.removeItem('optionPrice')
+                    // }
 
                     // 按下結帳去的動作
                     placeOrder = () => {
