@@ -9,10 +9,10 @@
 
 
 
-.vg-section , .vg-section img{
+/* .vg-section , .vg-section img{
     height: 525px;
     width: 100vw;
-}
+} */
 
 
 /* navbar */
@@ -430,6 +430,13 @@ padding-left: 50px;
     z-index: 1; /* 可选：如果需要将链接置于其他内容之上 */
 }
 
+@media screen and (max-width: 720px) {
+    .activitycmta + h4 {
+        font-size: 25px;
+    }
+  }
+
+
 .actviewp {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -459,6 +466,16 @@ padding-left: 50px;
     object-position: 10% 10%;
     height: 100%;
     width: 100%;
+}
+
+.searchMore button.btn-vg-sm{
+    padding: 5px;
+}
+
+@media screen and (max-width:576px) {
+    .contentImg{
+        display: none;
+    }
 }
 
 /* activ-lotto */

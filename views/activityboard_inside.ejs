@@ -33,7 +33,7 @@
             <!-- 主navbar這裡結束 -->
 
             <div class="vg-section">
-                <img src="img/act-moonfruit1.jpg" alt="">
+                <img class="img-fluid" src="img/act-moonfruit1.jpg" alt="">
             </div>
 
 
@@ -51,7 +51,7 @@
                         </h3>
                         <div class="text-end"><%- data[0].acttime.toLocaleString() %></div>
                         <img class="img-fluid" src="<%= data[0].actImg %>">
-                        <%- data[0].actText %>
+                        <p class="p-3"><%- data[0].actText %></p>
 
                     </div>
                     <!-- 右邊常駐活動 -->
