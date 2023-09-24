@@ -250,8 +250,9 @@
   background-color: var(--bs-gray-300);
   color: var(--bs-gray-700);
 }
-.memb-order .list-group-item .col-3 {
-  padding: 20px 0 15px 10px;
+
+.pimg {
+  padding: 35px 0 15px 10px;
 }
 
 .memb-order .list-group-item .col-3 img {
@@ -270,14 +271,19 @@
 }
 
 .memb-order .list-group-item .col-2 {
-  padding: 70px 0 15px 0;
+  padding: 60px 0 15px 0;
 }
 
-.order-button {
-  padding-top: 20px;
+.order-button1 {
+  padding-top: 30px;
 }
 
-.order-button button {
+.order-button2 {
+  padding-top: 15px;
+}
+
+.order-button1 button,
+.order-button2 button {
   width: 100%;
   margin-bottom: 10px;
   border: 2px solid var(--primary-1);
@@ -302,15 +308,16 @@
   cursor: pointer;
 }
 
-.memb-order .list-group-item .col-11,
-.memb-order .list-group-item .col-1 {
+.memb-order .list-group-item .col-10,
+.memb-order .list-group-item .col-2.total {
   /* display: grid; */
   padding: 10px 0 10px 0;
   border-top: 1px solid var(--bs-list-group-border-color);
   color: var(--bs-gray-600);
 }
 
-.memb-order .list-group-item .col-1 span {
+.memb-order .list-group-item .col-2.total span {
+  float: right;
   color: var(--text-color);
 }
 
