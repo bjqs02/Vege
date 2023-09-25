@@ -9,7 +9,7 @@ a {
   color: rgb(54, 39, 6);
   cursor: pointer;
 }
-a:hover {
+a.aa:hover {
   color: rgb(127, 191, 127);
   flex-direction: column;
 }
@@ -569,6 +569,17 @@ h5 {
 /* .day {
   display: inline;
 } */
-.day {
+.day,
+.fm {
   display: none;
 }
+/* .modal-content {
+  top: -10px;
+  opacity: 0;
+  transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
+} */
+
+/* .modal-content.show {
+  top: 0;
+  opacity: 1;
+} */

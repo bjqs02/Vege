@@ -40,7 +40,7 @@
       <div class="modal-footer d-flex justify-content-center">
         <button
           type="button"
-          class="btn btn-vg-reg"
+          class="btn btn-vg-reg smbr"
           data-bs-dismiss="modal"
           onclick="showModalOnPage()"
         >
@@ -679,4 +679,22 @@
     $("body").addClass("body-no-scroll");
     let selectedSize = $(".commodity option:selected").data("size");
   });
+
+  // $(".modal-content").animate(
+  //   {
+  //     opacity: "1",
+  //     top: "250px", // 決定對話框要滑到哪個位置停止。
+  //   },
+  //   550
+  // );
+
+  // $(".smbr").click(function () {
+  //   $(".modal-content").animate(
+  //     {
+  //       opacity: "0",
+  //       top: "-50px", // 需與CSS設定的起始位置相同，以保證下次彈出視窗的效果相同。
+  //     },
+  //     350
+  //   );
+  // });
 </script>

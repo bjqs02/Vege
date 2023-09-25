@@ -31,7 +31,7 @@ product.get("/", function (req, res) {
     if (err) {
       console.log("水果箱名稱連結錯誤");
       console.log(err);
-      res.status(500).send("水果箱名稱連結錯誤");
+      res.status(500).send("數據取得失敗");
       return;
     }
     data.names = rows;
@@ -40,7 +40,7 @@ product.get("/", function (req, res) {
       if (err) {
         console.log("圖片取得失敗");
         console.log(err);
-        res.status(500).send("圖片數據取得失敗");
+        res.status(500).send("數據取得失敗");
         return;
       }
       data.images = rows;
@@ -49,7 +49,7 @@ product.get("/", function (req, res) {
         if (err) {
           console.log("產品資訊取得失敗");
           console.log(err);
-          res.status(500).send("產品資訊錯誤");
+          res.status(500).send("數據取得失敗");
           return;
         }
         data.con = rows;
@@ -58,7 +58,7 @@ product.get("/", function (req, res) {
           if (err) {
             console.log("蔬菜品項取得失敗");
             console.log(err);
-            res.status(500).send("產品資訊錯誤");
+            res.status(500).send("數據取得失敗");
             return;
           }
           data.veg = rows;
@@ -66,7 +66,7 @@ product.get("/", function (req, res) {
             if (err) {
               console.log("水果品項取得失敗");
               console.log(err);
-              res.status(500).send("数据库错误");
+              res.status(500).send("數據取得失敗");
               return;
             }
 
@@ -75,7 +75,7 @@ product.get("/", function (req, res) {
               if (err) {
                 console.log("temp取得失敗");
                 console.log(err);
-                res.status(500).send("資料庫错误");
+                res.status(500).send("數據取得失敗");
                 return;
               }
 
