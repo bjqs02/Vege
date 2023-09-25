@@ -270,9 +270,16 @@
                                 var shippingDateArr = [];
                                 // console.log(item.o_ceatetime.split('T')[0])
                                 var date = new Date(item.o_ceatetime.split('T')[0]);
+                                // var date = new Date('2023-10-2'); // 測試用
                                 // console.log(date.getDay())
                                 if (item.freq == 'once') {
-                                    date.setDate(date.getDate() + 3)
+                                    var temp = date.setDate(date.getDate() + 3)
+                                    // 單次配送遇週六、日則順延
+                                    if( date.getDay(temp) == '6'){
+                                        date.setDate(date.getDate() + 2)
+                                    } else if ( date.getDay(temp) == '0' ){
+                                        date.setDate(date.getDate() + 1)
+                                    } 
                                 } else {
                                     switch (date.getDay()) {
                                         case 0: // 禮拜天
