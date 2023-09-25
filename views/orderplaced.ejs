@@ -70,7 +70,7 @@
                                         <tr id="myOitem">
                                             <th>名稱</th>
                                             <th>內容</th>
-                                            <th>規格</th>
+                                            <th class="w-25">規格</th>
                                             <th>備註</th>
                                             <th>#</th>
                                             <th class="w-25">價格</th>
@@ -370,7 +370,7 @@
                                     }
 
                                 }
-                                item.c_note == null ? item.c_note = '無備註' : item.c_note;
+                                item.c_note == null ? item.c_note = '無' : item.c_note;
                                 if (item.size == '雙人箱(1~2人)' && item.freq == '單次購買') {
                                     item.price = parseInt(item.price) * item.quantity
                                 } else if (item.size == '家庭箱(3~4人)' && item.freq == '單次購買') {
@@ -395,7 +395,7 @@
                                 <tr class="trHtml">
                                     <td>${item.product}</td>
                                     <td>${item.content}</td>
-                                    <td>${item.size} ${item.freq} ${item.day}</td>
+                                    <td>${item.size}<br> ${item.freq} ${item.day}</td>
                                     <td>${item.c_note}</td>
                                     <td>${item.quantity}</td>
                                     <td>${item.price}</td>
