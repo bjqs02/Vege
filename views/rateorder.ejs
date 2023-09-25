@@ -53,7 +53,7 @@
                 </div>
                 <!-- 特定產品評價 -->
                 <div class="message my-5">
-                    <p class="vg-p">歡迎您針對我們的產品分享留言<span class="vg-ps ms-3">最多3則</span>
+                    <p class="vg-p">邀請您分享留言<span class="vg-ps ms-3">最多3則</span>
                         <button id="moremsg" class="d-inline btn btn-vg-xs mb-1">＋</button>
                     </p>
                     <div id="inputContainer">
@@ -73,10 +73,11 @@
                     $(function () {
                         // 設定訂單編號 (前一頁面[查詢訂單頁面]須設定oid存放於localstorage)
                         // var oid = '8430352'; // 狀態非pending
-                        var oid = '503835'; // 會員1004 狀態pending 未評價
+                        // var oid = '503835'; // 會員1004 狀態pending 未評價
                         // var oid = '4140847'; // 已評價
                         // var oid = '8678231'; // 已評價
                         // var oid = '9014842'; // 已評價
+                        var oid = localStorage.getItem('oid');
                         orderNumber.innerText = oid;
 
                         $.get(`/getrateorderstatus/${oid}`, function (e) {
@@ -92,7 +93,7 @@
                                         });
                                         e.map((item) => {
                                             var spanHtml = `
-                                    <span class="rateitem">${item.product}</span>
+                                    <span class="rateitem p-2" style="background-Color: rgb(204, 220, 172)">${item.product}</span>
                                     `;
                                             $('#rateitems').append(spanHtml)
                                             // console.log(item.pname)

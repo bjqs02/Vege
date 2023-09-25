@@ -20,7 +20,7 @@ cart_order.use(express.urlencoded({ extended: true }));
 cart_order.get("/cart/item/:id", function (req, res) {
   // var sql1 = "SELECT * FROM temp_product join cart WHERE cart.pid = temp_product.pid and  cart.uid = ? and cart.c_status = 'active'";
   var sql1 =
-    "SELECT product.pid, product.product as pname, product_content.image as img, product_content.content as pinfo , product_content.price as price, product.size, product.freq, cart.quantity, cart.c_option, cart.c_note, cart.fid FROM product_content INNER JOIN product join cart WHERE product_content.product = product.product and cart.pid = product.pid and cart.uid = ? and cart.c_status = 'active';";
+    "SELECT product.pid, product.product as pname, product_content.image as img, product_content.content as pinfo , product_content.price as price, product.size, product.freq, cart.quantity, cart.c_option, cart.con, cart.c_note, cart.money , cart.day ,cart.fid, cart.cid FROM product_content INNER JOIN product join cart WHERE product_content.product = product.product and cart.pid = product.pid and cart.uid =1004 and cart.c_status = 'active';";
   db.query(sql1, [req.params.id], function (err, rows) {
     res.send(rows);
   });
@@ -193,16 +193,17 @@ cart_order.delete("/cart/deleteitem/", function (req, res) {
 // 更新願望清單 (新增至購物車)
 cart_order.post("/cart/additem/", function (req, res) {
   var countCart;
-  var sql11_1 = 'SELECT COUNT(*) as count FROM cart where uid = ? and c_status = "active"';
+  var sql11_1 =
+    'SELECT COUNT(*) as count FROM cart where uid = ? and c_status = "active"';
   db.query(sql11_1, [req.body.uid], function (err, rows) {
-    var temp = Object.values(JSON.parse(JSON.stringify(rows)))
+    var temp = Object.values(JSON.parse(JSON.stringify(rows)));
     countCart = temp[0].count;
     // console.log('aa', countCart)
     var sql11_2 = `INSERT INTO cart (uid, pid, fid) VALUES (? , ?, 'Newprod${countCart}')`;
     db.query(sql11_2, [req.body.uid, req.body.pid], function (err, rows) {
       res.send(JSON.stringify(req.body));
     });
-  })
+  });
 });
 
 // 更新願望清單 (從願望清單移除)
@@ -254,11 +255,11 @@ cart_order.post("/getitemprice", function (req, res) {
   // 當價格以資料庫數據為主時
   // var sql15_2 = "SELECT price FROM product_content WHERE product = ?;"
   // 當價格在product.ejs寫死 蔬菜100+水果50時
-  var sql15_2 = "SELECT category FROM product WHERE product = ?;"
+  var sql15_2 = "SELECT category FROM product WHERE product = ?;";
   db.query(sql15_2, [req.body.product], function (err, rows) {
     // console.log((JSON.stringify(rows)))
-    console.log(Object.values(JSON.parse(JSON.stringify(rows))))
-    res.send(Object.values(JSON.parse(JSON.stringify(rows))))
+    console.log(Object.values(JSON.parse(JSON.stringify(rows))));
+    res.send(Object.values(JSON.parse(JSON.stringify(rows))));
   });
 });
 
@@ -303,10 +304,10 @@ cart_order.get("/getuserinfo/addr/:uid", function (req, res) {
 // 更新到常用地址
 cart_order.post("/updateuserinfo/addr/", function (req, res) {
   var sql20 =
-    "INSERT INTO useraddress (uId, Name, Phone, address) VALUES (?, ?, ?, ?)";
+    "INSERT INTO useraddress (uId, Name, Phone, zipcode, country , address) VALUES (?, ?, ?, ?, ?, ?)";
   db.query(
     sql20,
-    [req.body.uid, req.body.name, req.body.phone, req.body.address],
+    [req.body.uid, req.body.name, req.body.phone, req.body.zipcode, req.body.country, req.body.address],
     function (err, rows) {
       res.send(JSON.stringify(req.body));
     }
@@ -378,30 +379,30 @@ cart_order.post("/credit_callback/", (req, res) => {
 });
 
 // LINEPAY系統API (尚未完整完成)
-var rp = require('request-promise');
+var rp = require("request-promise");
 
 // 建立 linepay訂單
-cart_order.post('/payments/linepay/', async function (req, res, next) {
+cart_order.post("/payments/linepay/", async function (req, res, next) {
   var amount;
   var payments = await rp({
-    method: 'POST',
+    method: "POST",
     uri: `https://sandbox-api-pay.line.me/v2/payments/request`,
     json: true,
     headers: {
-      'X-LINE-ChannelId': process.env.LINE_PAY_CHANNELID,
-      'X-LINE-ChannelSecret': process.env.LINE_PAY_SECRET
+      "X-LINE-ChannelId": process.env.LINE_PAY_CHANNELID,
+      "X-LINE-ChannelSecret": process.env.LINE_PAY_SECRET,
     },
     body: {
-      "amount": req.body.amount,
-      "productName": "vege box",
-      // confirmUrl 會呼叫的 API 
-      "confirmUrl": 'http://127.0.0.1:2407/line_callback/',
-      "orderId": req.body.orderId,
-      "currency": "TWD"
-    }
+      amount: req.body.amount,
+      productName: "vege box",
+      // confirmUrl 會呼叫的 API
+      confirmUrl: "http://127.0.0.1:2407/line_callback/",
+      orderId: req.body.orderId,
+      currency: "TWD",
+    },
   });
   amount = req.body.amount;
-  console.log(payments)
+  console.log(payments);
   // console.log(payments.info.transactionId)
   // console.log(payments.info.paymentUrl.web)
   res.send(payments);
@@ -409,43 +410,41 @@ cart_order.post('/payments/linepay/', async function (req, res, next) {
   // confirmUrl 會呼叫的 API (可導向，但未完成驗證已付款功能)
   cart_order.get("/line_callback/", async (req, res) => {
     var payments = await rp({
-      method: 'POST',
+      method: "POST",
       uri: `https://sandbox-api-pay.line.me/v2/payments/${req.query.transactionId}/confirm`,
       json: true,
       headers: {
-        'X-LINE-ChannelId': process.env.LINE_PAY_CHANNELID,
-        'X-LINE-ChannelSecret': process.env.LINE_PAY_SECRET
+        "X-LINE-ChannelId": process.env.LINE_PAY_CHANNELID,
+        "X-LINE-ChannelSecret": process.env.LINE_PAY_SECRET,
       },
       body: {
         // 需用body 攜帶 amount和 twd資料進行付款驗證
-        "amount": amount,
-        "currency": "TWD"
-      }
+        amount: amount,
+        currency: "TWD",
+      },
     });
-    console.log(payments)
+    console.log(payments);
     // res.send( payments )
     if (payments.returnMessage == "Success.") {
       // res.json({ success: true });
-      setTimeout(() => { res.redirect("http://127.0.0.1:2407/orderprocessing") }, 5000)
+      setTimeout(() => {
+        res.redirect("http://127.0.0.1:2407/orderprocessing");
+      }, 5000);
     } else {
-      res.send('有什麼東西出錯了，請關閉網頁重新操作！')
+      res.send("有什麼東西出錯了，請關閉網頁重新操作！");
       // res.json({ success: false });
       // setTimeout(() => { res.redirect("http://127.0.0.1:2407/orderconfirm") }, 3000)
     }
   });
-
 });
-
-
-
-
 
 // rateorder 評價訂單相關資料庫指令
 //讀取vgorder訂單狀態及品項
 cart_order.get("/getorderstatus/:oid", function (req, res) {
   // var sql23 = "SELECT * FROM vgorder, cart, temp_product where vgorder.oid = cart.oid and cart.pid = temp_product.pid and vgorder.oid = ? ";
   var sql23 =
-    "SELECT * FROM vgorder, cart, product where vgorder.oid = cart.oid and cart.pid = product.pid and vgorder.oid = ? ";
+    // "SELECT * FROM vgorder, cart, product where vgorder.oid = cart.oid and cart.pid = product.pid and vgorder.oid = ? ";
+    "SELECT * FROM vgorder, cart, product, product_content where vgorder.oid = cart.oid and cart.pid = product.pid and product_content.product = product.product and vgorder.oid = ?";
   db.query(sql23, [req.params.oid], function (err, rows) {
     res.send(rows);
   });

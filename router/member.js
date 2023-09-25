@@ -8,36 +8,42 @@ var db = require("../db");
 member.use(bodyParser.json());
 member.use(bodyParser.urlencoded({ extended: true }));
 
-
 // 讀取-基本資料
-member.use('/basicInfo/', express.static('lib'));
-member.get('/basicInfo/:id', function (req, res) {
+member.use("/basicInfo/", express.static("lib"));
+member.get("/basicInfo/:id", function (req, res) {
   var sqlInfo = `SELECT *,SUBSTRING(Name, 1, 1) as firstN, SUBSTRING(Name, 2, 2) as lastN FROM userinfo where uId = ?;`;
   db.query(sqlInfo, [req.params.id], function (err, basicInfo) {
     if (basicInfo[0]) {
-      console.log('這位顧客已有基本資料了鴨');
-      var bDate = dayjs(basicInfo[0].Birthday).format('YYYY-MM-DD');
-      res.render('m_basicInfo', {
+      console.log("這位顧客已有基本資料了鴨");
+      var bDate = dayjs(basicInfo[0].Birthday).format("YYYY-MM-DD");
+      res.render("m_basicInfo", {
         dataInfo: basicInfo,
-        Birthday: bDate
+        Birthday: bDate,
       });
     }
-  })
-})
+  });
+});
 
 // 修改-基本資料
-member.post('/basicInfo/edit', function(req, res) {
+member.post("/basicInfo/edit", function (req, res) {
   var editInfo = `UPDATE userinfo SET Name = ?, Birthday = ?, Gender = ?, Phone = ?, carrier = ? where Email = ?;`;
-  var newdata = [req.body.Name, req.body.Birthday, req.body.Gender, req.body.Phone, req.body.carrier, req.body.Email]
-  db.query(editInfo, newdata, function(err, newInfo){
-       if( err ) {
-           console.log('沒有資料可以更新喔');
-          }else {
-          console.log('更新資料了鴨');
-          res.send( JSON.stringify(req.body) );
-      }
-  })
-})
+  var newdata = [
+    req.body.Name,
+    req.body.Birthday,
+    req.body.Gender,
+    req.body.Phone,
+    req.body.carrier,
+    req.body.Email,
+  ];
+  db.query(editInfo, newdata, function (err, newInfo) {
+    if (err) {
+      console.log("沒有資料可以更新喔");
+    } else {
+      console.log("更新資料了鴨");
+      res.send(JSON.stringify(req.body));
+    }
+  });
+});
 
 member.get("/myCards", function (req, res) {
   res.render("m_mycards");

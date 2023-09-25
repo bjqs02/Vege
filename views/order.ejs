@@ -161,9 +161,9 @@
                                                         <label for="homeTel">手機</label>
                                                     </div>
                                                     <div class="twzipcode text-start m-2">
-                                                        <select data-role="county" class="form-select-sm w-25"></select>
+                                                        <select data-role="county" class="form-select-sm w-25" id="county"></select>
                                                         <select data-role="district"
-                                                            class="form-select-sm w-25"></select>
+                                                            class="form-select-sm w-25" id="district"></select>
                                                         <input type="hidden" data-role="zipcode" />
                                                     </div>
                                                     <div class="form-floating form-group m-2">
@@ -410,16 +410,16 @@
                         </form>
                     </div>
                 </section>
-                <section class="rside col-12 col-md-4">
+                <section class="rside col col-md-4">
                     <!-- summary -->
                     <div id="summery">
                         <h3 class="vg-h3 text-center my-3">訂單內容</h3>
                         <p class="vg-ps text-center">編號<span id="orderid"></span></p>
-                        <table id="summary_items" class="table ">
+                        <table id="summary_items" class="table">
                             <tr>
                                 <th>品項</th>
-                                <th>數量</th>
-                                <th>價格</th>
+                                <th>#</th>
+                                <th class="w-25">價格</th>
                             </tr>
                         </table>
                         <table id="summary_coupon" class="table w-50">
@@ -460,10 +460,11 @@
             <script>
                 // 地址套件 
                 var myzip = '';
+                var myzipcode = '';
                 let twzipcode = new TWzipcode({
                     "district": {
                         onChange: function (id) {
-                            // console.log( this.nth(id).get() );
+                            myzipcode = this.nth(id).get().zipcode
                             myzip = `${this.nth(id).get().county}${this.nth(id).get().district}`
                             // console.log(myzip)
                         }
@@ -523,26 +524,29 @@
                     var shippingfee = 0;
                     // $("#summary_items").empty();
                     $.each(items, function (index, item) {
+                        // console.log(item)
                         item.useCoupon == null ? '0' : item.useCoupon;
                         item.c_note == null ? item.c_note = '無備註' : item.c_note;
                         // item.c_option ? item.c_option = item.c_option : item.c_option = ''; 
+                        item.day? item.day = item.day: item.day = '';
 
                         item.size == 's' ? fee = 160 : fee = 290; // 運費 (S-160 L-290)
                         item.size == 's' ? item.size = '雙人箱(1~2人)' : item.size = '家庭箱(3~4人)';
                         if (item.freq == 'once') {
-                            item.freq = '單次購買'
+                            item.freq = '單次購買';
+                            item.day = "";
                         } else if (item.freq == '30d') {
                             item.freq = '每周一次'
                         } else {
                             item.freq = '雙周一次'
                         }
 
-                         // 設定自選箱價格
-                         if (item.product.includes('自選')) {
-                                    item.price = localStorage.getItem('optionPrice');
-                                }
+                         // 設定自選箱價格(根據localstorege)
+                        //  if (item.product.includes('自選')) {
+                        //             item.price = localStorage.getItem(`optionPrice${item.cid}`);
+                        //             item.price = item.money;
+                        //         }
 
-                        item.c_note == null ? item.c_note = '無備註' : item.c_note
                         if (item.size == '雙人箱(1~2人)' && item.freq == '單次購買') {
                             item.price = parseInt(item.price) * item.quantity
                         } else if (item.size == '家庭箱(3~4人)' && item.freq == '單次購買') {
@@ -557,11 +561,14 @@
                             item.price = ((parseInt(item.price) + 200) * 4) * item.quantity
                         }
 
+                        // 設定自選箱價格(根據cart資料表)
+                        item.product.includes('自選') ? item.price = parseInt(item.money) : item.price = parseInt(item.price);
+
                         var trHtml = `
                             <tr>
                                 <td>
-                                    <p class="m-0" id=${item.product}>${item.product}</p>
-                                    <p class="vg-ps">${item.size} ${item.freq} ${item.c_note} </p>
+                                    <p class="m-0" id=aa${item.cid}>${item.product}</p>
+                                    <p class="vg-ps">${item.size} ${item.freq} ${item.day} ${item.c_note} </p>
                                 </td>
                                 <td>${item.quantity}</td>
                                 <td>${item.price}</td>
@@ -575,10 +582,10 @@
                         shippingfee += fee;
                         total += item.price;
 
-                        if (item.c_option != null && item.c_option.includes(',')) {
-                            item.c_option = item.c_option.split(',').slice(1,);
+                        if (item.con != null && item.con.includes(',')) {
+                            // item.c_option = item.c_option.split(',').slice(1,);
                             // console.log(item.c_option);
-                            $(`#${item.product}`).append(`<br/><i class="vg-ps">${item.c_option}</i><br/>`)
+                            $(`#aa${item.cid}`).append(`<br/><i class="vg-ps">${item.con}</i><br/>`)
                         }
                     })
                     // 運費計算
@@ -672,7 +679,7 @@
                             <td class="pt-3"><input type="radio" name="myAddr" id=${item.Name}></td>
                             <td class="pt-3"><label for=${item.Name}>${item.Name}</label></td>
                             <td class="pt-3"><label for=${item.Name}>${item.Phone}</label></td>
-                            <td class="pt-3"><label for=${item.Name}>${item.address}</label></td>
+                            <td class="pt-3"><label for=${item.Name}>${item.zipcode}${item.country}${item.address}</label></td>
                             </tr>`
                                 })
                                 $('#myAddrrows').append(trHtml);
@@ -699,6 +706,9 @@
 
                     // 點選 更新到常用地址(收件資料) 的功能(insert)
                     $('#updatemyaddress').on('click', () => {
+                        console.log(district.value.slice(0,3))
+                        console.log(myzip)
+                        console.log(homeAdd.value)
                         Swal.fire({
                             title: '確定要更新到常用地址?',
                             text: '本動作無法復原',
@@ -719,7 +729,9 @@
                                         uid: uid,
                                         name: homeName.value,
                                         phone: homeTel.value,
-                                        address: rAddr.value
+                                        zipcode: myzipcode,
+                                        country: myzip,
+                                        address: homeAdd.value
                                     })
                                 })
                             } else {

@@ -50,19 +50,19 @@
 }
 
 .content>h1 {
-    font-size: 50px;
+    font-size: calc(50px * 1.25);
     font-weight: 600;
 }
 
 .content>p {
-    font-size: 32px;
+    font-size: calc(32px * 1.25);
     font-weight: 600;
 }
 
 
 /* 訂購步驟區塊 */
 h2 {
-    font-size: 50px;
+    /* font-size: calc(50px * 1.25);; */
     font-weight: 600;
     font-family: Fishman;
     margin: 50px auto 10px auto;
@@ -272,7 +272,7 @@ h2 {
 
 /* 顧客回饋區塊 */
 .pSlider2 {
-    height: 300px;
+    height: 400px;
     margin: auto;
     position: relative;
     width: 90%;
@@ -372,11 +372,11 @@ h2 {
 
 @media screen and (max-width: 1300px) {
     .content>h1 {
-        font-size: 40px;
+        font-size: calc(40px * 1.25);;
     }
 
     .content>p {
-        font-size: 24px;
+        font-size: calc(25px * 1.25);;
     }
 }
 
@@ -461,7 +461,7 @@ h2 {
 
 @media screen and (max-width: 830px) {
     h2 {
-        font-size: 40px;
+        font-size: calc(40px * 1.25);;
         font-weight: 600;
     }
 
@@ -540,11 +540,11 @@ h2 {
     }
 
     .content>h1 {
-        font-size: 28px;
+        font-size: calc(28px * 1.25);;
     }
 
     .content>p {
-        font-size: 20px;
+        font-size: calc(20px * 1.25);
     }
 }
 

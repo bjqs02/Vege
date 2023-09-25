@@ -33,7 +33,7 @@
             <!-- 主navbar這裡結束 -->
 
             <div class="vg-section">
-                <img src="img/act-moonfruit1.jpg" alt="">
+                <img class="img-fluid" src="img/act-moonfruit1.jpg" alt="act-moonfruit">
             </div>
 
 
@@ -45,11 +45,11 @@
                     <!-- col1 -->
                     <% for (let i=0 ; i < data.length; i++){ %>
 
-                        <div class="content d-flex gap-3">
-                            <div class="contentImg col-4">
+                        <div class="content d-flex gap-3 ">
+                            <div class="contentImg col-4 ">
                                 <img src="<%= data[i].actImg %>" alt="">
                             </div>
-                            <div>
+                            <div class="col-sm-8">
                                 <a class="activitycmta" href="/activityboard/inside/<%- data[i].actid  %>"></a>
                                 <h4 class="vg-h4">
                                     <%= data[i].actTitle %>

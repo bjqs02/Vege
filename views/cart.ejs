@@ -82,7 +82,7 @@
                                 <input type="text" class="form-control w-25 m-auto d-inline" name="" id="myuseBonus"
                                     placeholder="請輸入欲折抵的購物金" oninput="bonusval(this)">
                                 <button class="btn btn-vg-xs" value="" onclick="useBonus()">送出</button>
-                                <p class="vg-ps mt-1">您擁有的購物金:
+                                <p class="vg-p my-3">您擁有的購物金:
                                     <span class="text-primary" id="userBonus"></span>&nbsp;&nbsp;&nbsp;
                                     <!-- <input type="radio" name="" id="useall"> <label for="useall">全部使用</label> -->
                                 </p>
@@ -99,8 +99,8 @@
                             <thead>
                                 <tr>
                                     <th>品項</th>
-                                    <th>數量</th>
-                                    <th>金額</th>
+                                    <th>#</th>
+                                    <th class="w-25">價格</th>
                                 </tr>
                             </thead>
                             <tbody id="summary_items">
@@ -206,7 +206,8 @@
                         $("#cartitems").empty();
                         $.each(items, function (index, item) {
                             // 修正內容備註
-                            item.c_option ? item.c_option = item.c_option.split(',').slice(1,) : item.c_option = '';
+                            // item.c_option ? item.c_option = item.c_option.split(',').slice(1,) : item.c_option = '';
+                            item.con ? item.con = item.con : item.con = '';
                             // console.log( item.c_option )
                             item.pname.includes("自選") ? item.pinfo = '' : item.pinfo = item.pinfo;
 
@@ -229,7 +230,7 @@
                                                 <option value="60d">雙周一次</option> 
                                             </select>
                                         </label>
-                                        <p class="vg-ps">內容：${item.pinfo} ${item.c_option}</p>
+                                        <p class="vg-ps">內容：${item.pinfo} ${item.con}</p>
                                     </div>
                                 </td>
                                 <td class="aa${item.pid}">
@@ -237,7 +238,7 @@
                                     <label for="kids${item.pid}">家有兒童</label><br />
                                     <input type="checkbox" value="辛香料" id="spice${item.pid}" onclick="addtocnote(this)">
                                     <label for="spice${item.pid}">辛香料</label><br />
-                                    <button class="btn btn-vg-xs m-2 shadow-sm w-75 towishbtn" onClick="towishbtn(this)">下次再買</button>
+                                    <button class="btn btn-vg-xs m-2 shadow-sm w-100 towishbtn" onClick="towishbtn(this)">下次再買</button>
                                 </td>
                              </tr>         
                             `;
@@ -261,7 +262,7 @@
                                                 <option value="60d">雙周一次</option> 
                                             </select>
                                         </label>
-                                        <p class="vg-ps">內容：${item.pinfo}  ${item.c_option}</p>
+                                        <p class="vg-ps">內容：${item.pinfo}  ${item.con}</p>
                                     </div>
                                 </td>
                                 <td class="aa${item.pid}">
@@ -269,7 +270,7 @@
                                     <label for="kids${item.pid}">家有兒童</label><br />
                                     <input type="checkbox" value="辛香料" id="spice${item.pid}" onclick="addtocnote(this)">
                                     <label for="spice${item.pid}">辛香料</label><br />
-                                    <button class="btn btn-vg-xs m-2 shadow-sm w-75 towishbtn" onClick="towishbtn(this)">下次再買</button>
+                                    <button class="btn btn-vg-xs m-2 shadow-sm w-100 towishbtn" onClick="towishbtn(this)">下次再買</button>
                                 </td>
                              </tr>         
                             `;
@@ -293,7 +294,7 @@
                                                 <option value="60d">雙周一次</option> 
                                             </select>
                                         </label>
-                                        <p class="vg-ps">內容：${item.pinfo}  ${item.c_option}</p>
+                                        <p class="vg-ps">內容：${item.pinfo}  ${item.con}</p>
                                     </div>
                                 </td>
                                 <td class="aa${item.pid}">
@@ -301,7 +302,7 @@
                                     <label for="kids${item.pid}">家有兒童</label><br />
                                     <input type="checkbox" value="辛香料" id="spice${item.pid}" onclick="addtocnote(this)">
                                     <label for="spice${item.pid}">辛香料</label><br />
-                                    <button class="btn btn-vg-xs m-2 shadow-sm w-75 towishbtn" onClick="towishbtn(this)">下次再買</button>
+                                    <button class="btn btn-vg-xs m-2 shadow-sm w-100 towishbtn" onClick="towishbtn(this)">下次再買</button>
                                 </td>
                              </tr>         
                             `;
@@ -325,7 +326,7 @@
                                                 <option value="60d">雙周一次</option> 
                                             </select>
                                         </label>
-                                        <p class="vg-ps">內容：${item.pinfo} ${item.c_option} </p>
+                                        <p class="vg-ps">內容：${item.pinfo} ${item.con} </p>
                                     </div>
                                 </td>
                                 <td class="aa${item.pid}">
@@ -333,7 +334,7 @@
                                     <label for="kids${item.pid}">家有兒童</label><br />
                                     <input type="checkbox" value="辛香料" id="spice${item.pid}" onclick="addtocnote(this)">
                                     <label for="spice${item.pid}">辛香料</label><br />
-                                    <button class="btn btn-vg-xs m-2 shadow-sm w-75 towishbtn" onClick="towishbtn(this)">下次再買</button>
+                                    <button class="btn btn-vg-xs m-2 shadow-sm w-100 towishbtn" onClick="towishbtn(this)">下次再買</button>
                                 </td>
                              </tr>         
                             `;
@@ -357,7 +358,7 @@
                                                 <option value="60d" selected>雙周一次</option> 
                                             </select>
                                         </label>
-                                        <p class="vg-ps">內容：${item.pinfo}  ${item.c_option}</p>
+                                        <p class="vg-ps">內容：${item.pinfo}  ${item.con}</p>
                                     </div>
                                 </td>
                                 <td class="aa${item.pid}">
@@ -365,7 +366,7 @@
                                     <label for="kids${item.pid}">家有兒童</label><br />
                                     <input type="checkbox" value="辛香料" id="spice${item.pid}" onclick="addtocnote(this)">
                                     <label for="spice${item.pid}">辛香料</label><br />
-                                    <button class="btn btn-vg-xs m-2 shadow-sm w-75 towishbtn" onClick="towishbtn(this)">下次再買</button>
+                                    <button class="btn btn-vg-xs m-2 shadow-sm w-100 towishbtn" onClick="towishbtn(this)">下次再買</button>
                                 </td>
                              </tr>         
                             `;
@@ -389,7 +390,7 @@
                                                 <option value="60d" selected>雙周一次</option> 
                                             </select>
                                         </label>
-                                        <p class="vg-ps">內容：${item.pinfo}  ${item.c_option}</p>
+                                        <p class="vg-ps">內容：${item.pinfo}  ${item.con}</p>
                                     </div>
                                 </td>
                                 <td class="aa${item.pid}">
@@ -397,7 +398,7 @@
                                     <label for="kids${item.pid}">家有兒童</label><br />
                                     <input type="checkbox" value="辛香料" id="spice${item.pid}" onclick="addtocnote(this)">
                                     <label for="spice${item.pid}">辛香料</label><br />
-                                    <button class="btn btn-vg-xs m-2 shadow-sm w-75 towishbtn" onClick="towishbtn(this)">下次再買</button>
+                                    <button class="btn btn-vg-xs m-2 shadow-sm w-100 towishbtn" onClick="towishbtn(this)">下次再買</button>
                                 </td>
                              </tr>         
                             `;
@@ -405,40 +406,37 @@
                             }
 
                             // 修正自選箱價格
-                            var optionPrice = 0;
-                            var fetchPromises = [];
-                            if (item.pname.includes('自選')) {
-                                item.c_option.map((product) => {
-                                    var fetchPromise = fetch('/getitemprice', {
-                                        method: 'POST',
-                                        headers: {
-                                            "Content-Type": "application/json ; charset=UTF-8"
-                                        },
-                                        body: JSON.stringify({
-                                            product: product
-                                        })
-                                    }).then((res) => {
-                                        return res.json();
-                                    }).then((e) => {
-                                        // if (e && e[0] && e[0].price) {
-                                        //     optionPrice = optionPrice + parseInt(e[0].price);
-                                        // }
-                                        if (e && e[0] && e[0].category == '蔬菜') {
-                                            optionPrice = optionPrice + 100;
-                                        } else if (e && e[0] && e[0].category == '水果') {
-                                            optionPrice = optionPrice + 50;
-                                        }
-                                        item.price = optionPrice; // 設定到內層，非外層(!?!?)
-                                        localStorage.setItem('optionPrice', optionPrice);
-                                    })
-                                    fetchPromises.push(fetchPromise);
-                                })
-                                Promise.all(fetchPromises).then(() => {
-                                    item.price = optionPrice;
-                                    localStorage.setItem('optionPrice', optionPrice);
-                                });
-                            }
-                            
+                            // var optionPrice = 0;
+                            // var fetchPromises = [];
+                            // if (item.pname.includes('自選') && item.con != '') {
+                            //     item.con.split(',').map((product) => {
+                            //         var fetchPromise = fetch('/getitemprice', {
+                            //             method: 'POST',
+                            //             headers: {
+                            //                 "Content-Type": "application/json ; charset=UTF-8"
+                            //             },
+                            //             body: JSON.stringify({
+                            //                 product: product
+                            //             })
+                            //         }).then((res) => {
+                            //             return res.json();
+                            //         }).then((e) => {
+                            //             // if (e && e[0] && e[0].price) {
+                            //             //     optionPrice = optionPrice + parseInt(e[0].price);
+                            //             // }
+                            //             if (e && e[0] && e[0].category == '蔬菜') {
+                            //                 optionPrice = optionPrice + 100;
+                            //             } else if (e && e[0] && e[0].category == '水果') {
+                            //                 optionPrice = optionPrice + 50;
+                            //             }
+                            //         })
+                            //         fetchPromises.push(fetchPromise);
+                            //     })
+                            //     Promise.all(fetchPromises).then(() => {
+                            //         item.price = optionPrice;
+                            //         localStorage.setItem(`optionPrice${item.cid}`, optionPrice);
+                            //     });
+                            // }
                         })
                         // console.log(items)
                         countTotal(items)
@@ -453,14 +451,16 @@
                             // 購買品項
                             item.size == 's' ? fee = 160 : fee = 290; // 運費 (S-160 L-290)
                             item.size == 's' ? item.size = '雙人箱(1~2人)' : item.size = '家庭箱(3~4人)';
-                            
-                            // 未竟之戰 (自選箱價格需重新整理才會正確顯示)
-                            if (localStorage.getItem('optionPrice') ){
-                                item.pname == '自選蔬果箱'? item.price = localStorage.getItem('optionPrice') : item.price = item.price;
-                            }
-                            
+                            item.day ? item.day = item.day : item.day = '';
+
+                            // 修正自選箱價格
+                            // if (localStorage.getItem('optionPrice')) {
+                            //     item.pname == '自選蔬果箱' ? item.price = localStorage.getItem('optionPrice') : item.price = item.price;
+                            // }
+
                             if (item.freq == 'once') {
-                                item.freq = '單次購買'
+                                item.freq = '單次購買';
+                                item.day = ""
                             } else if (item.freq == '30d') {
                                 item.freq = '每周一次'
                             } else {
@@ -481,11 +481,14 @@
                                 item.price = ((parseInt(item.price) + 200) * 4) * item.quantity
                             }
 
+                            // 設定自選箱價格(根據cart資料表)
+                            item.pname.includes('自選') ? item.price = parseInt(item.money) : item.price = parseInt(item.price);
+
                             var divHtml = `
                             <tr>
                                 <td>
                                     <p class="vg-p">${item.pname}</p>
-                                    <p class="vg-ps">${item.size} ${item.freq} <span class="aa${item.pid}">${item.c_note}</span></p>
+                                    <p class="vg-ps">${item.size} ${item.freq} ${item.day} <span class="aa${item.pid}">${item.c_note}</span></p>
                                     
                                 </td>
                                 <td>${item.quantity}</td>
@@ -626,13 +629,13 @@
                             // $("#wishlistitems").empty();
                             $.each(items, function (index, item) {
                                 var divHtml = `
-                            <div class="myItem d-flex position-relative">
-                                <img src="/img/fruitbox.png" alt="">
+                            <div class="myItem d-flex position-relative w-50 mt-3">
+                                <img src="/img/fruitbox_s.png" style="object-fit:contain">
                                 <div class="align-self-center text-center px-2" id="aa${item.pid}">
                                     <button class="btn btn-outline-dark btn-sm close-btn" onClick="deleteFromWishlist(this)">x</button>
-                                    <p class="vg-p m-0 p-0 ">${item.product}</p>
+                                    <p class="vg-ps m-0 p-0 ">${item.product}</p>
                                     <p class="vg-ps m-0 p-0">${item.price}</p>
-                                    <button class="btn btn-vg-xs m-2 shadow-sm" onClick="buynow(this)">立刻買</button>
+                                    <button class="btn btn-vg-xs w-100 shadow-sm" onClick="buynow(this)">立刻買</button>
                                 </div>
                             </div>         
                             `;
@@ -848,7 +851,7 @@
                         })
                     })
 
-                    // 選擇份量和頻率 更新購物車 cart 資料表
+                    // 選擇份量和頻率 更新購物車 cart 資料表 // 待解決:自選箱調整規格會連動所有自選箱品項
                     handleitem = (e) => {
                         var parent = e.closest('tr[class*="aa"]')
                         // console.log($(parent).find('td')[0].innerText)
@@ -923,22 +926,15 @@
                         });
                     }
 
-
-
-                    // 點選下次再買按鈕 => 更新至wishlist資料表 => 刪除cart資料表中該項產品
+                    // 點選下次再買按鈕 => 更新至wishlist資料表 => 刪除cart資料表中該項產品 // 若是自選箱直接刪掉品項
                     towishbtn = (e) => {
                         // console.log(e.closest('tr[class*="aa"]').className)
-                        var pid = e.closest('tr[class*="aa"]').className;
-                        fetch('/addtowishlist/', {
-                            method: 'post',
-                            headers: {
-                                "Content-Type": "application/json ; charset=UTF-8"
-                            },
-                            body: JSON.stringify({
-                                uid: uid,
-                                pid: pid.substr(2)
-                            })
-                        }).then(
+                        // var pid = e.closest('tr[class*="aa"]').className;
+                        var parentOption = e.closest('tr[class*="aa"]');
+                        var pid = parentOption.className;
+                        // console.log( pid )
+                        // console.log( $(parentOption).find('td')[0].innerText )
+                        if ($(parentOption).find('td')[0].innerText == '自選蔬果箱') {
                             fetch('/cart/deleteitem/', {
                                 method: 'DELETE',
                                 headers: {
@@ -948,10 +944,35 @@
                                     uid: uid,
                                     pid: pid.substr(2)
                                 })
-                            })
-                        ).then(
-                            location.reload()
-                        )
+                            }).then(
+                                // $(parentOption).remove()
+                                location.reload()
+                            )
+                        } else {
+                            fetch('/addtowishlist/', {
+                                method: 'post',
+                                headers: {
+                                    "Content-Type": "application/json ; charset=UTF-8"
+                                },
+                                body: JSON.stringify({
+                                    uid: uid,
+                                    pid: pid.substr(2)
+                                })
+                            }).then(
+                                fetch('/cart/deleteitem/', {
+                                    method: 'DELETE',
+                                    headers: {
+                                        "Content-Type": "application/json ; charset=UTF-8"
+                                    },
+                                    body: JSON.stringify({
+                                        uid: uid,
+                                        pid: pid.substr(2)
+                                    })
+                                })
+                            ).then(
+                                location.reload()
+                            )
+                        }
                     }
 
                     // 點選 立即買按鈕 => 更新至 cart 資料表 => 刪除wishlist資料表中該項產品
@@ -1016,9 +1037,9 @@
                         })
                     }
 
-                    backtoProduct = () => {
-                        localStorage.removeItem('optionPrice')
-                    }
+                    // backtoProduct = () => {
+                    //     localStorage.removeItem('optionPrice')
+                    // }
 
                     // 按下結帳去的動作
                     placeOrder = () => {

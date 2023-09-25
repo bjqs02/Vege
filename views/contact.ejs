@@ -176,17 +176,12 @@
                         var e = $('#floatingSubject').prop('value');
                         var f = $('#floatingTextarea2').prop('value');
                         if (a == true || b == '' || c == '' || d == '' || e == '' || f == '') {
-                            const Toast = Swal.mixin({
-                                toast: true,
-                                position: 'center',
-                                showConfirmButton: false,
-                                timer: 3000,
-                                timerProgressBar: false,
-                            })
-                            Toast.fire({
-                                icon: 'error',
-                                title: '訊息送出失敗...<br>請確認所有欄位都填寫正確。',
-                            })
+                                    Swal.fire({
+                                        title: '訊息送出失敗...<br>請確認所有欄位都填寫正確。',
+                                        icon: 'error',
+                                        showConfirmButton: false,
+                                        timer: 2000
+                                    })
                         } else {
                             // $('#successMsg').slideDown(1000);
                             // setTimeout(function () {
@@ -213,17 +208,12 @@
                                     return res.json();
                                 })
                                 .then(function (jsonObj) {
-                                    
-                                    const Toast = Swal.mixin({
-                                        toast: true,
-                                        position: 'center',
-                                        showConfirmButton: false,
-                                        timer: 3000,
-                                        timerProgressBar: false,
-                                    })
-                                    Toast.fire({
+
+                                    Swal.fire({
+                                        title: '訊息送出成功! <br>確認信已送至您的信箱。',
                                         icon: 'success',
-                                        title: '訊息送出成功! <br>確認信已送至您的信箱。'
+                                        showConfirmButton: false,
+                                        timer: 2000
                                     })
                                     setTimeout(function () {
                                         location.reload();

@@ -81,8 +81,8 @@
                         <table id="summary_items" class="table ">
                             <tr>
                                 <th>品項</th>
-                                <th>數量</th>
-                                <th>價格</th>
+                                <th>#</th>
+                                <th class="w-25">價格</th>
                             </tr>
                         </table>
                         <table id="summary_coupon" class="table w-50">
@@ -158,26 +158,30 @@
                         var shippingfee = 0;
                         // $("#summary_items").empty();
                         $.each(items, function (index, item) {
+                            console.log(item)
                             item.useCoupon == null ? '0' : item.useCoupon;
                             item.c_note == null ? item.c_note = '無備註' : item.c_note;
                             // item.c_option ? item.c_option = item.c_option : item.c_option = ''; 
 
                             item.size == 's' ? fee = 160 : fee = 290; // 運費 (S-160 L-290)
                             item.size == 's' ? item.size = '雙人箱(1~2人)' : item.size = '家庭箱(3~4人)';
+                            item.day? item.day = item.day: item.day = '';
+                            
                             if (item.freq == 'once') {
-                                item.freq = '單次購買'
+                                item.freq = '單次購買';
+                                item.day = "";
                             } else if (item.freq == '30d') {
                                 item.freq = '每周一次'
                             } else {
                                 item.freq = '雙周一次'
                             }
 
-                            // 設定自選箱價格
-                            if (item.product.includes('自選')) {
-                                item.price = localStorage.getItem('optionPrice');
-                            }
+                            // 設定自選箱價格(根據localstorage)
+                            // if ( item.product.includes('自選')) {
+                            //     item.price = localStorage.getItem(`optionPrice${item.cid}`);
+                            //     item.price = item.money;
+                            // }
 
-                            item.c_note == null ? item.c_note = '無備註' : item.c_note
                             if (item.size == '雙人箱(1~2人)' && item.freq == '單次購買') {
                                 item.price = parseInt(item.price) * item.quantity
                             } else if (item.size == '家庭箱(3~4人)' && item.freq == '單次購買') {
@@ -192,11 +196,14 @@
                                 item.price = ((parseInt(item.price) + 200) * 4) * item.quantity
                             }
 
+                            // 設定自選箱價格(根據cart資料表)
+                            item.product.includes('自選') ? item.price = parseInt(item.money) : item.price = parseInt(item.price);
+
                             var trHtml = `
                             <tr>
                                 <td>
-                                    <p class="m-0" id=${item.product}>${item.product}</p>
-                                    <p class="vg-ps">${item.size} ${item.freq} ${item.c_note} </p>
+                                    <p class="m-0" id=aa${item.cid}>${item.product}</p>
+                                    <p class="vg-ps">${item.size} ${item.freq} ${item.day} ${item.c_note} </p>
                                 </td>
                                 <td>${item.quantity}</td>
                                 <td>${item.price}</td>
@@ -210,10 +217,10 @@
                             shippingfee += fee;
                             total += item.price;
                             // console.log(item.c_option)
-                            if (item.c_option != '' && item.c_option.includes(',')) {
-                                item.c_option = item.c_option.split(',').slice(1, 7);
+                            if (item.con != null && item.con.includes(',')) {
+                                // item.c_option = item.c_option.split(',').slice(1,);
                                 // console.log(item.c_option);
-                                $(`#${item.product}`).append(`<br/><i class="vg-ps">${item.c_option}</i><br/>`)
+                                $(`#aa${item.cid}`).append(`<br/><i class="vg-ps">${item.con}</i><br/>`)
                             }
                         })
                         // 運費計算

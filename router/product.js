@@ -13,9 +13,11 @@ product.get("/", function (req, res) {
   let sql4 =
     "SELECT product.product, product.category, product.firm, info.season FROM product INNER JOIN info ON product.product = info.product WHERE (product.category = '水果' ) AND (info.season = '9,10,11' OR info.season = '全年' or info.season = '12,1,2'or info.season = '3,4,5');";
   let sql5 =
-    "SELECT info.product,info.save,info.note FROM info WHERE info.season ORDER BY RAND() LIMIT 1;";
+    "SELECT info.product, product.Origin,info.save,info.note FROM info,product WHERE info.season ORDER BY RAND() LIMIT 1;";
 
   let sql6 = "SELECT product, Temp FROM product WHERE Temp IS NOT NULL;";
+  let sql7 =
+    "SELECT info.product, product_content.image FROM info JOIN product_content ON info.product = product_content.product WHERE info.season ;";
   let data = {
     names: [],
     images: [],
@@ -29,7 +31,7 @@ product.get("/", function (req, res) {
     if (err) {
       console.log("水果箱名稱連結錯誤");
       console.log(err);
-      res.status(500).send("水果箱名稱連結錯誤");
+      res.status(500).send("數據取得失敗");
       return;
     }
     data.names = rows;
@@ -38,7 +40,7 @@ product.get("/", function (req, res) {
       if (err) {
         console.log("圖片取得失敗");
         console.log(err);
-        res.status(500).send("圖片數據取得失敗");
+        res.status(500).send("數據取得失敗");
         return;
       }
       data.images = rows;
@@ -47,7 +49,7 @@ product.get("/", function (req, res) {
         if (err) {
           console.log("產品資訊取得失敗");
           console.log(err);
-          res.status(500).send("產品資訊錯誤");
+          res.status(500).send("數據取得失敗");
           return;
         }
         data.con = rows;
@@ -56,7 +58,7 @@ product.get("/", function (req, res) {
           if (err) {
             console.log("蔬菜品項取得失敗");
             console.log(err);
-            res.status(500).send("產品資訊錯誤");
+            res.status(500).send("數據取得失敗");
             return;
           }
           data.veg = rows;
@@ -64,7 +66,7 @@ product.get("/", function (req, res) {
             if (err) {
               console.log("水果品項取得失敗");
               console.log(err);
-              res.status(500).send("数据库错误");
+              res.status(500).send("數據取得失敗");
               return;
             }
 
@@ -73,7 +75,7 @@ product.get("/", function (req, res) {
               if (err) {
                 console.log("temp取得失敗");
                 console.log(err);
-                res.status(500).send("資料庫错误");
+                res.status(500).send("數據取得失敗");
                 return;
               }
 
@@ -100,7 +102,18 @@ product.get("/", function (req, res) {
     try {
       let dataArray = Object.values(cardDataArr);
       for (let cardData of dataArray) {
-        let { uid, quantity, c_option, product, size, freq, fid } = cardData;
+        let {
+          uid,
+          quantity,
+          c_option,
+          con,
+          product,
+          size,
+          freq,
+          fid,
+          money,
+          day,
+        } = cardData;
         let sql8 =
           "SELECT pid FROM product WHERE product = ? and size = ? and freq = ?";
         let getpid = [product, size, freq];
@@ -114,20 +127,31 @@ product.get("/", function (req, res) {
         console.log("product = " + product);
         console.log("size = " + size);
         console.log("freq = " + freq);
+        console.log("con:", con);
+
         let pid = results[0].pid;
         console.log("取得產品id:", pid);
 
         let addcart =
-          "INSERT INTO cart (uid, pid, quantity, c_option, fid) VALUES (?, ?, ?, ?, ?)";
-        let addcartValues = [uid, pid, quantity, c_option, fid];
+          "INSERT INTO cart (uid, pid, quantity, c_option,con, fid, money, day) VALUES (?,?, ?, ?, ?, ?,?,?)";
+        let addcartValues = [
+          uid,
+          pid,
+          quantity,
+          c_option,
+          con,
+          fid,
+          money,
+          day,
+        ];
 
         await queryAsync(addcart, addcartValues);
       }
 
       res.send({ success: true, message: "卡片添加成功" });
     } catch (err) {
-      console.error("发生错误:", err);
-      res.status(500).send("发生错误"); // Send an error response
+      console.error("錯誤:", err);
+      res.status(500).send("錯誤"); // Send an error response
     }
   });
   product.post("/delcartData", async (req, res) => {
@@ -195,6 +219,20 @@ product.get("/", function (req, res) {
         return;
       }
       res.json(rows); // Assuming rows is an array of objects
+    });
+  });
+
+  product.get("/api/images", (req, res) => {
+    // 假設 rows 是您從資料庫獲得的資料，並且每個 row 都有一個 image_path 欄位
+    mysql.query(sql7, function (err, rows) {
+      if (err) {
+        console.log("圖片取得失敗");
+        console.log(err);
+        res.status(500).json({ error: "資料庫錯誤" });
+        return;
+      }
+      const imagePaths = rows.map((row) => row.image);
+      res.json(imagePaths);
     });
   });
 });
