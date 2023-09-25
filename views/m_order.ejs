@@ -24,91 +24,73 @@
 
         <!-- content -->
         <div class="memb-content">
-          <h4 class="vg-h4">訂單總覽</h4>
+          <h4>訂單總覽</h4>
           
+        <% for( var i = 0; i < dataosum.length; i++ ) { %>
           <div class="memb-order row">
             <ul class="list-group">
-  
               <li class="list-group-item col-12 row">
                 <div class="col-12 d-flex justify-content-between">
-                  <span>✤ 編號: 8472034</span>
-                  <span>2023-9-15</span>
+                  <span>✤ 編號: <%= dataosum[i].oid %></span>
+                  <span><%= dataot[i] %></span>
                 </div>
-                <div class="col-3">
-                  <img src="img/中秋箱.png" alt="">
+                <div class="col-3 pimg">
+                  <img src="<%= dataorder[i].image %>" alt="">
                 </div>
                 <div class="col-4">
-                  <p>商品品項: 中秋箱</p>
-                  <p>份量: 2-3人</p>
-                  <p>數量: 1</p>
+                  <p>品項: <%= dataorder[i].product %></p>
+                <% if( dataorder[i].size == 's' ) { %>
+                  <p>份量: 雙人箱(1-2) </p>
+                <% }else {%>
+                  <p>份量: 家庭箱(3-4)</p>
+                <% }%>
+                
+                  <p>數量: <%= dataorder[i].quantity %></p>
                 </div>
-                <div class="col-2 text-center">
+                <div class="col-2">
+                <% if( dataorder[i].freq == 'once' ) { %>
                   <p>單次配送</p>
+                <% }else if( dataorder[i].freq == '30d' ) { %>
+                  <p>每周配送 (30天)</p>
+                <% }else { %>
+                  <p>雙周配送 (60天)</p>
+                <% } %>
                 </div>
-                <div class="col-3 order-button">
-                  <a href="/rateorder"><button class="btn">評價訂單</button></a>
+                <% if( dataorder[i].freq == 'once' ) { %>
+                <div class="col-3 order-button1">
+                  <button class="btn">追蹤狀態</button>
                   <button class="btn">聯絡客服</button>
-                  <!-- <button class="btn btn-vg-redborder">延後配送</button> -->
-                  <!-- <button class="btn">查看詳情</button> -->
-                </div>
-  
-                <a href="#">
-                  <div class="viewMoreP col-12 text-center">
-                    共 3 樣商品，檢視更多商品
-                  </div>
-                </a>
-  
-                <div class="col-10">
-                  <span>訂單狀態: 已完成</span>
-                </div>
-                <div class="col-2 total">
-                  <span>$500</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-          
-          <div class="memb-order row">
-            <ul class="list-group">
-  
-              <li class="list-group-item col-12 row">
-                <div class="col-12 d-flex justify-content-between">
-                  <span>✤ 編號: 4100234</span>
-                  <span>2023-8-10</span>
-                </div>
-                <div class="col-3">
-                  <img src="img/蔬果健康箱.png" alt="">
-                </div>
-                <div class="col-4">
-                  <p>商品品項: 蔬果健康箱</p>
-                  <p>份量: 1-2人</p>
-                  <p>數量: 1</p>
-                </div>
-                <div class="col-2 text-center">
-                  <p>每周配送</p>
-                </div>
-                <div class="col-3 order-button">
+
+                <% }else { %>
+                <div class="col-3 order-button2">
                   <button class="btn">追蹤狀態</button>
                   <button class="btn">聯絡客服</button>
                   <button class="btn btn-vg-redborder">延後配送</button>
+                <% } %>
+
                   <!-- <button class="btn">查看詳情</button> -->
                 </div>
-                
-                <!-- <a href="#">
+
+              <% if( dataosum[i].sumitem > 1 ) { %>
+                <a href="#">
                   <div class="viewMoreP col-12 text-center">
-                    共 ? 樣商品，檢視更多商品
+                    共 <%= dataosum[i].sumitem %> 樣商品，檢視更多商品
                   </div>
-                </a> -->
+                </a>
+              <% }else { %>
+
+              <% } %>
   
                 <div class="col-10">
                   <span>訂單狀態: 配送中</span>
                 </div>
                 <div class="col-2 total">
-                  <span>$1700</span>
+                  <span>$<%= dataosum[i].sumMoney %></span>
                 </div>
               </li>
             </ul>
           </div>
+        <% } %>
           
           <br><br><br><br><br><br><br><br>
           <br><br><br><br><br><br><br><br>

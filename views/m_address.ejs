@@ -24,37 +24,33 @@
 
         <!-- content -->
         <div class="memb-content">
-          <h4 class="vg-h4">標題</h4>
+          <h4>常用地址</h4>
           
           <div class="memb-address card">
             <div class="card-header d-flex">
                 <p>貨運地址</p>
             </div>
             <ul class="list-group list-group-flush">
+
+            <% if( datahouse == [] ) { %>
+
+            <% }else { %>
+              <% for( var i = 0; i < datahouse.length; i++ ) { %>
               <li class="list-group-item d-flex flex-column">
                 <a href="#">
-                  <div class="mb-2">
-                    <span>王大同</span> &nbsp | &nbsp
-                    <span class="text-black-50">(+886) 912345678</span>
-                  </div>
-                  <div class="vg-ps text-black-50">
-                    <p>建國南路1段255號</p>
-                    <p>402 臺中市南區</p>
-                  </div>
-                </a>
-              </li>
-              <li class="list-group-item d-flex flex-column">
-                <a href="#">
-                  <div class="mb-2">
-                    <span>陳樂</span> &nbsp | &nbsp
-                    <span class="text-black-50">(+886) 912123123</span>
-                  </div>
-                  <div class="vg-ps text-black-50">
-                    <p>忠義路二段1號</p>
-                    <p>700 台南市中西區</p>
-                  </div>  
-                </a>
-              </li>
+                    <div class="mb-2">
+                      <span><%= datahouse[i].Name %></span> &nbsp | &nbsp
+                      <span class="text-black-50">(+886) <%= datahouse[i].babaliu %></span>
+                    </div>
+                    <div class="vg-ps text-black-50">
+                      <p><%= datahouse[i].address %></p>
+                      <p><%= datahouse[i].zipcode %> <%= datahouse[i].country %></p>
+                    </div>
+                  </a>
+                </li>
+              <% } %>
+            <% } %>
+
             </ul>
             <a class="add-address" href="#">新增地址</a>
           </div>
@@ -65,46 +61,31 @@
                 <p>超商取貨地址</p>
             </div>
             <ul class="list-group list-group-flush">
-              
+            <% if( datashop == [] ) { %>
+
+            <% }else { %>
+              <% for( var i = 0; i < datashop.length; i++ ) { %>
               <li class="list-group-item d-flex flex-column">
                 <a href="#">
                   <div class="mb-2">
-                    <span>陳媽媽</span> &nbsp | &nbsp
-                    <span class="text-black-50">(+886) 912123123</span>
-                    <p>台中黎明店</p>
+                    <span><%= datashop[i].Name %></span> &nbsp | &nbsp
+                    <span class="text-black-50">(+886) <%= datashop[i].babaliu %></span>
+                    <p><%= datashop[i].shopName %></p>
                   </div>
                   <div class="vg-ps text-black-50">
-                    <p>台中市南屯區黎明路二段406號</p>
-                    <p>門市店號: 123456</p>
-                    <span class="address-sid">全家便利商店 門市</span>
+                    <p><%= datashop[i].address %></p>
+                    <p>門市店號: <%= datashop[i].sId %></p>
+                    <span class="address-sid">超商品牌 門市</span>
                   </div>
                 </a>
               </li>
-              
-              <li class="list-group-item d-flex flex-column">
-                <a href="#">
-                  <div class="mb-2">
-                    <span>陳樂</span> &nbsp | &nbsp
-                    <span class="text-black-50">(+886) 912345678</span>
-                    <p>台南南新店</p>
-                  </div>
-                  <div class="vg-ps text-black-50">
-                    <p>台南市中西區西門路一段580號</p>
-                    <p>門市店號: 234522</p>
-                    <span class="address-sid">萊爾富 門市</span>
-                  </div>
-                </a>
-              </li>
+              <% } %>
+            <% } %>
             </ul>
             <a class="add-address" href="#">新增 取貨地址</a>
           </div>
-  
-  
-          
-          
-          <br><br><br><br><br><br><br><br>
-          <br><br><br><br><br><br><br><br>
-          <br><br><br><br><br><br><br><br>
+
+          <br><br><br><br>
         </div>
     </div>
 

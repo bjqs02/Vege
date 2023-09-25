@@ -24,42 +24,36 @@
 
         <!-- content -->
         <div class="memb-content">
-          <h4 class="vg-h4">信用卡</h4>
+          <h4>信用卡</h4>
           
           <div class="memb-credit card">
             <div class="card-header d-flex">
                 <p>我的信用卡</p>
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">
-                <a class="flex-row" href="#">
-                  <div class="col-1">
-                    <img class="creditCL" src="img/mastercard2.png" alt="">
-                  </div>
-                  <div class="col-9">
-                    <p class="cardDefault">玉X銀行</p>
-                  </div>
-                  <div class="col-2">
-                    <p>*173</p>
-                  </div>
-                </a>  
-              </li>
-  
-              <li class="list-group-item">
-                <a class="flex-row" href="#">
-                  <div class="col-1">
-                    <img class="creditCL" src="img/jcb.png" alt="">
-                  </div>
-                  <div class="col-9">
-                    <p>國X世華銀行</p>
-                  </div>
-                  <div class="col-2">
-                    <p>*233</p>
-                  </div>
-                </a>
-              </li>
+            
+              <% for( var i = 0; i < datacard.length; i++ ) { %>
+                <li class="list-group-item">
+                  <a class="flex-row" href="#">
+                    <div class="col-1">
+                        <img class="creditCL" src="<%= datacard[i].cardimg %>" alt="">
+                    </div>
+                    <div class="col-9">
+                      <% if( datacard[i].default == 1 ) { %>
+                      <p class="cardDefault"><%= datacard[i].bank %></p>
+                      <% }else { %>
+                        <p><%= datacard[i].bank %></p>
+                      <% } %>
+                    </div>
+                    <div class="col-2">
+                      <p>*<%= datacard[i].lastN %></p>
+                    </div>
+                  </a>  
+                </li>
+              <% } %>
+                
             </ul>
-            <a class="add-creditC" href="#">新增信用卡</a>
+            <a class="add-creditC" href="/">新增信用卡</a>
           </div>
           
           

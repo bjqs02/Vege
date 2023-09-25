@@ -20,23 +20,23 @@
     
     <!-- contents -->
     <div class="memb-content">
-      <h4 class="vg-h4">我的VG點</h4>
+      <h4>我的VG點</h4>
   
       <div class="memb-coinRC">
         <div class="card-header d-flex">
           <div>
             <p>
-              50
-              <small class="vg-ps"> 可使用的綠苗點</small>
+              <%= datasum %>
+              <small class="vg-ps"> 可使用的VG點數</small>
             </p>
             <p class="vg-ps exp" data-bs-toggle="tooltip" data-bs-placement="bottom" title="期限為您獲得的月份加上一個月的最後一天，請記得於期限前使用完畢!">
-              <small class="text-muted">
-                2023-11-04
+              <small id="exp" class="text-muted">
+                <%= dataET %>
               </small>
               到期
             </p>
           </div>
-          <a href="/activityboard">
+          <a href="#">
             <span class="btn btn-vg-reg btn-vg-secondary">
             獲得更多點數
             </span>
@@ -44,63 +44,56 @@
         </div>
 
         <ul class="list-group list-group-flush">
-            <li class="list-group-item d-flex">
-              <div>
-                <p>每日轉盤抽獎</p>
+          <% for( var i = 0; i < databonus.length; i++ ) { %>
+            <% if( databonus[i].bonus > 0 ) { %>
+              <li class="list-group-item d-flex">
+                <div>
+                <% if( databonus[i].state == "lotto" ) { %>
+                  <p>每日轉盤抽獎</p>
+                <% }else { %>
+                  <p>購物回饋金</p>
+                <% } %>
                 <p class="vg-ps">
-                  <small class="text-muted">2023-09-05 16:27</small>
+                  <small class="text-muted"><%= dataTime[i] %></small>
                 </p>
               </div>
-              <span>+30</span>
-            </li>
-            <li class="list-group-item d-flex used">
-              <div>
+              <span>+<%= databonus[i].bonus %></span>
+              
+            <% }else { %>
+              <li class="list-group-item d-flex used">
+                <div>
                 <p>訂單金額折抵</p>
                 <p class="vg-ps">
-                  <small class="text-muted">2023-09-04 21:01</small>
+                  <small class="text-muted"><%= dataTime[i] %></small>
                 </p>
               </div>
-              <span class="used">-35</span>
+              <span class="used"><%= databonus[i].bonus %></span>
             </li>
-            <li class="list-group-item d-flex">
-              <div>
-                <p>每日轉盤抽獎</p>
-                <p class="vg-ps">
-                  <small class="text-muted">2023-09-03 9:10</small>
-                </p>
-              </div>
-              <span>+30</span>
-            </li>
-            <li class="list-group-item d-flex">
-              <div>
-                <p>每日轉盤抽獎</p>
-                <p class="vg-ps">
-                  <small class="text-muted">2023-09-02 19:30</small>
-                </p>
-              </div>
-              <span>+15</span>
-            </li>
-            <li class="list-group-item d-flex">
-              <div>
-                <p>每日轉盤抽獎</p>
-                <p class="vg-ps">
-                  <small class="text-muted">2023-09-01 22:00</small>
-                </p>
-              </div>
-              <span>+10</span>
-            </li>
+            <% } %>
+          <% } %>
+        
         </ul>
       </div>
       
       
-      <br><br><br><br><br><br><br><br>
-      <br><br><br><br><br><br><br><br>
-      <br><br><br><br><br><br><br><br>
+      <br><br><br><br>
     </div>
 
     <%- include('share/m_multF.ejs') %>
 
 <%- include('share/footer.ejs') %>
+
+<script>
+  $(function() {
+    
+    // 到期日計算
+    const earliest = dayjs( $('#exp').html() );
+    const startM = earliest.startOf('month');
+    const endM = startM.add(1, 'month').format('YYYY-MM-DD');
+    $('#exp').text(endM);
+
+  })
+</script>
 
 </body>
 
