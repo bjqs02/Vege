@@ -583,3 +583,37 @@ h5 {
   top: 0;
   opacity: 1;
 } */
+/* CSS动画 */
+@keyframes shrinkAndMove {
+  0% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* 应用动画效果到.modal-content */
+.modal-content {
+  /* 其他样式 */
+  top: -10px;
+  opacity: 1;
+  /* 添加动画效果 */
+  animation: shrinkAndMove 0.5s ease-in-out forwards;
+}
+/* @keyframes shrinkAnimation {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+}
+
+.shrink-and-move {
+  animation: shrinkAnimation 0.5s forwards ease-in-out;
+} */

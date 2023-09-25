@@ -680,6 +680,54 @@
     let selectedSize = $(".commodity option:selected").data("size");
   });
 
+  function shrinkAndMove() {
+    const modalContent = document.querySelector(".modal-content");
+    modalContent.classList.add("shrink-and-move");
+    modalContent.addEventListener("animationend", function () {
+      modalContent.style.transform = "translate(100%, 100%)";
+    });
+  }
+
+  $(".smbr").on("click", function () {
+    shrinkAndMove();
+  });
+
+  // function animateModalToDiagnoseButton() {
+  //   // 获取 "診斷" 按钮的位置
+  //   const diagnoseButton = document.getElementById("modalOnPage");
+  //   const buttonRect = diagnoseButton.getBoundingClientRect();
+  //   const targetX = buttonRect.left;
+  //   const targetY = buttonRect.top;
+
+  //   // 获取当前 modal 的位置
+  //   const modal = document.getElementById("dxIntro");
+  //   const modalRect = modal.getBoundingClientRect();
+  //   const initialX = modalRect.left;
+  //   const initialY = modalRect.top;
+
+  //   // 计算移动的距离和缩放的比例
+  //   const deltaX = targetX - initialX;
+  //   const deltaY = targetY - initialY;
+  //   const scaleX = buttonRect.width / modalRect.width;
+  //   const scaleY = buttonRect.height / modalRect.height;
+
+  //   // 应用动画
+  //   modal.style.transition =
+  //     "transform 0.5s ease-in-out, opacity 0.5s ease-in-out";
+  //   modal.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(${scaleX}, ${scaleY})`;
+  //   modal.style.opacity = "0";
+
+  //   // 在动画结束后隐藏 modal
+  //   setTimeout(() => {
+  //     modal.style.display = "none";
+  //   }, 500);
+  // }
+
+  // // 点击 "自行瀏覽" 按钮时触发动画
+  // document
+  //   .querySelector(".smbr")
+  //   .addEventListener("click", animateModalToDiagnoseButton);
+
   // $(".modal-content").animate(
   //   {
   //     opacity: "1",
