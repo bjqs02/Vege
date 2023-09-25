@@ -451,6 +451,7 @@
                             // 購買品項
                             item.size == 's' ? fee = 160 : fee = 290; // 運費 (S-160 L-290)
                             item.size == 's' ? item.size = '雙人箱(1~2人)' : item.size = '家庭箱(3~4人)';
+                            item.day? item.day = item.day: item.day = '';
 
                             // 修正自選箱價格
                             // if (localStorage.getItem('optionPrice')) {

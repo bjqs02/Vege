@@ -528,6 +528,7 @@
                         item.useCoupon == null ? '0' : item.useCoupon;
                         item.c_note == null ? item.c_note = '無備註' : item.c_note;
                         // item.c_option ? item.c_option = item.c_option : item.c_option = ''; 
+                        item.day? item.day = item.day: item.day = '';
 
                         item.size == 's' ? fee = 160 : fee = 290; // 運費 (S-160 L-290)
                         item.size == 's' ? item.size = '雙人箱(1~2人)' : item.size = '家庭箱(3~4人)';
