@@ -451,13 +451,13 @@
                             // 購買品項
                             item.size == 's' ? fee = 160 : fee = 290; // 運費 (S-160 L-290)
                             item.size == 's' ? item.size = '雙人箱(1~2人)' : item.size = '家庭箱(3~4人)';
-                            item.day? item.day = item.day: item.day = '';
+                            item.day ? item.day = item.day : item.day = '';
 
                             // 修正自選箱價格
                             // if (localStorage.getItem('optionPrice')) {
                             //     item.pname == '自選蔬果箱' ? item.price = localStorage.getItem('optionPrice') : item.price = item.price;
                             // }
-                            
+
                             if (item.freq == 'once') {
                                 item.freq = '單次購買';
                                 item.day = ""
@@ -480,7 +480,7 @@
                             } else {
                                 item.price = ((parseInt(item.price) + 200) * 4) * item.quantity
                             }
-                            
+
                             // 設定自選箱價格(根據cart資料表)
                             item.pname.includes('自選') ? item.price = parseInt(item.money) : item.price = parseInt(item.price);
 
@@ -926,23 +926,15 @@
                         });
                     }
 
-                    // 點選下次再買按鈕 => 更新至wishlist資料表 => 刪除cart資料表中該項產品
-                    // 可加強: 若是自選箱直接刪掉品項
+                    // 點選下次再買按鈕 => 更新至wishlist資料表 => 刪除cart資料表中該項產品 // 若是自選箱直接刪掉品項
                     towishbtn = (e) => {
                         // console.log(e.closest('tr[class*="aa"]').className)
-                        // var parentOption = e.closest('tr[class*="aa"]');
-                        // var pid = parentOption.className;
-                        var pid = e.closest('tr[class*="aa"]').className;
-                        fetch('/addtowishlist/', {
-                            method: 'post',
-                            headers: {
-                                "Content-Type": "application/json ; charset=UTF-8"
-                            },
-                            body: JSON.stringify({
-                                uid: uid,
-                                pid: pid.substr(2)
-                            })
-                        }).then(
+                        // var pid = e.closest('tr[class*="aa"]').className;
+                        var parentOption = e.closest('tr[class*="aa"]');
+                        var pid = parentOption.className;
+                        // console.log( pid )
+                        // console.log( $(parentOption).find('td')[0].innerText )
+                        if ($(parentOption).find('td')[0].innerText == '自選蔬果箱') {
                             fetch('/cart/deleteitem/', {
                                 method: 'DELETE',
                                 headers: {
@@ -952,10 +944,35 @@
                                     uid: uid,
                                     pid: pid.substr(2)
                                 })
-                            })
-                        ).then(
-                            location.reload()
-                        )
+                            }).then(
+                                // $(parentOption).remove()
+                                location.reload()
+                            )
+                        } else {
+                            fetch('/addtowishlist/', {
+                                method: 'post',
+                                headers: {
+                                    "Content-Type": "application/json ; charset=UTF-8"
+                                },
+                                body: JSON.stringify({
+                                    uid: uid,
+                                    pid: pid.substr(2)
+                                })
+                            }).then(
+                                fetch('/cart/deleteitem/', {
+                                    method: 'DELETE',
+                                    headers: {
+                                        "Content-Type": "application/json ; charset=UTF-8"
+                                    },
+                                    body: JSON.stringify({
+                                        uid: uid,
+                                        pid: pid.substr(2)
+                                    })
+                                })
+                            ).then(
+                                location.reload()
+                            )
+                        }
                     }
 
                     // 點選 立即買按鈕 => 更新至 cart 資料表 => 刪除wishlist資料表中該項產品
