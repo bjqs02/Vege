@@ -20,7 +20,7 @@ cart_order.use(express.urlencoded({ extended: true }));
 cart_order.get("/cart/item/:id", function (req, res) {
   // var sql1 = "SELECT * FROM temp_product join cart WHERE cart.pid = temp_product.pid and  cart.uid = ? and cart.c_status = 'active'";
   var sql1 =
-    "SELECT product.pid, product.product as pname, product_content.image as img, product_content.content as pinfo , product_content.price as price, product.size, product.freq, cart.quantity, cart.c_option, cart.con, cart.c_note, cart.money , cart.day ,cart.fid, cart.cid FROM product_content INNER JOIN product join cart WHERE product_content.product = product.product and cart.pid = product.pid and cart.uid =1004 and cart.c_status = 'active';";
+    "SELECT product.pid, product.product as pname, product_content.image as img, product_content.content as pinfo , product_content.price as price, product.size, product.freq, cart.quantity, cart.c_option, cart.con, cart.c_note, cart.money , cart.day ,cart.fid, cart.cid FROM product_content INNER JOIN product join cart WHERE product_content.product = product.product and cart.pid = product.pid and cart.uid = ? and cart.c_status = 'active';";
   db.query(sql1, [req.params.id], function (err, rows) {
     res.send(rows);
   });
