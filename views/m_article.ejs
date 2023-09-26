@@ -26,59 +26,28 @@
       <div class="memb-content">
         <h4 class="vg-h4">個人收藏</h4>
     
-        <div class="article-card card mb-3">
-          <a href="/blog/inside/1">
-            <div class="row g-0">
-              <div class="article-img col-4">
-                <img src="https://images.agriharvest.tw/wp-content/uploads/2022/03/0-11-1024x680.jpg" alt="...">
-              </div>
-              <div class="col-8">
-                <div class="card-body">
-                  <h5 class="fw-semibold">鳳梨酵素到底在夯甚麼？您不可不知道的鳳梨酵素功效 2大成分是關鍵</h5>
-                  <p>近年來，鳳梨酵素成為了一項非常流行的營養保健話題；鳳梨酵素指的是從鳳梨中提取的一種天然酵素，具有多種保健功效和美容效果，它含有豐富的蛋白酶、纖維素酶和果酸等成分，被認為對消化、排毒、抗發炎、瘦身等方面有益處。</p>
-                  <p class="card-text"><small class="text-muted">More...</small></p>
+        <% for(var i = 0; i < datarticle.length; i++) { %>
+          <div class="article-card card mb-3">
+            <a href="#">
+            <!-- <a href="/blog/inside/<%= datarticle[i].atcid %>"> -->
+              <div class="row g-0">
+                <div class="article-img col-4">
+                  <img src="<%= datarticle[i].atcimg %>" alt="...">
+                </div>
+                <div class="col-8">
+                  <div class="card-body">
+                    <h5 class="vg-h5 fw-semibold"><%= datarticle[i].atcTitle %></h5>
+                    <p><%= datarticle[i].atcText %></p>
+                    <p class="card-text"><small class="text-muted">More...</small></p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </a>
+            </a>
+          </div>
+        <% } %>
         </div>
-        <div class="article-card card mb-3">
-          <a href="/blog/inside/6">
-            <div class="row g-0">
-              <div class="article-img col-4">
-                <img src="https://www.buydirectlyfromfarmers.tw/media/uploads/images/products/2021/09/pic-banana-ripe-1.jpg" alt="...">
-              </div>
-              <div class="col-8">
-                <div class="card-body">
-                  <h5 class="fw-semibold">香蕉色階表！蕉你看熟度</h5>
-                  <p>依據不同「色階」的香蕉，每100公克的營養價值說明如下： 綠香蕉：抗性澱粉最多、纖維較高吃了有飽足感，</p>
-                  <p class="card-text"><small class="text-muted">More...</small></p>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="article-card card mb-3">
-          <a href="/blog/inside/8">
-            <div class="row g-0">
-              <div class="article-img col-4">
-                <img src="https://taiwan-bonbon-farmer.com/wp-content/uploads/2016/11/k2_items_src_7586bcdd7a745d843a3897512742ccdb.jpg.webp" alt="...">
-              </div>
-              <div class="col-8">
-                <div class="card-body">
-                  <h5 class="fw-semibold">冬天預防感冒，橘子最好，但你知道嗎?橘皮也很有用處啊</h5>
-                  <p>冬天盛產柑橘類，每次吃橘子，我都先將外橘皮洗乾淨、擦乾，然後完整的剝下外皮，放在陽台通風和可以日曬</p>
-                  <p class="card-text"><small class="text-muted">More...</small></p>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-
-        <br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br>
-      </div>
+    
+        <br><br><br><br>
     </div>
 
   <%- include('share/m_multF.ejs') %>
