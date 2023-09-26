@@ -23,27 +23,17 @@
   aria-hidden="true"
 >
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content ccon">
       <div class="modal-header">
         <h1 class="modal-title vg-h4" id="dxIntroLabel">診斷適合你的蔬果箱</h1>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-          onclick="showModalOnPage()"
-        ></button>
+        <button type="button" class="btn-close" aria-label="Close"></button>
       </div>
       <div class="modal-body vg-p">
         商品種類多，我們提供診斷小測驗協助您快速找到符合您需求的蔬菜箱/水果箱，請問是否進行診斷呢?
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button
-          type="button"
-          class="btn btn-vg-reg smbr"
-          data-bs-dismiss="modal"
-          onclick="showModalOnPage()"
-        >
+        <button id="smbr" type="button" class="btn btn-vg-reg">
+          <!-- data-bs-dismiss="modal"  控制消失  右下角顯示 -->
           自行瀏覽
         </button>
         <button
@@ -71,13 +61,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title vg-h4" id="dxQTypeLabel">Q: 選購種類?</h1>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-          onclick="showModalOnPage()"
-        ></button>
+        <button type="button" class="btn-close" aria-label="Close"></button>
       </div>
       <div class="modal-body vg-p">
         Vege提供純蔬菜箱、純水果箱以及綜合蔬果箱，請問今天想訂哪種呢?
@@ -135,13 +119,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title vg-h4" id="dxQGymLabel">Q: 是否有增肌需求?</h1>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-          onclick="showModalOnPage()"
-        ></button>
+        <button type="button" class="btn-close" aria-label="Close"></button>
       </div>
       <div class="modal-body vg-p">
         對有增肌需求的族群來說, 蛋白質是必須攝取的營養!
@@ -192,13 +170,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title vg-h4" id="dxQDietLabel">Q: 是否有減脂需求?</h1>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-          onclick="showModalOnPage()"
-        ></button>
+        <button type="button" class="btn-close" aria-label="Close"></button>
       </div>
       <div class="modal-body vg-p">
         對有減脂需求的族群來說，每日攝取的熱量何其重要，Vege可為你把關高/低熱量的蔬果。請問是否有減脂需求呢?
@@ -248,13 +220,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title vg-h4" id="dxQGenderLabel">Q: 您的性別?</h1>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-          onclick="showModalOnPage()"
-        ></button>
+        <button type="button" class="btn-close" aria-label="Close"></button>
       </div>
       <div class="modal-body vg-p">
         您知道依據性別、體質、目前身體狀況，適合的蔬菜水果大不相同嗎?
@@ -305,13 +271,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title vg-h4" id="dxQMCLabel">Q: 是否逢生理期?</h1>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-          onclick="showModalOnPage()"
-        ></button>
+        <button type="button" class="btn-close" aria-label="Close"></button>
       </div>
       <div class="modal-body vg-p">
         蔬菜水果都有分寒、涼、平、溫、熱五種屬性，逢生理期的美女由Vege為你把關不適合的蔬果降低身體的負擔!
@@ -362,13 +322,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title vg-h4" id="dxQHotLabel">Q: 檢視您身體特性:</h1>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-          onclick="showModalOnPage()"
-        ></button>
+        <button type="button" class="btn-close" aria-label="Close"></button>
       </div>
       <div class="modal-body vg-p">
         人的體質有分寒性、熱性，適合吃不同的食物來養生，蔬菜也有分寒熱，吃對才能吃出健康！
@@ -430,13 +384,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title vg-h4" id="dxQColdLabel">Q: 檢視您身體特性:</h1>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-          onclick="showModalOnPage()"
-        ></button>
+        <button type="button" class="btn-close" aria-label="Close"></button>
       </div>
       <div class="modal-body vg-p">
         人的體質有分寒性、熱性，適合吃不同的食物來養生，蔬菜也有分寒熱，吃對才能吃出健康！
@@ -521,13 +469,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title vg-h4" id="dxResultLabel">診斷完成</h1>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-          onclick="showModalOnPage()"
-        ></button>
+        <button type="button" class="btn-close" aria-label="Close"></button>
       </div>
       <div class="modal-body vg-p">
         感謝您的耐心等候，我們已根據您的體質與需求選品6樣適合您攝取的蔬果，現在前往商品頁為您自動選取箱對應蔬果的客製化蔬果箱。
@@ -680,69 +622,18 @@
     let selectedSize = $(".commodity option:selected").data("size");
   });
 
-  function shrinkAndMove() {
-    const modalContent = document.querySelector(".modal-content");
-    modalContent.classList.add("shrink-and-move");
-    modalContent.addEventListener("animationend", function () {
-      modalContent.style.transform = "translate(100%, 100%)";
-    });
-  }
-
-  $(".smbr").on("click", function () {
-    shrinkAndMove();
+  document.addEventListener("DOMContentLoaded", function () {
+    // 頁面載入完成後觸發動畫
+    $(".ccon").addClass("mm");
   });
 
-  // function animateModalToDiagnoseButton() {
-  //   // 获取 "診斷" 按钮的位置
-  //   const diagnoseButton = document.getElementById("modalOnPage");
-  //   const buttonRect = diagnoseButton.getBoundingClientRect();
-  //   const targetX = buttonRect.left;
-  //   const targetY = buttonRect.top;
+  $("#smbr").on("click", function () {
+    $("#dxIntro").addClass("shrinkAndMoveAnimation");
 
-  //   // 获取当前 modal 的位置
-  //   const modal = document.getElementById("dxIntro");
-  //   const modalRect = modal.getBoundingClientRect();
-  //   const initialX = modalRect.left;
-  //   const initialY = modalRect.top;
-
-  //   // 计算移动的距离和缩放的比例
-  //   const deltaX = targetX - initialX;
-  //   const deltaY = targetY - initialY;
-  //   const scaleX = buttonRect.width / modalRect.width;
-  //   const scaleY = buttonRect.height / modalRect.height;
-
-  //   // 应用动画
-  //   modal.style.transition =
-  //     "transform 0.5s ease-in-out, opacity 0.5s ease-in-out";
-  //   modal.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(${scaleX}, ${scaleY})`;
-  //   modal.style.opacity = "0";
-
-  //   // 在动画结束后隐藏 modal
-  //   setTimeout(() => {
-  //     modal.style.display = "none";
-  //   }, 500);
-  // }
-
-  // // 点击 "自行瀏覽" 按钮时触发动画
-  // document
-  //   .querySelector(".smbr")
-  //   .addEventListener("click", animateModalToDiagnoseButton);
-
-  // $(".modal-content").animate(
-  //   {
-  //     opacity: "1",
-  //     top: "250px", // 決定對話框要滑到哪個位置停止。
-  //   },
-  //   550
-  // );
-
-  // $(".smbr").click(function () {
-  //   $(".modal-content").animate(
-  //     {
-  //       opacity: "0",
-  //       top: "-50px", // 需與CSS設定的起始位置相同，以保證下次彈出視窗的效果相同。
-  //     },
-  //     350
-  //   );
-  // });
+    setTimeout(function () {
+      $("#dxIntro").modal("hide");
+      $("#dxIntro").removeClass("shrinkAndMoveAnimation");
+      showModalOnPage();
+    }, 600);
+  });
 </script>
