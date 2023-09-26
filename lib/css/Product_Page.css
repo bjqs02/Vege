@@ -59,6 +59,8 @@ header main#product_main section.main-box aside.asideNav {
 
 @media screen and (max-width: 800px) {
   header main#product_main section.main-box aside.asideNav {
+    padding-top: 10px;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -71,6 +73,10 @@ header main#product_main section.main-box aside.asideNav ul.asideNav-ul {
   padding: 0;
   list-style-type: none;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 header main#product_main section.main-box aside.asideNav ul.asideNav-ul li {
@@ -81,9 +87,10 @@ header main#product_main section.main-box aside.asideNav ul.asideNav-ul li {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 80%;
   }
 }
-header
+/* header
   main#product_main
   section.main-box
   aside.asideNav
@@ -91,7 +98,7 @@ header
   li
   button {
   width: 50%;
-}
+} */
 
 @media screen and (max-width: 800px) {
   header
@@ -127,6 +134,7 @@ header
 header main#product_main section.main-box section.middleContent {
   display: flex;
   width: 100%;
+  margin-bottom: 20px;
 }
 @media screen and (max-width: 800px) {
   header main#product_main section.main-box section.middleContent {
@@ -239,6 +247,12 @@ header
   img {
   width: 20px;
 }
+
+section.middle_box1 {
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.61);
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.61);
+}
+
 header
   main#product_main
   section.main-box
@@ -247,9 +261,6 @@ header
   div.middle_all {
   display: flex;
   position: relative;
-  -webkit-box-shadow: 6px 7px 8px 3px rgba(0, 0, 0, 0.28);
-  box-shadow: 6px 7px 8px 3px rgba(0, 0, 0, 0.28);
-  margin-bottom: 20px;
 }
 
 @media screen and (max-width: 800px) {
@@ -263,6 +274,11 @@ header
     justify-content: center;
     align-items: center;
   }
+
+  section.middle_box1 {
+    -webkit-box-shadow: 6px 7px 8px 3px rgba(0, 0, 0, 0.28);
+    box-shadow: 6px 7px 8px 3px rgba(0, 0, 0, 0.28);
+  }
 }
 header
   main#product_main
@@ -275,7 +291,7 @@ header
   padding: 10px;
   color: rgb(0, 0, 0);
   width: 100%;
-  height: 1240px;
+  height: 1260px;
 }
 @media screen and (max-width: 800px) {
   header
@@ -371,23 +387,25 @@ img.ch:hover {
 }
 
 .black {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   position: fixed;
-  z-index: 1055;
-  background-color: #00000070;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.7);
   display: none;
+  top: 0;
+  left: 0;
 }
 .fv_box {
   position: fixed;
   display: none;
-  z-index: 1056;
+  z-index: 1001;
   width: 60vw;
-  height: auto;
+  max-height: 80vh; /* 设置最大高度 */
   background-color: white;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  animation: shrinkAndMove1 0.5s ease-in-out forwards;
 }
 
 div.mo_header {
@@ -505,12 +523,12 @@ h5 {
 @media screen and (max-width: 800px) {
   header {
     .smtext {
-      margin-top: 30px;
+      margin-top: 50px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      width: 300px;
-      height: 200px;
+      width: 80%;
+      height: 300px;
       border-radius: 14px;
       padding-left: 20px;
       background: #fbf9ed;
@@ -581,13 +599,53 @@ h5 {
   }
 }
 
-.modal-content {
-  /* 其他样式 */
+@keyframes shrinkAndMove1 {
+  0% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+.mm {
   top: -10px;
   opacity: 1;
-  /* 添加动画效果 */
   animation: shrinkAndMove 0.5s ease-in-out forwards;
 }
+
+@keyframes AndMove {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(60vw, 70vh) scale(0);
+    opacity: 1;
+  }
+}
+
+@keyframes AndMove2 {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+
+    opacity: 0;
+  }
+  100% {
+    transform: scale(0.1);
+
+    opacity: 1;
+  }
+}
+.shrinkAndMoveAnimation {
+  animation: AndMove 1s ease-in-out forwards;
+}
+.shrinkAndMoveAnimation2 {
+  animation: AndMove2 0.6s ease-in-out forwards;
+}
+
 /* @keyframes shrinkAnimation {
   from {
     transform: scale(1);
