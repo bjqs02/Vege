@@ -167,7 +167,6 @@ member.get('/articles/:id', function(req, res) {
         var articleJson = { datarticle: articles };
         if( articles[0] ){
             console.log('一天一閱讀，宇智波又');
-            console.log(articleJson);
             res.render('m_article', articleJson);
         }else {
             console.log('佐助失去了哥哥QQ');
