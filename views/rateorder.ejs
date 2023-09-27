@@ -73,11 +73,12 @@
                     $(function () {
                         // 設定訂單編號 (前一頁面[查詢訂單頁面]須設定oid存放於localstorage)
                         // var oid = '8430352'; // 狀態非pending
-                        // var oid = '503835'; // 會員1004 狀態pending 未評價
+                        var oid = '503835'; // 會員1004 狀態pending 未評價
                         // var oid = '4140847'; // 已評價
                         // var oid = '8678231'; // 已評價
                         // var oid = '9014842'; // 已評價
-                        var oid = localStorage.getItem('oid');
+                        // var oid = localStorage.getItem('oid');
+                        
                         orderNumber.innerText = oid;
 
                         $.get(`/getrateorderstatus/${oid}`, function (e) {
