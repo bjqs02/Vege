@@ -62,7 +62,7 @@
                   <% } %>
                   <label class="form-check-label" for="userGender-M">生理男</label>
                 </div>
-                <div class="form-check form-check-inline ms-2">
+                <div class="form-check form-check-inline">
                   <% if( dataInfo[0].Gender == 'F' ) { %>
                   <input class="form-check-input" type="radio" id="userGender-F" name="Gender" value="F" checked>
                   <% }else { %>  
@@ -118,10 +118,17 @@ function edit(uId) {
       carrier: usercarrier.value
     })
   }).then(
-    document.location.href = `/member/basicInfo/${uId}`
+    Swal.fire({
+      icon: 'success',
+      title: '已儲存您的資料!',
+      showConfirmButton: false,
+      timer: 1500
+    }),
+    setTimeout(function () {
+      location.reload();
+    }, 2000)
   )
 }
-
 
 </script>
 

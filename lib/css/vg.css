@@ -241,7 +241,8 @@ p {
   color: var(--text-color);
 }
 
-.btn-vg-sm:before {
+.btn-vg-sm:before,
+#logoutBTN.green:before {
   content: "";
   position: absolute;
   height: 100%;
@@ -689,10 +690,16 @@ p {
 }
 
 #logoutBTN.green:hover {
-  padding: 3px 10px;
-  top: 4px;
-  right: 135px;
+  color: white;
+  font-weight: 600;
+}
+
+#logoutBTN.green:before {
   background-color: var(--sc-g-Dark);
+}
+
+#logoutBTN.green:hover:before {
+  width: 100%;
 }
 
 #userName {
