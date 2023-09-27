@@ -495,7 +495,7 @@
     $("#dxIntro").modal("show");
   }
 
-  setTimeout(callModal, 5000);
+  setTimeout(callModal, 2000);
 
   function showModalOnPage() {
     $("#modalOnPage").css("display", "block");
@@ -563,9 +563,7 @@
         return response.json();
       })
       .then((responseData) => {
-        // 在这里处理服务器返回的数据，例如：
         console.log("Response data:", responseData);
-        // console.log(responseData[0].product);
         set(responseData);
       })
       .catch((error) => {
@@ -592,9 +590,7 @@
         return response.json();
       })
       .then((responseData) => {
-        // 在这里处理服务器返回的数据，例如：
         console.log("Response data:", responseData);
-        // console.log(responseData[0].product);
         set(responseData);
       })
       .catch((error) => {
@@ -616,7 +612,6 @@
     openCity(event, "fu_tab7");
     $(".tab").eq(6).addClass("action");
 
-    // action
     $(".fv_box, .black").show();
     $("body").addClass("body-no-scroll");
     let selectedSize = $(".commodity option:selected").data("size");

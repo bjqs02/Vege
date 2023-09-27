@@ -155,15 +155,15 @@ product.get("/", function (req, res) {
     }
   });
   product.post("/delcartData", async (req, res) => {
-    const delDataArr = req.body;
+    let delDataArr = req.body;
     try {
-      for (const delCart of delDataArr) {
-        const { productId, userId } = delCart;
+      for (let delCart of delDataArr) {
+        let { productId, userId } = delCart;
 
         // Query the maximum c_createtime
-        const maxCreateTimeQuery =
+        let maxCreateTimeQuery =
           "SELECT MAX(c_createtime) AS max_createtime FROM cart WHERE uid = ? AND fid = ?";
-        const maxCreateTimeValues = [userId, productId]; // Corrected variable name
+        let maxCreateTimeValues = [userId, productId]; // Corrected variable name
         mysql.query(maxCreateTimeQuery, maxCreateTimeValues, (err, results) => {
           if (err) {
             console.error("取得產品時間錯誤:", err);
@@ -176,10 +176,10 @@ product.get("/", function (req, res) {
             res.status(404).send("No matching records found");
           }
 
-          const maxCreateTime = results[0].max_createtime;
-          const deleteQuery =
+          let maxCreateTime = results[0].max_createtime;
+          let deleteQuery =
             "DELETE FROM cart WHERE uid = ? AND fid = ? AND c_createtime = ?";
-          const deleteValues = [userId, productId, maxCreateTime];
+          let deleteValues = [userId, productId, maxCreateTime];
           mysql.query(deleteQuery, deleteValues, (err) => {
             if (err) {
               console.error("刪除失敗:", err);
@@ -231,7 +231,7 @@ product.get("/", function (req, res) {
         res.status(500).json({ error: "資料庫錯誤" });
         return;
       }
-      const imagePaths = rows.map((row) => row.image);
+      let imagePaths = rows.map((row) => row.image);
       res.json(imagePaths);
     });
   });
