@@ -492,4 +492,16 @@ cart_order.get("/getrateorderstatus/:oid", function (req, res) {
   });
 });
 
+// 後台路由
+// 讀取所有訂單評價及金額(巢狀sql)
+cart_order.get("/getorder/all/", function (req, res) {
+  // var sql26 = "SELECT * FROM vgorder join cart join product join product_content WHERE vgorder.oid = cart.oid and cart.pid = product.pid and product.product = product_content.product GROUP BY vgorder.oid";
+  // var sql26 = "SELECT vgorder.oid, vgorder.o_ceatetime, vgorder.uid, vgorder.oName, vgorder.o_status, rateorder.r_status, sum(cart.money) as sum FROM vgorder JOIN cart ON vgorder.oid = cart.oid JOIN product ON cart.pid = product.pid JOIN product_content ON product.product = product_content.product LEFT JOIN rateorder ON rateorder.oid = vgorder.oid GROUP BY vgorder.oid;";
+  var sql26 = "SELECT vgorder.oid, vgorder.o_ceatetime, vgorder.uid, vgorder.oName, vgorder.o_status, rateorder.r_status, COALESCE(sum_cart_money, 0) as sum_money FROM vgorder JOIN ( SELECT pid, oid, SUM(money) as sum_cart_money FROM cart GROUP BY oid ) AS cart_sum ON vgorder.oid = cart_sum.oid JOIN product ON cart_sum.pid = product.pid JOIN product_content ON product.product = product_content.product LEFT JOIN rateorder ON rateorder.oid = vgorder.oid GROUP BY vgorder.oid;";
+  db.query(sql26, function (err, rows) {
+    // console.log(rows)
+    res.send(rows);
+  });
+});
+
 module.exports = cart_order;
