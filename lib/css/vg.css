@@ -37,41 +37,41 @@ section {
 /* 文字樣式 */
 .vg-h1,
 h1 {
-  font-size: calc(3rem * 1.25);
+  font-size: 3rem;
   font-weight: bold;
 }
 
 .vg-h2,
 h2 {
-  font-size: calc(2.5rem * 1.25);
+  font-size: 2.5rem;
   font-weight: bold;
 }
 
 .vg-h3,
 h3 {
-  font-size: calc(2rem * 1.25);
+  font-size: 2rem;
   font-weight: bold;
 }
 
 .vg-h4,
 h4 {
-  font-size: calc(1.5rem * 1.25);
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
 .vg-h5,
 h5 {
-  font-size: calc(1.125rem * 1.25);
+  font-size: 1.125rem;
   font-weight: bold;
 }
 
 .vg-p,
 p {
-  font-size: calc(1rem * 1.25);
+  font-size: 1rem;
 }
 
 .vg-ps {
-  font-size: calc(0.75rem * 1.25);
+  font-size: 0.75rem;
 }
 /* 文字樣式 */
 
@@ -171,7 +171,7 @@ p {
   position: relative;
   border: 2px solid var(--primary-1);
   color: var(--text-color);
-  font-size: calc(0.9rem * 1.25);
+  font-size: 0.9rem;
   text-align: center;
   letter-spacing: 2px;
   overflow: hidden;
@@ -213,7 +213,7 @@ p {
   overflow: hidden;
   margin: 5px 20px;
   min-width: 100px;
-  font-size: calc(0.9rem * 1.25);
+  font-size: 0.9rem;
   color: var(--text-color);
   /* transition: all 0.5s; */
 }
@@ -236,7 +236,7 @@ p {
   position: relative;
   overflow: hidden;
   margin: 0 10px;
-  font-size: calc(0.75rem * 1.25);
+  font-size: 0.75rem;
   width: 60px;
   color: var(--text-color);
 }
@@ -277,7 +277,7 @@ p {
   position: relative;
   overflow: hidden;
   margin: 0 5px;
-  font-size: calc(0.75rem * 1.25);
+  font-size: 0.75rem;
   width: 50px;
   color: var(--text-color);
 }
@@ -311,7 +311,7 @@ p {
   position: relative;
   margin: 5px 0 0 0;
   overflow: hidden;
-  font-size: calc(1rem * 1.25);
+  font-size: 1rem;
   line-height: 1rem;
   cursor: pointer;
   padding: 16px 18px 28.98px 18px;
@@ -381,7 +381,7 @@ p {
   padding: 14px 25px;
   position: relative;
   color: var(--bg-1);
-  font-size: calc(1.125rem * 1.25);
+  font-size: 1.125rem;
   text-decoration: none;
   /* display: inline-block; */
   /* margin: 5px; */
@@ -532,7 +532,7 @@ p {
   box-shadow: 0px 0px 18px 0px #7c63553a;
   position: fixed;
   top: 0px;
-  font-size: calc(16px * 1.25);
+  font-size: 1rem;
   color: var(--text-color);
   transition: 0.3s;
   z-index: 100;
@@ -730,7 +730,7 @@ p {
   height: 45px !important;
   margin-top: 9px !important;
   margin-bottom: 0 !important;
-  font-size: calc(20px * 1.25) !important;
+  font-size: 20px !important;
 }
 
 .fa-cart-shopping.change {
@@ -852,7 +852,7 @@ body.show-sidebar-cart #sidebar-cart {
 #sidebar-cart h2 {
   color: var(--text-color);
   padding-bottom: 1rem;
-  font-size: calc(1.1rem * 1.25);
+  font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: 5px;
   text-transform: uppercase;
@@ -872,7 +872,7 @@ body.show-sidebar-cart #sidebar-cart {
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  font-size: calc(12px * 1.25);
+  font-size: 12px;
   letter-spacing: 0;
   display: flex;
   align-items: center;
@@ -946,7 +946,7 @@ body.show-sidebar-cart #sidebar-cart {
 }
 #sidebar-cart ul.products li.product a.product-link span.product-details h3 {
   margin: 3px 25px 5px 0;
-  font-size: calc(1rem * 1.25);
+  font-size: 1rem;
   font-weight: 500;
   color: var(--text-color);
   transition: all 0.5s linear;
@@ -1022,7 +1022,7 @@ body.show-sidebar-cart #sidebar-cart {
   border: 1px solid #cdcdd1;
   background: var(--text-color);
   color: white;
-  font-size: calc(18px * 1.25);
+  font-size: 18px;
   text-align: center;
   vertical-align: middle;
   line-height: 20px;
@@ -1158,11 +1158,11 @@ body.show-sidebar-cart #sidebar-cart {
   span.price {
   color: var(--text-color);
   font-weight: 500;
-  font-size: calc(13px * 1.25);
+  font-size: 13px;
   display: inline-flex;
 }
 #sidebar-cart ul.products li.product a.remove-button {
-  font-size: calc(16px * 1.25);
+  font-size: 1rem;
   margin: 10px 10px 0 0;
   text-decoration: none;
   position: absolute;
@@ -1196,7 +1196,7 @@ body.show-sidebar-cart #sidebar-cart {
   color: var(--text-color);
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-size: calc(14px * 1.25);
+  font-size: 14px;
   font-weight: 400;
   display: flex;
   flex-direction: row;
@@ -1237,7 +1237,7 @@ body.show-sidebar-cart #sidebar-cart {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 5px;
-  font-size: calc(20px * 1.25);
+  font-size: 20px;
   border-width: 1px;
   border-style: solid;
   border-radius: 4px;
@@ -1396,7 +1396,7 @@ body.show-sidebar-cart #sidebar-cart {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: calc(17px * 1.25);
+  font-size: 17px;
 }
 
 /* .vg-navbar-2.sticky {
@@ -1438,7 +1438,7 @@ body.show-sidebar-cart #sidebar-cart {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: calc(17px * 1.25);
+    font-size: 17px;
   }
 
   .vg-navbar-2 a:not(:first-child) {
@@ -1609,14 +1609,14 @@ span[class="vg-ps"] b {
   color: var(--text-color);
   cursor: pointer;
   display: none;
-  font-size: calc(1rem * 1.25);
+  font-size: 1rem;
   margin: 0 10px;
   overflow: hidden;
   padding: 5px 10px;
   position: fixed;
   right: 5px;
-  height: 80px;
-  width: 80px;
+  height: 60px;
+  width: 60px;
   text-align: center;
 }
 
