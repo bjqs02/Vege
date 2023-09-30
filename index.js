@@ -2,6 +2,7 @@ var express = require("express");
 var app = express();
 
 var bp = require("body-parser");
+app.use(bp.json());
 var jp = bp.json();
 var cp = require("cookie-parser");
 app.use(cp());

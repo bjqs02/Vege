@@ -1,9 +1,10 @@
 var express = require("express");
-app = express();
+// app = express();
 var activity = express.Router();
 var db = require('../db');
 var bp = require('body-parser');
 var jp = bp.json();
+
 
 activity.get('/', function(req, res){
     var sql1 = "select * from activityboard;"
@@ -29,7 +30,7 @@ activity.get('/all', function(req, res){
             console.log(err);
         } else {
             console.log('抓活動資料成功');
-            console.log(data);
+            // console.log(data);
             res.send(data);
         }
     })
@@ -37,7 +38,7 @@ activity.get('/all', function(req, res){
 
 // 後臺抓單一活動資料
 activity.get('/:id', function(req, res){
-    var sql = `SELECT actid, actTitle, actImg, date_format(acttime, '%Y-%c-%d') as acttime, actText, actCat from activityboard where actid = ?;`;
+    var sql = `SELECT actid, actTitle, actImg, adminImg, date_format(acttime, '%Y-%c-%d') as acttime, actText, actCat from activityboard where actid = ?;`;
     var data = [req.params.id];
     console.log(req.params.id);
     db.query(sql, data, function(err, data){
@@ -46,8 +47,17 @@ activity.get('/:id', function(req, res){
             console.log(err);
         } else {
             console.log('抓取單一活動成功');
-            console.log(data);
+            // console.log(data);
+            if (data[0].adminImg){
+                const bufferImg = Buffer.from(data[0].adminImg, 'binary');
+                const admImg = bufferImg.toString('base64');
+                data[0].adminImg = admImg;
+            } else {
+                data[0].adminImg = '';
+            }
             res.send(data);
+            
+
         }
     })
 })
@@ -108,16 +118,17 @@ activity.post('/spanValue', jp, function(req, res){
 
 // 後台新增活動
 activity.put('/new', jp, function(req, res){
-    console.log(req.body.aTitle);
-    var data = [req.body.aTitle, req.body.aImg, req.body.aContent, parseInt(req.body.aType)];
-    var sql =  `insert into activityboard (actTitle, actImg, actText, actCat) values (?, ?, ?, ?);`;
+    const adminImg = req.body.adminImg;
+    const binaryAdminImg = Buffer.from(adminImg, 'base64');
+    const data = [req.body.aTitle, req.body.aImg ,binaryAdminImg, req.body.aContent, parseInt(req.body.aType)];
+    const sql =  `insert into activityboard (actTitle, actImg, adminImg, actText, actCat) values (?, ?, ?, ?, ?);`;
     db.query(sql, data, function(err, row){
         if(err){
             console.log('新增活動失敗');
             console.log(err);
         } else {
             console.log('新增活動成功');
-            console.log(res);
+            // console.log(res);
             res.send(JSON.stringify(req.body));
         }
     })
@@ -125,12 +136,15 @@ activity.put('/new', jp, function(req, res){
 
 // 後臺更新活動資料
 activity.put('/edit', jp, function(req, res){
+    const adminImg = req.body.adminImg;
+    const binaryAdminImg = Buffer.from(adminImg, 'base64');
     const actid = parseInt(req.body.actid);
     const actTitle = req.body.actTitle;
     const actText = req.body.actText;
+    const actImg = req.body.actImg;
     const actCat = parseInt(req.body.actCat);
-    const sql = `UPDATE activityboard SET actTitle=?, actText =?, actCat=? WHERE actid = ?;`
-    const data = [actTitle, actText, actCat, actid];
+    const sql = `UPDATE activityboard SET actTitle=?, actText =?, actCat=?, actImg=?, adminImg=? WHERE actid = ?;`
+    const data = [actTitle, actText, actCat, actImg,binaryAdminImg,actid];
     db.query(sql, data, function(err, rows){
         if(err){
             console.log('更新活動失敗')
@@ -145,9 +159,9 @@ activity.put('/edit', jp, function(req, res){
 
 // 後臺刪除活動資料
 activity.delete('/delete/:id', jp, function(req, res){
-    var data = [req.params.id];
+    const data = [req.params.id];
     console.log(data);
-    var sql = `delete from activityboard where actid = ?;`;
+    const sql = `delete from activityboard where actid = ?;`;
     db.query(sql, data, function(err, scss){
         if(err){
             console.log('刪除活動失敗');
