@@ -89,7 +89,7 @@
     // 到期日計算
     const earliest = dayjs( $('#exp').html() );
     const startM = earliest.startOf('month');
-    const endM = startM.add(1, 'month').format('YYYY-MM-DD');
+    const endM = startM.add(1, 'month').endOf('month').format('YYYY-MM-DD');
     $('#exp').text(endM);
 
   })
