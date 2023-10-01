@@ -1,9 +1,28 @@
 <div class="div-refer memb-multF">
-    <!-- <div class="test">
-      <h5 class="vg-h5 fw-semibold">蔬果曆</h5>
+  <div>
+    <h5 class="vg-h5 fw-semibold">蔬果曆</h5>
+    <div class="vgcalendar"></div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn vgCbtn" data-bs-toggle="modal" data-bs-target="#vgCalendar">
+      查看蔬果曆
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="vgCalendar" tabindex="-1" aria-labelledby="calendarLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">蔬果曆</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="open-calendar"></div>
+          </div>
+      </div>
     </div>
 
-    <div class="order-status">
+  </div>
+
+    <!-- <div class="order-status">
       <h5 class="vg-h5 fw-semibold">訂單狀態追蹤</h5>
       <div class="accordion accordion-flush" id="status">
         <div class="accordion-item">

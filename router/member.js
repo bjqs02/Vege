@@ -124,6 +124,25 @@ member.get('/order/:id', async function(req, res) {
     }
 })
 
+// 讀取-訂閱日期 => 蔬果曆
+member.get('/vgCalendar/:id', async function(req, res) {
+    var sqlPTime = `SELECT vgorder.uid, vgorder.oid, vgorder.o_ceatetime, cart.pid, product.freq FROM vgorder
+                    JOIN cart ON vgorder.oid = cart.oid
+                    JOIN product ON cart.pid = product.pid
+                    WHERE vgorder.uid = ?;`;
+
+    db.query(sqlPTime, [req.params.id], function(err, pTime) {
+        // let arrayCT = [];
+        // for( const item of pTime ) {
+        //     // 日期格式轉換
+        //     const cTime = dayjs(item.o_ceatetime).format('YYYY-MM-DD');
+        //     arrayCT.push(cTime);
+        // }
+        console.log('蔬蔬查閱訂購日鴨');
+        res.send( pTime );
+    })
+})
+
 
 // 讀取-購物金
 member.use('/bonus', express.static('lib')); //記得刪掉

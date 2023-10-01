@@ -25,6 +25,26 @@
         <!-- content -->
         <div class="memb-content">
             <h4 class="welcome">Welcome</h4>
+            <div class="memb-coinRC mb-5 pe-2">
+              <div class="card-header d-flex">
+                <div>
+                  <p>
+                    210
+                    <small class="vg-ps"> 可使用的VG點數</small>
+                  </p>
+                  <p class="vg-ps">
+                    <small class="text-muted" data-bs-toggle="tooltip" data-bs-placement="bottom" title="期限為您獲得的月份加上一個月的最後一天，請記得於期限前使用完畢!">
+                      2023-10-01 到期
+                    </small>
+                  </p>
+                </div>
+                <a href="#">
+                  <span class="btn btn-vg-reg btn-vg-secondary">
+                  獲得更多點數
+                  </span>
+                </a>
+              </div>
+            </div>
             
             <div class="memb-order row">
               <ul class="list-group">
@@ -90,7 +110,7 @@
                   <div class="col-3 order-button2">
                     <button class="btn">追蹤狀態</button>
                     <button class="btn">聯絡客服</button>
-                    <button class="btn btn-vg-redborder">延後配送</button>
+                    <button class="btn btn-vg-redborder putOff">延後配送</button>
                     <!-- <button class="btn">查看詳情</button> -->
                   </div>
                   
@@ -121,5 +141,27 @@
     <%- include('share/footer.ejs') %>
 
 </body>
+<script>
+  $('.putOff').on( 'click', function() {
+    // console.log('ok');
+    Swal.fire({
+      title: '本筆訂單確定要延後配送嗎?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: 'var(--secondary-g)',
+      cancelButtonColor: 'var(--secondary-r)',
+      confirmButtonText: '確定',
+      cancelButtonText: '取消'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: '已送出延後配送的需求，物流客服將盡快向您聯繫', 
+          icon: 'success', 
+          confirmButtonColor: 'var(--secondary-g)',
+        })
+      }
+    })
+  })
+</script>
 
 </html>
