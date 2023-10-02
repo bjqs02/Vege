@@ -120,7 +120,8 @@
                         return res.json();
                     })
                     .then(function(jsonObj){
-                        console.log(jsonObj[0]);
+                        
+                        console.log(jsonObj[0].oid);
                         for(var j = 0; j < 3; j++){
 
                             for(var i = 0; i < jsonObj.length; i++){
@@ -133,8 +134,9 @@
                                             ${jsonObj[i].Name}
                                         </div>
                                         <div class="card-body">
-                                            <h5 class="card-title"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></h5>
+                                            <h4 class="vg-h5 vg-href-inline pt-2 pb-2 text-center" >${commentList[0]==' '? '全部':commentList[0]}</h4>
                                             <p class="card-text">${commentList[1]}</p>
+                                            <h5 class="card-title"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></h5>
                                         </div>
                                         <div class="card-footer text-muted">
                                             ${Math.floor(Math.random() * 5)} days ago
