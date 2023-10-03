@@ -50,7 +50,7 @@
 }
 
 .content>h1 {
-    font-size: calc(50px * 1.25);
+    font-size: 50px;
     font-weight: 600;
 }
 
@@ -205,7 +205,7 @@ h2 {
 }
 
 .pSlider {
-    height: 500px;
+    height: 450px;
     margin: auto;
     position: relative;
     width: 90%;
@@ -225,7 +225,7 @@ h2 {
 }
 
 .pSlide {
-    height: 470px;
+    height: 420px;
     width: 288px;
     display: flex;
     align-items: center;
@@ -272,7 +272,7 @@ h2 {
 
 /* 顧客回饋區塊 */
 .pSlider2 {
-    height: 450px;
+    height: 380px;
     margin: auto;
     position: relative;
     width: 90%;
@@ -292,9 +292,11 @@ h2 {
 }
 
 .pSlide2 {
-    height: 200px;
+    /* height: 200px; */
     /* max-width: fit-content; */
-    width: fit-content;
+    /* width: fit-content; */
+    max-height: 200px;
+    min-width: 250px;
     display: flex;
     align-items: center;
     padding: 20px;
